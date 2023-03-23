@@ -70,8 +70,7 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Util/TCPConnToClient.cpp"
 )
 
-list(APPEND CMAKE_PREFIX_PATH "/Users/tomas/Documents/noguardable-apps/w64devkit/x86_64-w64-mingw32") # DEBUG, cosas de windows
-target_compile_options(postaengine PUBLIC -I/Users/tomas/Documents/noguardable-apps/w64devkit/x86_64-w64-mingw32/include/bullet) # DEBUG, cosas de windows
+target_compile_options(postaengine PUBLIC -I${CMAKE_PREFIX_PATH}/../../include/bullet)
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
@@ -82,8 +81,6 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(Lua REQUIRED)
 
-#include(CMakePrintHelpers)
-#cmake_print_variables(BULLET_LIBRARIES)
 include_directories(${BULLET_INCLUDE_DIR})
 find_package(Bullet REQUIRED)
 
@@ -91,8 +88,4 @@ target_include_directories(postaengine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}" ${LU
 target_link_libraries(postaengine PUBLIC SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_net::SDL2_net SDL2_mixer::SDL2_mixer OpenGL::GL OpenGL::GLU GLEW::GLEW ${BULLET_LIBRARIES} ${LUA_LIBRARIES})
 target_compile_features(postaengine PUBLIC cxx_std_17)
 target_compile_options(postaengine PUBLIC -Wall -Wpedantic)
-
-# Includes bullet
-#target_compile_options(postaengine PRIVATE -I/usr/local/include/bullet)
-
 

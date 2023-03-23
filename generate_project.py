@@ -21,6 +21,10 @@ def replace_template_name(name):
 def copy_template_folder(name):
     shutil.copytree("template", f"apps/{name}")
 
+def append_subdirectory(name):
+    with open("apps/CMakeLists.txt", "a") as file:
+        file.write(f"add_subdirectory({name})")
+
 def create_build_symlinks_and_build_folder(name):
     os.makedirs(f"build/apps/{name}")
     subprocess.run(["ln", "-s" , os.path.abspath('common-assets/common'), os.path.abspath(f'build/apps/{name}/common')])
@@ -34,6 +38,8 @@ def main():
     print(f"Creating project {sys.argv[1]} from template...")
     print("Copying template to a new folder...")
     copy_template_folder(sys.argv[1])
+    print("Adding line to make compilation possible...")
+    append_subdirectory(sys.argv[1])
     print("Creating custom CMakeLists...")
     replace_template_name(sys.argv[1])
     print("Creating build folders and symlinks...")
