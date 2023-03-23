@@ -1,0 +1,39 @@
+<<< error
+>>> solucion
+
+<<< opengl is no supported
+>>>Escribe esto cada vez que se quiera ejecutar el programa
+export MESA_GL_VERSION_OVERRIDE=3.3
+
+<<< Problema cuando cmake ..
+ Could not find a package configuration file provided by "SDL2" with any of
+  the following names:
+
+    SDL2Config.cmake
+    sdl2-config.cmake
+>>> aniadir a cmake .. esto: 
+	-DCMAKE_PREFIX_PATH=/Users/tomas/Documents/noguardable-apps/w64devkit/x86_64-w64-mingw32/lib/cmake/
+	(es decir, la direccion en donde se instalo el sdl junto a lib/cmake)
+	Este error puede suceder tambien con otras cosas de sdl2, se hace lo mismo para solucionarlas, es decir, una vez hecho
+	para sdl no creo que sea necesario para otro
+<<< haciendo cmake ..
+CMake Error at CMakeLists.txt:3 (project):
+  Running
+
+   'nmake' '-?'
+
+  failed with:
+
+   The system cannot find the file specified
+>>> se agrega a cmake .. -G "MinGW Makefiles"
+<<< no se imprime nada
+>>> ./main | cat
+
+<<< errores como throw no aparecen cuando se ejecuta ./main | cat
+>>> se redirije el stderr al stdout ./main.exe 2>&1 | cat
+<<< no aparece compile_commands.json (para usarse con clangd)
+>>> cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+<<< no se detectan las standard libraries
+>>> add the following 2 lines to the file %APPDATA%/Local/clangd/config.yaml
+CompileFlags:
+  Add: [--target=x86_64-w64-mingw32, -fuse-ld=lld-14, -pthread, -stdlib=libstdc++, -femulated-tls, -rtlib=libgcc, -std=c++17]
