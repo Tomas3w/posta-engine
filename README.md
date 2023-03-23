@@ -44,7 +44,7 @@ Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En
         mkdir build
         cd build
         cmake-gui ..
-  Recomiendo utilizar cmake-gui y deshabilitar los ejemplos y los unit tests, además de todo esto es necesario elegir donde se va a instalar y hacer:
+  Recomiendo utilizar cmake-gui y deshabilitar los ejemplos y los unit tests, además de todo esto es necesario elegir donde se va a instalar y al final hacer:
         
         make install
   Luego copiamos el contenido de la carpeta que elegimos para que se instale en la carpeta x86_64-w64-mingw32
