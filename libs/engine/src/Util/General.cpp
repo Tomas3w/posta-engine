@@ -1,4 +1,5 @@
 #include <engine/include/Util/General.h>
+#include <engine/include/Util/LoggingMacro.h>
 
 std::string Engine::read_file(std::filesystem::path path)
 {
@@ -10,9 +11,9 @@ std::string Engine::read_file(std::filesystem::path path)
 	file.seekg(0);
 
 	char* s = new char[size + 1];
-	s[size] = 0;
+	memset(s, 0, size + 1);
 	file.read(s, size);
-	
+
 	file.close();
 	std::string r = s;
 	delete[] s;
