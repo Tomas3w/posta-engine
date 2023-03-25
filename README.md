@@ -49,6 +49,9 @@ Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En
         
         make install
   Luego copiamos el contenido de la carpeta que elegimos para que se instale en la carpeta x86_64-w64-mingw32
+- glm
+  //
+
 
 Una vez instaladas estas librerias, clona el repositorio, y dentro ejecuta:
     
