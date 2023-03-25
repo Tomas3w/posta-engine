@@ -3,9 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mi pagina</title>
+	<title>Posta Engine Docs</title>
 </head>
 <body>
-Sip, aqui hay documentation de posta-engine
+
+<h1>Getting started</h1>
+<p>Para empezar, </p>
+<?php
+echo "hola"
+?>
+
 </body>
 </html>
