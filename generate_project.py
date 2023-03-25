@@ -23,7 +23,7 @@ def copy_template_folder(name):
 
 def append_subdirectory(name):
     with open("apps/CMakeLists.txt", "a") as file:
-        file.write(f"add_subdirectory({name})")
+        file.write(f"\nadd_subdirectory({name})")
 
 def create_build_symlinks_and_build_folder(name):
     os.makedirs(f"build/apps/{name}")

@@ -3,7 +3,9 @@ import subprocess, os, sys
 def main():
     n = sys.argv[1]
     os.chdir(f"build/apps/{n}")
-    p = subprocess.Popen("./template.exe", stdout=subprocess.PIPE)
+    
+    import build # run build.py
+    p = subprocess.Popen(f"./{n}.exe", stdout=subprocess.PIPE)
     while p.poll() is None:
         l = p.stdout.readline()
         print(l.decode(), end='')
