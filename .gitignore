@@ -12,3 +12,4 @@ _deps
 /.cache
 /build/*
 /apps/*
+__pycache__
