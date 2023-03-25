@@ -50,10 +50,12 @@ Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En
         make install
   Luego copiamos el contenido de la carpeta que elegimos para que se instale en la carpeta x86_64-w64-mingw32
 - glm
-  //
+ 
+  Descargar el archivo que se encuentra en este link: https://github.com/g-truc/glm/releases y descomprimir la carpeta (NO EL CONTENIDO) glm en x86_64-w64-mingw32, también hay que tener cuidado de no copiar la carpeta base del comprimido, sino la carpeta glm que esta dentro de glm
 
 
-Una vez instaladas estas librerias, clona el repositorio, y dentro ejecuta:
+
+Una vez instaladas estas librerias, clona el repositorio, y dentro ejecuta (este script de python solo funciona si se tiene ln instalado, sin embargo el mismo viene por defecto en w64devkit):
     
     python generate_project.py template
 Esto con el fin de crear un proyecto simple basado en la plantilla y para poder comprobar que no hubo errores con las dependencias.
