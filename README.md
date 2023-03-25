@@ -25,7 +25,7 @@ Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En
   https://github.com/libsdl-org/SDL_net/releases
 - SDL_mixer
 
-  https://github.com/libsdl-org/SDL_mixer
+  https://github.com/libsdl-org/SDL_mixer/releases
 - GLEW
 
   Descarge los binarios de este link: https://glew.sourceforge.net/, una vez tenga el comprimido, se extrae los elementos de la sub carpeta glew-X.X.X dentro de x86_64-w64-mingw32
@@ -34,6 +34,7 @@ Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En
     Descarge el codigo fuente en https://www.lua.org/download.html (lua-5.4.x.tar.gz), extraegalo en una carpeta, ejecute los siguiente comandos:
 
         mkdir src/build
+        make INSTALL_TOP=src/build PLAT=mingw TO_BIN="lua.exe luac.exe"
         make install INSTALL_TOP=src/build PLAT=mingw TO_BIN="lua.exe luac.exe"
     
     Una vez hecho esto, copie el contenido dentro de src/build en x86_64-w64-mingw32
