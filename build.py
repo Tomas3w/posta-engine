@@ -1,9 +1,10 @@
 import os, subprocess
 
-def main():
+def build():
     os.chdir('./build')
     subprocess.run(['make'])
+    os.chdir('..')
 
 if __name__ == "__main__":
-    main()
+    build()
 
