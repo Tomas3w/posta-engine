@@ -17,6 +17,11 @@ Texture::Texture(SDL_Surface* image)
 	load(image);
 }
 
+Texture::Texture(GLuint _texture)
+{
+	texture = _texture;
+}
+
 void Texture::load(SDL_Surface* image)
 {
 	glGenTextures(1, &texture);

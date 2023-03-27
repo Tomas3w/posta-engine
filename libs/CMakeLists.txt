@@ -68,6 +68,7 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Util/TCPConnToServer.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/include/Util/TCPConnToClient.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Util/TCPConnToClient.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Util/Framebuffer.cpp"
 )
 
 target_compile_options(postaengine PUBLIC -I${CMAKE_PREFIX_PATH}/../../include/bullet)

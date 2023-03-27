@@ -6,13 +6,17 @@
 #include <engine/include/Util/Assets.h>
 #include <iostream>
 #include <memory>
-//#include <engine/include/App.h>
+#include <engine/include/UI/Rect.h>
 
 namespace Engine::Component {
 	/// Image class, used to draw a 2D image in a given position, it stores a texture and its dimensions
 	class Image
 	{
 	public:
+		/// Returns the matrix for a rectangle
+		static glm::mat4 matrix_for_rect(Engine::UI::Rect rect, int screen_w, int screen_h);
+		/// Draws a rectangle with texture given by texture
+		static void draw_rect(Engine::Component::Texture* texture);
 		/// Creates an image from a file
 		Image(std::filesystem::path path);
 		/// Creates an image from a texture and its dimensions, takes ownership of the texture pointer

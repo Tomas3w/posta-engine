@@ -10,10 +10,6 @@ uniform vec4 global_color;
 
 uniform sampler2D intexture;
 
-float rand(vec3 co){
-	return fract(sin(dot(co, vec3(12.9898, 78.233, 32.4285))) * 43758.5453);
-}
-
 void main()
 {
 	vec4 tex = texture(intexture, UV);

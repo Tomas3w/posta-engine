@@ -8,7 +8,8 @@ def main():
 
     os.chdir(f"build/apps/{n}")
     
-    p = subprocess.Popen(f"./{n}.exe", stdout=subprocess.PIPE)
+    # 2>&1 | cat
+    p = subprocess.Popen(f"./{n}.exe", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     while p.poll() is None:
         l = p.stdout.readline()
         print(l.decode(), end='')

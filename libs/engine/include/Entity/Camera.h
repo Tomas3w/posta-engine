@@ -23,17 +23,6 @@ namespace Engine::Entity {
 
 			std::unique_ptr<Engine::Component::Camera> camera; // This is a unique_ptr just to be able to use an orthographic view or projection view
 			Engine::Component::Transform transform;
-
-			/*// Sets the position of the camera
-			void set_position(glm::vec3 pos);
-			/// Sets the rotation of the camera
-			void set_rotation(glm::quat rot);
-			void set_rotation(glm::vec4 rot);
-			void set_rotation(glm::vec3 rot);
-
-			const glm::vec3 get_position();
-			const glm::quat get_rotation();
-			*/
 		private:
 			//glm::vec3 position;
 			//glm::quat rotation;
