@@ -83,7 +83,8 @@ glm::mat4 Transform::get_matrix() const
 
 glm::mat3 Transform::get_normal_matrix() const
 {
-	return glm::mat3(glm::transpose(glm::inverse(get_matrix())));
+	auto without_scale = glm::translate(glm::mat4(1.0f), position) * glm::toMat4(rotation);
+	return glm::mat3(glm::transpose(glm::inverse(without_scale)));
 }
 
 glm::mat4 Transform::get_view_matrix() const

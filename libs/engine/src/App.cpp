@@ -167,7 +167,7 @@ void App::loop()
 	while (!exit_loop)
 	{
 		ticks = SDL_GetTicks();
-		clear_frame();
+		clear_frame_and_flip();
 
 
 		mouse_state = SDL_GetMouseState(&mouse_x, &mouse_y);
@@ -276,6 +276,11 @@ void App::manage_textbox_input(SDL_Event& event, Engine::UI::Textbox& textbox)
 }
 
 void App::clear_frame()
+{
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+}
+
+void App::clear_frame_and_flip()
 {
 	SDL_GL_SwapWindow(window);
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
