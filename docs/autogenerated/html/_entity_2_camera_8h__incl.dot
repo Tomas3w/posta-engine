@@ -1,0 +1,29 @@
+digraph "libs/engine/include/Entity/Camera.h"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="libs/engine/include\l/Entity/Camera.h",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="memory",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="engine/include/Entity\l/Entity.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_entity_8h.html",tooltip=" "];
+  Node1 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="engine/include/Component\l/Camera.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_component_2_camera_8h.html",tooltip=" "];
+  Node4 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="glm/gtc/matrix_transform.hpp",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node4 -> Node6 [color="steelblue1",style="solid"];
+  Node6 [label="iostream",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node7 [color="steelblue1",style="solid"];
+  Node7 [label="engine/include/Component\l/Transform.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$_transform_8h.html",tooltip=" "];
+  Node7 -> Node5 [color="steelblue1",style="solid"];
+  Node7 -> Node8 [color="steelblue1",style="solid"];
+  Node8 [label="glm/gtx/string_cast.hpp",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node7 -> Node9 [color="steelblue1",style="solid"];
+  Node9 [label="glm/gtx/quaternion.hpp",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node7 -> Node6 [color="steelblue1",style="solid"];
+  Node7 -> Node10 [color="steelblue1",style="solid"];
+  Node10 [label="bullet/btBulletDynamicsCommon.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node8 [color="steelblue1",style="solid"];
+}

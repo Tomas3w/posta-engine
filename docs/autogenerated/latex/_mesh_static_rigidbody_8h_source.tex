@@ -1,0 +1,28 @@
+\hypertarget{_mesh_static_rigidbody_8h_source}{}\doxysection{Mesh\+Static\+Rigidbody.\+h}
+\label{_mesh_static_rigidbody_8h_source}\index{libs/engine/include/Component/MeshStaticRigidbody.h@{libs/engine/include/Component/MeshStaticRigidbody.h}}
+\mbox{\hyperlink{_mesh_static_rigidbody_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_MESHSTATICRIGIDBODY\_H}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_MESHSTATICRIGIDBODY\_H}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_rigidbody_8h}{engine/include/Component/Rigidbody.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mesh_8h}{engine/include/Util/Mesh.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00007}00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_component}{Engine::Component}}\ \{}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00009}\mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody}{00009}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody}{MeshStaticRigidbody}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00010}00010\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody}{MeshStaticRigidbody}}(glm::vec3\ position,\ std::vector<GLfloat>\&\ \_vertices,\ std::vector<int>\&\ \_indices,\ \textcolor{keywordtype}{bool}\ swap\_data);}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody_aa1b7d79fc913d216f835fc871822af02}{\string~MeshStaticRigidbody}}();}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<GLfloat>\ vertices;}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ indices;}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ btTriangleIndexVertexArray*\ tarray;}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00025}00025\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_mesh_static_rigidbody_8h_source_l00028}00028\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_MESHSTATICRIGIDBODY\_H}}
+
+\end{DoxyCode}

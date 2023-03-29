@@ -1,0 +1,28 @@
+\hypertarget{_general_8h_source}{}\doxysection{General.\+h}
+\label{_general_8h_source}\index{libs/engine/include/Util/General.h@{libs/engine/include/Util/General.h}}
+\mbox{\hyperlink{_general_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_GENERAL\_H}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_GENERAL\_H}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <bullet/btBulletDynamicsCommon.h>}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{span_8h}{engine/include/Util/span.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}\ \{}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00012}00012\ \ \ \ \ std::string\ \mbox{\hyperlink{namespace_engine_acad4348817bfb41bb7e143c3f24e651c}{read\_file}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00014}00014\ \ \ \ \ btVector3\ \mbox{\hyperlink{namespace_engine_ae9a25bed5ecc2f09d90c601d92934552}{to\_btVector3}}(glm::vec3\ vec);}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00015}00015\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{namespace_engine_a7b24cbda7b8a8b57c9bd7c07cb270cb6}{from\_btVector3}}(btVector3\ vec);}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00017}00017\ \ \ \ \ std::string\ \mbox{\hyperlink{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}{strip}}(std::string\ str);}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00019}00019\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{namespace_engine_aa5b2c22b6569ecb716efec0463f5c85f}{split}}(std::string\ str,\ \textcolor{keywordtype}{char}\ separator);}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_general_8h_source_l00022}00022\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_GENERAL\_H}}
+
+\end{DoxyCode}

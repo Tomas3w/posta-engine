@@ -1,0 +1,183 @@
+\hypertarget{class_engine_1_1_font}{}\doxysection{Engine\+::Font Class Reference}
+\label{class_engine_1_1_font}\index{Engine::Font@{Engine::Font}}
+
+
+A font class, used to draw text into textures and images.  
+
+
+
+
+{\ttfamily \#include $<$Font.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_font_aead80e1b67bab4ba6a28fdc7d7a947a7}{Font}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Creates a font from a .ttf file, the .ttf file must not be removed until all of the font objects are freed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_font_a134aaa2f78af0c12d3ce504957169768}{$\sim$\+Font}} ()
+\item 
+\mbox{\hyperlink{class_engine_1_1_font_a241872d2368cebed201b3c45c4ef82b7}{Font}} (const \mbox{\hyperlink{class_engine_1_1_font}{Font}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_font}{Font}} \& \mbox{\hyperlink{class_engine_1_1_font_a41b087c194548283110e7a2bfdd392a5}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_font}{Font}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $\ast$ \mbox{\hyperlink{class_engine_1_1_font_ae57fa9eb305ccdc7f3c10ebbc261b6e3}{render\+\_\+text}} (std\+::string text, size\+\_\+t font\+\_\+size, int $\ast$w=nullptr, int $\ast$h=nullptr)
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Engine\+::\+Component\+::\+Image}} $\ast$ \mbox{\hyperlink{class_engine_1_1_font_ab0a59a9612c04cd3e2fa4c899b1e0bcb}{render\+\_\+image}} (std\+::string text, size\+\_\+t font\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Returns an image object with a text on it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_engine_1_1_font_a9718340e2cdec5fe5c4ac3af352889d0}{get\+\_\+text\+\_\+size}} (std\+::string text, size\+\_\+t font\+\_\+size, int \&w, int \&h)
+\begin{DoxyCompactList}\small\item\em Returns 0 on success, -\/1 on failure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_engine_1_1_font_af3b2992f15ee1719e4387036664e8d3d}{get\+\_\+character\+\_\+width}} (size\+\_\+t font\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Returns the width of the space character, usefull for monospace fonts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_engine_1_1_font_aa3178491b85f758d23d7f8cbbc785831}{get\+\_\+character\+\_\+height}} (size\+\_\+t font\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Returns the height of the space character. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{class_engine_1_1_font_aed27545924ba830cb57e0d7f056813ba}{size\+\_\+utf8}} (std\+::string)
+\begin{DoxyCompactList}\small\item\em Returns the number of characters of a utf-\/8 encoded string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A font class, used to draw text into textures and images. 
+
+Definition at line \mbox{\hyperlink{_font_8h_source_l00011}{11}} of file \mbox{\hyperlink{_font_8h_source}{Font.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_font_aead80e1b67bab4ba6a28fdc7d7a947a7}\label{class_engine_1_1_font_aead80e1b67bab4ba6a28fdc7d7a947a7}} 
+\index{Engine::Font@{Engine::Font}!Font@{Font}}
+\index{Font@{Font}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{Font()}{Font()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Font\+::\+Font (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Creates a font from a .ttf file, the .ttf file must not be removed until all of the font objects are freed. 
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_a134aaa2f78af0c12d3ce504957169768}\label{class_engine_1_1_font_a134aaa2f78af0c12d3ce504957169768}} 
+\index{Engine::Font@{Engine::Font}!````~Font@{$\sim$Font}}
+\index{````~Font@{$\sim$Font}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{$\sim$Font()}{~Font()}}
+{\footnotesize\ttfamily Font\+::$\sim$\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_a241872d2368cebed201b3c45c4ef82b7}\label{class_engine_1_1_font_a241872d2368cebed201b3c45c4ef82b7}} 
+\index{Engine::Font@{Engine::Font}!Font@{Font}}
+\index{Font@{Font}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{Font()}{Font()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Font\+::\+Font (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_font}{Font}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_font_aa3178491b85f758d23d7f8cbbc785831}\label{class_engine_1_1_font_aa3178491b85f758d23d7f8cbbc785831}} 
+\index{Engine::Font@{Engine::Font}!get\_character\_height@{get\_character\_height}}
+\index{get\_character\_height@{get\_character\_height}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{get\_character\_height()}{get\_character\_height()}}
+{\footnotesize\ttfamily int Font\+::get\+\_\+character\+\_\+height (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{font\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Returns the height of the space character. 
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_af3b2992f15ee1719e4387036664e8d3d}\label{class_engine_1_1_font_af3b2992f15ee1719e4387036664e8d3d}} 
+\index{Engine::Font@{Engine::Font}!get\_character\_width@{get\_character\_width}}
+\index{get\_character\_width@{get\_character\_width}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{get\_character\_width()}{get\_character\_width()}}
+{\footnotesize\ttfamily int Font\+::get\+\_\+character\+\_\+width (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{font\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Returns the width of the space character, usefull for monospace fonts. 
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_a9718340e2cdec5fe5c4ac3af352889d0}\label{class_engine_1_1_font_a9718340e2cdec5fe5c4ac3af352889d0}} 
+\index{Engine::Font@{Engine::Font}!get\_text\_size@{get\_text\_size}}
+\index{get\_text\_size@{get\_text\_size}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{get\_text\_size()}{get\_text\_size()}}
+{\footnotesize\ttfamily int Font\+::get\+\_\+text\+\_\+size (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{size\+\_\+t}]{font\+\_\+size,  }\item[{int \&}]{w,  }\item[{int \&}]{h }\end{DoxyParamCaption})}
+
+
+
+Returns 0 on success, -\/1 on failure. 
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_a41b087c194548283110e7a2bfdd392a5}\label{class_engine_1_1_font_a41b087c194548283110e7a2bfdd392a5}} 
+\index{Engine::Font@{Engine::Font}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_font}{Font}} \& Engine\+::\+Font\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_font}{Font}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_font_ab0a59a9612c04cd3e2fa4c899b1e0bcb}\label{class_engine_1_1_font_ab0a59a9612c04cd3e2fa4c899b1e0bcb}} 
+\index{Engine::Font@{Engine::Font}!render\_image@{render\_image}}
+\index{render\_image@{render\_image}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{render\_image()}{render\_image()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Engine\+::\+Component\+::\+Image}} $\ast$ Font\+::render\+\_\+image (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{size\+\_\+t}]{font\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Returns an image object with a text on it. 
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_ae57fa9eb305ccdc7f3c10ebbc261b6e3}\label{class_engine_1_1_font_ae57fa9eb305ccdc7f3c10ebbc261b6e3}} 
+\index{Engine::Font@{Engine::Font}!render\_text@{render\_text}}
+\index{render\_text@{render\_text}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{render\_text()}{render\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $\ast$ Font\+::render\+\_\+text (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{size\+\_\+t}]{font\+\_\+size,  }\item[{int $\ast$}]{w = {\ttfamily nullptr},  }\item[{int $\ast$}]{h = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+Returns a texture with a text on it 
+\begin{DoxyParams}{Parameters}
+{\em text} & text to be render onto the texture \\
+\hline
+{\em font\+\_\+size} & size of the font, the final resolution of a given font size depends upon the font \\
+\hline
+{\em w} & width in pixels, optional parameter, defaults to null \\
+\hline
+{\em h} & height in pixels, optional parameter, defaults to null \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_font_aed27545924ba830cb57e0d7f056813ba}\label{class_engine_1_1_font_aed27545924ba830cb57e0d7f056813ba}} 
+\index{Engine::Font@{Engine::Font}!size\_utf8@{size\_utf8}}
+\index{size\_utf8@{size\_utf8}!Engine::Font@{Engine::Font}}
+\doxysubsubsection{\texorpdfstring{size\_utf8()}{size\_utf8()}}
+{\footnotesize\ttfamily size\+\_\+t Font\+::size\+\_\+utf8 (\begin{DoxyParamCaption}\item[{std\+::string}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the number of characters of a utf-\/8 encoded string. 
+
+
+
+Definition at line \mbox{\hyperlink{_font_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_font_8cpp_source}{Font.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_font_8h}{Font.\+h}}\item 
+libs/engine/src/\+Util/\mbox{\hyperlink{_font_8cpp}{Font.\+cpp}}\end{DoxyCompactItemize}

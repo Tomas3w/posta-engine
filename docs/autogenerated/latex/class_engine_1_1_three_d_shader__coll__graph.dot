@@ -1,0 +1,21 @@
+digraph "Engine::ThreeDShader"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="Engine::ThreeDShader",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="ThreeDShader, default shader binded in a new project."];
+  Node2 -> Node1 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="Engine::Shader",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_engine_1_1_shader.html",tooltip="Shader abstract class."];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" model\nprojection_view" ];
+  Node3 [label="Engine::Uniform\< glm\l::mat4 \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_engine_1_1_uniform.html",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" normal_model" ];
+  Node4 [label="Engine::Uniform\< glm\l::mat3 \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_engine_1_1_uniform.html",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" global_color" ];
+  Node5 [label="Engine::Uniform\< glm\l::vec4 \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_engine_1_1_uniform.html",tooltip=" "];
+  Node6 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" bones_matrices" ];
+  Node6 [label="Engine::Uniform\< Engine\l::span\< Engine::anim_mat4 \> \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_engine_1_1_uniform.html",tooltip=" "];
+  Node7 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" use_bones" ];
+  Node7 [label="Engine::Uniform\< bool \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$class_engine_1_1_uniform.html",tooltip=" "];
+}

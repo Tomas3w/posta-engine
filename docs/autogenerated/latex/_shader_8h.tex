@@ -1,0 +1,187 @@
+\hypertarget{_shader_8h}{}\doxysection{libs/engine/include/\+Util/\+Shader.h File Reference}
+\label{_shader_8h}\index{libs/engine/include/Util/Shader.h@{libs/engine/include/Util/Shader.h}}
+{\ttfamily \#include $<$typeinfo$>$}\newline
+{\ttfamily \#include $<$GL/glew.\+h$>$}\newline
+{\ttfamily \#include $<$glm/gtx/string\+\_\+cast.\+hpp$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$engine/include/\+Util/\+General.\+h$>$}\newline
+Include dependency graph for Shader.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_shader}{Engine\+::\+Shader}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} abstract class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_uniform}{Engine\+::\+Uniform$<$ T $>$}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_two_d_shader}{Engine\+::\+Two\+DShader}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_two_d_shader}{Two\+DShader}}, automatically set before calling on\+\_\+draw\+\_\+2d. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_three_d_shader}{Engine\+::\+Three\+DShader}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_three_d_shader}{Three\+DShader}}, default shader binded in a new project. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_engine}{Engine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_shader_8h_a9f7a2d4ac0fd45117fde2e4e0cfeb465}{DO\+\_\+\+DEFINES\+\_\+\+OVER\+\_\+\+EACH\+\_\+\+TYPE\+\_\+\+USED\+\_\+\+BY\+\_\+\+UNIFORMS}}(FUNC)
+\item 
+\#define \mbox{\hyperlink{_shader_8h_a125d76948f80d93f139c169bf3ee4cb4}{DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE}}(t)~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$t$>$$>$ uniforms\+\_\+\#\#t
+\item 
+\#define \mbox{\hyperlink{_shader_8h_adfb15003952d088e6cab43fe698fcb4d}{DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE\+\_\+\+GLM}}(t)~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$glm\+::t$>$$>$ uniforms\+\_\+\#\#t
+\item 
+\#define \mbox{\hyperlink{_shader_8h_a33f12064da0a6ca184e5367b0338f3dd}{DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE\+\_\+\+ANIM\+\_\+\+MAT4}}()~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$\mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}}$>$$>$$>$ uniforms\+\_\+anim\+\_\+mat4
+\item 
+\#define \mbox{\hyperlink{_shader_8h_a9ae33de4322a4830e6adce30508f4973}{DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE\+\_\+\+MANY\+\_\+\+VEC2}}()~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$glm\+::vec2$>$$>$$>$ uniforms\+\_\+many\+\_\+vec2
+\item 
+\#define \mbox{\hyperlink{_shader_8h_a7967a5d1441afff0f30b25f96129e21b}{IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER}}(t)~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, t$>$) \{ shader-\/$>$uniforms\+\_\+\#\#t\mbox{[}location\mbox{]} = ($\ast$this); \}
+\item 
+\#define \mbox{\hyperlink{_shader_8h_aa7171d69438fd21fc3aa2031f82470b7}{IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER\+\_\+\+GLM}}(t)~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, glm\+::t$>$) \{ shader-\/$>$uniforms\+\_\+\#\#t\mbox{[}location\mbox{]} = ($\ast$this); \}
+\item 
+\#define \mbox{\hyperlink{_shader_8h_a5840ee10b99a7fe464dea8fb10881b4c}{IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER\+\_\+\+ANIM\+\_\+\+MAT4}}()~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$\mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}}$>$$>$) \{ shader-\/$>$uniforms\+\_\+anim\+\_\+mat4\mbox{[}location\mbox{]} = ($\ast$this); \}
+\item 
+\#define \mbox{\hyperlink{_shader_8h_ae22ab0146ca8d91e416920fb42428bcf}{IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER\+\_\+\+MANY\+\_\+\+VEC2}}()~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$glm\+::vec2$>$$>$) \{ shader-\/$>$uniforms\+\_\+many\+\_\+vec2\mbox{[}location\mbox{]} = ($\ast$this); \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} = glm\+::mat4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}} (T value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a05c98940fc161ad40b52a9f0b6d0ae6a}{Engine\+::set\+\_\+uniform$<$ bool $>$}} (bool value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a0f70dd4f0db66cb6060c761229c312e9}{Engine\+::set\+\_\+uniform$<$ int $>$}} (int value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a09124c19e71ca9744b81b75780487065}{Engine\+::set\+\_\+uniform$<$ float $>$}} (float value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_ab9afd2faad4b62261fe354d498f482c2}{Engine\+::set\+\_\+uniform$<$ glm\+::mat4 $>$}} (glm\+::mat4 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a5a02f1eeb61e6c477627e52ccbd352d6}{Engine\+::set\+\_\+uniform$<$ glm\+::mat3 $>$}} (glm\+::mat3 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_ac3fc5ac5fbce218d12df2e728cbc9cd0}{Engine\+::set\+\_\+uniform$<$ glm\+::vec4 $>$}} (glm\+::vec4 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a27996ba6b134d76f9ddf2877024ccd83}{Engine\+::set\+\_\+uniform$<$ glm\+::vec3 $>$}} (glm\+::vec3 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_ab5dbe5805d16923be5521997ae91ccd9}{Engine\+::set\+\_\+uniform$<$ glm\+::vec2 $>$}} (glm\+::vec2 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a2ee7203fadc960866e94f4846b6217a2}{Engine\+::set\+\_\+uniform$<$ Engine\+::span$<$ glm\+::vec2 $>$ $>$}} (\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ glm\+::vec2 $>$ value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a0de409500203bcecc88d409975dd0c33}{Engine\+::set\+\_\+uniform$<$ Engine\+::span$<$ Engine\+::anim\+\_\+mat4 $>$ $>$}} (\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ value, GLint id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_shader_8h_a125d76948f80d93f139c169bf3ee4cb4}\label{_shader_8h_a125d76948f80d93f139c169bf3ee4cb4}} 
+\index{Shader.h@{Shader.h}!DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE}}
+\index{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE}{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE(\begin{DoxyParamCaption}\item[{}]{t }\end{DoxyParamCaption})~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$t$>$$>$ uniforms\+\_\+\#\#t}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00042}{42}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_a33f12064da0a6ca184e5367b0338f3dd}\label{_shader_8h_a33f12064da0a6ca184e5367b0338f3dd}} 
+\index{Shader.h@{Shader.h}!DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_ANIM\_MAT4@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_ANIM\_MAT4}}
+\index{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_ANIM\_MAT4@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_ANIM\_MAT4}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_ANIM\_MAT4}{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_ANIM\_MAT4}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE\+\_\+\+ANIM\+\_\+\+MAT4(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$\mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}}$>$$>$$>$ uniforms\+\_\+anim\+\_\+mat4}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00044}{44}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_adfb15003952d088e6cab43fe698fcb4d}\label{_shader_8h_adfb15003952d088e6cab43fe698fcb4d}} 
+\index{Shader.h@{Shader.h}!DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_GLM@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_GLM}}
+\index{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_GLM@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_GLM}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_GLM}{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_GLM}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE\+\_\+\+GLM(\begin{DoxyParamCaption}\item[{}]{t }\end{DoxyParamCaption})~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$glm\+::t$>$$>$ uniforms\+\_\+\#\#t}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00043}{43}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_a9ae33de4322a4830e6adce30508f4973}\label{_shader_8h_a9ae33de4322a4830e6adce30508f4973}} 
+\index{Shader.h@{Shader.h}!DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_MANY\_VEC2@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_MANY\_VEC2}}
+\index{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_MANY\_VEC2@{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_MANY\_VEC2}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_MANY\_VEC2}{DECLARE\_UNIFORM\_UNORDERED\_MAP\_WITH\_TYPE\_MANY\_VEC2}}
+{\footnotesize\ttfamily \#define DECLARE\+\_\+\+UNIFORM\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+WITH\+\_\+\+TYPE\+\_\+\+MANY\+\_\+\+VEC2(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~std\+::unordered\+\_\+map$<$std\+::string, Uniform$<$\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$glm\+::vec2$>$$>$$>$ uniforms\+\_\+many\+\_\+vec2}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00045}{45}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_a9f7a2d4ac0fd45117fde2e4e0cfeb465}\label{_shader_8h_a9f7a2d4ac0fd45117fde2e4e0cfeb465}} 
+\index{Shader.h@{Shader.h}!DO\_DEFINES\_OVER\_EACH\_TYPE\_USED\_BY\_UNIFORMS@{DO\_DEFINES\_OVER\_EACH\_TYPE\_USED\_BY\_UNIFORMS}}
+\index{DO\_DEFINES\_OVER\_EACH\_TYPE\_USED\_BY\_UNIFORMS@{DO\_DEFINES\_OVER\_EACH\_TYPE\_USED\_BY\_UNIFORMS}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{DO\_DEFINES\_OVER\_EACH\_TYPE\_USED\_BY\_UNIFORMS}{DO\_DEFINES\_OVER\_EACH\_TYPE\_USED\_BY\_UNIFORMS}}
+{\footnotesize\ttfamily \#define DO\+\_\+\+DEFINES\+\_\+\+OVER\+\_\+\+EACH\+\_\+\+TYPE\+\_\+\+USED\+\_\+\+BY\+\_\+\+UNIFORMS(\begin{DoxyParamCaption}\item[{}]{FUNC }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC(\textcolor{keywordtype}{bool});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC(\textcolor{keywordtype}{int});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC(\textcolor{keywordtype}{float});\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_GLM(mat4);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_GLM(mat3);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_GLM(vec4);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_GLM(vec3);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_GLM(vec2);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_MANY\_VEC2();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ FUNC\#\#\_ANIM\_MAT4();}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00015}{15}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_a7967a5d1441afff0f30b25f96129e21b}\label{_shader_8h_a7967a5d1441afff0f30b25f96129e21b}} 
+\index{Shader.h@{Shader.h}!IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER}}
+\index{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER}{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER}}
+{\footnotesize\ttfamily \#define IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER(\begin{DoxyParamCaption}\item[{}]{t }\end{DoxyParamCaption})~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, t$>$) \{ shader-\/$>$uniforms\+\_\+\#\#t\mbox{[}location\mbox{]} = ($\ast$this); \}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00075}{75}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_a5840ee10b99a7fe464dea8fb10881b4c}\label{_shader_8h_a5840ee10b99a7fe464dea8fb10881b4c}} 
+\index{Shader.h@{Shader.h}!IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_ANIM\_MAT4@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_ANIM\_MAT4}}
+\index{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_ANIM\_MAT4@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_ANIM\_MAT4}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_ANIM\_MAT4}{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_ANIM\_MAT4}}
+{\footnotesize\ttfamily \#define IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER\+\_\+\+ANIM\+\_\+\+MAT4(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$\mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}}$>$$>$) \{ shader-\/$>$uniforms\+\_\+anim\+\_\+mat4\mbox{[}location\mbox{]} = ($\ast$this); \}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00077}{77}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_aa7171d69438fd21fc3aa2031f82470b7}\label{_shader_8h_aa7171d69438fd21fc3aa2031f82470b7}} 
+\index{Shader.h@{Shader.h}!IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_GLM@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_GLM}}
+\index{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_GLM@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_GLM}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_GLM}{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_GLM}}
+{\footnotesize\ttfamily \#define IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER\+\_\+\+GLM(\begin{DoxyParamCaption}\item[{}]{t }\end{DoxyParamCaption})~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, glm\+::t$>$) \{ shader-\/$>$uniforms\+\_\+\#\#t\mbox{[}location\mbox{]} = ($\ast$this); \}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00076}{76}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{_shader_8h_ae22ab0146ca8d91e416920fb42428bcf}\label{_shader_8h_ae22ab0146ca8d91e416920fb42428bcf}} 
+\index{Shader.h@{Shader.h}!IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_MANY\_VEC2@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_MANY\_VEC2}}
+\index{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_MANY\_VEC2@{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_MANY\_VEC2}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_MANY\_VEC2}{IF\_OF\_TYPE\_ADD\_TO\_UNORDERED\_MAP\_OF\_SHADER\_MANY\_VEC2}}
+{\footnotesize\ttfamily \#define IF\+\_\+\+OF\+\_\+\+TYPE\+\_\+\+ADD\+\_\+\+TO\+\_\+\+UNORDERED\+\_\+\+MAP\+\_\+\+OF\+\_\+\+SHADER\+\_\+\+MANY\+\_\+\+VEC2(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~if constexpr(std\+::is\+\_\+same\+\_\+v$<$T, \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$glm\+::vec2$>$$>$) \{ shader-\/$>$uniforms\+\_\+many\+\_\+vec2\mbox{[}location\mbox{]} = ($\ast$this); \}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00078}{78}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+

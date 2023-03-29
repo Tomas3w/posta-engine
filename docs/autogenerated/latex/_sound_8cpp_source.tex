@@ -1,0 +1,65 @@
+\hypertarget{_sound_8cpp_source}{}\doxysection{Sound.\+cpp}
+\label{_sound_8cpp_source}\index{libs/engine/src/Util/Sound.cpp@{libs/engine/src/Util/Sound.cpp}}
+\mbox{\hyperlink{_sound_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_sound_8h}{engine/include/Util/Sound.h}}>}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_engine_1_1_sound}{Engine::Sound}};}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00005}\mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a16d98a14cbc5adbcb3f58b9a76024de7}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a16d98a14cbc5adbcb3f58b9a76024de7}{Sound::SoundPlaying::set\_volume}}(\textcolor{keywordtype}{float}\ volume)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00007}00007\ \ \ \ \ volume\ =\ std::clamp(volume,\ 0.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordflow}{if}\ (channel\ !=\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ Mix\_Volume(channel,\ volume\ *\ MIX\_MAX\_VOLUME);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00012}\mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a8fd76a77cec779d48580798bf764ab04}{00012}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a8fd76a77cec779d48580798bf764ab04}{Sound::SoundPlaying::get\_volume}}()}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (channel\ !=\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Mix\_Volume(channel,\ -\/1)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(MIX\_MAX\_VOLUME);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00017}00017\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00019}\mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a6fca736945c8ed0af36cbd41e098ae60}{00019}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a6fca736945c8ed0af36cbd41e098ae60}{Sound::SoundPlaying::halt}}()}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (channel\ !=\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ Mix\_HaltChannel(channel);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00025}00025\ Sound::SoundPlaying::SoundPlaying::operator\ bool()}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{return}\ channel\ !=\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00030}00030\ Sound::SoundPlaying::SoundPlaying(\textcolor{keywordtype}{int}\ \_channel)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00032}00032\ \ \ \ \ channel\ =\ \_channel;}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00035}\mbox{\hyperlink{class_engine_1_1_sound_ac6bfa0b592352bbd4b17c631114e6eba}{00035}}\ \mbox{\hyperlink{class_engine_1_1_sound_ac6bfa0b592352bbd4b17c631114e6eba}{Sound::Sound}}(std::filesystem::path\ path)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00037}00037\ \ \ \ \ chunk\ =\ Mix\_LoadWAV(path.string().c\_str());}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (chunk\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(std::string(\textcolor{stringliteral}{"{}couldn't\ load\ sound\ file:\ "{}})\ +\ path.string());}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00042}\mbox{\hyperlink{class_engine_1_1_sound_a0907389078bf740be2a5763366ad3376}{00042}}\ \mbox{\hyperlink{class_engine_1_1_sound_a0907389078bf740be2a5763366ad3376}{Sound::\string~Sound}}()}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (chunk)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ Mix\_FreeChunk(chunk);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00048}\mbox{\hyperlink{class_engine_1_1_sound_a507d1828a32eaf463e056018c868fb9e}{00048}}\ \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{Sound::SoundPlaying}}\ \mbox{\hyperlink{class_engine_1_1_sound_a507d1828a32eaf463e056018c868fb9e}{Sound::play}}(\textcolor{keywordtype}{float}\ volume,\ \textcolor{keywordtype}{int}\ loops)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00049}00049\ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (chunk)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00051}00051\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{SoundPlaying}}\ sound\_playing(Mix\_PlayChannel(-\/1,\ chunk,\ loops));}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sound\_playing)}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ sound\_playing.\mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing_a16d98a14cbc5adbcb3f58b9a76024de7}{set\_volume}}(volume);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sound\_playing;}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{SoundPlaying}}(-\/1);}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{_sound_8cpp_source_l00059}00059\ }
+
+\end{DoxyCode}

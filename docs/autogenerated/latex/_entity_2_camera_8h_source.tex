@@ -1,0 +1,38 @@
+\hypertarget{_entity_2_camera_8h_source}{}\doxysection{Camera.\+h}
+\label{_entity_2_camera_8h_source}\index{libs/engine/include/Entity/Camera.h@{libs/engine/include/Entity/Camera.h}}
+\mbox{\hyperlink{_entity_2_camera_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_CAMERA\_ENTITY\_H}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_CAMERA\_ENTITY\_H}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_entity_8h}{engine/include/Entity/Entity.h}}>}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_component_2_camera_8h}{engine/include/Component/Camera.h}}>}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_transform_8h}{engine/include/Component/Transform.h}}>}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <glm/gtx/string\_cast.hpp>}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00009}\mbox{\hyperlink{namespace_engine_1_1_entity}{00009}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_entity}{Engine::Entity}}\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00010}\mbox{\hyperlink{class_engine_1_1_entity_1_1_camera}{00010}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_entity_1_1_camera}{Camera}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_entity}{Entity}}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera}{Camera}}(\mbox{\hyperlink{class_engine_1_1_component_1_1_camera}{Engine::Component::Camera}}*\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a3c10e74a695f45481f3ee99ff2148140}{camera}},\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a593bdbdbda5a30d26c53909d5d07425a}{set\_resolution}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_af40345d2a505a034a3920dc2b0f0537d}{get\_resolution}}(\textcolor{keywordtype}{int}\&\ width,\ \textcolor{keywordtype}{int}\&\ height);}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_aac3d72137c44a1e3442a48afa9b45995}{loop}}();}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_aa4f4c0d553438e8d800ed0289e49e073}{draw}}();}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a4944d99a71fdf165964c2754f1566dfa}{update\_projection\_matrix}}();}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a52313276c2e39befb80013a2e2e65acb}{get\_projection\_view\_matrix}}();}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00024}\mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a3c10e74a695f45481f3ee99ff2148140}{00024}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::unique\_ptr<Engine::Component::Camera>\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a3c10e74a695f45481f3ee99ff2148140}{camera}};\ \textcolor{comment}{//\ This\ is\ a\ unique\_ptr\ just\ to\ be\ able\ to\ use\ an\ orthographic\ view\ or\ projection\ view}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00025}\mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a73c09c5a42026de7235a6fa9d5cf2b19}{00025}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine::Component::Transform}}\ \mbox{\hyperlink{class_engine_1_1_entity_1_1_camera_a73c09c5a42026de7235a6fa9d5cf2b19}{transform}};}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//glm::vec3\ position;}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//glm::quat\ rotation;}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width,\ height;}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00030}00030\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_entity_2_camera_8h_source_l00033}00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_CAMERA\_ENTITY\_H}}
+
+\end{DoxyCode}

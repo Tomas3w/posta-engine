@@ -1,0 +1,116 @@
+\hypertarget{class_engine_1_1_thread}{}\doxysection{Engine\+::Thread Class Reference}
+\label{class_engine_1_1_thread}\index{Engine::Thread@{Engine::Thread}}
+
+
+{\ttfamily \#include $<$Thread.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_thread_add311f991f189eae60ca9feeae9b38ca}{Thread}} ()
+\item 
+\mbox{\hyperlink{class_engine_1_1_thread_a8e0e072af0ce53de35af78ddb63421e0}{Thread}} (const \mbox{\hyperlink{class_engine_1_1_thread}{Thread}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_thread}{Thread}} \& \mbox{\hyperlink{class_engine_1_1_thread_ab6f2ed7dc5140aab6a5a6b624f3eb419}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_thread}{Thread}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_thread_a61a3181467419fcc74598a2af3846db2}{$\sim$\+Thread}} ()
+\item 
+\mbox{\hyperlink{class_engine_1_1_thread_a91f93b613f1d2046197a0cfd9ccd36a1}{operator bool}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_thread_ac0de3fa88acfdbac0e5422aa972c3a94}{reset}} ()
+\item 
+{\footnotesize template$<$typename F , class... Args$>$ }\\void \mbox{\hyperlink{class_engine_1_1_thread_acaca9cdb6848af073b8eb1892716c009}{reset}} (F f, Args... args)
+\item 
+bool \mbox{\hyperlink{class_engine_1_1_thread_a5146630d682d1d140cf636b8a6e92450}{is\+\_\+running}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00008}{8}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_thread_add311f991f189eae60ca9feeae9b38ca}\label{class_engine_1_1_thread_add311f991f189eae60ca9feeae9b38ca}} 
+\index{Engine::Thread@{Engine::Thread}!Thread@{Thread}}
+\index{Thread@{Thread}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{Thread()}{Thread()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Engine\+::\+Thread\+::\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00011}{11}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_thread_a8e0e072af0ce53de35af78ddb63421e0}\label{class_engine_1_1_thread_a8e0e072af0ce53de35af78ddb63421e0}} 
+\index{Engine::Thread@{Engine::Thread}!Thread@{Thread}}
+\index{Thread@{Thread}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{Thread()}{Thread()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Thread\+::\+Thread (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_thread}{Thread}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_thread_a61a3181467419fcc74598a2af3846db2}\label{class_engine_1_1_thread_a61a3181467419fcc74598a2af3846db2}} 
+\index{Engine::Thread@{Engine::Thread}!````~Thread@{$\sim$Thread}}
+\index{````~Thread@{$\sim$Thread}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{$\sim$Thread()}{~Thread()}}
+{\footnotesize\ttfamily Engine\+::\+Thread\+::$\sim$\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00014}{14}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_thread_a5146630d682d1d140cf636b8a6e92450}\label{class_engine_1_1_thread_a5146630d682d1d140cf636b8a6e92450}} 
+\index{Engine::Thread@{Engine::Thread}!is\_running@{is\_running}}
+\index{is\_running@{is\_running}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{is\_running()}{is\_running()}}
+{\footnotesize\ttfamily bool Engine\+::\+Thread\+::is\+\_\+running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00041}{41}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_thread_a91f93b613f1d2046197a0cfd9ccd36a1}\label{class_engine_1_1_thread_a91f93b613f1d2046197a0cfd9ccd36a1}} 
+\index{Engine::Thread@{Engine::Thread}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily Engine\+::\+Thread\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00020}{20}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_thread_ab6f2ed7dc5140aab6a5a6b624f3eb419}\label{class_engine_1_1_thread_ab6f2ed7dc5140aab6a5a6b624f3eb419}} 
+\index{Engine::Thread@{Engine::Thread}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_thread}{Thread}} \& Engine\+::\+Thread\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_thread}{Thread}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_thread_ac0de3fa88acfdbac0e5422aa972c3a94}\label{class_engine_1_1_thread_ac0de3fa88acfdbac0e5422aa972c3a94}} 
+\index{Engine::Thread@{Engine::Thread}!reset@{reset}}
+\index{reset@{reset}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Engine\+::\+Thread\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00025}{25}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_thread_acaca9cdb6848af073b8eb1892716c009}\label{class_engine_1_1_thread_acaca9cdb6848af073b8eb1892716c009}} 
+\index{Engine::Thread@{Engine::Thread}!reset@{reset}}
+\index{reset@{reset}!Engine::Thread@{Engine::Thread}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename F , class... Args$>$ \\
+void Engine\+::\+Thread\+::reset (\begin{DoxyParamCaption}\item[{F}]{f,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_thread_8h_source_l00036}{36}} of file \mbox{\hyperlink{_thread_8h_source}{Thread.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_thread_8h}{Thread.\+h}}\end{DoxyCompactItemize}

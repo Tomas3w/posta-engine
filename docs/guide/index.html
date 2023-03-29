@@ -1,0 +1,96 @@
+<h1>Conceptos basicos</h1>
+<h2>Componentes (<code>Components</code>)</h2>
+<p>
+Posta es un motor basado en componentes, es decir, el motor espera que el desarrollador (tú) cree clases que representen objetos, los cuales estan a su vez compuestos por componentes.
+Por ejemplo, la clase Botón podria contener los siguientes componentes:
+</p>
+<ul>
+<li><code>Engine::Component::Image</code>: una <code>Image</code> contiene una textura con sus dimensiones, en este caso es utilizada para guardar y luego poder renderizar el botón en pantalla</li>
+<li><code>Engine::Component::UI::Button</code>: un <code>Button</code> permite tener una parte clickeable en la pantalla y poder a su vez reaccionar a ese input del usuario</li>
+</ul>
+<p>Los componentes nos permiten reutilizar código y también nos simplifíca la labor de crear una clase nueva.</p>
+<h2>Utilidades (<code>Util</code>)</h2>
+<p>
+Posta contiene una serie de utilidades, algunas fundamentales, para ayudarnos a construir nuestro videojuego, para empezar se pueden mencionar:
+</p>
+<ul>
+<li><code>Assets.h</code>: dentro de este header tenemos funciones diseñadas para cargar assets, como objetos o texturas.</li>
+<li><code>General.h</code>: contiene otras funciones pero esta vez son cosas generales y en general no relacionadas con el motor en si.</li>
+<li><code>Shader.h</code>: contiene una clase que permite cargar shaders y tanto acceder como modificar los uniforms del mismo.</li>
+<li><code>Font.h</code>: contiene la clase <code>Font</code> para poder cargar fuentes y poder renderizarlas en texturas.</li>
+</ul>
+<h2>Interfaz de usuario (<code>UI</code>)</h2>
+<p>
+La interfaz de usuario de Posta no contiene parte visual por defecto, pero se pueden añadir facilmente creando tu propia clase con el componente <code>Image</code> y los componentes que se encuentran en el namespace <code>Engine::UI</code>.
+</p>
+<p>
+Los componentes de interfaz de usuario se pueden utilizar para mas cosas que solo botones, checkboxes, etc. También son utiles para crear cosas como un inventario por ejemplo.
+</p>
+<h2>Logging(<code>Logging</code>)</h2>
+<p>Posta provee un header (<code>Logging.h</code>) para poder imprimir información de debug, ten en cuenta que es un método de loggeo muy básico, solo imprime a <code>stdout</code>.</p>
+<p>Además de simplemente imprimir en pantalla un mensaje, se puede imprimir el nombre del archivo que imprimió un mensaje y la línea donde sucedió, esto es posible con el macro <code>LOG</code> (dentro de <code>LoggingMacro.h</code>) que funciona de manera identica a <code>log</code> pero con la pequeña diferencia mencionada anteriormente.</p>
+<h2>App base (<code>Engine::App</code>)</h2>
+<p>
+Todos los programas (en principio) tienen una clase <code>App</code> base que hereda de <code>Engine::App</code>, esta clase inicializa y desinicializa los elementos que componen a la aplicación, por eso es fundamental recordar que todos los componentes (y demas clases) que se creen durante la vida de la instancia de <code>App</code>, por ejemplo: texturas, meshes, sonidos, y demás; deberán ser liberados en el destructor de la clase.
+</p>
+	<h3>Métodos a sobreescribir de <code>Engine::App</code></h3>
+	<p>
+	<code>Engine::App</code> está diseñada para ser heredada por la clase del desarrollador, siguiendo el template provisto por el motor tenemos que la estructura basica de un proyecto tiene los siguientes archivos:
+	</p>
+	<ul>
+	<li>
+		App.h: contiene la definición de la aplicación, sobreescribiendo los siguientes métodos:
+		<ul>
+			<li><code>App</code>: el constructor de la clase, el constructor de la clase padre también es llamado antes. Aquí es donde se deberia inicializar los componentes y demás objetos que contenga la aplicación.</li>
+			<li><code>~App</code>: el destructor de la clase, es fundamental desinicializa aquí (y no después) los objetos creados por la aplicación.</li>
+			<li><code>on_draw</code>: en este método es donde se debería dibujar los objetos de la aplicación. Aunque no es obligatorio es muy recomendado solo dibujar cosas 3D en este método, principalmente porque el motor esta diseñado para que sea así.</li>
+			<li><code>on_draw_2d</code>: método para dibujar cosas 2D, este método automaticamente bindea un shader diseñado para dibujar objetos en 2 dimensiones, aunque se puede bindear cualquier shader aquí (incluso shaders 3D).</li>
+			<li><code>on_frame</code>: aunque no es obligatorio, es muy recomendado poner la lógica de la aplicación en este método, principalmente para separar el dibujo del resto. Ten en cuenta que no se hace nada especial antes de ejecutar este método, pero aun así no es recomendado dibujar aquí.</li>
+		</ul>
+	</li>
+	<li>App.cpp: contiene la implementación de los métodos de la aplicación.</li>
+	<li>main.cpp: lo único que hace este archivo es crear la instancia única de <code>App</code> provista por el desarrollador.</li>
+	</ul>
+<h1>Dibujar un objeto 3D en pantalla</h1>
+<p>En el template hay un buen ejemplo de como dibujar un cubo rotando, aquí se explica como funciona.</p>
+<p>Para empezar, se explican algunos componentes y clases representes en el mismo</p>
+<h2>Cámara (<code>Camera</code>)</h2>
+Una cámara es un objeto que nos permite elegir un punto donde poder mirar nuestras creaciones, Posta viene por defecto con una cámara, es un objeto público dentro de <code>Engine::App</code>, asi que para poder acceder a la misma tenemos que llamarla por nombre, es decir, <code>camera</code>.
+<h2><code>Mesh</code></h2>
+<p>
+Un objeto <code>Mesh</code> permite crear una mesh desde cero, para utilizarla y dibujar un objeto 3D en pantalla es necesario crear una <code>StaticMesh</code>
+</p>
+<h2><code>StaticMesh</code></h2>
+<p><code>StaticMesh</code> es una clase que sirve para dibujar un objeto en pantalla, acepta una <code>Mesh</code> en el constructor.</p>
+<p>Una vez creada, una <code>StaticMesh</code> se puede dibujar llamando al método <code>draw</code>, sin embargo, esto no sirve de nada si no se ajustan los uniforms del shader</p>
+<h2>¿Qué es un uniform?</h2>
+<p>Antes que nada...</p>
+	<h3>¿Qué es un shader?</h3>
+	<p>Un shader (no confundir con la clase <code>Shader</code>) es un programa que corre en la GPU de nuestra computadora. En este sentido, un shader nos permite dibujar cosas en pantalla (y como veremos luego, también en framebuffers) mediante una serie de instrucciones.</p>
+	<p>En Posta existen dos tipos de shaders(que se puedan cargar):</p>
+	<ul>
+		<li>Fragment Shader: es el shader que se ejecuta por cada pixel en pantalla</li>
+		<li>Vertex Shader: es el shader que se ejecuta por cada vertices de la escena</li>
+	</ul>
+	Ahora si...
+	<h3>¿Qué es un uniform?</h3>
+	Un uniform es una variable compartida entre el fragment y el vertex shader, la cual se puede acceder a travez de un objeto <code>Shader</code>.
+<p>Los uniforms básicos del shader 3D por defecto de Posta Engine son:</p>
+<ul>
+	<li><code>model</code>: esta variable es una matriz 4x4 que le indica al shader donde poner el objeto que se va a dibujar</li>
+	<li><code>normal_model</code>: matriz 4x4, mas detalles de este uniform serán discutidos luego, por ahora, es simplemente otra matriz 4x4 necesaria para dibujar objetos en 3D</li>
+	<li><code>global_color</code>: vector de 4 componentes encargado de dar un color encima de la textura asignada a un objeto</li>
+</ul>
+El shader 3D por defecto tiene más uniforms, pero no son relevantes ahora.
+<h2>Y ahora sí, como dibujar un objeto</h2>
+<p>Primero, cargamos un <code>StaticMesh</code> en el constructor, en el template se hace una lista de inicialización, de esta forma:</p>
+<pre><code>
+...
+App::App() :
+	blank_texture("common/blank.png"),
+	cube_smesh(Engine::Assets::load_obj("common/cube.obj"))
+...
+</code></pre>
+<p>En este bloque de código (que esta en <code>template/src/App.cpp</code>) se inicializa una textura (la que se utilizará para dibujar el cubo) y el cubo que queremos dibujar </p>
+
+

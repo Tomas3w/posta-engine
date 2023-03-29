@@ -1,0 +1,331 @@
+\hypertarget{class_engine_1_1_u_i_1_1_textbox}{}\doxysection{Engine\+::UI\+::Textbox Class Reference}
+\label{class_engine_1_1_u_i_1_1_textbox}\index{Engine::UI::Textbox@{Engine::UI::Textbox}}
+
+
+A box with a text on it.  
+
+
+
+
+{\ttfamily \#include $<$Textbox.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a799df709c4d3dbb27313ab2fa2577ea2}{Textbox}} (\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}} rect, \mbox{\hyperlink{class_engine_1_1_font}{Engine\+::\+Font}} $\ast$\+\_\+font, int \+\_\+font\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Constructs a textbox from a rectangle and a font, the font must be alive for as long as it is clickable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_aed16fc07b66aead4041a219db3ed0047}{Textbox}} (\mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox}{Textbox}} \&textbox)
+\item 
+\mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox}{Textbox}} \& \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a17300386ae047e394c3621aabec399b6}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox}{Textbox}} \&)=delete
+\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a1d6fbb298fc48966ff4a171a38159910}{loop}} (int x\+\_\+offset, int y\+\_\+offset)
+\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_af72aea9e1c7b04c6c33679c75bea72f9}{loop}} (int x\+\_\+offset, int y\+\_\+offset, \mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}} rect)
+\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a7490dcce927973fd176bdf4405ac3be5}{set\+\_\+text}} (std\+::string \+\_\+text)
+\item 
+std\+::string \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a5ca63bcb4245d82ecb959fcfb8d0f2d5}{get\+\_\+text}} () const
+\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a8d5f010a7a968cbce9adf889f8f6853e}{select}} (size\+\_\+t pos)
+\begin{DoxyCompactList}\small\item\em Selects the textbox(state = true) and sets the cursor position to pos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a26950485389aa9d9e3ada1ba1cc37e3b}{unselect}} ()
+\begin{DoxyCompactList}\small\item\em Unselects the textbox(state = false) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_aed6dd1f7caa935b97e7247dea9c89060}{is\+\_\+selected}} ()
+\begin{DoxyCompactList}\small\item\em True if selected, false if not. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}} \& \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a305cf8aaa00776d4452c1be34a9cd555}{get\+\_\+rect}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_ad9f20e40b56268a2f403850c99620ecd}{set\+\_\+rect}} (\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}} rect)
+\item 
+\mbox{\hyperlink{class_engine_1_1_font}{Engine\+::\+Font}} $\ast$ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_ad43b088c1885bf48f82d2d152965dd44}{get\+\_\+font\+\_\+ptr}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a66ffed6dd5b7413c77bc0ad11099466a}{add\+\_\+text}} (std\+::string str)
+\begin{DoxyCompactList}\small\item\em Inserts str in the cursor\+\_\+pos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_ab6882b36bf2d91bf539cf11f965c3eef}{next\+\_\+cursor\+\_\+pos}} ()
+\begin{DoxyCompactList}\small\item\em Moves the cursor to the next character. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a178ea33797feeb384b9c4c05630ba78e}{prev\+\_\+cursor\+\_\+pos}} ()
+\begin{DoxyCompactList}\small\item\em Moves the cursor to the previous character. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a3085687c92cdf262013cfb6c28feb9b1}{erase\+\_\+character}} ()
+\begin{DoxyCompactList}\small\item\em Erases character on cursor position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_a41fdf296b49fdac2bac069fb879d8dcb}{erase\+\_\+next\+\_\+character}} ()
+\begin{DoxyCompactList}\small\item\em Erases the character next to the cursor position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_afa583d9bd85452a440559296a14d6f01}{get\+\_\+cursor\+\_\+offset}} ()
+\begin{DoxyCompactList}\small\item\em Returns, in pixels, the distance to the cursor from the origin of the textbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_ac55552f00e7d594f995381053bd9a9f9}{has\+\_\+change}}
+\begin{DoxyCompactList}\small\item\em True if text is modified when add\+\_\+text, erase\+\_\+character, or erase\+\_\+next\+\_\+character are called. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox_ae8b1ba43bde6cc92efca72295a6be52e}{font\+\_\+size}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A box with a text on it. 
+
+Definition at line \mbox{\hyperlink{_textbox_8h_source_l00009}{9}} of file \mbox{\hyperlink{_textbox_8h_source}{Textbox.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a799df709c4d3dbb27313ab2fa2577ea2}\label{class_engine_1_1_u_i_1_1_textbox_a799df709c4d3dbb27313ab2fa2577ea2}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!Textbox@{Textbox}}
+\index{Textbox@{Textbox}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{Textbox()}{Textbox()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Engine\+::\+UI\+::\+Textbox\+::\+Textbox (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}}]{rect,  }\item[{\mbox{\hyperlink{class_engine_1_1_font}{Engine\+::\+Font}} $\ast$}]{\+\_\+font,  }\item[{int}]{\+\_\+font\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a textbox from a rectangle and a font, the font must be alive for as long as it is clickable. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8h_source_l00013}{13}} of file \mbox{\hyperlink{_textbox_8h_source}{Textbox.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_aed16fc07b66aead4041a219db3ed0047}\label{class_engine_1_1_u_i_1_1_textbox_aed16fc07b66aead4041a219db3ed0047}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!Textbox@{Textbox}}
+\index{Textbox@{Textbox}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{Textbox()}{Textbox()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+UI\+::\+Textbox\+::\+Textbox (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox}{Textbox}} \&}]{textbox }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8h_source_l00021}{21}} of file \mbox{\hyperlink{_textbox_8h_source}{Textbox.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a66ffed6dd5b7413c77bc0ad11099466a}\label{class_engine_1_1_u_i_1_1_textbox_a66ffed6dd5b7413c77bc0ad11099466a}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!add\_text@{add\_text}}
+\index{add\_text@{add\_text}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{add\_text()}{add\_text()}}
+{\footnotesize\ttfamily void Textbox\+::add\+\_\+text (\begin{DoxyParamCaption}\item[{std\+::string}]{str }\end{DoxyParamCaption})}
+
+
+
+Inserts str in the cursor\+\_\+pos. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00091}{91}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a3085687c92cdf262013cfb6c28feb9b1}\label{class_engine_1_1_u_i_1_1_textbox_a3085687c92cdf262013cfb6c28feb9b1}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!erase\_character@{erase\_character}}
+\index{erase\_character@{erase\_character}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{erase\_character()}{erase\_character()}}
+{\footnotesize\ttfamily void Textbox\+::erase\+\_\+character (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Erases character on cursor position. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a41fdf296b49fdac2bac069fb879d8dcb}\label{class_engine_1_1_u_i_1_1_textbox_a41fdf296b49fdac2bac069fb879d8dcb}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!erase\_next\_character@{erase\_next\_character}}
+\index{erase\_next\_character@{erase\_next\_character}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{erase\_next\_character()}{erase\_next\_character()}}
+{\footnotesize\ttfamily void Textbox\+::erase\+\_\+next\+\_\+character (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Erases the character next to the cursor position. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00139}{139}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_afa583d9bd85452a440559296a14d6f01}\label{class_engine_1_1_u_i_1_1_textbox_afa583d9bd85452a440559296a14d6f01}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!get\_cursor\_offset@{get\_cursor\_offset}}
+\index{get\_cursor\_offset@{get\_cursor\_offset}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{get\_cursor\_offset()}{get\_cursor\_offset()}}
+{\footnotesize\ttfamily int Textbox\+::get\+\_\+cursor\+\_\+offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns, in pixels, the distance to the cursor from the origin of the textbox. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00152}{152}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_ad43b088c1885bf48f82d2d152965dd44}\label{class_engine_1_1_u_i_1_1_textbox_ad43b088c1885bf48f82d2d152965dd44}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!get\_font\_ptr@{get\_font\_ptr}}
+\index{get\_font\_ptr@{get\_font\_ptr}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{get\_font\_ptr()}{get\_font\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_font}{Engine\+::\+Font}} $\ast$ Textbox\+::get\+\_\+font\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a305cf8aaa00776d4452c1be34a9cd555}\label{class_engine_1_1_u_i_1_1_textbox_a305cf8aaa00776d4452c1be34a9cd555}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!get\_rect@{get\_rect}}
+\index{get\_rect@{get\_rect}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{get\_rect()}{get\_rect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Engine\+::\+UI\+::\+Rect}} \& Textbox\+::get\+\_\+rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00076}{76}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a5ca63bcb4245d82ecb959fcfb8d0f2d5}\label{class_engine_1_1_u_i_1_1_textbox_a5ca63bcb4245d82ecb959fcfb8d0f2d5}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!get\_text@{get\_text}}
+\index{get\_text@{get\_text}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{get\_text()}{get\_text()}}
+{\footnotesize\ttfamily std\+::string Textbox\+::get\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_aed6dd1f7caa935b97e7247dea9c89060}\label{class_engine_1_1_u_i_1_1_textbox_aed6dd1f7caa935b97e7247dea9c89060}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!is\_selected@{is\_selected}}
+\index{is\_selected@{is\_selected}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{is\_selected()}{is\_selected()}}
+{\footnotesize\ttfamily bool Textbox\+::is\+\_\+selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+True if selected, false if not. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a1d6fbb298fc48966ff4a171a38159910}\label{class_engine_1_1_u_i_1_1_textbox_a1d6fbb298fc48966ff4a171a38159910}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!loop@{loop}}
+\index{loop@{loop}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Textbox\+::loop (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+offset,  }\item[{int}]{y\+\_\+offset }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_af72aea9e1c7b04c6c33679c75bea72f9}\label{class_engine_1_1_u_i_1_1_textbox_af72aea9e1c7b04c6c33679c75bea72f9}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!loop@{loop}}
+\index{loop@{loop}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Textbox\+::loop (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+offset,  }\item[{int}]{y\+\_\+offset,  }\item[{\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}}]{rect }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_ab6882b36bf2d91bf539cf11f965c3eef}\label{class_engine_1_1_u_i_1_1_textbox_ab6882b36bf2d91bf539cf11f965c3eef}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!next\_cursor\_pos@{next\_cursor\_pos}}
+\index{next\_cursor\_pos@{next\_cursor\_pos}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{next\_cursor\_pos()}{next\_cursor\_pos()}}
+{\footnotesize\ttfamily void Textbox\+::next\+\_\+cursor\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves the cursor to the next character. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a17300386ae047e394c3621aabec399b6}\label{class_engine_1_1_u_i_1_1_textbox_a17300386ae047e394c3621aabec399b6}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox}{Textbox}} \& Engine\+::\+UI\+::\+Textbox\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_u_i_1_1_textbox}{Textbox}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a178ea33797feeb384b9c4c05630ba78e}\label{class_engine_1_1_u_i_1_1_textbox_a178ea33797feeb384b9c4c05630ba78e}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!prev\_cursor\_pos@{prev\_cursor\_pos}}
+\index{prev\_cursor\_pos@{prev\_cursor\_pos}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{prev\_cursor\_pos()}{prev\_cursor\_pos()}}
+{\footnotesize\ttfamily void Textbox\+::prev\+\_\+cursor\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Moves the cursor to the previous character. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a8d5f010a7a968cbce9adf889f8f6853e}\label{class_engine_1_1_u_i_1_1_textbox_a8d5f010a7a968cbce9adf889f8f6853e}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!select@{select}}
+\index{select@{select}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily void Textbox\+::select (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{pos }\end{DoxyParamCaption})}
+
+
+
+Selects the textbox(state = true) and sets the cursor position to pos. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_ad9f20e40b56268a2f403850c99620ecd}\label{class_engine_1_1_u_i_1_1_textbox_ad9f20e40b56268a2f403850c99620ecd}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!set\_rect@{set\_rect}}
+\index{set\_rect@{set\_rect}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{set\_rect()}{set\_rect()}}
+{\footnotesize\ttfamily void Textbox\+::set\+\_\+rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}}]{rect }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a7490dcce927973fd176bdf4405ac3be5}\label{class_engine_1_1_u_i_1_1_textbox_a7490dcce927973fd176bdf4405ac3be5}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!set\_text@{set\_text}}
+\index{set\_text@{set\_text}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{set\_text()}{set\_text()}}
+{\footnotesize\ttfamily void Textbox\+::set\+\_\+text (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_a26950485389aa9d9e3ada1ba1cc37e3b}\label{class_engine_1_1_u_i_1_1_textbox_a26950485389aa9d9e3ada1ba1cc37e3b}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!unselect@{unselect}}
+\index{unselect@{unselect}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{unselect()}{unselect()}}
+{\footnotesize\ttfamily void Textbox\+::unselect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Unselects the textbox(state = false) 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{_textbox_8cpp_source}{Textbox.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_ae8b1ba43bde6cc92efca72295a6be52e}\label{class_engine_1_1_u_i_1_1_textbox_ae8b1ba43bde6cc92efca72295a6be52e}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!font\_size@{font\_size}}
+\index{font\_size@{font\_size}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{font\_size}{font\_size}}
+{\footnotesize\ttfamily int Engine\+::\+UI\+::\+Textbox\+::font\+\_\+size}
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8h_source_l00065}{65}} of file \mbox{\hyperlink{_textbox_8h_source}{Textbox.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_u_i_1_1_textbox_ac55552f00e7d594f995381053bd9a9f9}\label{class_engine_1_1_u_i_1_1_textbox_ac55552f00e7d594f995381053bd9a9f9}} 
+\index{Engine::UI::Textbox@{Engine::UI::Textbox}!has\_change@{has\_change}}
+\index{has\_change@{has\_change}!Engine::UI::Textbox@{Engine::UI::Textbox}}
+\doxysubsubsection{\texorpdfstring{has\_change}{has\_change}}
+{\footnotesize\ttfamily bool Engine\+::\+UI\+::\+Textbox\+::has\+\_\+change}
+
+
+
+True if text is modified when add\+\_\+text, erase\+\_\+character, or erase\+\_\+next\+\_\+character are called. 
+
+
+
+Definition at line \mbox{\hyperlink{_textbox_8h_source_l00064}{64}} of file \mbox{\hyperlink{_textbox_8h_source}{Textbox.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+UI/\mbox{\hyperlink{_textbox_8h}{Textbox.\+h}}\item 
+libs/engine/src/\+UI/\mbox{\hyperlink{_textbox_8cpp}{Textbox.\+cpp}}\end{DoxyCompactItemize}

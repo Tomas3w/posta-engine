@@ -1,0 +1,113 @@
+\hypertarget{namespace_engine_1_1_assets}{}\doxysection{Engine\+::Assets Namespace Reference}
+\label{namespace_engine_1_1_assets}\index{Engine::Assets@{Engine::Assets}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} \mbox{\hyperlink{namespace_engine_1_1_assets_a1165b4bfd3c39e4e689cfcaa32fbd3eb}{load\+\_\+obj}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em loads an .obj file into a \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_1_1_assets_a77b4b9ff272b7a43c9b96bd8b9ca2222}{load\+\_\+obj\+\_\+vertices\+\_\+and\+\_\+indices}} (std\+::filesystem\+::path path, std\+::vector$<$ GLfloat $>$ \&vertices, std\+::vector$<$ int $>$ \&indices)
+\begin{DoxyCompactList}\small\item\em loads an .obj file into a collection of vertices and their indices \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} \mbox{\hyperlink{namespace_engine_1_1_assets_a3168152cef098ed5bbd080d99fc21bfe}{load\+\_\+obj\+\_\+and\+\_\+bones}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em loads an .obj file and a .bones file containing bones weight and indices \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{Vertex\+Properties}} \mbox{\hyperlink{namespace_engine_1_1_assets_ab5c04fa5c4c501da754f7cc337c8f21a}{basic\+\_\+vertex\+\_\+props}} = \{\{3, 3, 2\}, 8\}
+\begin{DoxyCompactList}\small\item\em Basic vertex properties. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{Vertex\+Properties}} \mbox{\hyperlink{namespace_engine_1_1_assets_acd262bf9a6a251f3b4d536bde695fef4}{bone\+\_\+vertex\+\_\+props}} = \{\{3, 3, 2, 4\}, 12\}
+\begin{DoxyCompactList}\small\item\em Basic vertex properties with bone weights (and indices) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_engine_1_1_assets_a1165b4bfd3c39e4e689cfcaa32fbd3eb}\label{namespace_engine_1_1_assets_a1165b4bfd3c39e4e689cfcaa32fbd3eb}} 
+\index{Engine::Assets@{Engine::Assets}!load\_obj@{load\_obj}}
+\index{load\_obj@{load\_obj}!Engine::Assets@{Engine::Assets}}
+\doxysubsubsection{\texorpdfstring{load\_obj()}{load\_obj()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} Engine\+::\+Assets\+::load\+\_\+obj (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+loads an .obj file into a \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} 
+
+
+
+Definition at line \mbox{\hyperlink{_assets_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_assets_8cpp_source}{Assets.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_1_1_assets_a3168152cef098ed5bbd080d99fc21bfe}\label{namespace_engine_1_1_assets_a3168152cef098ed5bbd080d99fc21bfe}} 
+\index{Engine::Assets@{Engine::Assets}!load\_obj\_and\_bones@{load\_obj\_and\_bones}}
+\index{load\_obj\_and\_bones@{load\_obj\_and\_bones}!Engine::Assets@{Engine::Assets}}
+\doxysubsubsection{\texorpdfstring{load\_obj\_and\_bones()}{load\_obj\_and\_bones()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} Engine\+::\+Assets\+::load\+\_\+obj\+\_\+and\+\_\+bones (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+loads an .obj file and a .bones file containing bones weight and indices 
+
+A .bones contains the following format\+: vertex\+\_\+index1 bone\+\_\+index1$\vert$bone\+\_\+weight1,bone\+\_\+index2$\vert$bone\+\_\+weight2,bone\+\_\+index\+N$\vert$bone\+\_\+weightN, ~\newline
+vertex\+\_\+index2 ... The vertex index corresponds with the .obj vertices indices, except that they start at 0 and not 1, this also applies to the bone\+\_\+indices
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+without\+\_\+ext} & a path pointing to two files with diferent extension but with the same name, i.\+e. path.\+obj and path.\+bones \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_assets_8cpp_source_l00204}{204}} of file \mbox{\hyperlink{_assets_8cpp_source}{Assets.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_1_1_assets_a77b4b9ff272b7a43c9b96bd8b9ca2222}\label{namespace_engine_1_1_assets_a77b4b9ff272b7a43c9b96bd8b9ca2222}} 
+\index{Engine::Assets@{Engine::Assets}!load\_obj\_vertices\_and\_indices@{load\_obj\_vertices\_and\_indices}}
+\index{load\_obj\_vertices\_and\_indices@{load\_obj\_vertices\_and\_indices}!Engine::Assets@{Engine::Assets}}
+\doxysubsubsection{\texorpdfstring{load\_obj\_vertices\_and\_indices()}{load\_obj\_vertices\_and\_indices()}}
+{\footnotesize\ttfamily void Engine\+::\+Assets\+::load\+\_\+obj\+\_\+vertices\+\_\+and\+\_\+indices (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path,  }\item[{std\+::vector$<$ GLfloat $>$ \&}]{vertices,  }\item[{std\+::vector$<$ int $>$ \&}]{indices }\end{DoxyParamCaption})}
+
+
+
+loads an .obj file into a collection of vertices and their indices 
+
+
+
+Definition at line \mbox{\hyperlink{_assets_8cpp_source_l00123}{123}} of file \mbox{\hyperlink{_assets_8cpp_source}{Assets.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_engine_1_1_assets_ab5c04fa5c4c501da754f7cc337c8f21a}\label{namespace_engine_1_1_assets_ab5c04fa5c4c501da754f7cc337c8f21a}} 
+\index{Engine::Assets@{Engine::Assets}!basic\_vertex\_props@{basic\_vertex\_props}}
+\index{basic\_vertex\_props@{basic\_vertex\_props}!Engine::Assets@{Engine::Assets}}
+\doxysubsubsection{\texorpdfstring{basic\_vertex\_props}{basic\_vertex\_props}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{Vertex\+Properties}} Engine\+::\+Assets\+::basic\+\_\+vertex\+\_\+props = \{\{3, 3, 2\}, 8\}}
+
+
+
+Basic vertex properties. 
+
+Vertex properties representing three components\+:
+\begin{DoxyItemize}
+\item position\+: x, y, z
+\item normal\+: nx, ny, nz
+\item uv\+: u, v 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{_assets_8h_source_l00017}{17}} of file \mbox{\hyperlink{_assets_8h_source}{Assets.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_1_1_assets_acd262bf9a6a251f3b4d536bde695fef4}\label{namespace_engine_1_1_assets_acd262bf9a6a251f3b4d536bde695fef4}} 
+\index{Engine::Assets@{Engine::Assets}!bone\_vertex\_props@{bone\_vertex\_props}}
+\index{bone\_vertex\_props@{bone\_vertex\_props}!Engine::Assets@{Engine::Assets}}
+\doxysubsubsection{\texorpdfstring{bone\_vertex\_props}{bone\_vertex\_props}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{Vertex\+Properties}} Engine\+::\+Assets\+::bone\+\_\+vertex\+\_\+props = \{\{3, 3, 2, 4\}, 12\}}
+
+
+
+Basic vertex properties with bone weights (and indices) 
+
+Properties\+:
+\begin{DoxyItemize}
+\item position\+: x, y, z
+\item normal\+: nx, ny, nz
+\item uv\+: u, v
+\item weights\+: b1, b2, b3, b4 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{_assets_8h_source_l00024}{24}} of file \mbox{\hyperlink{_assets_8h_source}{Assets.\+h}}.
+

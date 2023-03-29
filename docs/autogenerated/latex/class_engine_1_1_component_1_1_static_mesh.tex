@@ -1,0 +1,144 @@
+\hypertarget{class_engine_1_1_component_1_1_static_mesh}{}\doxysection{Engine\+::Component\+::Static\+Mesh Class Reference}
+\label{class_engine_1_1_component_1_1_static_mesh}\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+
+
+Static mesh component.  
+
+
+
+
+{\ttfamily \#include $<$Static\+Mesh.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_ace79079017b6438df442a76bc67dc8db}{Static\+Mesh}} (const \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} \&mesh)
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_a11df8f031ff2fbaaf3023c006bf1c13a}{Static\+Mesh}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_a5360becc316d2efde3d5039a7dae6e32}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_af3e56512aa0dfaca1db3aebeea6adaeb}{$\sim$\+Static\+Mesh}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_a8194173713e8ec1fcb899d318b2ec51c}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Binds the mesh, following draw calls will then use this mesh. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_a21fa89e831cc623d5186c6bd8913cc62}{draw\+\_\+without\+\_\+binding}} ()
+\begin{DoxyCompactList}\small\item\em Draws the mesh without binding it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_aeecfe7f37fd748504155f870dfb3c5bb}{draw\+\_\+many\+\_\+without\+\_\+binding}} (size\+\_\+t x)
+\begin{DoxyCompactList}\small\item\em Draws x instances of the same mesh in one single draw call. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh_aba27e61639e43d93e8d641af5807c920}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Binds and then draws the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Static mesh component. 
+
+Used to bind a mesh when drawing, the vertex data cannot be modified after creation 
+
+Definition at line \mbox{\hyperlink{_static_mesh_8h_source_l00009}{9}} of file \mbox{\hyperlink{_static_mesh_8h_source}{Static\+Mesh.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_ace79079017b6438df442a76bc67dc8db}\label{class_engine_1_1_component_1_1_static_mesh_ace79079017b6438df442a76bc67dc8db}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!StaticMesh@{StaticMesh}}
+\index{StaticMesh@{StaticMesh}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{StaticMesh()}{StaticMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Static\+Mesh\+::\+Static\+Mesh (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} \&}]{mesh }\end{DoxyParamCaption})}
+
+Constructs a \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} from a mesh 
+\begin{DoxyParams}{Parameters}
+{\em mesh} & a \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} object to create the \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} from \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_static_mesh_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_static_mesh_8cpp_source}{Static\+Mesh.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_a11df8f031ff2fbaaf3023c006bf1c13a}\label{class_engine_1_1_component_1_1_static_mesh_a11df8f031ff2fbaaf3023c006bf1c13a}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!StaticMesh@{StaticMesh}}
+\index{StaticMesh@{StaticMesh}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{StaticMesh()}{StaticMesh()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Component\+::\+Static\+Mesh\+::\+Static\+Mesh (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_af3e56512aa0dfaca1db3aebeea6adaeb}\label{class_engine_1_1_component_1_1_static_mesh_af3e56512aa0dfaca1db3aebeea6adaeb}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!````~StaticMesh@{$\sim$StaticMesh}}
+\index{````~StaticMesh@{$\sim$StaticMesh}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{$\sim$StaticMesh()}{~StaticMesh()}}
+{\footnotesize\ttfamily Static\+Mesh\+::$\sim$\+Static\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_static_mesh_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_static_mesh_8cpp_source}{Static\+Mesh.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_a8194173713e8ec1fcb899d318b2ec51c}\label{class_engine_1_1_component_1_1_static_mesh_a8194173713e8ec1fcb899d318b2ec51c}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!bind@{bind}}
+\index{bind@{bind}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void Static\+Mesh\+::bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Binds the mesh, following draw calls will then use this mesh. 
+
+
+
+Definition at line \mbox{\hyperlink{_static_mesh_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_static_mesh_8cpp_source}{Static\+Mesh.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_aba27e61639e43d93e8d641af5807c920}\label{class_engine_1_1_component_1_1_static_mesh_aba27e61639e43d93e8d641af5807c920}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!draw@{draw}}
+\index{draw@{draw}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Static\+Mesh\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Binds and then draws the mesh. 
+
+
+
+Definition at line \mbox{\hyperlink{_static_mesh_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{_static_mesh_8cpp_source}{Static\+Mesh.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_aeecfe7f37fd748504155f870dfb3c5bb}\label{class_engine_1_1_component_1_1_static_mesh_aeecfe7f37fd748504155f870dfb3c5bb}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!draw\_many\_without\_binding@{draw\_many\_without\_binding}}
+\index{draw\_many\_without\_binding@{draw\_many\_without\_binding}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{draw\_many\_without\_binding()}{draw\_many\_without\_binding()}}
+{\footnotesize\ttfamily void Static\+Mesh\+::draw\+\_\+many\+\_\+without\+\_\+binding (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+
+
+Draws x instances of the same mesh in one single draw call. 
+
+
+
+Definition at line \mbox{\hyperlink{_static_mesh_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{_static_mesh_8cpp_source}{Static\+Mesh.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_a21fa89e831cc623d5186c6bd8913cc62}\label{class_engine_1_1_component_1_1_static_mesh_a21fa89e831cc623d5186c6bd8913cc62}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!draw\_without\_binding@{draw\_without\_binding}}
+\index{draw\_without\_binding@{draw\_without\_binding}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{draw\_without\_binding()}{draw\_without\_binding()}}
+{\footnotesize\ttfamily void Static\+Mesh\+::draw\+\_\+without\+\_\+binding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draws the mesh without binding it. 
+
+Faster drawing than having to bind and then draw every time, useful for drawing many times the same mesh 
+
+Definition at line \mbox{\hyperlink{_static_mesh_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_static_mesh_8cpp_source}{Static\+Mesh.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_static_mesh_a5360becc316d2efde3d5039a7dae6e32}\label{class_engine_1_1_component_1_1_static_mesh_a5360becc316d2efde3d5039a7dae6e32}} 
+\index{Engine::Component::StaticMesh@{Engine::Component::StaticMesh}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Component::StaticMesh@{Engine::Component::StaticMesh}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} Engine\+::\+Component\+::\+Static\+Mesh\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_component_1_1_static_mesh}{Static\+Mesh}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_static_mesh_8h}{Static\+Mesh.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_static_mesh_8cpp}{Static\+Mesh.\+cpp}}\end{DoxyCompactItemize}

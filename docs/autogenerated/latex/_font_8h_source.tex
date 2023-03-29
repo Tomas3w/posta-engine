@@ -1,0 +1,52 @@
+\hypertarget{_font_8h_source}{}\doxysection{Font.\+h}
+\label{_font_8h_source}\index{libs/engine/include/Util/Font.h@{libs/engine/include/Util/Font.h}}
+\mbox{\hyperlink{_font_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_FONT\_UTILITY\_H}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_FONT\_UTILITY\_H}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_texture_8h}{engine/include/Component/Texture.h}}>}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_image_8h}{engine/include/Component/Image.h}}>}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}\ \{}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00011}\mbox{\hyperlink{class_engine_1_1_font}{00011}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_font}{Font}}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_font}{Font}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_font_a134aaa2f78af0c12d3ce504957169768}{\string~Font}}();}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00017}\mbox{\hyperlink{class_engine_1_1_font_a241872d2368cebed201b3c45c4ef82b7}{00017}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_font_a241872d2368cebed201b3c45c4ef82b7}{Font}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_engine_1_1_font}{Font}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00018}\mbox{\hyperlink{class_engine_1_1_font_a41b087c194548283110e7a2bfdd392a5}{00018}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_font}{Font}}\&\ \mbox{\hyperlink{class_engine_1_1_font_a41b087c194548283110e7a2bfdd392a5}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_engine_1_1_font}{Font}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine::Component::Texture}}*\ \mbox{\hyperlink{class_engine_1_1_font_ae57fa9eb305ccdc7f3c10ebbc261b6e3}{render\_text}}(std::string\ text,\ \textcolor{keywordtype}{size\_t}\ font\_size,\ \textcolor{keywordtype}{int}*\ w\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{int}*\ h\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Engine::Component::Image}}*\ \mbox{\hyperlink{class_engine_1_1_font_ab0a59a9612c04cd3e2fa4c899b1e0bcb}{render\_image}}(std::string\ text,\ \textcolor{keywordtype}{size\_t}\ font\_size);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_font_a9718340e2cdec5fe5c4ac3af352889d0}{get\_text\_size}}(std::string\ text,\ \textcolor{keywordtype}{size\_t}\ font\_size,\ \textcolor{keywordtype}{int}\&\ w,\ \textcolor{keywordtype}{int}\&\ h);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_font_af3b2992f15ee1719e4387036664e8d3d}{get\_character\_width}}(\textcolor{keywordtype}{size\_t}\ font\_size);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_font_aa3178491b85f758d23d7f8cbbc785831}{get\_character\_height}}(\textcolor{keywordtype}{size\_t}\ font\_size);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_engine_1_1_font_aed27545924ba830cb57e0d7f056813ba}{size\_utf8}}(std::string);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ std::filesystem::path\ filepath;}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }InternalFont}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InternalFont()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InternalFont(std::filesystem::path\ path,\ \textcolor{keywordtype}{size\_t}\ font\_size);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine::Component::Texture}}*\ render\_text(std::string\ text,\ \textcolor{keywordtype}{size\_t}\ font\_size,\ \textcolor{keywordtype}{int}*\ w,\ \textcolor{keywordtype}{int}*\ h);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ get\_text\_size(std::string\ text,\ \textcolor{keywordtype}{int}\&\ w,\ \textcolor{keywordtype}{int}\&\ h);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TTF\_Font*\ \_font\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ char\_width,\ char\_height;\ \textcolor{comment}{//\ size\ of\ the\ character\ '\ ',\ usefull\ for\ monospace\ fonts}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ InternalFont>::iterator\ get\_iterator\_for\_font(\textcolor{keywordtype}{size\_t}\ font\_size);}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ std::unordered\_map<size\_t,\ InternalFont>\ fonts;}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00056}00056\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_font_8h_source_l00059}00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_FONT\_UTILITY\_H}}
+
+\end{DoxyCode}

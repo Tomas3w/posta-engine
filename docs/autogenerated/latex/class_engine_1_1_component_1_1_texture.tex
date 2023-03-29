@@ -1,0 +1,135 @@
+\hypertarget{class_engine_1_1_component_1_1_texture}{}\doxysection{Engine\+::Component\+::Texture Class Reference}
+\label{class_engine_1_1_component_1_1_texture}\index{Engine::Component::Texture@{Engine::Component::Texture}}
+
+
+Class that stores a texture, the texture cannot be modified after creation.  
+
+
+
+
+{\ttfamily \#include $<$Texture.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a46eec279aa73a0440dddfa191710448a}{Texture}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Constructs a texture from a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a0b3e90480437ff5adcfa784ae14326e5}{Texture}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Texture}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Texture}} \mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a084f2a8069431860d8672dd669d7a25d}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Texture}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}{$\sim$\+Texture}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a705fcef86410b0cd7f494353e4fc08b0}{bind}} (GLuint texture\+\_\+unit=0)
+\begin{DoxyCompactList}\small\item\em Binds the texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a8ce2494bf3879cfe3e97885a21e6f3a3}{Engine\+::\+Depth\+Framebuffer}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_component_1_1_texture_adb374f38c3f9ebfbb78d06b19a4cb374}{Engine\+::\+Font}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_component_1_1_texture_a5d6b29a75202aeeaef335faca9eb55e2}{Image}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that stores a texture, the texture cannot be modified after creation. 
+
+Definition at line \mbox{\hyperlink{_texture_8h_source_l00017}{17}} of file \mbox{\hyperlink{_texture_8h_source}{Texture.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a46eec279aa73a0440dddfa191710448a}\label{class_engine_1_1_component_1_1_texture_a46eec279aa73a0440dddfa191710448a}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{Texture()}{Texture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Constructs a texture from a file. 
+
+
+
+Definition at line \mbox{\hyperlink{_texture_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_texture_8cpp_source}{Texture.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a0b3e90480437ff5adcfa784ae14326e5}\label{class_engine_1_1_component_1_1_texture_a0b3e90480437ff5adcfa784ae14326e5}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{Texture()}{Texture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Component\+::\+Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Texture}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{class_engine_1_1_component_1_1_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!````~Texture@{$\sim$Texture}}
+\index{````~Texture@{$\sim$Texture}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{$\sim$Texture()}{~Texture()}}
+{\footnotesize\ttfamily Texture\+::$\sim$\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_texture_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_texture_8cpp_source}{Texture.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a705fcef86410b0cd7f494353e4fc08b0}\label{class_engine_1_1_component_1_1_texture_a705fcef86410b0cd7f494353e4fc08b0}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!bind@{bind}}
+\index{bind@{bind}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void Texture\+::bind (\begin{DoxyParamCaption}\item[{GLuint}]{texture\+\_\+unit = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Binds the texture. 
+
+
+
+Definition at line \mbox{\hyperlink{_texture_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{_texture_8cpp_source}{Texture.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a084f2a8069431860d8672dd669d7a25d}\label{class_engine_1_1_component_1_1_texture_a084f2a8069431860d8672dd669d7a25d}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Texture}} Engine\+::\+Component\+::\+Texture\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Texture}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a8ce2494bf3879cfe3e97885a21e6f3a3}\label{class_engine_1_1_component_1_1_texture_a8ce2494bf3879cfe3e97885a21e6f3a3}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!Engine::DepthFramebuffer@{Engine::DepthFramebuffer}}
+\index{Engine::DepthFramebuffer@{Engine::DepthFramebuffer}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{Engine::DepthFramebuffer}{Engine::DepthFramebuffer}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_engine_1_1_depth_framebuffer}{Engine\+::\+Depth\+Framebuffer}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{_texture_8h_source_l00029}{29}} of file \mbox{\hyperlink{_texture_8h_source}{Texture.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_adb374f38c3f9ebfbb78d06b19a4cb374}\label{class_engine_1_1_component_1_1_texture_adb374f38c3f9ebfbb78d06b19a4cb374}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!Engine::Font@{Engine::Font}}
+\index{Engine::Font@{Engine::Font}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{Engine::Font}{Engine::Font}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_engine_1_1_font}{Engine\+::\+Font}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{_texture_8h_source_l00030}{30}} of file \mbox{\hyperlink{_texture_8h_source}{Texture.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_texture_a5d6b29a75202aeeaef335faca9eb55e2}\label{class_engine_1_1_component_1_1_texture_a5d6b29a75202aeeaef335faca9eb55e2}} 
+\index{Engine::Component::Texture@{Engine::Component::Texture}!Image@{Image}}
+\index{Image@{Image}!Engine::Component::Texture@{Engine::Component::Texture}}
+\doxysubsubsection{\texorpdfstring{Image}{Image}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Image}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{_texture_8h_source_l00031}{31}} of file \mbox{\hyperlink{_texture_8h_source}{Texture.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_texture_8h}{Texture.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_texture_8cpp}{Texture.\+cpp}}\end{DoxyCompactItemize}

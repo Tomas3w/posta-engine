@@ -1,0 +1,74 @@
+\hypertarget{class_engine_1_1_t_c_p_conn_to_client}{}\doxysection{Engine\+::TCPConn\+To\+Client Class Reference}
+\label{class_engine_1_1_t_c_p_conn_to_client}\index{Engine::TCPConnToClient@{Engine::TCPConnToClient}}
+
+
+{\ttfamily \#include $<$TCPConn\+To\+Client.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::TCPConn\+To\+Client\+:
+% FIG 0
+
+
+Collaboration diagram for Engine\+::TCPConn\+To\+Client\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_to_client_a85e37d2b54d8d8c95d50f37319b08c44}{TCPConn\+To\+Client}} (TCPsocket socket)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_engine_1_1_t_c_p_conn}{Engine\+::\+TCPConn}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_acc4c332ba515a3d5f9447b407df0c862}{TCPConn}} ()
+\item 
+\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_acd11c3d8a76ed330892910dca5d4a42a}{TCPConn}} (TCPsocket socket)
+\item 
+\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_aed883dacca9260392bb255dcede3c0f2}{TCPConn}} (const \mbox{\hyperlink{class_engine_1_1_t_c_p_conn}{TCPConn}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_t_c_p_conn}{TCPConn}} \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_ad23a83421a9c435680193ed402ad4da1}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_t_c_p_conn}{TCPConn}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_a0aed555b408edbb9536e282a712aaaa0}{$\sim$\+TCPConn}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_a13764979cac80df95abaeb26b6b36968}{set\+\_\+socket}} (TCPsocket socket)
+\item 
+TCPsocket \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_aed29c4d5be2316d112544984daa18d01}{get\+\_\+socket}} ()
+\item 
+bool \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_ab2dd61a79162005d66d14419f0a7b9f0}{send}} (\mbox{\hyperlink{class_engine_1_1_network_package}{Engine\+::\+Network\+Package}} \&package)
+\item 
+bool \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_ab6c796f4bc8341835fb5835c70b78076}{send}} (uint32\+\_\+t data\+\_\+type, \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$ data)
+\item 
+bool \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_a44a5757b9a0975da534e19473fcb1a7b}{recv}} (uint32\+\_\+t \&data\+\_\+type, \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$ data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_engine_1_1_t_c_p_conn}{Engine\+::\+TCPConn}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_aa58e20d40b3ff99170a49fbb0c4442b1}{BUFFER\+\_\+\+SIZE}} = 2048
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_t_c_p_conn_to_client_8h_source_l00006}{6}} of file \mbox{\hyperlink{_t_c_p_conn_to_client_8h_source}{TCPConn\+To\+Client.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_t_c_p_conn_to_client_a85e37d2b54d8d8c95d50f37319b08c44}\label{class_engine_1_1_t_c_p_conn_to_client_a85e37d2b54d8d8c95d50f37319b08c44}} 
+\index{Engine::TCPConnToClient@{Engine::TCPConnToClient}!TCPConnToClient@{TCPConnToClient}}
+\index{TCPConnToClient@{TCPConnToClient}!Engine::TCPConnToClient@{Engine::TCPConnToClient}}
+\doxysubsubsection{\texorpdfstring{TCPConnToClient()}{TCPConnToClient()}}
+{\footnotesize\ttfamily TCPConn\+To\+Client\+::\+TCPConn\+To\+Client (\begin{DoxyParamCaption}\item[{TCPsocket}]{socket }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_t_c_p_conn_to_client_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_t_c_p_conn_to_client_8cpp_source}{TCPConn\+To\+Client.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_t_c_p_conn_to_client_8h}{TCPConn\+To\+Client.\+h}}\item 
+libs/engine/src/\+Util/\mbox{\hyperlink{_t_c_p_conn_to_client_8cpp}{TCPConn\+To\+Client.\+cpp}}\end{DoxyCompactItemize}

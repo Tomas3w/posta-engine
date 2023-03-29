@@ -1,0 +1,36 @@
+\hypertarget{_button_8h_source}{}\doxysection{Button.\+h}
+\label{_button_8h_source}\index{libs/engine/include/UI/Button.h@{libs/engine/include/UI/Button.h}}
+\mbox{\hyperlink{_button_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_BUTTON\_UI\_H}}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_BUTTON\_UI\_H}}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_rect_8h}{engine/include/UI/Rect.h}}>}}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00006}\mbox{\hyperlink{namespace_engine_1_1_u_i}{00006}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_u_i}{Engine::UI}}\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00008}\mbox{\hyperlink{class_engine_1_1_u_i_1_1_button}{00008}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_u_i_1_1_button}{Button}}}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button}{Button}}(\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}\ \_rect);}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_afc856650b0f8ad6e65ab2a2f72a4c4b6}{loop}}();}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_afc856650b0f8ad6e65ab2a2f72a4c4b6}{loop}}(\textcolor{keywordtype}{int}\ x\_offset,\ \textcolor{keywordtype}{int}\ y\_offset);}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_afc856650b0f8ad6e65ab2a2f72a4c4b6}{loop}}(\textcolor{keywordtype}{int}\ x\_offset,\ \textcolor{keywordtype}{int}\ y\_offset,\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}\ \_rect);}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}\&\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_ab5935ea530434212ab6665a735a04bf5}{get\_rect}}();}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_af384814a9ab724db8301164f624d9206}{set\_rect}}(\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}\ \_rect);}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00026}\mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_ac4892be1df398ac32d1a64bbafb5a157}{00026}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Rect}}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_ac4892be1df398ac32d1a64bbafb5a157}{rect}};}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_a4ee573fdf60fe503b1a83280e36b404c}{is\_pressed}}();}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_a0db234386cdef4559865534a9729b088}{is\_highlighted}}();}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_af1464b95c6e43e125904b46670272ed2}{press}}();}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_engine_1_1_u_i_1_1_button_af4cc7341b6d9931d2675857012fc7c31}{release}}();}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ pressed;}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ highlighted;}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00041}00041\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_button_8h_source_l00044}00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_BUTTON\_UI\_H}}
+
+\end{DoxyCode}

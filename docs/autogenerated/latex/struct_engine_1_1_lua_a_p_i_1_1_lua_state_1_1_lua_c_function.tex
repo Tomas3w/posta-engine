@@ -1,0 +1,212 @@
+\hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{}\doxysection{Engine\+::Lua\+API\+::Lua\+State\+::Lua\+CFunction Struct Reference}
+\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+
+
+{\ttfamily \#include $<$Lua\+State.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_1_1unique__ptr}{unique\+\_\+ptr}}
+\begin{DoxyCompactList}\small\item\em Wrapper around pointers to arguments (returned by getarg) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_aafe94be208f8e3ee6941189876087a49}{Lua\+CFunction}} (std\+::string \+\_\+name, lua\+\_\+\+CFunction \+\_\+func)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class F , F f, class... Args$>$ }\\static \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a529a41ef6713945e80f6301587da495c}{from\+\_\+func}} (std\+::string \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a097d51d9b7cf5b3be28d6126667a87fc}{name}})
+\begin{DoxyCompactList}\small\item\em Creates a \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} form a function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T , class F , F f, class... Args$>$ }\\static \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a1ae26b9f415e3dc4ff0015350f467d9b}{from\+\_\+method}} (std\+::string \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a097d51d9b7cf5b3be28d6126667a87fc}{name}})
+\begin{DoxyCompactList}\small\item\em Creates a \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} from a method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static void \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a13a092f7bc7e54dcb2ec724441e1e546}{checkarg}} (lua\+\_\+\+State $\ast$L, T $\ast$arg, int arg\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Checks if arg == nullptr, raising an error in lua if that is the case. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a3a44ef5ecb7275cc196d58eca4152732}{push\+\_\+nil}} (lua\+\_\+\+State $\ast$L)
+\begin{DoxyCompactList}\small\item\em Pushes any object into the lua stack (copies the object) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static void \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a23d4090a975f4033c824309396624152}{push\+\_\+value}} (lua\+\_\+\+State $\ast$L, T \&t)
+\begin{DoxyCompactList}\small\item\em Copies value onto the lua stack. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static void \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a272bc715f60b482b3250fb5717e2aadb}{push\+\_\+uvalue}} (lua\+\_\+\+State $\ast$L, T $\ast$t)
+\begin{DoxyCompactList}\small\item\em Moves pointer to type onto the stack (as userdata) \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static void \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_adecfdeab7e13840f13cb8a2d1e92ee88}{freearg}} (T $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frees an argument, which may imply deleting it, but only if T is a pointer to std\+::string or double. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\static T $\ast$ \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_abbacc311f356401483ee31bce12b6d65}{getarg}} (lua\+\_\+\+State $\ast$L, int arg\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Gets an argument, once used the return value must be free with freearg, returns nullptr on error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a097d51d9b7cf5b3be28d6126667a87fc}{name}} = \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_class_a39676e4ff469beb428860832448686bc}{Lua\+Class\+::get\+\_\+name\+\_\+from\+\_\+fullname\+\_\+of\+\_\+type}}(full\+\_\+name)
+\item 
+lua\+\_\+\+CFunction \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a0520b91bbdf1b059ee409bdbd8dd8de6}{func}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00094}{94}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_aafe94be208f8e3ee6941189876087a49}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_aafe94be208f8e3ee6941189876087a49}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!LuaCFunction@{LuaCFunction}}
+\index{LuaCFunction@{LuaCFunction}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{LuaCFunction()}{LuaCFunction()}}
+{\footnotesize\ttfamily Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::\+Lua\+CFunction (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+name,  }\item[{lua\+\_\+\+CFunction}]{\+\_\+func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00096}{96}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a13a092f7bc7e54dcb2ec724441e1e546}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a13a092f7bc7e54dcb2ec724441e1e546}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!checkarg@{checkarg}}
+\index{checkarg@{checkarg}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{checkarg()}{checkarg()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static void Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::checkarg (\begin{DoxyParamCaption}\item[{lua\+\_\+\+State $\ast$}]{L,  }\item[{T $\ast$}]{arg,  }\item[{int}]{arg\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Checks if arg == nullptr, raising an error in lua if that is the case. 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00135}{135}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_adecfdeab7e13840f13cb8a2d1e92ee88}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_adecfdeab7e13840f13cb8a2d1e92ee88}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!freearg@{freearg}}
+\index{freearg@{freearg}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{freearg()}{freearg()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static void Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::freearg (\begin{DoxyParamCaption}\item[{T $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Frees an argument, which may imply deleting it, but only if T is a pointer to std\+::string or double. 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00184}{184}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a529a41ef6713945e80f6301587da495c}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a529a41ef6713945e80f6301587da495c}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!from\_func@{from\_func}}
+\index{from\_func@{from\_func}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{from\_func()}{from\_func()}}
+{\footnotesize\ttfamily template$<$class F , F f, class... Args$>$ \\
+static \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::from\+\_\+func (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates a \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} form a function. 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00101}{101}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a1ae26b9f415e3dc4ff0015350f467d9b}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a1ae26b9f415e3dc4ff0015350f467d9b}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!from\_method@{from\_method}}
+\index{from\_method@{from\_method}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{from\_method()}{from\_method()}}
+{\footnotesize\ttfamily template$<$class T , class F , F f, class... Args$>$ \\
+static \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::from\+\_\+method (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates a \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function}{Lua\+CFunction}} from a method. 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00108}{108}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_abbacc311f356401483ee31bce12b6d65}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_abbacc311f356401483ee31bce12b6d65}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!getarg@{getarg}}
+\index{getarg@{getarg}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{getarg()}{getarg()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static T $\ast$ Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::getarg (\begin{DoxyParamCaption}\item[{lua\+\_\+\+State $\ast$}]{L,  }\item[{int}]{arg\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Gets an argument, once used the return value must be free with freearg, returns nullptr on error. 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00191}{191}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a3a44ef5ecb7275cc196d58eca4152732}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a3a44ef5ecb7275cc196d58eca4152732}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!push\_nil@{push\_nil}}
+\index{push\_nil@{push\_nil}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{push\_nil()}{push\_nil()}}
+{\footnotesize\ttfamily static void Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::push\+\_\+nil (\begin{DoxyParamCaption}\item[{lua\+\_\+\+State $\ast$}]{L }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Pushes any object into the lua stack (copies the object) 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00151}{151}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a272bc715f60b482b3250fb5717e2aadb}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a272bc715f60b482b3250fb5717e2aadb}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!push\_uvalue@{push\_uvalue}}
+\index{push\_uvalue@{push\_uvalue}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{push\_uvalue()}{push\_uvalue()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static void Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::push\+\_\+uvalue (\begin{DoxyParamCaption}\item[{lua\+\_\+\+State $\ast$}]{L,  }\item[{T $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Moves pointer to type onto the stack (as userdata) 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00174}{174}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a23d4090a975f4033c824309396624152}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a23d4090a975f4033c824309396624152}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!push\_value@{push\_value}}
+\index{push\_value@{push\_value}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{push\_value()}{push\_value()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static void Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::push\+\_\+value (\begin{DoxyParamCaption}\item[{lua\+\_\+\+State $\ast$}]{L,  }\item[{T \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Copies value onto the lua stack. 
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00157}{157}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a0520b91bbdf1b059ee409bdbd8dd8de6}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a0520b91bbdf1b059ee409bdbd8dd8de6}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!func@{func}}
+\index{func@{func}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{func}{func}}
+{\footnotesize\ttfamily lua\+\_\+\+CFunction Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::func}
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00098}{98}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+\mbox{\Hypertarget{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a097d51d9b7cf5b3be28d6126667a87fc}\label{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_c_function_a097d51d9b7cf5b3be28d6126667a87fc}} 
+\index{Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}!name@{name}}
+\index{name@{name}!Engine::LuaAPI::LuaState::LuaCFunction@{Engine::LuaAPI::LuaState::LuaCFunction}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Engine\+::\+Lua\+API\+::\+Lua\+State\+::\+Lua\+CFunction\+::name = \mbox{\hyperlink{struct_engine_1_1_lua_a_p_i_1_1_lua_state_1_1_lua_class_a39676e4ff469beb428860832448686bc}{Lua\+Class\+::get\+\_\+name\+\_\+from\+\_\+fullname\+\_\+of\+\_\+type}}(full\+\_\+name)}
+
+
+
+Definition at line \mbox{\hyperlink{_lua_state_8h_source_l00097}{97}} of file \mbox{\hyperlink{_lua_state_8h_source}{Lua\+State.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Lua\+API/\mbox{\hyperlink{_lua_state_8h}{Lua\+State.\+h}}\end{DoxyCompactItemize}

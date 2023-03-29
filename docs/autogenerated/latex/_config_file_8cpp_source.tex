@@ -1,0 +1,146 @@
+\hypertarget{_config_file_8cpp_source}{}\doxysection{Config\+File.\+cpp}
+\label{_config_file_8cpp_source}\index{libs/engine/src/Util/ConfigFile.cpp@{libs/engine/src/Util/ConfigFile.cpp}}
+\mbox{\hyperlink{_config_file_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_config_file_8h}{engine/include/Util/ConfigFile.h}}>}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_engine_1_1_config_file}{Engine::ConfigFile}};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00005}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a42a8a861683cf1f3492edf7cc060ca02}{00005}}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a42a8a861683cf1f3492edf7cc060ca02}{ConfigFile::Data::Data}}(std::string\ value)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00007}00007\ \ \ \ \ this-\/>value\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00010}00010\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a42a8a861683cf1f3492edf7cc060ca02}{ConfigFile::Data::Data}}(std::vector<ConfigFile::Data>\ values)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00012}00012\ \ \ \ \ this-\/>values\ =\ values;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00015}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_aed86339a2e8de4e8e15dbf1d45cb6626}{00015}}\ std::string\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_aed86339a2e8de4e8e15dbf1d45cb6626}{ConfigFile::Data::to\_string}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00020}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a8ebdc2651b254fc8e3ca386664010fc4}{00020}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a8ebdc2651b254fc8e3ca386664010fc4}{ConfigFile::Data::to\_int}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{return}\ stoi(value);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00025}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a6a5fff1c26a40862413a7ba353a4e8c3}{00025}}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a6a5fff1c26a40862413a7ba353a4e8c3}{ConfigFile::Data::to\_float}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{return}\ stof(value);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00030}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a7367f6fab3a7b9cc5cc3e29455fe0022}{00030}}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data}{ConfigFile::Data}}\&\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a7367f6fab3a7b9cc5cc3e29455fe0022}{ConfigFile::Data::operator[]}}(\textcolor{keywordtype}{size\_t}\ index)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{return}\ values.at(index);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00035}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a1a9a6503afddedb42c46e3794cc7b74b}{00035}}\ std::vector<ConfigFile::Data>::iterator\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a1a9a6503afddedb42c46e3794cc7b74b}{ConfigFile::Data::begin}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ values.begin();}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00040}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a53b6b89513849a2052e07d888c57e200}{00040}}\ std::vector<ConfigFile::Data>::iterator\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_a53b6b89513849a2052e07d888c57e200}{ConfigFile::Data::end}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00041}00041\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{return}\ values.end();}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00043}00043\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00045}\mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_aa278b7aece46e1b1b5f99dcff7848a13}{00045}}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data_aa278b7aece46e1b1b5f99dcff7848a13}{ConfigFile::Data::size}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00046}00046\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ values.size();}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00050}\mbox{\hyperlink{class_engine_1_1_config_file_acf9b0407b03b7936cbee9fd4ef6bf5c8}{00050}}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data}{ConfigFile::Data}}\ \mbox{\hyperlink{class_engine_1_1_config_file_acf9b0407b03b7936cbee9fd4ef6bf5c8}{ConfigFile::to\_data}}(std::string\ str)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00052}00052\ \ \ \ \ str\ =\ \mbox{\hyperlink{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}{Engine::strip}}(str);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (str.empty()\ ||\ str[0]\ !=\ \textcolor{charliteral}{'('}\ ||\ str[str.size()\ -\/\ 1]\ !=\ \textcolor{charliteral}{')'})}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data}{Data}}(str);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00055}00055\ \ \ \ \ str.insert(str.end()\ -\/\ 1,\ \textcolor{charliteral}{','});}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordtype}{int}\ parenthesis\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{char}*\ left\ =\ str.data()\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00059}00059\ \ \ \ \ std::vector<std::string>\ elements;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ c\ :\ str)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00061}00061\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'('})}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ parenthesis++;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{')'})}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ parenthesis-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{','}\ \&\&\ parenthesis\ ==\ 1)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ r\ =\ c;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ c\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ elements.push\_back(left);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ c\ =\ r;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ left\ =\ (\&c)\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00075}00075\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00076}00076\ \ \ \ \ std::vector<ConfigFile::Data>\ nelements;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ s\ :\ elements)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00078}00078\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!s.empty())}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ nelements.push\_back(\mbox{\hyperlink{class_engine_1_1_config_file_acf9b0407b03b7936cbee9fd4ef6bf5c8}{ConfigFile::to\_data}}(s));}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_engine_1_1_config_file_1_1_data}{Data}}(nelements);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00085}\mbox{\hyperlink{class_engine_1_1_config_file_aea4e68adf6403a30e4fd97002c431d8f}{00085}}\ \mbox{\hyperlink{class_engine_1_1_config_file_aea4e68adf6403a30e4fd97002c431d8f}{ConfigFile::ConfigFile}}(std::filesystem::path\ path)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00086}00086\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00087}00087\ \ \ \ \ std::ifstream\ file(path);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(std::string(\textcolor{stringliteral}{"{}Couldn't\ load\ file\ '"{}})\ +\ path.string()\ +\ \textcolor{stringliteral}{"{}'"{}});}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00090}00090\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ line\_pos;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordflow}{while}\ (getline(file,\ line))}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00093}00093\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skipping\ comments}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ comment\_pos\ =\ line.find(\textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (comment\_pos\ !=\ std::string::npos)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ line.resize(comment\_pos);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skipping\ lines\ that\ only\ contain\ whitespaces}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_other\_than\_whitespace\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{char}\&\ c\ :\ line)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!std::isspace(c))}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_other\_than\_whitespace\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!is\_other\_than\_whitespace)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dividing\ the\ string\ in\ two\ parts}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pos\ =\ line.find(\textcolor{charliteral}{'='});}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ ==\ std::string::npos)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(std::string(\textcolor{stringliteral}{"{}Couldn't\ find\ the\ '='\ in\ one\ of\ the\ config\ pairs,\ in\ line\ "{}})\ +\ std::to\_string(line\_pos\ +\ 1));}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ std::string\ left,\ right;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ left.insert(left.begin(),\ line.begin(),\ line.begin()\ +\ pos);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ right.insert(right.begin(),\ line.begin()\ +\ pos\ +\ 1,\ line.end());}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adding\ this\ to\ the\ raw\ data}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_config_file_a52fa84de565b941d10966d88e5d02967}{data}}[\mbox{\hyperlink{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}{Engine::strip}}(left)]\ =\ \mbox{\hyperlink{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}{Engine::strip}}(right);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ line\_pos++;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00123}00123\ \ \ \ \ file.close();}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00124}00124\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00126}\mbox{\hyperlink{class_engine_1_1_config_file_a7023d743bb4c80b3a07d2e18dbec1e3a}{00126}}\ std::string\&\ \mbox{\hyperlink{class_engine_1_1_config_file_a7023d743bb4c80b3a07d2e18dbec1e3a}{ConfigFile::operator[]}}(std::string\ key)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00127}00127\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_engine_1_1_config_file_a52fa84de565b941d10966d88e5d02967}{data}}.count(key)\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(std::string(\textcolor{stringliteral}{"{}couldn't\ get\ key\ '"{}})\ +\ key\ +\ \textcolor{stringliteral}{"{}'"{}});}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_engine_1_1_config_file_a52fa84de565b941d10966d88e5d02967}{data}}.at(key);}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00131}00131\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00133}\mbox{\hyperlink{class_engine_1_1_config_file_a4aa0b5c5469a5c1bd1ea6b4c88403954}{00133}}\ std::string\ \mbox{\hyperlink{class_engine_1_1_config_file_a4aa0b5c5469a5c1bd1ea6b4c88403954}{ConfigFile::to\_string}}()}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00134}00134\ \{}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00135}00135\ \ \ \ \ std::string\ s;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ line\ :\ \mbox{\hyperlink{class_engine_1_1_config_file_a52fa84de565b941d10966d88e5d02967}{data}})}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ s\ +=\ line.first\ +\ \textcolor{stringliteral}{"{}="{}}\ +\ line.second\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00139}00139\ \}}
+\DoxyCodeLine{\Hypertarget{_config_file_8cpp_source_l00140}00140\ }
+
+\end{DoxyCode}

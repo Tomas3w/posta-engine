@@ -1,0 +1,94 @@
+\hypertarget{class_engine_1_1_two_d_shader}{}\doxysection{Engine\+::Two\+DShader Class Reference}
+\label{class_engine_1_1_two_d_shader}\index{Engine::TwoDShader@{Engine::TwoDShader}}
+
+
+\mbox{\hyperlink{class_engine_1_1_two_d_shader}{Two\+DShader}}, automatically set before calling on\+\_\+draw\+\_\+2d.  
+
+
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Two\+DShader\+:
+% FIG 0
+
+
+Collaboration diagram for Engine\+::Two\+DShader\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_two_d_shader_a53db30deb06e3a26b247c6082e31e050}{Two\+DShader}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_engine_1_1_shader}{Engine\+::\+Shader}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_shader_ae86e5f21f334671f8eac8c5c76753d54}{Shader}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Constructs a shader from a folder located in path. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_shader_a5f10549230cb8c0a6a8918a29ccf1613}{Shader}} (const \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \mbox{\hyperlink{class_engine_1_1_shader_a6172a0b5d3dd79a54461e2a96ff4d9c7}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_shader_aff01df87e8a102f270b5b135a295e59d}{$\sim$\+Shader}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_shader_a6f6e280a343d6c7662909f7dfbc89ad9}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Binds the shader. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{class_engine_1_1_shader_a96153d2a405b791af8cfc7d1563cfdc2}{get\+\_\+program}} () const
+\begin{DoxyCompactList}\small\item\em Returns the program id, needed to get uniforms from the shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_uniform}{Engine\+::\+Uniform}}$<$ glm\+::mat4 $>$ \mbox{\hyperlink{class_engine_1_1_two_d_shader_aff9ac45baa8b1761bea6be3feed5b712}{model}}
+\item 
+\mbox{\hyperlink{class_engine_1_1_uniform}{Engine\+::\+Uniform}}$<$ glm\+::vec4 $>$ \mbox{\hyperlink{class_engine_1_1_two_d_shader_afc32365dfa141e8baf44850653bb462e}{global\+\_\+color}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_engine_1_1_two_d_shader}{Two\+DShader}}, automatically set before calling on\+\_\+draw\+\_\+2d. 
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00118}{118}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_two_d_shader_a53db30deb06e3a26b247c6082e31e050}\label{class_engine_1_1_two_d_shader_a53db30deb06e3a26b247c6082e31e050}} 
+\index{Engine::TwoDShader@{Engine::TwoDShader}!TwoDShader@{TwoDShader}}
+\index{TwoDShader@{TwoDShader}!Engine::TwoDShader@{Engine::TwoDShader}}
+\doxysubsubsection{\texorpdfstring{TwoDShader()}{TwoDShader()}}
+{\footnotesize\ttfamily Engine\+::\+Two\+DShader\+::\+Two\+DShader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00121}{121}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_engine_1_1_two_d_shader_afc32365dfa141e8baf44850653bb462e}\label{class_engine_1_1_two_d_shader_afc32365dfa141e8baf44850653bb462e}} 
+\index{Engine::TwoDShader@{Engine::TwoDShader}!global\_color@{global\_color}}
+\index{global\_color@{global\_color}!Engine::TwoDShader@{Engine::TwoDShader}}
+\doxysubsubsection{\texorpdfstring{global\_color}{global\_color}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_uniform}{Engine\+::\+Uniform}}$<$glm\+::vec4$>$ Engine\+::\+Two\+DShader\+::global\+\_\+color}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00128}{128}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_two_d_shader_aff9ac45baa8b1761bea6be3feed5b712}\label{class_engine_1_1_two_d_shader_aff9ac45baa8b1761bea6be3feed5b712}} 
+\index{Engine::TwoDShader@{Engine::TwoDShader}!model@{model}}
+\index{model@{model}!Engine::TwoDShader@{Engine::TwoDShader}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_uniform}{Engine\+::\+Uniform}}$<$glm\+::mat4$>$ Engine\+::\+Two\+DShader\+::model}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00127}{127}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_shader_8h}{Shader.\+h}}\end{DoxyCompactItemize}

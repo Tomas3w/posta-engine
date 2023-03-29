@@ -1,0 +1,108 @@
+\hypertarget{class_engine_1_1_depth_framebuffer}{}\doxysection{Engine\+::Depth\+Framebuffer Class Reference}
+\label{class_engine_1_1_depth_framebuffer}\index{Engine::DepthFramebuffer@{Engine::DepthFramebuffer}}
+
+
+{\ttfamily \#include $<$Framebuffer.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Depth\+Framebuffer\+:
+% FIG 0
+
+
+Collaboration diagram for Engine\+::Depth\+Framebuffer\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_depth_framebuffer_a5b5303c862a05b6bd1e987d73a7add1a}{Depth\+Framebuffer}} (int \+\_\+w, int \+\_\+h)
+\item 
+void \mbox{\hyperlink{class_engine_1_1_depth_framebuffer_a2a9f744065b558d76f35fedb3afa76e7}{bind}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_depth_framebuffer_aa4d760780b1daadd9a5f6144a09dec01}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears the framebuffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_engine_1_1_framebuffer}{Engine\+::\+Framebuffer}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_framebuffer_a82cc1347f35eb5b53231a4f68e2b22cd}{bind}} ()=0
+\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_framebuffer_a0387282cb906151889b127c5cd753f26}{clear}} ()=0
+\begin{DoxyCompactList}\small\item\em Clears the framebuffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_framebuffer_a037bf3e17455354d5d907ceea00313dd}{$\sim$\+Framebuffer}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_engine_1_1_framebuffer}{Engine\+::\+Framebuffer}}}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_engine_1_1_framebuffer_af716a1b0def67bd65a84018b184d9c40}{unbind\+\_\+framebuffer}} ()
+\begin{DoxyCompactList}\small\item\em Unbinds any framebuffer previously binded, the following draw calls will be done on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes inherited from \mbox{\hyperlink{class_engine_1_1_framebuffer}{Engine\+::\+Framebuffer}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_engine_1_1_framebuffer_aa0fa755485ae40cb43bb8852ec5977f2}{w}}
+\item 
+int \mbox{\hyperlink{class_engine_1_1_framebuffer_ab3a80a5203da672ba5650045151bc4e7}{h}}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $>$ \mbox{\hyperlink{class_engine_1_1_framebuffer_afd5a7ccc398703729f44a7435935ada9}{texture}}
+\begin{DoxyCompactList}\small\item\em Texture of the framebuffer, it is guarantee to not be null. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_framebuffer_8h_source_l00032}{32}} of file \mbox{\hyperlink{_framebuffer_8h_source}{Framebuffer.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_depth_framebuffer_a5b5303c862a05b6bd1e987d73a7add1a}\label{class_engine_1_1_depth_framebuffer_a5b5303c862a05b6bd1e987d73a7add1a}} 
+\index{Engine::DepthFramebuffer@{Engine::DepthFramebuffer}!DepthFramebuffer@{DepthFramebuffer}}
+\index{DepthFramebuffer@{DepthFramebuffer}!Engine::DepthFramebuffer@{Engine::DepthFramebuffer}}
+\doxysubsubsection{\texorpdfstring{DepthFramebuffer()}{DepthFramebuffer()}}
+{\footnotesize\ttfamily Depth\+Framebuffer\+::\+Depth\+Framebuffer (\begin{DoxyParamCaption}\item[{int}]{\+\_\+w,  }\item[{int}]{\+\_\+h }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_framebuffer_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_framebuffer_8cpp_source}{Framebuffer.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_depth_framebuffer_a2a9f744065b558d76f35fedb3afa76e7}\label{class_engine_1_1_depth_framebuffer_a2a9f744065b558d76f35fedb3afa76e7}} 
+\index{Engine::DepthFramebuffer@{Engine::DepthFramebuffer}!bind@{bind}}
+\index{bind@{bind}!Engine::DepthFramebuffer@{Engine::DepthFramebuffer}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void Depth\+Framebuffer\+::bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Binds the framebuffer, once binded the following draw calls will be done on this framebuffer and not on the the screen This only binds the framebuffer, make sure to also call \mbox{\hyperlink{class_engine_1_1_depth_framebuffer_aa4d760780b1daadd9a5f6144a09dec01}{clear()}} on this framebuffer after binding so that something is actually being rendered, keep in mind that the resulting texture will be vertically flipped 
+
+Implements \mbox{\hyperlink{class_engine_1_1_framebuffer_a82cc1347f35eb5b53231a4f68e2b22cd}{Engine\+::\+Framebuffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_framebuffer_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{_framebuffer_8cpp_source}{Framebuffer.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_depth_framebuffer_aa4d760780b1daadd9a5f6144a09dec01}\label{class_engine_1_1_depth_framebuffer_aa4d760780b1daadd9a5f6144a09dec01}} 
+\index{Engine::DepthFramebuffer@{Engine::DepthFramebuffer}!clear@{clear}}
+\index{clear@{clear}!Engine::DepthFramebuffer@{Engine::DepthFramebuffer}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Depth\+Framebuffer\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Clears the framebuffer. 
+
+
+
+Implements \mbox{\hyperlink{class_engine_1_1_framebuffer_a0387282cb906151889b127c5cd753f26}{Engine\+::\+Framebuffer}}.
+
+
+
+Definition at line \mbox{\hyperlink{_framebuffer_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{_framebuffer_8cpp_source}{Framebuffer.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_framebuffer_8h}{Framebuffer.\+h}}\item 
+libs/engine/src/\+Util/\mbox{\hyperlink{_framebuffer_8cpp}{Framebuffer.\+cpp}}\end{DoxyCompactItemize}

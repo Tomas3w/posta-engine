@@ -1,0 +1,27 @@
+\hypertarget{_sphere_rigidbody_8cpp_source}{}\doxysection{Sphere\+Rigidbody.\+cpp}
+\label{_sphere_rigidbody_8cpp_source}\index{libs/engine/src/Component/SphereRigidbody.cpp@{libs/engine/src/Component/SphereRigidbody.cpp}}
+\mbox{\hyperlink{_sphere_rigidbody_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sphere_rigidbody_8h}{engine/include/Component/SphereRigidbody.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_engine_1_1_component_1_1_sphere_rigidbody}{Engine::Component::SphereRigidbody}};}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00005}\mbox{\hyperlink{class_engine_1_1_component_1_1_sphere_rigidbody_a1a77778544955a728a62e48d44f0cb38}{00005}}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_sphere_rigidbody_a1a77778544955a728a62e48d44f0cb38}{SphereRigidbody::SphereRigidbody}}(glm::vec3\ position,\ \textcolor{keywordtype}{float}\ mass,\ \textcolor{keywordtype}{float}\ radius,\ glm::vec3\ velocity)}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00007}00007\ \ \ \ \ btTransform\ t;}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00008}00008\ \ \ \ \ t.setIdentity();}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00009}00009\ \ \ \ \ t.setOrigin(\mbox{\hyperlink{namespace_engine_ae9a25bed5ecc2f09d90c601d92934552}{to\_btVector3}}(position));}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00010}00010\ \ \ \ \ btSphereShape*\ sphere\ =\ \textcolor{keyword}{new}\ btSphereShape(radius);}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00011}00011\ \ \ \ \ btVector3\ inertia(0,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00012}00012\ \ \ \ \ sphere-\/>calculateLocalInertia(mass,\ inertia);}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00014}00014\ \ \ \ \ btMotionState*\ motion\ =\ \textcolor{keyword}{new}\ btDefaultMotionState(t);}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00015}00015\ \ \ \ \ btRigidBody::btRigidBodyConstructionInfo\ info(mass,\ motion,\ sphere,\ inertia);}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}{set\_body}}(\textcolor{keyword}{new}\ btRigidBody(info));}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_app_a6f926dc22fc1fd49ee6d94e44292e62d}{App::app}}-\/>\mbox{\hyperlink{class_engine_1_1_app_a2b39dbe2e9fc90c5f008e785b1d62397}{physics}}-\/>\mbox{\hyperlink{struct_engine_1_1_physics_global_a7aaee086f74ac026ffdaa3aebf5b878d}{world}}-\/>addRigidBody(\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}{get\_body}}());}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}{get\_body}}()-\/>applyCentralForce(\mbox{\hyperlink{namespace_engine_ae9a25bed5ecc2f09d90c601d92934552}{Engine::to\_btVector3}}(velocity));}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_sphere_rigidbody_8cpp_source_l00021}00021\ }
+
+\end{DoxyCode}

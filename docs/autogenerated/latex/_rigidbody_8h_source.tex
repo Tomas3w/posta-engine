@@ -1,0 +1,34 @@
+\hypertarget{_rigidbody_8h_source}{}\doxysection{Rigidbody.\+h}
+\label{_rigidbody_8h_source}\index{libs/engine/include/Component/Rigidbody.h@{libs/engine/include/Component/Rigidbody.h}}
+\mbox{\hyperlink{_rigidbody_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_RIGIDBODY\_COMPONENT\_H}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_RIGIDBODY\_COMPONENT\_H}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_app_8h}{engine/include/App.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_transform_8h}{engine/include/Component/Transform.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_general_8h}{engine/include/Util/General.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00008}00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_component}{Engine::Component}}\ \{}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00009}\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{00009}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00010}00010\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00012}\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}{00012}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}{Rigidbody}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00013}\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}{00013}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}{Rigidbody}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00014}\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}{00014}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}}\&\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad9ea055b4e5eca1a768ef120e306a3e5}{\string~Rigidbody}}()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ glm::mat4\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a41996beaf417eddc13433302a1cad76b}{get\_matrix}}()\ final;}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ virtual\ \mbox{\hyperlink{namespace_engine}{Engine}}::Component::\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Transform}}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad19c684cdb038678801ef31a6d440c9a}{get\_transform}}()\ final;}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ab0d49c050ffb079f6f3222d4198d6c1e}{set\_transform}}(\mbox{\hyperlink{namespace_engine}{Engine}}::Component::\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Transform}}\ transform);}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ virtual\ btRigidBody*\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}{get\_body}}()\ final;}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}{set\_body}}(btRigidBody*\ body)\ final;}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ private:}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ btRigidBody*\ body;}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00030}00030\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_rigidbody_8h_source_l00033}00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_RIGIDBODY\_COMPONENT\_H}}
+
+\end{DoxyCode}

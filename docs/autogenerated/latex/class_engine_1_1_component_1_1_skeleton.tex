@@ -1,0 +1,152 @@
+\hypertarget{class_engine_1_1_component_1_1_skeleton}{}\doxysection{Engine\+::Component\+::Skeleton Class Reference}
+\label{class_engine_1_1_component_1_1_skeleton}\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+
+
+\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton}{Skeleton}} class, responsible for playing animations and storing the skeleton data.  
+
+
+
+
+{\ttfamily \#include $<$Skeleton.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}}
+\begin{DoxyCompactList}\small\item\em Allows to play animations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_ad30614168c9d96bce8ae64e228817efa}{Skeleton}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Creates an skeleton from a folder that contains a skeleton.\+skl file, it also searches for a rest.\+anmr file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_aa45efb034a5515d1bec1e11a91d8701d}{add\+\_\+animation}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Adds an animation. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_ae412a8354c82ad25264136d4552bc061}{get\+\_\+animation\+\_\+duration}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Returns the duration of the animation named name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a1906c738d19bb4084ba2c052317e26be}{get\+\_\+animation\+\_\+matrices}} (\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}} \&player, bool advance\+\_\+time=true)
+\begin{DoxyCompactList}\small\item\em Get animation matrices for an individual animation (the first one from the \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a353b82acaf603c6165d4b94f0d6526a7}{get\+\_\+blend\+\_\+animation\+\_\+matrices}} (\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}} \&player, bool advance\+\_\+time=true)
+\begin{DoxyCompactList}\small\item\em Get animation matrices for multiple animations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}} $>$ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a08b4d16ccf8914fa603aad8c72d0e8ad}{root\+\_\+bones}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} $>$ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a967ba9bacea9924396516d051a8e9805}{bone\+\_\+transforms}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton}{Skeleton}} class, responsible for playing animations and storing the skeleton data. 
+
+To use, use addon to export the animation files\+: skeleton.\+skl, animation.\+anm, and rest.\+anmr. Remember to always set the transformation of the skeleton and the mesh to the identity 
+
+Definition at line \mbox{\hyperlink{_skeleton_8h_source_l00022}{22}} of file \mbox{\hyperlink{_skeleton_8h_source}{Skeleton.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_ad30614168c9d96bce8ae64e228817efa}\label{class_engine_1_1_component_1_1_skeleton_ad30614168c9d96bce8ae64e228817efa}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!Skeleton@{Skeleton}}
+\index{Skeleton@{Skeleton}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{Skeleton()}{Skeleton()}}
+{\footnotesize\ttfamily Skeleton\+::\+Skeleton (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Creates an skeleton from a folder that contains a skeleton.\+skl file, it also searches for a rest.\+anmr file. 
+
+
+
+Definition at line \mbox{\hyperlink{_skeleton_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{_skeleton_8cpp_source}{Skeleton.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_aa45efb034a5515d1bec1e11a91d8701d}\label{class_engine_1_1_component_1_1_skeleton_aa45efb034a5515d1bec1e11a91d8701d}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!add\_animation@{add\_animation}}
+\index{add\_animation@{add\_animation}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{add\_animation()}{add\_animation()}}
+{\footnotesize\ttfamily void Skeleton\+::add\+\_\+animation (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Adds an animation. 
+
+
+
+Definition at line \mbox{\hyperlink{_skeleton_8cpp_source_l00124}{124}} of file \mbox{\hyperlink{_skeleton_8cpp_source}{Skeleton.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_ae412a8354c82ad25264136d4552bc061}\label{class_engine_1_1_component_1_1_skeleton_ae412a8354c82ad25264136d4552bc061}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!get\_animation\_duration@{get\_animation\_duration}}
+\index{get\_animation\_duration@{get\_animation\_duration}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{get\_animation\_duration()}{get\_animation\_duration()}}
+{\footnotesize\ttfamily float Skeleton\+::get\+\_\+animation\+\_\+duration (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Returns the duration of the animation named name. 
+
+
+
+Definition at line \mbox{\hyperlink{_skeleton_8cpp_source_l00166}{166}} of file \mbox{\hyperlink{_skeleton_8cpp_source}{Skeleton.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_a1906c738d19bb4084ba2c052317e26be}\label{class_engine_1_1_component_1_1_skeleton_a1906c738d19bb4084ba2c052317e26be}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!get\_animation\_matrices@{get\_animation\_matrices}}
+\index{get\_animation\_matrices@{get\_animation\_matrices}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{get\_animation\_matrices()}{get\_animation\_matrices()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ Skeleton\+::get\+\_\+animation\+\_\+matrices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}} \&}]{player,  }\item[{bool}]{advance\+\_\+time = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Get animation matrices for an individual animation (the first one from the \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}}) 
+
+Returns an span to the matrices to pass to the shader, it moves the animation time by the delta\+\_\+time of the application 
+
+Definition at line \mbox{\hyperlink{_skeleton_8cpp_source_l00173}{173}} of file \mbox{\hyperlink{_skeleton_8cpp_source}{Skeleton.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_a353b82acaf603c6165d4b94f0d6526a7}\label{class_engine_1_1_component_1_1_skeleton_a353b82acaf603c6165d4b94f0d6526a7}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!get\_blend\_animation\_matrices@{get\_blend\_animation\_matrices}}
+\index{get\_blend\_animation\_matrices@{get\_blend\_animation\_matrices}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{get\_blend\_animation\_matrices()}{get\_blend\_animation\_matrices()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ Skeleton\+::get\+\_\+blend\+\_\+animation\+\_\+matrices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{Animation\+Player}} \&}]{player,  }\item[{bool}]{advance\+\_\+time = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Get animation matrices for multiple animations. 
+
+It does not work with bone weights individually 
+
+Definition at line \mbox{\hyperlink{_skeleton_8cpp_source_l00221}{221}} of file \mbox{\hyperlink{_skeleton_8cpp_source}{Skeleton.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_a967ba9bacea9924396516d051a8e9805}\label{class_engine_1_1_component_1_1_skeleton_a967ba9bacea9924396516d051a8e9805}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!bone\_transforms@{bone\_transforms}}
+\index{bone\_transforms@{bone\_transforms}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{bone\_transforms}{bone\_transforms}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}}$>$ Engine\+::\+Component\+::\+Skeleton\+::bone\+\_\+transforms}
+
+
+
+Definition at line \mbox{\hyperlink{_skeleton_8h_source_l00068}{68}} of file \mbox{\hyperlink{_skeleton_8h_source}{Skeleton.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_skeleton_a08b4d16ccf8914fa603aad8c72d0e8ad}\label{class_engine_1_1_component_1_1_skeleton_a08b4d16ccf8914fa603aad8c72d0e8ad}} 
+\index{Engine::Component::Skeleton@{Engine::Component::Skeleton}!root\_bones@{root\_bones}}
+\index{root\_bones@{root\_bones}!Engine::Component::Skeleton@{Engine::Component::Skeleton}}
+\doxysubsubsection{\texorpdfstring{root\_bones}{root\_bones}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}}$>$ Engine\+::\+Component\+::\+Skeleton\+::root\+\_\+bones}
+
+
+
+Definition at line \mbox{\hyperlink{_skeleton_8h_source_l00067}{67}} of file \mbox{\hyperlink{_skeleton_8h_source}{Skeleton.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_skeleton_8h}{Skeleton.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_skeleton_8cpp}{Skeleton.\+cpp}}\end{DoxyCompactItemize}

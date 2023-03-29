@@ -1,0 +1,699 @@
+\hypertarget{namespace_engine}{}\doxysection{Engine Namespace Reference}
+\label{namespace_engine}\index{Engine@{Engine}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_engine_1_1_assets}{Assets}}
+\item 
+namespace \mbox{\hyperlink{namespace_engine_1_1_component}{Component}}
+\item 
+namespace \mbox{\hyperlink{namespace_engine_1_1_entity}{Entity}}
+\item 
+namespace \mbox{\hyperlink{namespace_engine_1_1_lua_a_p_i}{Lua\+API}}
+\item 
+namespace \mbox{\hyperlink{namespace_engine_1_1_network_package_type_size}{Network\+Package\+Type\+Size}}
+\item 
+namespace \mbox{\hyperlink{namespace_engine_1_1_u_i}{UI}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_app}{App}}
+\begin{DoxyCompactList}\small\item\em Application class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_config_file}{Config\+File}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_depth_framebuffer}{Depth\+Framebuffer}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_font}{Font}}
+\begin{DoxyCompactList}\small\item\em A font class, used to draw text into textures and images. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_framebuffer}{Framebuffer}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}}
+\begin{DoxyCompactList}\small\item\em Utility class representing a mesh. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_network_package}{Network\+Package}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_network_package_template}{Network\+Package\+Template}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_network_package_template_3_01_p_a_c_k_a_g_e___t_y_p_e_00_01_t_01_4}{Network\+Package\+Template$<$ PACKAGE\+\_\+\+TYPE, T $>$}}
+\item 
+struct \mbox{\hyperlink{struct_engine_1_1_physics_global}{Physics\+Global}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_shader}{Shader}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} abstract class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_sound}{Sound}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_sound}{Sound}} class for managing all kinds of sound, the sound is loaded in memory and read when needed. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1span}{span}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_t_c_p_conn}{TCPConn}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_of_server}{TCPConn\+Of\+Server}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_to_client}{TCPConn\+To\+Client}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_to_server}{TCPConn\+To\+Server}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_thread}{Thread}}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_three_d_shader}{Three\+DShader}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_three_d_shader}{Three\+DShader}}, default shader binded in a new project. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_two_d_shader}{Two\+DShader}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_engine_1_1_two_d_shader}{Two\+DShader}}, automatically set before calling on\+\_\+draw\+\_\+2d. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_engine_1_1_uniform}{Uniform}}
+\item 
+struct \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{Vertex\+Properties}}
+\begin{DoxyCompactList}\small\item\em Structure containing the vertex properties for meshes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{anim\+\_\+mat4}} = glm\+::mat4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{namespace_engine_acad4348817bfb41bb7e143c3f24e651c}{read\+\_\+file}} (std\+::filesystem\+::path path)
+\item 
+bt\+Vector3 \mbox{\hyperlink{namespace_engine_ae9a25bed5ecc2f09d90c601d92934552}{to\+\_\+bt\+Vector3}} (glm\+::vec3 vec)
+\item 
+glm\+::vec3 \mbox{\hyperlink{namespace_engine_a7b24cbda7b8a8b57c9bd7c07cb270cb6}{from\+\_\+bt\+Vector3}} (bt\+Vector3 vec)
+\item 
+std\+::string \mbox{\hyperlink{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}{strip}} (std\+::string str)
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespace_engine_aa5b2c22b6569ecb716efec0463f5c85f}{split}} (std\+::string str, char separator)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{namespace_engine_a989ffc3e09009070b088aa14a3200758}{log}} (T t)
+\item 
+{\footnotesize template$<$class T , class... Ts$>$ }\\void \mbox{\hyperlink{namespace_engine_aef53b7405bacc5c8c4710eb982f35309}{log}} (T t, Ts... ts)
+\item 
+void \mbox{\hyperlink{namespace_engine_a0c9d4a44199d9b91c92d4880a3627b6b}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const uint8\+\_\+t \&value)
+\begin{DoxyCompactList}\small\item\em basic writing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_aff16bdcb40c54fe216f795eee4b36e94}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const uint16\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_ad66be4a069a03f372bfede380d552db6}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const uint32\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a6a446ba1503517705c875c65d067f32a}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const int8\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a21a1e44da204ee8911c34cd9ea962bd8}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const int16\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a5bbc5dc937f1032d0ce3d2fe2ccff5bd}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const int32\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a76d9d1af5dc40ef1997058c1584276c9}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const glm\+::vec3 \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_ade5976b772ced1ded7163fd83ba04e57}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const glm\+::quat \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a2e456d6f49092dbcaf8ce6651d4d2109}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Assumes sizeof(char) == 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_a14c9b5705f62e8c158c442f78fea3a28}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const float \&value)
+\begin{DoxyCompactList}\small\item\em Assumes sizeof(char) == 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_ab93c1c58392c4b51e9e576ec4a8155b6}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const std\+::vector$<$ uint8\+\_\+t $>$ \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a7531bc3185f0d7f6acf660fac45c59b4}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const std\+::vector$<$ uint16\+\_\+t $>$ \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a1adc8bf17279966cd2ba3db629524b06}{operator$<$$<$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, const std\+::vector$<$ uint32\+\_\+t $>$ \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a75e11c272b62c4ae3eaf619ea6630429}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, uint8\+\_\+t \&value)
+\begin{DoxyCompactList}\small\item\em basic reading \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_a1b7736e5a661e22bc329b86bad53c2cb}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, uint16\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a6d94d2d5b0f0603e21727d23c87052d3}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, uint32\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_ab41ab1eeb6640a6d77512dd59cc70600}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, int8\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_ab45797d4d30de1163d3de0530d831465}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, int16\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a03954d815bfca9840b9a01b6c37450bb}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, int32\+\_\+t \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_aae77393bcea6d651dc3baed585348fbd}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, glm\+::vec3 \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a9c64f48e0828c62cc822d7e9587039a7}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, glm\+::quat \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a64baed4d6d1f6b707a5d43248dde2ce3}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, std\+::string \&value)
+\begin{DoxyCompactList}\small\item\em Assumes sizeof(char) == 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_a0ddffcf9753580b668e4c1951092e14d}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, float \&value)
+\begin{DoxyCompactList}\small\item\em Assumes sizeof(char) == 1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_engine_ac163426a428ec126bbaafc809e14849c}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, std\+::vector$<$ uint8\+\_\+t $>$ \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_a8fb14bc7970dc57ef8d20e1776a35b6b}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, std\+::vector$<$ uint16\+\_\+t $>$ \&value)
+\item 
+void \mbox{\hyperlink{namespace_engine_ac209dc66a35e58818fc816666b7e9b40}{operator$>$$>$}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&writer, std\+::vector$<$ uint32\+\_\+t $>$ \&value)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{set\+\_\+uniform}} (T value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a05c98940fc161ad40b52a9f0b6d0ae6a}{set\+\_\+uniform$<$ bool $>$}} (bool value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a0f70dd4f0db66cb6060c761229c312e9}{set\+\_\+uniform$<$ int $>$}} (int value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a09124c19e71ca9744b81b75780487065}{set\+\_\+uniform$<$ float $>$}} (float value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_ab9afd2faad4b62261fe354d498f482c2}{set\+\_\+uniform$<$ glm\+::mat4 $>$}} (glm\+::mat4 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a5a02f1eeb61e6c477627e52ccbd352d6}{set\+\_\+uniform$<$ glm\+::mat3 $>$}} (glm\+::mat3 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_ac3fc5ac5fbce218d12df2e728cbc9cd0}{set\+\_\+uniform$<$ glm\+::vec4 $>$}} (glm\+::vec4 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a27996ba6b134d76f9ddf2877024ccd83}{set\+\_\+uniform$<$ glm\+::vec3 $>$}} (glm\+::vec3 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_ab5dbe5805d16923be5521997ae91ccd9}{set\+\_\+uniform$<$ glm\+::vec2 $>$}} (glm\+::vec2 value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a2ee7203fadc960866e94f4846b6217a2}{set\+\_\+uniform$<$ Engine\+::span$<$ glm\+::vec2 $>$ $>$}} (\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ glm\+::vec2 $>$ value, GLint id)
+\item 
+template$<$$>$ void \mbox{\hyperlink{namespace_engine_a0de409500203bcecc88d409975dd0c33}{set\+\_\+uniform$<$ Engine\+::span$<$ Engine\+::anim\+\_\+mat4 $>$ $>$}} (\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ value, GLint id)
+\item 
+{\footnotesize template$<$template$<$ class $>$ class C, class T $>$ }\\\mbox{\hyperlink{class_engine_1_1span}{span}}$<$ T $>$ \mbox{\hyperlink{namespace_engine_a2c16eca440fc3fae4f335f00c595bdf6}{make\+\_\+span}} (C$<$ T $>$ \&c)
+\item 
+{\footnotesize template$<$class T , const size\+\_\+t SIZE$>$ }\\\mbox{\hyperlink{class_engine_1_1span}{span}}$<$ T $>$ \mbox{\hyperlink{namespace_engine_abc35275cbb91c04969923ff30e7237a9}{make\+\_\+span}} (std\+::array$<$ T, SIZE $>$ \&array)
+\item 
+std\+::string \mbox{\hyperlink{namespace_engine_a400a48224748eab3aaa9e0dbb7ac2ecf}{ip\+\_\+to\+\_\+string}} (Uint32 ip)
+\item 
+Uint32 \mbox{\hyperlink{namespace_engine_a9152ac8fd2c9171ec5e3e17332af5f07}{string\+\_\+to\+\_\+ip}} (std\+::string s)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}\label{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}} 
+\index{Engine@{Engine}!anim\_mat4@{anim\_mat4}}
+\index{anim\_mat4@{anim\_mat4}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{anim\_mat4}{anim\_mat4}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} = typedef glm\+::mat4}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00012}{12}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_engine_a7b24cbda7b8a8b57c9bd7c07cb270cb6}\label{namespace_engine_a7b24cbda7b8a8b57c9bd7c07cb270cb6}} 
+\index{Engine@{Engine}!from\_btVector3@{from\_btVector3}}
+\index{from\_btVector3@{from\_btVector3}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{from\_btVector3()}{from\_btVector3()}}
+{\footnotesize\ttfamily glm\+::vec3 Engine\+::from\+\_\+bt\+Vector3 (\begin{DoxyParamCaption}\item[{bt\+Vector3}]{vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_general_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_general_8cpp_source}{General.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a400a48224748eab3aaa9e0dbb7ac2ecf}\label{namespace_engine_a400a48224748eab3aaa9e0dbb7ac2ecf}} 
+\index{Engine@{Engine}!ip\_to\_string@{ip\_to\_string}}
+\index{ip\_to\_string@{ip\_to\_string}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{ip\_to\_string()}{ip\_to\_string()}}
+{\footnotesize\ttfamily std\+::string Engine\+::ip\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{Uint32}]{ip }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_t_c_p_conn_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{_t_c_p_conn_8cpp_source}{TCPConn.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a989ffc3e09009070b088aa14a3200758}\label{namespace_engine_a989ffc3e09009070b088aa14a3200758}} 
+\index{Engine@{Engine}!log@{log}}
+\index{log@{log}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void Engine\+::log (\begin{DoxyParamCaption}\item[{T}]{t }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_logging_8h_source_l00008}{8}} of file \mbox{\hyperlink{_logging_8h_source}{Logging.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_aef53b7405bacc5c8c4710eb982f35309}\label{namespace_engine_aef53b7405bacc5c8c4710eb982f35309}} 
+\index{Engine@{Engine}!log@{log}}
+\index{log@{log}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T , class... Ts$>$ \\
+void Engine\+::log (\begin{DoxyParamCaption}\item[{T}]{t,  }\item[{Ts...}]{ts }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_logging_8h_source_l00014}{14}} of file \mbox{\hyperlink{_logging_8h_source}{Logging.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a2c16eca440fc3fae4f335f00c595bdf6}\label{namespace_engine_a2c16eca440fc3fae4f335f00c595bdf6}} 
+\index{Engine@{Engine}!make\_span@{make\_span}}
+\index{make\_span@{make\_span}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{make\_span()}{make\_span()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class C, class T $>$ \\
+\mbox{\hyperlink{class_engine_1_1span}{span}}$<$ T $>$ Engine\+::make\+\_\+span (\begin{DoxyParamCaption}\item[{C$<$ T $>$ \&}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{span_8h_source_l00100}{100}} of file \mbox{\hyperlink{span_8h_source}{span.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_abc35275cbb91c04969923ff30e7237a9}\label{namespace_engine_abc35275cbb91c04969923ff30e7237a9}} 
+\index{Engine@{Engine}!make\_span@{make\_span}}
+\index{make\_span@{make\_span}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{make\_span()}{make\_span()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T , const size\+\_\+t SIZE$>$ \\
+\mbox{\hyperlink{class_engine_1_1span}{span}}$<$ T $>$ Engine\+::make\+\_\+span (\begin{DoxyParamCaption}\item[{std\+::array$<$ T, SIZE $>$ \&}]{array }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{span_8h_source_l00106}{106}} of file \mbox{\hyperlink{span_8h_source}{span.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a14c9b5705f62e8c158c442f78fea3a28}\label{namespace_engine_a14c9b5705f62e8c158c442f78fea3a28}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const float \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Assumes sizeof(char) == 1. 
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ade5976b772ced1ded7163fd83ba04e57}\label{namespace_engine_ade5976b772ced1ded7163fd83ba04e57}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const glm\+::quat \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a76d9d1af5dc40ef1997058c1584276c9}\label{namespace_engine_a76d9d1af5dc40ef1997058c1584276c9}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const glm\+::vec3 \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a21a1e44da204ee8911c34cd9ea962bd8}\label{namespace_engine_a21a1e44da204ee8911c34cd9ea962bd8}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [4/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const int16\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a5bbc5dc937f1032d0ce3d2fe2ccff5bd}\label{namespace_engine_a5bbc5dc937f1032d0ce3d2fe2ccff5bd}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [5/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const int32\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a6a446ba1503517705c875c65d067f32a}\label{namespace_engine_a6a446ba1503517705c875c65d067f32a}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [6/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const int8\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a2e456d6f49092dbcaf8ce6651d4d2109}\label{namespace_engine_a2e456d6f49092dbcaf8ce6651d4d2109}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [7/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Assumes sizeof(char) == 1. 
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a7531bc3185f0d7f6acf660fac45c59b4}\label{namespace_engine_a7531bc3185f0d7f6acf660fac45c59b4}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [8/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const std\+::vector$<$ uint16\+\_\+t $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00110}{110}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a1adc8bf17279966cd2ba3db629524b06}\label{namespace_engine_a1adc8bf17279966cd2ba3db629524b06}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [9/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const std\+::vector$<$ uint32\+\_\+t $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00118}{118}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ab93c1c58392c4b51e9e576ec4a8155b6}\label{namespace_engine_ab93c1c58392c4b51e9e576ec4a8155b6}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [10/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00103}{103}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_aff16bdcb40c54fe216f795eee4b36e94}\label{namespace_engine_aff16bdcb40c54fe216f795eee4b36e94}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [11/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const uint16\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ad66be4a069a03f372bfede380d552db6}\label{namespace_engine_ad66be4a069a03f372bfede380d552db6}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [12/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const uint32\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a0c9d4a44199d9b91c92d4880a3627b6b}\label{namespace_engine_a0c9d4a44199d9b91c92d4880a3627b6b}} 
+\index{Engine@{Engine}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [13/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{const uint8\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+basic writing 
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a0ddffcf9753580b668e4c1951092e14d}\label{namespace_engine_a0ddffcf9753580b668e4c1951092e14d}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [1/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{float \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Assumes sizeof(char) == 1. 
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00190}{190}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a9c64f48e0828c62cc822d7e9587039a7}\label{namespace_engine_a9c64f48e0828c62cc822d7e9587039a7}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [2/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{glm\+::quat \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00173}{173}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_aae77393bcea6d651dc3baed585348fbd}\label{namespace_engine_aae77393bcea6d651dc3baed585348fbd}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [3/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{glm\+::vec3 \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00165}{165}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ab45797d4d30de1163d3de0530d831465}\label{namespace_engine_ab45797d4d30de1163d3de0530d831465}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [4/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{int16\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00149}{149}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a03954d815bfca9840b9a01b6c37450bb}\label{namespace_engine_a03954d815bfca9840b9a01b6c37450bb}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [5/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{int32\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ab41ab1eeb6640a6d77512dd59cc70600}\label{namespace_engine_ab41ab1eeb6640a6d77512dd59cc70600}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [6/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{int8\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00144}{144}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a64baed4d6d1f6b707a5d43248dde2ce3}\label{namespace_engine_a64baed4d6d1f6b707a5d43248dde2ce3}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [7/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{std\+::string \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Assumes sizeof(char) == 1. 
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00182}{182}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a8fb14bc7970dc57ef8d20e1776a35b6b}\label{namespace_engine_a8fb14bc7970dc57ef8d20e1776a35b6b}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [8/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{std\+::vector$<$ uint16\+\_\+t $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00227}{227}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ac209dc66a35e58818fc816666b7e9b40}\label{namespace_engine_ac209dc66a35e58818fc816666b7e9b40}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [9/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{std\+::vector$<$ uint32\+\_\+t $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00237}{237}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ac163426a428ec126bbaafc809e14849c}\label{namespace_engine_ac163426a428ec126bbaafc809e14849c}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [10/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00219}{219}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a1b7736e5a661e22bc329b86bad53c2cb}\label{namespace_engine_a1b7736e5a661e22bc329b86bad53c2cb}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [11/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{uint16\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00132}{132}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a6d94d2d5b0f0603e21727d23c87052d3}\label{namespace_engine_a6d94d2d5b0f0603e21727d23c87052d3}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [12/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{uint32\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00138}{138}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a75e11c272b62c4ae3eaf619ea6630429}\label{namespace_engine_a75e11c272b62c4ae3eaf619ea6630429}} 
+\index{Engine@{Engine}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}\hspace{0.1cm}{\footnotesize\ttfamily [13/13]}}
+{\footnotesize\ttfamily void Engine\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Engine\+::\+Network\+Package\+::\+Writer}} \&}]{writer,  }\item[{uint8\+\_\+t \&}]{value }\end{DoxyParamCaption})}
+
+
+
+basic reading 
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8cpp_source_l00127}{127}} of file \mbox{\hyperlink{_network_package_8cpp_source}{Network\+Package.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_acad4348817bfb41bb7e143c3f24e651c}\label{namespace_engine_acad4348817bfb41bb7e143c3f24e651c}} 
+\index{Engine@{Engine}!read\_file@{read\_file}}
+\index{read\_file@{read\_file}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{read\_file()}{read\_file()}}
+{\footnotesize\ttfamily std\+::string Engine\+::read\+\_\+file (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_general_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{_general_8cpp_source}{General.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}\label{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}} 
+\index{Engine@{Engine}!set\_uniform@{set\_uniform}}
+\index{set\_uniform@{set\_uniform}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform()}{set\_uniform()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void Engine\+::set\+\_\+uniform (\begin{DoxyParamCaption}\item[{T}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespace_engine_a05c98940fc161ad40b52a9f0b6d0ae6a}\label{namespace_engine_a05c98940fc161ad40b52a9f0b6d0ae6a}} 
+\index{Engine@{Engine}!set\_uniform$<$ bool $>$@{set\_uniform$<$ bool $>$}}
+\index{set\_uniform$<$ bool $>$@{set\_uniform$<$ bool $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ bool $>$()}{set\_uniform< bool >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ bool $>$ (\begin{DoxyParamCaption}\item[{bool}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00027}{27}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a0de409500203bcecc88d409975dd0c33}\label{namespace_engine_a0de409500203bcecc88d409975dd0c33}} 
+\index{Engine@{Engine}!set\_uniform$<$ Engine::span$<$ Engine::anim\_mat4 $>$ $>$@{set\_uniform$<$ Engine::span$<$ Engine::anim\_mat4 $>$ $>$}}
+\index{set\_uniform$<$ Engine::span$<$ Engine::anim\_mat4 $>$ $>$@{set\_uniform$<$ Engine::span$<$ Engine::anim\_mat4 $>$ $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ Engine::span$<$ Engine::anim\_mat4 $>$ $>$()}{set\_uniform< Engine::span< Engine::anim\_mat4 > >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$ $>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ \mbox{\hyperlink{namespace_engine_a3f4e7e3398b92e6df73ea8f6555b6ff6}{Engine\+::anim\+\_\+mat4}} $>$}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00036}{36}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a2ee7203fadc960866e94f4846b6217a2}\label{namespace_engine_a2ee7203fadc960866e94f4846b6217a2}} 
+\index{Engine@{Engine}!set\_uniform$<$ Engine::span$<$ glm::vec2 $>$ $>$@{set\_uniform$<$ Engine::span$<$ glm::vec2 $>$ $>$}}
+\index{set\_uniform$<$ Engine::span$<$ glm::vec2 $>$ $>$@{set\_uniform$<$ Engine::span$<$ glm::vec2 $>$ $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ Engine::span$<$ glm::vec2 $>$ $>$()}{set\_uniform< Engine::span< glm::vec2 > >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ glm\+::vec2 $>$ $>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ glm\+::vec2 $>$}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00035}{35}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a09124c19e71ca9744b81b75780487065}\label{namespace_engine_a09124c19e71ca9744b81b75780487065}} 
+\index{Engine@{Engine}!set\_uniform$<$ float $>$@{set\_uniform$<$ float $>$}}
+\index{set\_uniform$<$ float $>$@{set\_uniform$<$ float $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ float $>$()}{set\_uniform< float >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ float $>$ (\begin{DoxyParamCaption}\item[{float}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00029}{29}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a5a02f1eeb61e6c477627e52ccbd352d6}\label{namespace_engine_a5a02f1eeb61e6c477627e52ccbd352d6}} 
+\index{Engine@{Engine}!set\_uniform$<$ glm::mat3 $>$@{set\_uniform$<$ glm::mat3 $>$}}
+\index{set\_uniform$<$ glm::mat3 $>$@{set\_uniform$<$ glm::mat3 $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ glm::mat3 $>$()}{set\_uniform< glm::mat3 >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ glm\+::mat3 $>$ (\begin{DoxyParamCaption}\item[{glm\+::mat3}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00031}{31}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_ab9afd2faad4b62261fe354d498f482c2}\label{namespace_engine_ab9afd2faad4b62261fe354d498f482c2}} 
+\index{Engine@{Engine}!set\_uniform$<$ glm::mat4 $>$@{set\_uniform$<$ glm::mat4 $>$}}
+\index{set\_uniform$<$ glm::mat4 $>$@{set\_uniform$<$ glm::mat4 $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ glm::mat4 $>$()}{set\_uniform< glm::mat4 >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ glm\+::mat4 $>$ (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00030}{30}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_ab5dbe5805d16923be5521997ae91ccd9}\label{namespace_engine_ab5dbe5805d16923be5521997ae91ccd9}} 
+\index{Engine@{Engine}!set\_uniform$<$ glm::vec2 $>$@{set\_uniform$<$ glm::vec2 $>$}}
+\index{set\_uniform$<$ glm::vec2 $>$@{set\_uniform$<$ glm::vec2 $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ glm::vec2 $>$()}{set\_uniform< glm::vec2 >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ glm\+::vec2 $>$ (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00034}{34}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a27996ba6b134d76f9ddf2877024ccd83}\label{namespace_engine_a27996ba6b134d76f9ddf2877024ccd83}} 
+\index{Engine@{Engine}!set\_uniform$<$ glm::vec3 $>$@{set\_uniform$<$ glm::vec3 $>$}}
+\index{set\_uniform$<$ glm::vec3 $>$@{set\_uniform$<$ glm::vec3 $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ glm::vec3 $>$()}{set\_uniform< glm::vec3 >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ glm\+::vec3 $>$ (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00033}{33}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_ac3fc5ac5fbce218d12df2e728cbc9cd0}\label{namespace_engine_ac3fc5ac5fbce218d12df2e728cbc9cd0}} 
+\index{Engine@{Engine}!set\_uniform$<$ glm::vec4 $>$@{set\_uniform$<$ glm::vec4 $>$}}
+\index{set\_uniform$<$ glm::vec4 $>$@{set\_uniform$<$ glm::vec4 $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ glm::vec4 $>$()}{set\_uniform< glm::vec4 >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ glm\+::vec4 $>$ (\begin{DoxyParamCaption}\item[{glm\+::vec4}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00032}{32}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_a0f70dd4f0db66cb6060c761229c312e9}\label{namespace_engine_a0f70dd4f0db66cb6060c761229c312e9}} 
+\index{Engine@{Engine}!set\_uniform$<$ int $>$@{set\_uniform$<$ int $>$}}
+\index{set\_uniform$<$ int $>$@{set\_uniform$<$ int $>$}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{set\_uniform$<$ int $>$()}{set\_uniform< int >()}}
+{\footnotesize\ttfamily template$<$$>$ \\
+void \mbox{\hyperlink{namespace_engine_a2ac59c0ec75722d1cc7cff750c957a76}{Engine\+::set\+\_\+uniform}}$<$ int $>$ (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{GLint}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00028}{28}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+\mbox{\Hypertarget{namespace_engine_aa5b2c22b6569ecb716efec0463f5c85f}\label{namespace_engine_aa5b2c22b6569ecb716efec0463f5c85f}} 
+\index{Engine@{Engine}!split@{split}}
+\index{split@{split}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Engine\+::split (\begin{DoxyParamCaption}\item[{std\+::string}]{str,  }\item[{char}]{separator }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_general_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{_general_8cpp_source}{General.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_a9152ac8fd2c9171ec5e3e17332af5f07}\label{namespace_engine_a9152ac8fd2c9171ec5e3e17332af5f07}} 
+\index{Engine@{Engine}!string\_to\_ip@{string\_to\_ip}}
+\index{string\_to\_ip@{string\_to\_ip}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{string\_to\_ip()}{string\_to\_ip()}}
+{\footnotesize\ttfamily Uint32 Engine\+::string\+\_\+to\+\_\+ip (\begin{DoxyParamCaption}\item[{std\+::string}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_t_c_p_conn_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_t_c_p_conn_8cpp_source}{TCPConn.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}\label{namespace_engine_ad9b25055ea053f363820a15fc23e51fe}} 
+\index{Engine@{Engine}!strip@{strip}}
+\index{strip@{strip}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{strip()}{strip()}}
+{\footnotesize\ttfamily std\+::string Engine\+::strip (\begin{DoxyParamCaption}\item[{std\+::string}]{str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_general_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_general_8cpp_source}{General.\+cpp}}.
+
+\mbox{\Hypertarget{namespace_engine_ae9a25bed5ecc2f09d90c601d92934552}\label{namespace_engine_ae9a25bed5ecc2f09d90c601d92934552}} 
+\index{Engine@{Engine}!to\_btVector3@{to\_btVector3}}
+\index{to\_btVector3@{to\_btVector3}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{to\_btVector3()}{to\_btVector3()}}
+{\footnotesize\ttfamily bt\+Vector3 Engine\+::to\+\_\+bt\+Vector3 (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_general_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{_general_8cpp_source}{General.\+cpp}}.
+

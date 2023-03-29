@@ -1,0 +1,104 @@
+\hypertarget{class_engine_1_1_sound}{}\doxysection{Engine\+::Sound Class Reference}
+\label{class_engine_1_1_sound}\index{Engine::Sound@{Engine::Sound}}
+
+
+\mbox{\hyperlink{class_engine_1_1_sound}{Sound}} class for managing all kinds of sound, the sound is loaded in memory and read when needed.  
+
+
+
+
+{\ttfamily \#include $<$Sound.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{Sound\+Playing}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_sound_ac6bfa0b592352bbd4b17c631114e6eba}{Sound}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Cronstructs a sound object from a .ogg file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_sound_a0907389078bf740be2a5763366ad3376}{$\sim$\+Sound}} ()
+\item 
+\mbox{\hyperlink{class_engine_1_1_sound_a17317727f6f506a5ffd2dc6086f81cd7}{Sound}} (const \mbox{\hyperlink{class_engine_1_1_sound}{Sound}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_sound}{Sound}} \& \mbox{\hyperlink{class_engine_1_1_sound_a42ebd503d18ab90a5bc4a1024575ae6d}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_sound}{Sound}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{Sound\+Playing}} \mbox{\hyperlink{class_engine_1_1_sound_a507d1828a32eaf463e056018c868fb9e}{play}} (float volume, int loops=0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_engine_1_1_sound}{Sound}} class for managing all kinds of sound, the sound is loaded in memory and read when needed. 
+
+Definition at line \mbox{\hyperlink{_sound_8h_source_l00009}{9}} of file \mbox{\hyperlink{_sound_8h_source}{Sound.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_sound_ac6bfa0b592352bbd4b17c631114e6eba}\label{class_engine_1_1_sound_ac6bfa0b592352bbd4b17c631114e6eba}} 
+\index{Engine::Sound@{Engine::Sound}!Sound@{Sound}}
+\index{Sound@{Sound}!Engine::Sound@{Engine::Sound}}
+\doxysubsubsection{\texorpdfstring{Sound()}{Sound()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Cronstructs a sound object from a .ogg file. 
+
+
+
+Definition at line \mbox{\hyperlink{_sound_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_sound_8cpp_source}{Sound.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_sound_a0907389078bf740be2a5763366ad3376}\label{class_engine_1_1_sound_a0907389078bf740be2a5763366ad3376}} 
+\index{Engine::Sound@{Engine::Sound}!````~Sound@{$\sim$Sound}}
+\index{````~Sound@{$\sim$Sound}!Engine::Sound@{Engine::Sound}}
+\doxysubsubsection{\texorpdfstring{$\sim$Sound()}{~Sound()}}
+{\footnotesize\ttfamily Sound\+::$\sim$\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_sound_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{_sound_8cpp_source}{Sound.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_sound_a17317727f6f506a5ffd2dc6086f81cd7}\label{class_engine_1_1_sound_a17317727f6f506a5ffd2dc6086f81cd7}} 
+\index{Engine::Sound@{Engine::Sound}!Sound@{Sound}}
+\index{Sound@{Sound}!Engine::Sound@{Engine::Sound}}
+\doxysubsubsection{\texorpdfstring{Sound()}{Sound()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Sound\+::\+Sound (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_sound}{Sound}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_sound_a42ebd503d18ab90a5bc4a1024575ae6d}\label{class_engine_1_1_sound_a42ebd503d18ab90a5bc4a1024575ae6d}} 
+\index{Engine::Sound@{Engine::Sound}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Sound@{Engine::Sound}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_sound}{Sound}} \& Engine\+::\+Sound\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_sound}{Sound}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_sound_a507d1828a32eaf463e056018c868fb9e}\label{class_engine_1_1_sound_a507d1828a32eaf463e056018c868fb9e}} 
+\index{Engine::Sound@{Engine::Sound}!play@{play}}
+\index{play@{play}!Engine::Sound@{Engine::Sound}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{Sound\+::\+Sound\+Playing}} Sound\+::play (\begin{DoxyParamCaption}\item[{float}]{volume,  }\item[{int}]{loops = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Start playing the sound (if possible) and returns a \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{Sound\+Playing}} object to interact with the sound playing 
+\begin{DoxyParams}{Parameters}
+{\em volume} & initial volume of the sound(from 0 to 1, value will be clamped to this range) \\
+\hline
+{\em loops} & number of times that the sound will be played (one after another) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns \mbox{\hyperlink{class_engine_1_1_sound_1_1_sound_playing}{Sound\+Playing}} to interact with the newly spawned sound, if the sound was not spawn, then the soundplaying bool operator returns false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_sound_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_sound_8cpp_source}{Sound.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_sound_8h}{Sound.\+h}}\item 
+libs/engine/src/\+Util/\mbox{\hyperlink{_sound_8cpp}{Sound.\+cpp}}\end{DoxyCompactItemize}

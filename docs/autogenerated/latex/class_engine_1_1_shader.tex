@@ -1,0 +1,115 @@
+\hypertarget{class_engine_1_1_shader}{}\doxysection{Engine\+::Shader Class Reference}
+\label{class_engine_1_1_shader}\index{Engine::Shader@{Engine::Shader}}
+
+
+\mbox{\hyperlink{class_engine_1_1_shader}{Shader}} abstract class.  
+
+
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Shader\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_shader_ae86e5f21f334671f8eac8c5c76753d54}{Shader}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Constructs a shader from a folder located in path. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_shader_a5f10549230cb8c0a6a8918a29ccf1613}{Shader}} (const \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \mbox{\hyperlink{class_engine_1_1_shader_a6172a0b5d3dd79a54461e2a96ff4d9c7}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_shader_aff01df87e8a102f270b5b135a295e59d}{$\sim$\+Shader}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_shader_a6f6e280a343d6c7662909f7dfbc89ad9}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Binds the shader. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{class_engine_1_1_shader_a96153d2a405b791af8cfc7d1563cfdc2}{get\+\_\+program}} () const
+\begin{DoxyCompactList}\small\item\em Returns the program id, needed to get uniforms from the shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_engine_1_1_shader}{Shader}} abstract class. 
+
+Derive from this class to make a shader 
+
+Definition at line \mbox{\hyperlink{_shader_8h_source_l00049}{49}} of file \mbox{\hyperlink{_shader_8h_source}{Shader.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_shader_ae86e5f21f334671f8eac8c5c76753d54}\label{class_engine_1_1_shader_ae86e5f21f334671f8eac8c5c76753d54}} 
+\index{Engine::Shader@{Engine::Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!Engine::Shader@{Engine::Shader}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Constructs a shader from a folder located in path. 
+
+The path must be of a folder containing a vertex.\+glsl and/or a fragment.\+glsl. If either the fragment or the vertex shader is not provided, the shader will take it from the default\+\_\+path 
+
+Definition at line \mbox{\hyperlink{_shader_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{_shader_8cpp_source}{Shader.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_shader_a5f10549230cb8c0a6a8918a29ccf1613}\label{class_engine_1_1_shader_a5f10549230cb8c0a6a8918a29ccf1613}} 
+\index{Engine::Shader@{Engine::Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!Engine::Shader@{Engine::Shader}}
+\doxysubsubsection{\texorpdfstring{Shader()}{Shader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Shader\+::\+Shader (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_shader_aff01df87e8a102f270b5b135a295e59d}\label{class_engine_1_1_shader_aff01df87e8a102f270b5b135a295e59d}} 
+\index{Engine::Shader@{Engine::Shader}!````~Shader@{$\sim$Shader}}
+\index{````~Shader@{$\sim$Shader}!Engine::Shader@{Engine::Shader}}
+\doxysubsubsection{\texorpdfstring{$\sim$Shader()}{~Shader()}}
+{\footnotesize\ttfamily Shader\+::$\sim$\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{_shader_8cpp_source}{Shader.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_shader_a6f6e280a343d6c7662909f7dfbc89ad9}\label{class_engine_1_1_shader_a6f6e280a343d6c7662909f7dfbc89ad9}} 
+\index{Engine::Shader@{Engine::Shader}!bind@{bind}}
+\index{bind@{bind}!Engine::Shader@{Engine::Shader}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void Shader\+::bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Binds the shader. 
+
+Once binded, it is possible to set the shader uniforms. The uniforms must be provided again each time the shader is binded, except when it\textquotesingle{}s been binded before 
+
+Definition at line \mbox{\hyperlink{_shader_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{_shader_8cpp_source}{Shader.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_shader_a96153d2a405b791af8cfc7d1563cfdc2}\label{class_engine_1_1_shader_a96153d2a405b791af8cfc7d1563cfdc2}} 
+\index{Engine::Shader@{Engine::Shader}!get\_program@{get\_program}}
+\index{get\_program@{get\_program}!Engine::Shader@{Engine::Shader}}
+\doxysubsubsection{\texorpdfstring{get\_program()}{get\_program()}}
+{\footnotesize\ttfamily GLuint Shader\+::get\+\_\+program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the program id, needed to get uniforms from the shader. 
+
+
+
+Definition at line \mbox{\hyperlink{_shader_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{_shader_8cpp_source}{Shader.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_shader_a6172a0b5d3dd79a54461e2a96ff4d9c7}\label{class_engine_1_1_shader_a6172a0b5d3dd79a54461e2a96ff4d9c7}} 
+\index{Engine::Shader@{Engine::Shader}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Shader@{Engine::Shader}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} Engine\+::\+Shader\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_shader}{Shader}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_shader_8h}{Shader.\+h}}\item 
+libs/engine/src/\+Util/\mbox{\hyperlink{_shader_8cpp}{Shader.\+cpp}}\end{DoxyCompactItemize}

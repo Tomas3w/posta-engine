@@ -1,0 +1,148 @@
+\hypertarget{class_engine_1_1_component_1_1_rigidbody}{}\doxysection{Engine\+::Component\+::Rigidbody Class Reference}
+\label{class_engine_1_1_component_1_1_rigidbody}\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+
+
+{\ttfamily \#include $<$Rigidbody.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Component\+::Rigidbody\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}{Rigidbody}} ()=default
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}{Rigidbody}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \& \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&)=delete
+\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad9ea055b4e5eca1a768ef120e306a3e5}{$\sim$\+Rigidbody}} ()=0
+\item 
+virtual glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a41996beaf417eddc13433302a1cad76b}{get\+\_\+matrix}} () final
+\begin{DoxyCompactList}\small\item\em Returns the transforms matrix. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad19c684cdb038678801ef31a6d440c9a}{get\+\_\+transform}} () final
+\begin{DoxyCompactList}\small\item\em Returns a new transform object of the internal rigidbody. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ab0d49c050ffb079f6f3222d4198d6c1e}{set\+\_\+transform}} (\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} transform)
+\begin{DoxyCompactList}\small\item\em Set transform, ignores scale of transform. \end{DoxyCompactList}\item 
+virtual bt\+Rigid\+Body $\ast$ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}{get\+\_\+body}} () final
+\begin{DoxyCompactList}\small\item\em Returns the internal rigidbody pointer. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}{set\+\_\+body}} (bt\+Rigid\+Body $\ast$body) final
+\begin{DoxyCompactList}\small\item\em Sets the internal rigidbody pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8h_source_l00009}{9}} of file \mbox{\hyperlink{_rigidbody_8h_source}{Rigidbody.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}\label{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!Rigidbody@{Rigidbody}}
+\index{Rigidbody@{Rigidbody}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{Rigidbody()}{Rigidbody()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Engine\+::\+Component\+::\+Rigidbody\+::\+Rigidbody (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}\label{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!Rigidbody@{Rigidbody}}
+\index{Rigidbody@{Rigidbody}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{Rigidbody()}{Rigidbody()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Engine\+::\+Component\+::\+Rigidbody\+::\+Rigidbody (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_ad9ea055b4e5eca1a768ef120e306a3e5}\label{class_engine_1_1_component_1_1_rigidbody_ad9ea055b4e5eca1a768ef120e306a3e5}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!````~Rigidbody@{$\sim$Rigidbody}}
+\index{````~Rigidbody@{$\sim$Rigidbody}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{$\sim$Rigidbody()}{~Rigidbody()}}
+{\footnotesize\ttfamily Rigidbody\+::$\sim$\+Rigidbody (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_rigidbody_8cpp_source}{Rigidbody.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}\label{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!get\_body@{get\_body}}
+\index{get\_body@{get\_body}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{get\_body()}{get\_body()}}
+{\footnotesize\ttfamily bt\+Rigid\+Body $\ast$ Rigidbody\+::get\+\_\+body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Returns the internal rigidbody pointer. 
+
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_rigidbody_8cpp_source}{Rigidbody.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_a41996beaf417eddc13433302a1cad76b}\label{class_engine_1_1_component_1_1_rigidbody_a41996beaf417eddc13433302a1cad76b}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!get\_matrix@{get\_matrix}}
+\index{get\_matrix@{get\_matrix}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{get\_matrix()}{get\_matrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Rigidbody\+::get\+\_\+matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Returns the transforms matrix. 
+
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_rigidbody_8cpp_source}{Rigidbody.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_ad19c684cdb038678801ef31a6d440c9a}\label{class_engine_1_1_component_1_1_rigidbody_ad19c684cdb038678801ef31a6d440c9a}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!get\_transform@{get\_transform}}
+\index{get\_transform@{get\_transform}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{get\_transform()}{get\_transform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} Rigidbody\+::get\+\_\+transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Returns a new transform object of the internal rigidbody. 
+
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{_rigidbody_8cpp_source}{Rigidbody.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}\label{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!operator=@{operator=}}
+\index{operator=@{operator=}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \& Engine\+::\+Component\+::\+Rigidbody\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}\label{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!set\_body@{set\_body}}
+\index{set\_body@{set\_body}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{set\_body()}{set\_body()}}
+{\footnotesize\ttfamily void Rigidbody\+::set\+\_\+body (\begin{DoxyParamCaption}\item[{bt\+Rigid\+Body $\ast$}]{body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Sets the internal rigidbody pointer. 
+
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{_rigidbody_8cpp_source}{Rigidbody.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_rigidbody_ab0d49c050ffb079f6f3222d4198d6c1e}\label{class_engine_1_1_component_1_1_rigidbody_ab0d49c050ffb079f6f3222d4198d6c1e}} 
+\index{Engine::Component::Rigidbody@{Engine::Component::Rigidbody}!set\_transform@{set\_transform}}
+\index{set\_transform@{set\_transform}!Engine::Component::Rigidbody@{Engine::Component::Rigidbody}}
+\doxysubsubsection{\texorpdfstring{set\_transform()}{set\_transform()}}
+{\footnotesize\ttfamily void Rigidbody\+::set\+\_\+transform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}}}]{transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set transform, ignores scale of transform. 
+
+
+
+Definition at line \mbox{\hyperlink{_rigidbody_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_rigidbody_8cpp_source}{Rigidbody.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_rigidbody_8h}{Rigidbody.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_rigidbody_8cpp}{Rigidbody.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,30 @@
+\hypertarget{_t_c_p_conn_of_server_8cpp_source}{}\doxysection{TCPConn\+Of\+Server.\+cpp}
+\label{_t_c_p_conn_of_server_8cpp_source}\index{libs/engine/src/Util/TCPConnOfServer.cpp@{libs/engine/src/Util/TCPConnOfServer.cpp}}
+\mbox{\hyperlink{_t_c_p_conn_of_server_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_t_c_p_conn_of_server_8h}{engine/include/Util/TCPConnOfServer.h}}>}}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_of_server}{Engine::TCPConnOfServer}};}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00005}\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_of_server_a45be0fd6c2835aece2161a5670a5fab5}{00005}}\ \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_of_server_a45be0fd6c2835aece2161a5670a5fab5}{TCPConnOfServer::TCPConnOfServer}}(\textcolor{keywordtype}{short}\ port)}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//std::cout\ <<\ "{}hello?"{}\ <<\ std::endl;}}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00008}00008\ \ \ \ \ IPaddress\ address;}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00009}00009\ \ \ \ \ address.host\ =\ INADDR\_ANY;}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00010}00010\ \ \ \ \ address.port\ =\ port;}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_a13764979cac80df95abaeb26b6b36968}{set\_socket}}(SDLNet\_TCP\_Open(\&address));}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//std::cout\ <<\ "{}hella?"{}\ <<\ std::endl;}}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_aed29c4d5be2316d112544984daa18d01}{get\_socket}}()\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}Couldn't\ open\ server\ socket"{}});}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00017}\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_of_server_ab93ab81585c13e1165937e4682629293}{00017}}\ \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_to_client}{Engine::TCPConnToClient}}*\ \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_of_server_ab93ab81585c13e1165937e4682629293}{TCPConnOfServer::accept\_incoming\_connection}}()}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00019}00019\ \ \ \ \ TCPsocket\ sock\ =\ SDLNet\_TCP\_Accept(\mbox{\hyperlink{class_engine_1_1_t_c_p_conn_aed29c4d5be2316d112544984daa18d01}{get\_socket}}());}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (!sock)}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_engine_1_1_t_c_p_conn_to_client}{Engine::TCPConnToClient}}(sock);}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00023}00023\ \}}
+\DoxyCodeLine{\Hypertarget{_t_c_p_conn_of_server_8cpp_source_l00024}00024\ }
+
+\end{DoxyCode}

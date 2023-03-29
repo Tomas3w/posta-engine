@@ -1,0 +1,82 @@
+\hypertarget{class_engine_1_1_component_1_1_camera}{}\doxysection{Engine\+::Component\+::Camera Class Reference}
+\label{class_engine_1_1_component_1_1_camera}\index{Engine::Component::Camera@{Engine::Component::Camera}}
+
+
+Abstract class for all camera-\/like components.  
+
+
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Component\+::Camera\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_camera_a35b60641609a507e31cde4b49d4fe51b}{Camera}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_camera_a307e373005a73be66d269490e5bad0b3}{$\sim$\+Camera}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_camera_a04d6413c50e5c92ebac28d0525508647}{update\+\_\+projection\+\_\+matrix}} (const int width, const int height)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_camera_a881ae72684ba248ea750f28720a72e33}{projection}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract class for all camera-\/like components. 
+
+Definition at line \mbox{\hyperlink{_component_2_camera_8h_source_l00008}{8}} of file \mbox{\hyperlink{_component_2_camera_8h_source}{Camera.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_camera_a35b60641609a507e31cde4b49d4fe51b}\label{class_engine_1_1_component_1_1_camera_a35b60641609a507e31cde4b49d4fe51b}} 
+\index{Engine::Component::Camera@{Engine::Component::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Engine::Component::Camera@{Engine::Component::Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily Engine\+::\+Component\+::\+Camera\+::\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_camera_a307e373005a73be66d269490e5bad0b3}\label{class_engine_1_1_component_1_1_camera_a307e373005a73be66d269490e5bad0b3}} 
+\index{Engine::Component::Camera@{Engine::Component::Camera}!````~Camera@{$\sim$Camera}}
+\index{````~Camera@{$\sim$Camera}!Engine::Component::Camera@{Engine::Component::Camera}}
+\doxysubsubsection{\texorpdfstring{$\sim$Camera()}{~Camera()}}
+{\footnotesize\ttfamily virtual Engine\+::\+Component\+::\+Camera\+::$\sim$\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_camera_a04d6413c50e5c92ebac28d0525508647}\label{class_engine_1_1_component_1_1_camera_a04d6413c50e5c92ebac28d0525508647}} 
+\index{Engine::Component::Camera@{Engine::Component::Camera}!update\_projection\_matrix@{update\_projection\_matrix}}
+\index{update\_projection\_matrix@{update\_projection\_matrix}!Engine::Component::Camera@{Engine::Component::Camera}}
+\doxysubsubsection{\texorpdfstring{update\_projection\_matrix()}{update\_projection\_matrix()}}
+{\footnotesize\ttfamily virtual void Engine\+::\+Component\+::\+Camera\+::update\+\_\+projection\+\_\+matrix (\begin{DoxyParamCaption}\item[{const int}]{width,  }\item[{const int}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Updates projection matrix based on type of camera 
+
+Implemented in \mbox{\hyperlink{class_engine_1_1_component_1_1_p_camera_aee9977620de499e93ccae3c5a7c3a1c8}{Engine\+::\+Component\+::\+PCamera}}, and \mbox{\hyperlink{class_engine_1_1_component_1_1_o_camera_adc5717f41b80463d2712d5978547d71d}{Engine\+::\+Component\+::\+OCamera}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_camera_a881ae72684ba248ea750f28720a72e33}\label{class_engine_1_1_component_1_1_camera_a881ae72684ba248ea750f28720a72e33}} 
+\index{Engine::Component::Camera@{Engine::Component::Camera}!projection@{projection}}
+\index{projection@{projection}!Engine::Component::Camera@{Engine::Component::Camera}}
+\doxysubsubsection{\texorpdfstring{projection}{projection}}
+{\footnotesize\ttfamily glm\+::mat4 Engine\+::\+Component\+::\+Camera\+::projection}
+
+
+
+Definition at line \mbox{\hyperlink{_component_2_camera_8h_source_l00016}{16}} of file \mbox{\hyperlink{_component_2_camera_8h_source}{Camera.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_component_2_camera_8h}{Camera.\+h}}\end{DoxyCompactItemize}

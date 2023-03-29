@@ -1,0 +1,70 @@
+\hypertarget{class_engine_1_1_component_1_1_capsule_rigidbody}{}\doxysection{Engine\+::Component\+::Capsule\+Rigidbody Class Reference}
+\label{class_engine_1_1_component_1_1_capsule_rigidbody}\index{Engine::Component::CapsuleRigidbody@{Engine::Component::CapsuleRigidbody}}
+
+
+{\ttfamily \#include $<$Capsule\+Rigidbody.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Component\+::Capsule\+Rigidbody\+:
+% FIG 0
+
+
+Collaboration diagram for Engine\+::Component\+::Capsule\+Rigidbody\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_capsule_rigidbody_acc6b2d50ccce127290dd78325b335773}{Capsule\+Rigidbody}} (glm\+::vec3 position, float mass, float radius, float distance, glm\+::vec3 velocity=glm\+::vec3(0, 0, 0))
+\begin{DoxyCompactList}\small\item\em Constructs a capsule shaped rigidbody. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Engine\+::\+Component\+::\+Rigidbody}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}{Rigidbody}} ()=default
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}{Rigidbody}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \& \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&)=delete
+\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad9ea055b4e5eca1a768ef120e306a3e5}{$\sim$\+Rigidbody}} ()=0
+\item 
+virtual glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a41996beaf417eddc13433302a1cad76b}{get\+\_\+matrix}} () final
+\begin{DoxyCompactList}\small\item\em Returns the transforms matrix. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad19c684cdb038678801ef31a6d440c9a}{get\+\_\+transform}} () final
+\begin{DoxyCompactList}\small\item\em Returns a new transform object of the internal rigidbody. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ab0d49c050ffb079f6f3222d4198d6c1e}{set\+\_\+transform}} (\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} transform)
+\begin{DoxyCompactList}\small\item\em Set transform, ignores scale of transform. \end{DoxyCompactList}\item 
+virtual bt\+Rigid\+Body $\ast$ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}{get\+\_\+body}} () final
+\begin{DoxyCompactList}\small\item\em Returns the internal rigidbody pointer. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}{set\+\_\+body}} (bt\+Rigid\+Body $\ast$body) final
+\begin{DoxyCompactList}\small\item\em Sets the internal rigidbody pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_capsule_rigidbody_8h_source_l00006}{6}} of file \mbox{\hyperlink{_capsule_rigidbody_8h_source}{Capsule\+Rigidbody.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_capsule_rigidbody_acc6b2d50ccce127290dd78325b335773}\label{class_engine_1_1_component_1_1_capsule_rigidbody_acc6b2d50ccce127290dd78325b335773}} 
+\index{Engine::Component::CapsuleRigidbody@{Engine::Component::CapsuleRigidbody}!CapsuleRigidbody@{CapsuleRigidbody}}
+\index{CapsuleRigidbody@{CapsuleRigidbody}!Engine::Component::CapsuleRigidbody@{Engine::Component::CapsuleRigidbody}}
+\doxysubsubsection{\texorpdfstring{CapsuleRigidbody()}{CapsuleRigidbody()}}
+{\footnotesize\ttfamily Capsule\+Rigidbody\+::\+Capsule\+Rigidbody (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{position,  }\item[{float}]{mass,  }\item[{float}]{radius,  }\item[{float}]{distance,  }\item[{glm\+::vec3}]{velocity = {\ttfamily glm\+:\+:vec3(0,~0,~0)} }\end{DoxyParamCaption})}
+
+
+
+Constructs a capsule shaped rigidbody. 
+
+Radius specifis the radius of the two spheres in each part of the capsule and distance specifies the distance between those two spheres 
+
+Definition at line \mbox{\hyperlink{_capsule_rigidbody_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_capsule_rigidbody_8cpp_source}{Capsule\+Rigidbody.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_capsule_rigidbody_8h}{Capsule\+Rigidbody.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_capsule_rigidbody_8cpp}{Capsule\+Rigidbody.\+cpp}}\end{DoxyCompactItemize}

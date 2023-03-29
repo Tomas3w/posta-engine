@@ -1,0 +1,118 @@
+\hypertarget{span_8h_source}{}\doxysection{span.\+h}
+\label{span_8h_source}\index{libs/engine/include/Util/span.h@{libs/engine/include/Util/span.h}}
+\mbox{\hyperlink{span_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_SPAN\_UTILITY\_H}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_SPAN\_UTILITY\_H}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine}{Engine}}\ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00008}\mbox{\hyperlink{class_engine_1_1span}{00008}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1span}{span}}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00010}00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }iterator}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00011}00011\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ iterator()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ptr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ iterator(T*\ ptr)}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ptr\ =\ ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ iterator\&\ operator++()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ptr++;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ iterator\&\ operator-\/-\/()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ptr-\/-\/;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ iterator\ operator++(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterator\ it\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++*\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ iterator\ operator-\/-\/(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterator\ it\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/*\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ iterator\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00049}00049\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_ptr\ !=\ other.\_ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ T\&\ operator*()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00054}00054\ \textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\_ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ \_ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00064}\mbox{\hyperlink{class_engine_1_1span_a9d4c2da5cf170c0abbb3b8a31058720a}{00064}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1span_a9d4c2da5cf170c0abbb3b8a31058720a}{span}}(T*\ ptr,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_engine_1_1span_a9b086a6be45b6fa50404e9b33292bcaa}{size}})}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ptr\ =\ ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_size\ =\ \mbox{\hyperlink{class_engine_1_1span_a9b086a6be45b6fa50404e9b33292bcaa}{size}};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00070}\mbox{\hyperlink{class_engine_1_1span_a216202e68f9ff7ca8ab8e901e70d54a2}{00070}}\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ \mbox{\hyperlink{class_engine_1_1span_a216202e68f9ff7ca8ab8e901e70d54a2}{data}}()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00075}\mbox{\hyperlink{class_engine_1_1span_abda8c47b85cc4ea719a1e74d85011e8e}{00075}}\ \ \ \ \ \ \ \ \ \ \ \ \ iterator\ \mbox{\hyperlink{class_engine_1_1span_abda8c47b85cc4ea719a1e74d85011e8e}{begin}}()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ iterator(\_ptr);}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00080}\mbox{\hyperlink{class_engine_1_1span_a937957e9f42485057d5b6f7a6c9de2ba}{00080}}\ \ \ \ \ \ \ \ \ \ \ \ \ iterator\ \mbox{\hyperlink{class_engine_1_1span_a937957e9f42485057d5b6f7a6c9de2ba}{end}}()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ iterator(\_ptr\ +\ \_size);}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00085}\mbox{\hyperlink{class_engine_1_1span_a9b086a6be45b6fa50404e9b33292bcaa}{00085}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_engine_1_1span_a9b086a6be45b6fa50404e9b33292bcaa}{size}}()}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_size;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00090}\mbox{\hyperlink{class_engine_1_1span_af7e4ba622f26a110affd2074fad6fb63}{00090}}\ \ \ \ \ \ \ \ \ \ \ \ \ T\&\ \mbox{\hyperlink{class_engine_1_1span_af7e4ba622f26a110affd2074fad6fb63}{operator[]}}(\textcolor{keywordtype}{size\_t}\ index)}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(\_ptr\ +\ index);}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ \_ptr;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \_size;}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00097}00097\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00099}00099\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{class}>\ \textcolor{keyword}{class\ }C,\ \textcolor{keyword}{class\ }T>}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00100}\mbox{\hyperlink{namespace_engine_a2c16eca440fc3fae4f335f00c595bdf6}{00100}}\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1span}{span<T>}}\ \mbox{\hyperlink{namespace_engine_a2c16eca440fc3fae4f335f00c595bdf6}{make\_span}}(C<T>\&\ c)}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00101}00101\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_engine_1_1span}{span<T>}}(c.data(),\ c.size());}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00105}00105\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ const\ \textcolor{keywordtype}{size\_t}\ SIZE>}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00106}\mbox{\hyperlink{namespace_engine_abc35275cbb91c04969923ff30e7237a9}{00106}}\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1span}{span<T>}}\ \mbox{\hyperlink{namespace_engine_a2c16eca440fc3fae4f335f00c595bdf6}{make\_span}}(std::array<T,\ SIZE>\&\ array)}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00107}00107\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_engine_1_1span}{span<T>}}(array.data(),\ SIZE);}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00110}00110\ \}}
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{span_8h_source_l00112}00112\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_SPAN\_UTILITY\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,262 @@
+\hypertarget{class_engine_1_1_component_1_1_image}{}\doxysection{Engine\+::Component\+::Image Class Reference}
+\label{class_engine_1_1_component_1_1_image}\index{Engine::Component::Image@{Engine::Component::Image}}
+
+
+\mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Image}} class, used to draw a 2D image in a given position, it stores a texture and its dimensions.  
+
+
+
+
+{\ttfamily \#include $<$Image.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae4b71e4bd6fed467a5917efc8f59b886}{Image}} (std\+::filesystem\+::path path)
+\begin{DoxyCompactList}\small\item\em Creates an image from a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_image_a9dd93b0dc0fbde92a9588d31493c5f74}{Image}} (\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $\ast$\mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{texture}}, int \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a3c4fdc5e7bb801081936b0b516738c52}{w}}, int \mbox{\hyperlink{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}{h}})
+\begin{DoxyCompactList}\small\item\em Creates an image from a texture and its dimensions, takes ownership of the texture pointer. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_image_aacdd66f3bb39dcbb1541197dd1503e0b}{get\+\_\+matrix}} (int x, int y)
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a2a661e47c68e79e8a8bb803163daca00}{get\+\_\+matrix\+\_\+with\+\_\+size}} (int x, int y, int \+\_\+w, int \+\_\+h)
+\item 
+int \mbox{\hyperlink{class_engine_1_1_component_1_1_image_afe33720615f681e70c2b6680a95538cb}{get\+\_\+w}} ()
+\item 
+int \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a08d9d01f5a6c47be831ed41d9f8d9c72}{get\+\_\+h}} ()
+\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a539fcf1aa33b901b4e70c0338695af4f}{set\+\_\+w}} (int \+\_\+w)
+\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae406f556411b0e645e628aa2d41b8759}{set\+\_\+h}} (int \+\_\+h)
+\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae1e16dcef3072e4e49ec2887a9c1245a}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Binds the texture and then draws the image (calling Image\+::mesh2d.\+draw()) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a380a606416768ce1542a51cab5e6eab3}{only\+\_\+bind}} ()
+\begin{DoxyCompactList}\small\item\em Only binds the texture, and the 2d mesh, faster if one wishes to draw a lot of images. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_1_1_component_1_1_image_aa3a967a024d476a24ee06453ac542fe9}{only\+\_\+draw}} ()
+\begin{DoxyCompactList}\small\item\em Only draws, the texture and the mesh used are the previously binded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ac960c97c4068d413ea4e4d62dacafa5b}{matrix\+\_\+for\+\_\+rect}} (\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Engine\+::\+UI\+::\+Rect}} rect, int screen\+\_\+w, int screen\+\_\+h)
+\begin{DoxyCompactList}\small\item\em Returns the matrix for a rectangle. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a955adb943280ccc889882e203498b385}{draw\+\_\+rect}} (\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $\ast$\mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{texture}})
+\begin{DoxyCompactList}\small\item\em Draws a rectangle with texture given by texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $>$ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{texture}}
+\item 
+int \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a3c4fdc5e7bb801081936b0b516738c52}{w}}
+\item 
+int \mbox{\hyperlink{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}{h}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Image}} class, used to draw a 2D image in a given position, it stores a texture and its dimensions. 
+
+Definition at line \mbox{\hyperlink{_image_8h_source_l00013}{13}} of file \mbox{\hyperlink{_image_8h_source}{Image.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_ae4b71e4bd6fed467a5917efc8f59b886}\label{class_engine_1_1_component_1_1_image_ae4b71e4bd6fed467a5917efc8f59b886}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!Image@{Image}}
+\index{Image@{Image}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{Image()}{Image()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Image\+::\+Image (\begin{DoxyParamCaption}\item[{std\+::filesystem\+::path}]{path }\end{DoxyParamCaption})}
+
+
+
+Creates an image from a file. 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a9dd93b0dc0fbde92a9588d31493c5f74}\label{class_engine_1_1_component_1_1_image_a9dd93b0dc0fbde92a9588d31493c5f74}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!Image@{Image}}
+\index{Image@{Image}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{Image()}{Image()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Image\+::\+Image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $\ast$}]{texture,  }\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})}
+
+
+
+Creates an image from a texture and its dimensions, takes ownership of the texture pointer. 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_ae1e16dcef3072e4e49ec2887a9c1245a}\label{class_engine_1_1_component_1_1_image_ae1e16dcef3072e4e49ec2887a9c1245a}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!draw@{draw}}
+\index{draw@{draw}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Image\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Binds the texture and then draws the image (calling Image\+::mesh2d.\+draw()) 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a955adb943280ccc889882e203498b385}\label{class_engine_1_1_component_1_1_image_a955adb943280ccc889882e203498b385}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!draw\_rect@{draw\_rect}}
+\index{draw\_rect@{draw\_rect}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{draw\_rect()}{draw\_rect()}}
+{\footnotesize\ttfamily void Image\+::draw\+\_\+rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}} $\ast$}]{texture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Draws a rectangle with texture given by texture. 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a08d9d01f5a6c47be831ed41d9f8d9c72}\label{class_engine_1_1_component_1_1_image_a08d9d01f5a6c47be831ed41d9f8d9c72}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!get\_h@{get\_h}}
+\index{get\_h@{get\_h}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{get\_h()}{get\_h()}}
+{\footnotesize\ttfamily int Image\+::get\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_aacdd66f3bb39dcbb1541197dd1503e0b}\label{class_engine_1_1_component_1_1_image_aacdd66f3bb39dcbb1541197dd1503e0b}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!get\_matrix@{get\_matrix}}
+\index{get\_matrix@{get\_matrix}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{get\_matrix()}{get\_matrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Image\+::get\+\_\+matrix (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a2a661e47c68e79e8a8bb803163daca00}\label{class_engine_1_1_component_1_1_image_a2a661e47c68e79e8a8bb803163daca00}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!get\_matrix\_with\_size@{get\_matrix\_with\_size}}
+\index{get\_matrix\_with\_size@{get\_matrix\_with\_size}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{get\_matrix\_with\_size()}{get\_matrix\_with\_size()}}
+{\footnotesize\ttfamily glm\+::mat4 Image\+::get\+\_\+matrix\+\_\+with\+\_\+size (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{\+\_\+w,  }\item[{int}]{\+\_\+h }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_afe33720615f681e70c2b6680a95538cb}\label{class_engine_1_1_component_1_1_image_afe33720615f681e70c2b6680a95538cb}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!get\_w@{get\_w}}
+\index{get\_w@{get\_w}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{get\_w()}{get\_w()}}
+{\footnotesize\ttfamily int Image\+::get\+\_\+w (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_ac960c97c4068d413ea4e4d62dacafa5b}\label{class_engine_1_1_component_1_1_image_ac960c97c4068d413ea4e4d62dacafa5b}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!matrix\_for\_rect@{matrix\_for\_rect}}
+\index{matrix\_for\_rect@{matrix\_for\_rect}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{matrix\_for\_rect()}{matrix\_for\_rect()}}
+{\footnotesize\ttfamily glm\+::mat4 Image\+::matrix\+\_\+for\+\_\+rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Engine\+::\+UI\+::\+Rect}}}]{rect,  }\item[{int}]{screen\+\_\+w,  }\item[{int}]{screen\+\_\+h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the matrix for a rectangle. 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a380a606416768ce1542a51cab5e6eab3}\label{class_engine_1_1_component_1_1_image_a380a606416768ce1542a51cab5e6eab3}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!only\_bind@{only\_bind}}
+\index{only\_bind@{only\_bind}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{only\_bind()}{only\_bind()}}
+{\footnotesize\ttfamily void Image\+::only\+\_\+bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Only binds the texture, and the 2d mesh, faster if one wishes to draw a lot of images. 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_aa3a967a024d476a24ee06453ac542fe9}\label{class_engine_1_1_component_1_1_image_aa3a967a024d476a24ee06453ac542fe9}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!only\_draw@{only\_draw}}
+\index{only\_draw@{only\_draw}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{only\_draw()}{only\_draw()}}
+{\footnotesize\ttfamily void Image\+::only\+\_\+draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Only draws, the texture and the mesh used are the previously binded. 
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_ae406f556411b0e645e628aa2d41b8759}\label{class_engine_1_1_component_1_1_image_ae406f556411b0e645e628aa2d41b8759}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!set\_h@{set\_h}}
+\index{set\_h@{set\_h}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{set\_h()}{set\_h()}}
+{\footnotesize\ttfamily void Image\+::set\+\_\+h (\begin{DoxyParamCaption}\item[{int}]{\+\_\+h }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a539fcf1aa33b901b4e70c0338695af4f}\label{class_engine_1_1_component_1_1_image_a539fcf1aa33b901b4e70c0338695af4f}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!set\_w@{set\_w}}
+\index{set\_w@{set\_w}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{set\_w()}{set\_w()}}
+{\footnotesize\ttfamily void Image\+::set\+\_\+w (\begin{DoxyParamCaption}\item[{int}]{\+\_\+w }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{_image_8cpp_source}{Image.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}\label{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!h@{h}}
+\index{h@{h}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{h}{h}}
+{\footnotesize\ttfamily int Engine\+::\+Component\+::\+Image\+::h}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8h_source_l00039}{39}} of file \mbox{\hyperlink{_image_8h_source}{Image.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}\label{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!texture@{texture}}
+\index{texture@{texture}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{texture}{texture}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine\+::\+Component\+::\+Texture}}$>$ Engine\+::\+Component\+::\+Image\+::texture}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8h_source_l00038}{38}} of file \mbox{\hyperlink{_image_8h_source}{Image.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_image_a3c4fdc5e7bb801081936b0b516738c52}\label{class_engine_1_1_component_1_1_image_a3c4fdc5e7bb801081936b0b516738c52}} 
+\index{Engine::Component::Image@{Engine::Component::Image}!w@{w}}
+\index{w@{w}!Engine::Component::Image@{Engine::Component::Image}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily int Engine\+::\+Component\+::\+Image\+::w}
+
+
+
+Definition at line \mbox{\hyperlink{_image_8h_source_l00039}{39}} of file \mbox{\hyperlink{_image_8h_source}{Image.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_image_8h}{Image.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_image_8cpp}{Image.\+cpp}}\end{DoxyCompactItemize}

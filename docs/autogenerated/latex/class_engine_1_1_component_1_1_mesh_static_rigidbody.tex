@@ -1,0 +1,94 @@
+\hypertarget{class_engine_1_1_component_1_1_mesh_static_rigidbody}{}\doxysection{Engine\+::Component\+::Mesh\+Static\+Rigidbody Class Reference}
+\label{class_engine_1_1_component_1_1_mesh_static_rigidbody}\index{Engine::Component::MeshStaticRigidbody@{Engine::Component::MeshStaticRigidbody}}
+
+
+Class used to make a Static \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} from a \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} object.  
+
+
+
+
+{\ttfamily \#include $<$Mesh\+Static\+Rigidbody.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Component\+::Mesh\+Static\+Rigidbody\+:
+% FIG 0
+
+
+Collaboration diagram for Engine\+::Component\+::Mesh\+Static\+Rigidbody\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody_ad8388d74eb5cbdc8db2f6c543379d850}{Mesh\+Static\+Rigidbody}} (glm\+::vec3 position, std\+::vector$<$ GLfloat $>$ \&\+\_\+vertices, std\+::vector$<$ int $>$ \&\+\_\+indices, bool swap\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody}{Mesh\+Static\+Rigidbody}}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody_aa1b7d79fc913d216f835fc871822af02}{$\sim$\+Mesh\+Static\+Rigidbody}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Engine\+::\+Component\+::\+Rigidbody}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a1f36b973c790ceb31c94e94dceb9b6d5}{Rigidbody}} ()=default
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_aab12381f280909e8efb0c7c116431d9c}{Rigidbody}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&)=delete
+\item 
+\mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \& \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a15a1fd1bbf31b6d729b1b881d03d0ad3}{operator=}} (const \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} \&)=delete
+\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad9ea055b4e5eca1a768ef120e306a3e5}{$\sim$\+Rigidbody}} ()=0
+\item 
+virtual glm\+::mat4 \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a41996beaf417eddc13433302a1cad76b}{get\+\_\+matrix}} () final
+\begin{DoxyCompactList}\small\item\em Returns the transforms matrix. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ad19c684cdb038678801ef31a6d440c9a}{get\+\_\+transform}} () final
+\begin{DoxyCompactList}\small\item\em Returns a new transform object of the internal rigidbody. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_ab0d49c050ffb079f6f3222d4198d6c1e}{set\+\_\+transform}} (\mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Engine\+::\+Component\+::\+Transform}} transform)
+\begin{DoxyCompactList}\small\item\em Set transform, ignores scale of transform. \end{DoxyCompactList}\item 
+virtual bt\+Rigid\+Body $\ast$ \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_affc92d83745628eaba6142a2ee0014dd}{get\+\_\+body}} () final
+\begin{DoxyCompactList}\small\item\em Returns the internal rigidbody pointer. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody_a495b2a24dd12b4b9273aafc13dd40214}{set\+\_\+body}} (bt\+Rigid\+Body $\ast$body) final
+\begin{DoxyCompactList}\small\item\em Sets the internal rigidbody pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to make a Static \mbox{\hyperlink{class_engine_1_1_component_1_1_rigidbody}{Rigidbody}} from a \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}} object. 
+
+Definition at line \mbox{\hyperlink{_mesh_static_rigidbody_8h_source_l00009}{9}} of file \mbox{\hyperlink{_mesh_static_rigidbody_8h_source}{Mesh\+Static\+Rigidbody.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_mesh_static_rigidbody_ad8388d74eb5cbdc8db2f6c543379d850}\label{class_engine_1_1_component_1_1_mesh_static_rigidbody_ad8388d74eb5cbdc8db2f6c543379d850}} 
+\index{Engine::Component::MeshStaticRigidbody@{Engine::Component::MeshStaticRigidbody}!MeshStaticRigidbody@{MeshStaticRigidbody}}
+\index{MeshStaticRigidbody@{MeshStaticRigidbody}!Engine::Component::MeshStaticRigidbody@{Engine::Component::MeshStaticRigidbody}}
+\doxysubsubsection{\texorpdfstring{MeshStaticRigidbody()}{MeshStaticRigidbody()}}
+{\footnotesize\ttfamily Mesh\+Static\+Rigidbody\+::\+Mesh\+Static\+Rigidbody (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{position,  }\item[{std\+::vector$<$ GLfloat $>$ \&}]{\+\_\+vertices,  }\item[{std\+::vector$<$ int $>$ \&}]{\+\_\+indices,  }\item[{bool}]{swap\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{class_engine_1_1_component_1_1_mesh_static_rigidbody}{Mesh\+Static\+Rigidbody}}. 
+
+Each vertex is form of three floats representing x, y, and z The indices are indices of the vertices 
+\begin{DoxyParams}{Parameters}
+{\em position} & of the origin of the rigidbody \\
+\hline
+{\em swap\+\_\+data} & whether to swap the vertices and indices or copy them \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_mesh_static_rigidbody_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_mesh_static_rigidbody_8cpp_source}{Mesh\+Static\+Rigidbody.\+cpp}}.
+
+\mbox{\Hypertarget{class_engine_1_1_component_1_1_mesh_static_rigidbody_aa1b7d79fc913d216f835fc871822af02}\label{class_engine_1_1_component_1_1_mesh_static_rigidbody_aa1b7d79fc913d216f835fc871822af02}} 
+\index{Engine::Component::MeshStaticRigidbody@{Engine::Component::MeshStaticRigidbody}!````~MeshStaticRigidbody@{$\sim$MeshStaticRigidbody}}
+\index{````~MeshStaticRigidbody@{$\sim$MeshStaticRigidbody}!Engine::Component::MeshStaticRigidbody@{Engine::Component::MeshStaticRigidbody}}
+\doxysubsubsection{\texorpdfstring{$\sim$MeshStaticRigidbody()}{~MeshStaticRigidbody()}}
+{\footnotesize\ttfamily Mesh\+Static\+Rigidbody\+::$\sim$\+Mesh\+Static\+Rigidbody (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_mesh_static_rigidbody_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_mesh_static_rigidbody_8cpp_source}{Mesh\+Static\+Rigidbody.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Component/\mbox{\hyperlink{_mesh_static_rigidbody_8h}{Mesh\+Static\+Rigidbody.\+h}}\item 
+libs/engine/src/\+Component/\mbox{\hyperlink{_mesh_static_rigidbody_8cpp}{Mesh\+Static\+Rigidbody.\+cpp}}\end{DoxyCompactItemize}

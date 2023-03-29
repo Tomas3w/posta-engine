@@ -1,0 +1,85 @@
+\hypertarget{_skeleton_8h_source}{}\doxysection{Skeleton.\+h}
+\label{_skeleton_8h_source}\index{libs/engine/include/Component/Skeleton.h@{libs/engine/include/Component/Skeleton.h}}
+\mbox{\hyperlink{_skeleton_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_SKELETON\_H}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_SKELETON\_H}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_general_8h}{engine/include/Util/General.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_assets_8h}{engine/include/Util/Assets.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shader_8h}{engine/include/Util/Shader.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_app_8h}{engine/include/App.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <glm/gtx/string\_cast.hpp>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00017}00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_component}{Engine::Component}}\ \{}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00022}\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton}{00022}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton}{Skeleton}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00023}00023\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00026}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{00026}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{AnimationPlayer}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00028}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_ae1888f164c726201fa7ed9da0bb954d1}{00028}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_ae1888f164c726201fa7ed9da0bb954d1}{time}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00029}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_1_1_animation_weights_and_name}{00029}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_1_1_animation_weights_and_name}{AnimationWeightsAndName}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00031}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_1_1_animation_weights_and_name_a5c346c69391b3344b1d97cf44271fedd}{00031}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_1_1_animation_weights_and_name_a5c346c69391b3344b1d97cf44271fedd}{name}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00032}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_1_1_animation_weights_and_name_aa92baa34f248905a8d3e03a180112ea4}{00032}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_1_1_animation_weights_and_name_aa92baa34f248905a8d3e03a180112ea4}{weight}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00034}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_a61184ccf75ffe240cde8d2cf7f04e830}{00034}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<AnimationWeightsAndName>\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player_a61184ccf75ffe240cde8d2cf7f04e830}{animations}};\ \textcolor{comment}{//\ animations\ that\ will\ be\ played\ together\ along\ with\ their\ respective\ weights\ (which\ sums\ up\ to\ 1)}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::vector<Engine::anim\_mat4>\ cache;}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton}{Skeleton}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_aa45efb034a5515d1bec1e11a91d8701d}{add\_animation}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_ae412a8354c82ad25264136d4552bc061}{get\_animation\_duration}}(std::string\ name);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1span}{Engine::span<Engine::anim\_mat4>}}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a1906c738d19bb4084ba2c052317e26be}{get\_animation\_matrices}}(\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{AnimationPlayer}}\&\ player,\ \textcolor{keywordtype}{bool}\ advance\_time\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1span}{Engine::span<Engine::anim\_mat4>}}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a353b82acaf603c6165d4b94f0d6526a7}{get\_blend\_animation\_matrices}}(\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_animation_player}{AnimationPlayer}}\&\ player,\ \textcolor{keywordtype}{bool}\ advance\_time\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00054}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{00054}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}}*\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_acb77c8b2dbe6dc7d11c54ffec60d6f5b}{search\_in\_bones}}(\textcolor{keyword}{const}\ std::string\ bone\_name,\ std::vector<Bone>\&\ bones);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_a430ee66568df0510328ad67e2f7234ae}{count\_of\_bones}}(std::vector<Bone>\&\ bones);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_a6159c6203d98747b5f5ac5011c62639e}{on\_bones}}(std::vector<Bone>\&\ bones,\ std::function<\textcolor{keywordtype}{void}(\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}}*)>\ func);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00060}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_adf692fdcd4bd5a926a80f8b8b6b15844}{00060}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_adf692fdcd4bd5a926a80f8b8b6b15844}{index}};\ \textcolor{comment}{//\ used\ in\ shaders\ and\ for\ indexing\ the\ bone\_transforms}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00061}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_a68ab911beb77e4a719130abe4b40df7d}{00061}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_a68ab911beb77e4a719130abe4b40df7d}{name}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00062}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_ab86cb084470d7d7a945684dfdb596cff}{00062}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_ab86cb084470d7d7a945684dfdb596cff}{parent\_name}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00063}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_aa2c15c48bb7d2f3012761091a21dc687}{00063}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_aa2c15c48bb7d2f3012761091a21dc687}{length}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00064}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_afa3a8e2c71544d34604a84d2db4a3eba}{00064}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone}{Bone}}*\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_afa3a8e2c71544d34604a84d2db4a3eba}{parent}};\ \textcolor{comment}{//\ =\ nullptr\ if\ there\ is\ no\ parent\ to\ this\ bone}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00065}\mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_aa3f743c0293b9639157781ba8c13ab2f}{00065}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Bone>\ \mbox{\hyperlink{struct_engine_1_1_component_1_1_skeleton_1_1_bone_aa3f743c0293b9639157781ba8c13ab2f}{children}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00067}\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a08b4d16ccf8914fa603aad8c72d0e8ad}{00067}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Bone>\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a08b4d16ccf8914fa603aad8c72d0e8ad}{root\_bones}};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00068}\mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a967ba9bacea9924396516d051a8e9805}{00068}}\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Engine::Component::Transform>\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a967ba9bacea9924396516d051a8e9805}{bone\_transforms}};\ \textcolor{comment}{//\ local\ to\ object,\ not\ to\ parent\ bone}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_transform}{Transform}}\ str\_to\_transform(std::string\ s);}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }Animation}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ duration;\ \textcolor{comment}{//\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<Engine::Component::Transform>>\ frames;\ \textcolor{comment}{//\ each\ frame\ contains\ all\ the\ bone\ transforms}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<Engine::Component::Transform>>\&\ get\_local\_frames(std::vector<Bone>\&\ \mbox{\hyperlink{class_engine_1_1_component_1_1_skeleton_a08b4d16ccf8914fa603aad8c72d0e8ad}{root\_bones}});}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<Engine::Component::Transform>>\ local\_frames;\ \textcolor{comment}{//\ each\ frame\ contains\ all\ the\ local\ to\ parent\ bone\ transforms}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ std::unordered\_map<std::string,\ std::unique\_ptr<Animation>>\ animations;}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Engine::anim\_mat4>\ models;}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Engine::anim\_mat4>\ rest\_matrices;}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Engine::Component::Transform>\ rest\_transforms;}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00088}00088\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00089}00089\ \}}
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_skeleton_8h_source_l00091}00091\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_SKELETON\_H}}
+
+\end{DoxyCode}

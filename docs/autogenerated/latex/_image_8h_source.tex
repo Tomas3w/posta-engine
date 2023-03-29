@@ -1,0 +1,41 @@
+\hypertarget{_image_8h_source}{}\doxysection{Image.\+h}
+\label{_image_8h_source}\index{libs/engine/include/Component/Image.h@{libs/engine/include/Component/Image.h}}
+\mbox{\hyperlink{_image_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_IMAGE\_COMPONENT\_H}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_IMAGE\_COMPONENT\_H}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_general_8h}{engine/include/Util/General.h}}>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_texture_8h}{engine/include/Component/Texture.h}}>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_static_mesh_8h}{engine/include/Component/StaticMesh.h}}>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_assets_8h}{engine/include/Util/Assets.h}}>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_rect_8h}{engine/include/UI/Rect.h}}>}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00011}00011\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_component}{Engine::Component}}\ \{}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00013}\mbox{\hyperlink{class_engine_1_1_component_1_1_image}{00013}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Image}}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ glm::mat4\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ac960c97c4068d413ea4e4d62dacafa5b}{matrix\_for\_rect}}(\mbox{\hyperlink{class_engine_1_1_u_i_1_1_rect}{Engine::UI::Rect}}\ rect,\ \textcolor{keywordtype}{int}\ screen\_w,\ \textcolor{keywordtype}{int}\ screen\_h);}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a955adb943280ccc889882e203498b385}{draw\_rect}}(\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine::Component::Texture}}*\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{texture}});}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Image}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_component_1_1_image}{Image}}(\mbox{\hyperlink{class_engine_1_1_component_1_1_texture}{Engine::Component::Texture}}*\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{texture}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a3c4fdc5e7bb801081936b0b516738c52}{w}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}{h}});}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_aacdd66f3bb39dcbb1541197dd1503e0b}{get\_matrix}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ glm::mat4\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a2a661e47c68e79e8a8bb803163daca00}{get\_matrix\_with\_size}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ \_w,\ \textcolor{keywordtype}{int}\ \_h);}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_afe33720615f681e70c2b6680a95538cb}{get\_w}}();}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a08d9d01f5a6c47be831ed41d9f8d9c72}{get\_h}}();}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a539fcf1aa33b901b4e70c0338695af4f}{set\_w}}(\textcolor{keywordtype}{int}\ \_w);}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae406f556411b0e645e628aa2d41b8759}{set\_h}}(\textcolor{keywordtype}{int}\ \_h);}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae1e16dcef3072e4e49ec2887a9c1245a}{draw}}();}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a380a606416768ce1542a51cab5e6eab3}{only\_bind}}();}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_aa3a967a024d476a24ee06453ac542fe9}{only\_draw}}();}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00038}\mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{00038}}\ \ \ \ \ \ \ \ \ std::unique\_ptr<Engine::Component::Texture>\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_ae81ebfd3c499de997a21b2b931763878}{texture}};}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00039}\mbox{\hyperlink{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}{00039}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_a3c4fdc5e7bb801081936b0b516738c52}{w}},\ \mbox{\hyperlink{class_engine_1_1_component_1_1_image_afccd4db95ab2efa64405c6695eb39efe}{h}};}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00040}00040\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_image_8h_source_l00043}00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_IMAGE\_COMPONENT\_H}}
+
+\end{DoxyCode}

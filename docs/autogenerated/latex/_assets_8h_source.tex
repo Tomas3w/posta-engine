@@ -1,0 +1,31 @@
+\hypertarget{_assets_8h_source}{}\doxysection{Assets.\+h}
+\label{_assets_8h_source}\index{libs/engine/include/Util/Assets.h@{libs/engine/include/Util/Assets.h}}
+\mbox{\hyperlink{_assets_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ POSTAENGINE\_ASSETS\_H}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ POSTAENGINE\_ASSETS\_H}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mesh_8h}{engine/include/Util/Mesh.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <glm/gtc/matrix\_transform.hpp>}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00010}\mbox{\hyperlink{namespace_engine_1_1_assets}{00010}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_engine_1_1_assets}{Engine::Assets}}\ \{}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00017}\mbox{\hyperlink{namespace_engine_1_1_assets_ab5c04fa5c4c501da754f7cc337c8f21a}{00017}}\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{VertexProperties}}\ \mbox{\hyperlink{namespace_engine_1_1_assets_ab5c04fa5c4c501da754f7cc337c8f21a}{basic\_vertex\_props}}\ =\ \{\{3,\ 3,\ 2\},\ 8\};}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00024}\mbox{\hyperlink{namespace_engine_1_1_assets_acd262bf9a6a251f3b4d536bde695fef4}{00024}}\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_engine_1_1_vertex_properties}{VertexProperties}}\ \mbox{\hyperlink{namespace_engine_1_1_assets_acd262bf9a6a251f3b4d536bde695fef4}{bone\_vertex\_props}}\ =\ \{\{3,\ 3,\ 2,\ 4\},\ 12\};}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}}\ \mbox{\hyperlink{namespace_engine_1_1_assets_a1165b4bfd3c39e4e689cfcaa32fbd3eb}{load\_obj}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_engine_1_1_assets_a77b4b9ff272b7a43c9b96bd8b9ca2222}{load\_obj\_vertices\_and\_indices}}(std::filesystem::path\ path,\ std::vector<GLfloat>\&\ vertices,\ std::vector<int>\&\ indices);}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00031}00031\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00040}00040\ \ \ \ \ \mbox{\hyperlink{class_engine_1_1_mesh}{Mesh}}\ \mbox{\hyperlink{namespace_engine_1_1_assets_a3168152cef098ed5bbd080d99fc21bfe}{load\_obj\_and\_bones}}(std::filesystem::path\ path);}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_assets_8h_source_l00044}00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ POSTAENGINE\_ASSETS\_H}}
+
+\end{DoxyCode}

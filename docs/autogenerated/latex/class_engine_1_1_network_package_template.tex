@@ -1,0 +1,154 @@
+\hypertarget{class_engine_1_1_network_package_template}{}\doxysection{Engine\+::Network\+Package\+Template\texorpdfstring{$<$}{<} PACKAGE\+\_\+\+TYPE, T, Ts \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_engine_1_1_network_package_template}\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+
+
+{\ttfamily \#include $<$Network\+Package.\+h$>$}
+
+
+
+Inheritance diagram for Engine\+::Network\+Package\+Template\texorpdfstring{$<$}{<} PACKAGE\+\_\+\+TYPE, T, Ts \texorpdfstring{$>$}{>}\+:
+% FIG 0
+
+
+Collaboration diagram for Engine\+::Network\+Package\+Template\texorpdfstring{$<$}{<} PACKAGE\+\_\+\+TYPE, T, Ts \texorpdfstring{$>$}{>}\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_engine_1_1_network_package_template_a2950131c06a2ebd3c907008a3a733858}{Network\+Package\+Template}} (T \&t, Ts \&... ts)
+\item 
+constexpr uint32\+\_\+t \mbox{\hyperlink{class_engine_1_1_network_package_template_a682301df5988d19fc4b3d50a6ae2106b}{size}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_engine_1_1_network_package_template_ab488f38b46e3f034f340f2a2303f7fe0}{get\+\_\+type}} ()
+\item 
+\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{class_engine_1_1_network_package_template_a84a9005ae4530d337d8141e4d0fdefb3}{serialize}} ()
+\item 
+constexpr void \mbox{\hyperlink{class_engine_1_1_network_package_template_aae565bc6ab8a5d2c200c533029dc20ba}{write\+\_\+value\+\_\+to}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Writer}} \&writer)
+\item 
+void \mbox{\hyperlink{class_engine_1_1_network_package_template_a9c960fe443ff3a32382fa9fca68aeb0b}{deserialize}} (\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$ \+\_\+data)
+\item 
+constexpr void \mbox{\hyperlink{class_engine_1_1_network_package_template_a62d81a8a6b224ef2dc27ff4126ea6ed0}{read\+\_\+value\+\_\+from}} (\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Writer}} \&writer)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{class_engine_1_1_network_package_add5601d54aeba6d1a02e71c771586557}{get\+\_\+type}} ()=0
+\item 
+virtual \mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{class_engine_1_1_network_package_a8da912c76e9b235b7be0b40202aa7804}{serialize}} ()=0
+\item 
+virtual void \mbox{\hyperlink{class_engine_1_1_network_package_addc429abf88f6a7e27fa9856ed794836}{deserialize}} (\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Attributes inherited from \mbox{\hyperlink{class_engine_1_1_network_package}{Engine\+::\+Network\+Package}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{class_engine_1_1_network_package_a0bbe14e69c836879fc4d21adbc6c13d6}{data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T, class... Ts$>$\newline
+class Engine\+::\+Network\+Package\+Template$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$}
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00120}{120}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_a2950131c06a2ebd3c907008a3a733858}\label{class_engine_1_1_network_package_template_a2950131c06a2ebd3c907008a3a733858}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!NetworkPackageTemplate@{NetworkPackageTemplate}}
+\index{NetworkPackageTemplate@{NetworkPackageTemplate}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{NetworkPackageTemplate()}{NetworkPackageTemplate()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+constexpr \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::\+Network\+Package\+Template (\begin{DoxyParamCaption}\item[{T \&}]{t,  }\item[{Ts \&...}]{ts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00123}{123}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_a9c960fe443ff3a32382fa9fca68aeb0b}\label{class_engine_1_1_network_package_template_a9c960fe443ff3a32382fa9fca68aeb0b}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+void \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_engine_1_1_network_package_addc429abf88f6a7e27fa9856ed794836}{Engine\+::\+Network\+Package}}.
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00145}{145}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_ab488f38b46e3f034f340f2a2303f7fe0}\label{class_engine_1_1_network_package_template_ab488f38b46e3f034f340f2a2303f7fe0}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!get\_type@{get\_type}}
+\index{get\_type@{get\_type}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{get\_type()}{get\_type()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+uint32\+\_\+t \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::get\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_engine_1_1_network_package_add5601d54aeba6d1a02e71c771586557}{Engine\+::\+Network\+Package}}.
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00130}{130}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_a62d81a8a6b224ef2dc27ff4126ea6ed0}\label{class_engine_1_1_network_package_template_a62d81a8a6b224ef2dc27ff4126ea6ed0}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!read\_value\_from@{read\_value\_from}}
+\index{read\_value\_from@{read\_value\_from}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{read\_value\_from()}{read\_value\_from()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+constexpr void \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::read\+\_\+value\+\_\+from (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Writer}} \&}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00151}{151}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_a84a9005ae4530d337d8141e4d0fdefb3}\label{class_engine_1_1_network_package_template_a84a9005ae4530d337d8141e4d0fdefb3}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!serialize@{serialize}}
+\index{serialize@{serialize}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+\mbox{\hyperlink{class_engine_1_1span}{Engine\+::span}}$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::serialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_engine_1_1_network_package_a8da912c76e9b235b7be0b40202aa7804}{Engine\+::\+Network\+Package}}.
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00131}{131}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_a682301df5988d19fc4b3d50a6ae2106b}\label{class_engine_1_1_network_package_template_a682301df5988d19fc4b3d50a6ae2106b}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!size@{size}}
+\index{size@{size}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+constexpr uint32\+\_\+t \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00125}{125}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+\mbox{\Hypertarget{class_engine_1_1_network_package_template_aae565bc6ab8a5d2c200c533029dc20ba}\label{class_engine_1_1_network_package_template_aae565bc6ab8a5d2c200c533029dc20ba}} 
+\index{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}!write\_value\_to@{write\_value\_to}}
+\index{write\_value\_to@{write\_value\_to}!Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$@{Engine::NetworkPackageTemplate$<$ PACKAGE\_TYPE, T, Ts $>$}}
+\doxysubsubsection{\texorpdfstring{write\_value\_to()}{write\_value\_to()}}
+{\footnotesize\ttfamily template$<$const uint32\+\_\+t PACKAGE\+\_\+\+TYPE, class T , class... Ts$>$ \\
+constexpr void \mbox{\hyperlink{class_engine_1_1_network_package_template}{Engine\+::\+Network\+Package\+Template}}$<$ PACKAGE\+\_\+\+TYPE, T, Ts $>$\+::write\+\_\+value\+\_\+to (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_engine_1_1_network_package_1_1_writer}{Writer}} \&}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+Definition at line \mbox{\hyperlink{_network_package_8h_source_l00139}{139}} of file \mbox{\hyperlink{_network_package_8h_source}{Network\+Package.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libs/engine/include/\+Util/\mbox{\hyperlink{_network_package_8h}{Network\+Package.\+h}}\end{DoxyCompactItemize}
