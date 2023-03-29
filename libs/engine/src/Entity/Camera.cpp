@@ -41,3 +41,8 @@ glm::mat4 Camera::get_projection_view_matrix()
 	return camera->projection * transform.get_view_matrix();
 }
 
+glm::mat4 Camera::get_projection_matrix()
+{
+	return camera->projection;
+}
+

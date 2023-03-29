@@ -22,6 +22,6 @@ void main()
 	vec4 tex = texture(intexture, UV);
 
 	float val = tex.r;
-	color = vec4(vec3(LinearizeDepth(val) / far_plane), 1.0) * global_color;
-	color = vec4(vec3(val), 1) * global_color;
+	color = vec4(vec3(val) * (far_plane + near_plane > 1000 ? 10:1), 1) * global_color;
+	//color = vec4(vec3(val), 1) * global_color;
 }

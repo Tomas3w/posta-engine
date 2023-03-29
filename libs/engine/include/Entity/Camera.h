@@ -20,6 +20,8 @@ namespace Engine::Entity {
 			void update_projection_matrix();
 			/// Returns projection * view matrix, projection comes from the camera component and view represents the position and rotation of the transform
 			glm::mat4 get_projection_view_matrix();
+			/// Returns the projection matrix
+			glm::mat4 get_projection_matrix();
 
 			std::unique_ptr<Engine::Component::Camera> camera; // This is a unique_ptr just to be able to use an orthographic view or projection view
 			Engine::Component::Transform transform;

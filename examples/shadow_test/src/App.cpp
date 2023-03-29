@@ -228,6 +228,36 @@ void App::on_event(SDL_Event& event)
 					break;
 			}
 			break;
+		case SDL_MOUSEBUTTONDOWN:
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				//LOG("hola!");
+				//glm::vec3 camera_front = camera->transform.front();
+				//auto camera_center_pixel = camera_front * dynamic_cast<Engine::Component::CameraNearFar*>(camera->camera.get())->__near;
+				Engine::Component::PCamera* cam = dynamic_cast<Engine::Component::PCamera*>(camera->camera.get());
+				float fov = cam->__fov;
+				float __near = cam->__near;
+				float radius = sin(fov);
+				float ratio = get_width() / (float)get_height();
+				float screen_h = radius * __near;
+				float screen_w = ratio * screen_h;
+				glm::vec3 mouse_point((mouse_x / (float)get_width() - 0.5f) * screen_w, (mouse_y / (float)get_height() - 0.5f) * screen_h, -__near);
+				glm::vec3 mouse_dir = camera->transform.to_local(glm::normalize(mouse_point));
+				LOG(to_string(mouse_dir));
+				float factor = abs((plane_rb.get_transform().get_position().y + 1 - camera->transform.get_position().y) / mouse_dir.y);
+				box_rb.emplace_back(new Engine::Component::BoxRigidbody(camera->transform.get_position() + mouse_dir * factor, 1, glm::vec3(1.0f)));
+				
+				//glm::vec4 screen_space(mouse_x, mouse_y, -1, 1);
+				/*
+				glm::vec4 clip_space(mouse_x / (float)get_width() * 2 - 1, mouse_y / (float)get_height() * 2 - 1, 1, 1);
+				glm::vec4 world_space = glm::inverse(camera->get_projection_view_matrix()) * clip_space;
+				LOG(glm::to_string(world_space));
+				glm::vec3 global_position(world_space.x, world_space.y, world_space.z);
+				glm::vec3 dir = glm::normalize(camera->transform.get_position() - global_position);
+				box_rb.emplace_back(new Engine::Component::BoxRigidbody(camera->transform.get_position() - dir * 1.0f, 1, glm::vec3(1.0f)));
+				*/
+			}
+			break;
 	}
 }
 
