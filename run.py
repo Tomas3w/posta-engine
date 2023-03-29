@@ -13,7 +13,10 @@ def main():
     while p.poll() is None:
         l = p.stdout.readline()
         print(l.decode(), end='')
+        l = p.stderr.readline()
+        print(l.decode(), end='')
     print(p.stdout.read().decode(), end='')
+    print(p.stderr.read().decode(), end='')
 
 if __name__ == "__main__":
     main()
