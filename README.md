@@ -55,7 +55,7 @@ Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En
 
 
 
-Una vez instaladas estas librerias, agrega x86_64-w64-mingw32 en el PATH del sistema. Luego, clona el repositorio, y dentro ejecuta (este script de python solo funciona si se tiene ln instalado, sin embargo el mismo viene por defecto en w64devkit):
+Una vez instaladas estas librerias, agrega x86_64-w64-mingw32/bin en el PATH del sistema. Luego, clona el repositorio, y dentro ejecuta (este script de python solo funciona si se tiene ln instalado, sin embargo el mismo viene por defecto en w64devkit):
     
     python generate_project.py template
 Esto con el fin de crear un proyecto simple basado en la plantilla y para poder comprobar que no hubo errores con las dependencias.
