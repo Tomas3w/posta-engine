@@ -2,6 +2,7 @@ cmake_policy(SET CMP0072 NEW)
 
 add_library(
 	postaengine
+	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Util/ResourceBag.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/include/LuaAPI/LuaAPI.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/LuaAPI/LuaAPI.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/include/LuaAPI/LuaState.h"

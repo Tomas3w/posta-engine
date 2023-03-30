@@ -4,19 +4,14 @@ def main():
     n = sys.argv[1]
 
     import build
-    build.build()
-
-    os.chdir(f"build/apps/{n}")
-    
-    # 2>&1 | cat
-    p = subprocess.Popen(f"./{n}.exe", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    while p.poll() is None:
-        l = p.stdout.readline()
-        print(l.decode(), end='')
-        #l = p.stderr.readline()
-        #print(l.decode(), end='')
-    print(p.stdout.read().decode(), end='')
-    #print(p.stderr.read().decode(), end='')
+    if build.build():
+        os.chdir(f"build/apps/{n}")
+        
+        p = subprocess.Popen(f"./{n}.exe", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        while p.poll() is None:
+            l = p.stdout.readline()
+            print(l.decode(), end='')
+        print(p.stdout.read().decode(), end='')
 
 if __name__ == "__main__":
     main()

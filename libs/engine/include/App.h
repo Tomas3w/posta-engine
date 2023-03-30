@@ -12,6 +12,7 @@
 #include <engine/include/Util/Shader.h>
 #include <engine/include/LuaAPI/LuaState.h>
 #include <engine/include/UI/Textbox.h>
+#include <engine/include/Util/ResourceBag.h>
 
 #include <memory>
 #include <vector>
@@ -144,6 +145,9 @@ namespace Engine {
 
 			/// LuaState
 			std::unique_ptr<LuaAPI::LuaState> lua_state;
+
+			/// Resource bag, see Engine::ResourceBag for more info
+			ResourceBag* resource_bag;
 			
 		private:
 			int width, height;

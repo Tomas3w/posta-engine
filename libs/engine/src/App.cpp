@@ -1,3 +1,4 @@
+#include "engine/include/Util/ResourceBag.h"
 #include <engine/include/App.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -121,6 +122,9 @@ void App::init()
 	// Init lua state with api
 	lua_state.reset(new Engine::LuaAPI::LuaState);
 	Engine::LuaAPI::load_api(*lua_state);
+
+	// Init resource_bag
+	resource_bag = new Engine::ResourceBag;
 }
 
 void App::init_physics()
@@ -133,6 +137,8 @@ void App::init_physics()
 
 void App::dest()
 {
+	delete resource_bag;
+
 	lua_state.reset(); // it's important that the lua state is deleted before the context and physics
 
 	TCPConnToServer::connections.clear();
