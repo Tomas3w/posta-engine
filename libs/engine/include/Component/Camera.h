@@ -13,18 +13,12 @@ namespace Engine::Component {
 			/** Updates projection matrix based on type of camera */
 			virtual void update_projection_matrix(const int width, const int height) = 0;
 
+			float __near, __far;
 			glm::mat4 projection;
 	};
 
-	class CameraNearFar : public Camera
-	{
-		public:
-			/** Near and far planes */
-			float __near, __far;
-	};
-
 	/// Projection camera component
-	class PCamera : public CameraNearFar
+	class PCamera : public Camera
 	{
 		public:
 			PCamera(float _near, float _far);
@@ -37,7 +31,7 @@ namespace Engine::Component {
 			float __fov;
 	};
 
-	class OCamera : public CameraNearFar
+	class OCamera : public Camera
 	{
 		public:
 			OCamera(float _near, float _far);
