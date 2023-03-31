@@ -45,6 +45,11 @@ glm::mat4 Image::get_matrix_with_size(int x, int y, int _w, int _h)
 	return matrix_for_rect(Engine::UI::Rect(x, y, _w, _h), Engine::App::app->get_width(), Engine::App::app->get_height());
 }
 
+glm::mat4 Image::get_matrix_with_size(Engine::UI::Rect rect)
+{
+	return get_matrix_with_size(rect.x, rect.y, rect.w, rect.h);
+}
+
 int Image::get_w()
 {
 	return w;

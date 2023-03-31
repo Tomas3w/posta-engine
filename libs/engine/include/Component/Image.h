@@ -24,6 +24,7 @@ namespace Engine::Component {
 
 		glm::mat4 get_matrix(int x, int y);
 		glm::mat4 get_matrix_with_size(int x, int y, int _w, int _h);
+		glm::mat4 get_matrix_with_size(Engine::UI::Rect rect);
 		int get_w();
 		int get_h();
 		void set_w(int _w);
