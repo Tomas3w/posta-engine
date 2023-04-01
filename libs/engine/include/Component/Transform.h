@@ -42,6 +42,8 @@ namespace Engine::Component {
 			
 			/// Transform the position vec to a local position (local to this transform)
 			glm::vec3 to_local(glm::vec3 vec) const;
+			/// Does the opposite of to_local
+			glm::vec3 from_local(glm::vec3 vec) const;
 
 			/// Returns a world space transform as if this transform was local to the transform argument
 			Transform as_local_to(Transform transform) const;

@@ -216,7 +216,7 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 	{
 		if (s.size() == 0)
 			continue;
-		int vertex_index = -1;
+		//int vertex_index = -1;
 		std::vector<int> bone_indices;
 		std::vector<float> bone_weights;
 
@@ -226,7 +226,7 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 			if (c == ' ')
 			{
 				c = '\0';
-				vertex_index = atoi(&s[0]);
+				//vertex_index = atoi(&s[0]);
 				c = ' ';
 				previous = (&c) + 1;
 			}

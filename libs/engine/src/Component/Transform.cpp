@@ -114,6 +114,11 @@ glm::vec3 Transform::to_local(glm::vec3 vec) const
 		   vec.z * front();
 }
 
+glm::vec3 Transform::from_local(glm::vec3 vec) const
+{
+	return glm::inverse(rotation) * vec;
+}
+
 Transform Transform::as_local_to(Transform transform) const
 {
 	// TOTEST
