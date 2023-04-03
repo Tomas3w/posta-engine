@@ -137,7 +137,6 @@ Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
 	std::filesystem::path path_a = path;
 	path_a += ".bones";
 	
-	//std::cout << "reading " << path << ":\n";
 	file.open(path_a);
 	if (!file)
 		throw std::logic_error("could not find file in path '" + path_a.string() + "'");
@@ -223,7 +222,7 @@ Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
 				switch (s[1])
 				{
 					case 't':
-						mesh.add_data<2>(i_uv, {array[0], array[1]});
+						mesh.add_data<2>(i_uv, {array[0], 1 - array[1]});
 						break;
 					case 'n':
 						mesh.add_data<3>(i_normal, {array[0], array[1], array[2]});
@@ -236,10 +235,10 @@ Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
 			else if (s[0] == 'f')
 			{
 				size_t left = 2;
+				int face_index = 0;
+				std::array<std::vector<int>, 3> face;
 				for (size_t i = left; i <= s.size(); i++)
 				{
-					int face_index = 0;
-					std::array<std::vector<int>, 3> face;
 					if (s[i] == ' ' || s[i] == '\0')
 					{
 						int indices[3];
@@ -265,21 +264,9 @@ Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
 							face_index = 0;
 						}
 						else
+						{
 							face_index++;
-						/*/ position
-						vertex[0] = vertices[indices[0] - 1][0];
-						vertex[1] = vertices[indices[0] - 1][1];
-						vertex[2] = vertices[indices[0] - 1][2];
-						// normals
-						vertex[3] = normals[indices[2] - 1][0];
-						vertex[4] = normals[indices[2] - 1][1];
-						vertex[5] = normals[indices[2] - 1][2];
-						// uvs
-						vertex[6] = uvs[indices[1] - 1][0];
-						vertex[7] = 1 - uvs[indices[1] - 1][1];
-
-						mesh.add_vertex(vertex);
-						left = i + 1;*/
+						}
 						left = i + 1;
 					}
 				}

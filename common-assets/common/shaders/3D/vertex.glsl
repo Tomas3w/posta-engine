@@ -27,9 +27,8 @@ void main()
 		final_matrix[3] = vec4(0.0f);
 		for (int i = 0; i < 4; i++)
 		{
-			if (bones_weights[i] > 0)// && (bones_matrices[0] != bones_matrices[0] * 1))
+			if (bones_weights[i] > 0)
 				final_matrix += bones_matrices[int(floor(bones_weights[i]))] * (bones_weights[i] - floor(bones_weights[i]));
-				//final_position += bones_matrices[int(floor(bones_weights[i]))] * vec4(position, 1.0f) * (bones_weights[i] - floor(bones_weights[i]));
 		}
 		final_position = final_matrix * vec4(position, 1.0f);
 
