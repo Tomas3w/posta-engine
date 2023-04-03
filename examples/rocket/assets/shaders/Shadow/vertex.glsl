@@ -40,7 +40,7 @@ void main()
 	vec4 world = model * final_position;
 	frag_position = vec3(world);
 
-	in_normal = normal_model * transpose(inverse(mat3(final_matrix))) * normal;
+	in_normal = normal_model * normal;
 	
 	vec4 glpos = projection_view * world;
 	gl_Position = glpos;
