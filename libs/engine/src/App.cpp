@@ -92,16 +92,27 @@ void App::init()
 
 	// Filling mesh2d with its vertices
 	Engine::Mesh _mesh2d(&Assets::basic_vertex_props);
-	float mesh2d_vertices[] = {
-		1.0, -1.0, -0.0, -0.0, -0.0, 1.0, 1.0, 1.0,
+	/*float mesh2d_vertices[] = {
+		1.0, -1.0, 0.0, -0.0, -0.0, 1.0, 1.0, 1.0,
 		-1.0, 1.0, 0.0, -0.0, -0.0, 1.0, 0.0, 0.0,
-		-1.0, -1.0, -0.0, -0.0, -0.0, 1.0, 0.0, 1.0,
-		1.0, -1.0, -0.0, -0.0, -0.0, 1.0, 1.0, 1.0,
+		-1.0, -1.0, 0.0, -0.0, -0.0, 1.0, 0.0, 1.0,
+		1.0, -1.0, 0.0, -0.0, -0.0, 1.0, 1.0, 1.0,
 		1.0, 1.0, 0.0, -0.0, -0.0, 1.0, 1.0, 0.0,
 		-1.0, 1.0, 0.0, -0.0, -0.0, 1.0, 0.0, 0.0,
-	};
-	for (short i = 0; i < 6; i++)
-		_mesh2d.add_vertex(mesh2d_vertices + i * Assets::basic_vertex_props.sum_of_sizes);
+	};*/
+	//for (short i = 0; i < 6; i++)
+	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), { 1, -1, 0});
+	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), {-1,  1, 0});
+	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), {-1, -1, 0});
+	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), { 1,  1, 0});
+	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("normal"), {0, 0, 1});
+	_mesh2d.add_data<2>(_mesh2d.get_index_by_name("uv"), {1, 1});
+	_mesh2d.add_data<2>(_mesh2d.get_index_by_name("uv"), {1, 0});
+	_mesh2d.add_data<2>(_mesh2d.get_index_by_name("uv"), {0, 1});
+	_mesh2d.add_data<2>(_mesh2d.get_index_by_name("uv"), {0, 0});
+	_mesh2d.add_face({{{0, 0, 0}, {1, 0, 3}, {2, 0, 2}}});
+	_mesh2d.add_face({{{0, 0, 0}, {3, 0, 1}, {1, 0, 3}}});
+	_mesh2d.lock();
 	mesh2d.reset(new Engine::Component::StaticMesh(_mesh2d));
 	// Init shader2d
 	shader2d.reset(new Engine::TwoDShader());

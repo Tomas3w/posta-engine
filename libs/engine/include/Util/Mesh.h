@@ -1,19 +1,23 @@
 #ifndef POSTAENGINE_MESH_H
 #define POSTAENGINE_MESH_H
+#include <glm/detail/qualifier.hpp>
 #include <iostream>
 #include <vector>
 #include <GL/glew.h>
+#include <engine/include/Util/General.h>
+#include <cstring>
 
 namespace Engine {
 	/// Structure containing the vertex properties for meshes
 	struct VertexProperties
 	{
+		const std::vector<std::string> attribute_name;
 		const std::vector<GLubyte> attributes_sizes; // sizes of each component of the vertex (not in bytes, but in floats)
 		const GLubyte sum_of_sizes; // sum of the sizes of attributes_sizes (not in bytes, but in floats)
 	};
 
 	/// Utility class representing a mesh
-	/** A mesh contains the vertices of a 3d model. 
+	/** A mesh contains the vertices (and sometimes the indices) of a 3d model. 
 	 * A mesh instance can represent any mesh */
 	class Mesh
 	{
@@ -22,22 +26,46 @@ namespace Engine {
 			/** \param properties a VertexProperties pointer, the 
 			 * reference must be valid as long as the Mesh is being used */
 			Mesh(const VertexProperties* properties);
-			/// Reserves memory for saving vertices
-			void reserve_vertices(size_t vertices);
-			/// Adds a vertix to the internal array of vertices
-			void add_vertex(const float* vertex);
 
-			/// Returns the vertices as a vector of floats
-			const std::vector<GLfloat>& get_vertices() const;
-			/// Swaps the vertices data with another vertices data
-			/** This effectively moves the data from vs to the internal
-			 * vector of vertices and visceversa */
-			void swap_vertices(std::vector<GLfloat>& vs);
+			/// Adds data to one of the list of attributes
+			template<int C>
+			void add_data(int component_index, glm::vec<C, float, glm::defaultp> data)
+			{
+				check_if_not_locked();
+				this->data.at(component_index).insert(this->data.at(component_index).end(), &data[0], &data[0] + C);
+			}
+			/// Returns the data needed to make a StaticMesh
+			const std::vector<GLfloat>& get_vertex_data();
+			/// Returns data from one attribute
+			const std::vector<GLfloat>& get_data(int attribute_index);
+			/// Returns the attribute_index for get_data by name
+			int get_index_by_name(std::string name);
+
+			/// Adds a face to the mesh
+			void add_face(std::array<std::vector<int>, 3> faces_indices);
+			/// Returns the indices of the vertices for an attribute
+			const std::vector<int>& get_indices(int attribute_index);
+
+			/// Same as get_indices but without const qualifier
+			//std::vector<int>& get_non_const_indices();
 			/// Returns the vertices attributes properties
 			const VertexProperties* get_vertex_properties() const;
+
+			/// Locks the mesh from further changes
+			/// A mesh that is locked cannot be modified in the future, certain methods (like get_vertices_without_indices) can still alter
+			/// the object to some degree, but these changes will no be noticeable by the callers
+			void lock();
 		private:
+			void check_if_locked() const;
+			void check_if_not_locked() const;
+
 			const VertexProperties* vertex_properties;
-			std::vector<GLfloat> vertices;
+			std::vector<GLfloat> vertex_data;
+
+			std::vector<std::vector<GLfloat>> data; // one vector<GLfloat> for each attribute
+			std::vector<std::vector<int>> faces_data; // one vector<int> for each attribute
+
+			bool is_locked;
 	};
 }
 

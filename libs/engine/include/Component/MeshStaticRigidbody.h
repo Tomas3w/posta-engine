@@ -9,18 +9,14 @@ namespace Engine::Component {
 	class MeshStaticRigidbody : public Rigidbody
 	{
 		public:
-			/// Constructs a MeshStaticRigidbody
-			/** Each vertex is form of three floats representing x, y, and z
-			 * The indices are indices of the vertices
-			 * \param position of the origin of the rigidbody
-			 * \param swap_data whether to swap the vertices and indices or
-			 * copy them */
-			MeshStaticRigidbody(glm::vec3 position, std::vector<GLfloat>& _vertices, std::vector<int>& _indices, bool swap_data);
+			/// Constructs a MeshStaticRigidbody from a mesh (that has indices)
+			MeshStaticRigidbody(glm::vec3 position, Mesh& mesh);
 			virtual ~MeshStaticRigidbody();
 		private:
 			std::vector<GLfloat> vertices;
 			std::vector<int> indices;
 			
+			//btBvhTriangleMeshShape* tmesh;
 			btTriangleIndexVertexArray* tarray;
 	};
 }

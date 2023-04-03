@@ -1,18 +1,20 @@
 #include <engine/include/Component/StaticMesh.h>
+#include <engine/include/Util/LoggingMacro.h>
 
 using Engine::Component::StaticMesh;
 
-StaticMesh::StaticMesh(const Mesh& mesh)
+StaticMesh::StaticMesh(Mesh mesh)
 {
+	//LOG("here we are");
 	const VertexProperties* props = mesh.get_vertex_properties();
-	n_vertices = mesh.get_vertices().size() / props->sum_of_sizes;
+	n_vertices = mesh.get_vertex_data().size() / props->sum_of_sizes;
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, n_vertices * props->sum_of_sizes * sizeof(float), mesh.get_vertices().data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, n_vertices * props->sum_of_sizes * sizeof(float), mesh.get_vertex_data().data(), GL_STATIC_DRAW);
 
 	GLuint attribute = 0;
 	GLubyte sum = 0;

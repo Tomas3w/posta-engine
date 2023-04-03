@@ -10,9 +10,9 @@ namespace Engine::Component {
 	{
 		public:
 			/** Constructs a StaticMesh from a mesh
-			 * \param mesh a Mesh object to create the StaticMesh from
+			 * \param mesh a (locked) Mesh object
 			 * */
-			StaticMesh(const Mesh& mesh);
+			StaticMesh(Mesh mesh);
 			StaticMesh(const StaticMesh&)=delete;
 			StaticMesh operator=(const StaticMesh&)=delete;
 			~StaticMesh();

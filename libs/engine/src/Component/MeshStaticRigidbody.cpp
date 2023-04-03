@@ -1,20 +1,13 @@
 #include "engine/include/Component/MeshStaticRigidbody.h"
+#include "engine/include/Util/LoggingMacro.h"
 
 using Engine::Component::MeshStaticRigidbody;
 
-MeshStaticRigidbody::MeshStaticRigidbody(glm::vec3 position, std::vector<GLfloat>& _vertices, std::vector<int>& _indices, bool swap_data)
+MeshStaticRigidbody::MeshStaticRigidbody(glm::vec3 position, Mesh& mesh)
 {
 	// get vertex data and indices
-	if (swap_data)
-	{
-		vertices.swap(_vertices);
-		indices.swap(_indices);
-	}
-	else
-	{
-		vertices = _vertices;
-		indices = _indices;
-	}
+	vertices = mesh.get_data(mesh.get_index_by_name("position"));
+	indices = mesh.get_indices(mesh.get_index_by_name("position"));
 
 	// make the rigidbody and shape
 	btTransform t;
@@ -26,17 +19,20 @@ MeshStaticRigidbody::MeshStaticRigidbody(glm::vec3 position, std::vector<GLfloat
 		indices.data(), sizeof(int) * 3, // indices and bytes per triangle
 		vertices.size() / 3, // num of vertices
 		vertices.data(), 3 * sizeof(GLfloat)); // vertices and bytes per vertex
-	btBvhTriangleMeshShape* tmesh = new btBvhTriangleMeshShape(tarray, true);
+	auto tmesh = new btBvhTriangleMeshShape(tarray, true);
 
 	btMotionState* motion = new btDefaultMotionState(t);
 	btRigidBody::btRigidBodyConstructionInfo info(0, motion, tmesh);
 	set_body(new btRigidBody(info));
 	App::app->physics->world->addRigidBody(get_body());
-
 }
 
 MeshStaticRigidbody::~MeshStaticRigidbody()
 {
+	/*LOG("deleting tmesh");
+	delete tmesh;*/
+	//LOG("deleting tarray");
 	delete tarray;
+	//LOG("all deleted (not really)!");
 }
 

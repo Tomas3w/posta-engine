@@ -1,42 +1,30 @@
 #include <engine/include/Util/Assets.h>
+#include <engine/include/Util/LoggingMacro.h>
 
 using Engine::Mesh;
 
 Mesh Engine::Assets::load_obj(std::filesystem::path path)
 {
+	//LOG("loading path: ", path);
 	Mesh mesh(&basic_vertex_props);
 	std::ifstream file(path);
 	if (!file)
 		throw std::logic_error("Could not find file in path '" + path.string() + "'");
 
-	std::string s;
-	std::vector<glm::vec3> vertices;
-	std::vector<glm::vec3> normals;
-	std::vector<glm::vec2> uvs;
+	int i_position = mesh.get_index_by_name("position");
+	int i_normal = mesh.get_index_by_name("normal");
+	int i_uv = mesh.get_index_by_name("uv");
 
-	float vertex[8];
+	std::string s;
+
+	//float vertex[8];
 	while (getline(file, s))
 	{
 		if (!s.empty())
 		{
 			if (s[0] == 'v')
 			{
-				float* array = nullptr;
-				switch (s[1])
-				{
-					case 't':
-						uvs.push_back(glm::vec2(1.0f));
-						array = &uvs.back()[0];
-						break;
-					case 'n':
-						normals.push_back(glm::vec3(1.0f));
-						array = &normals.back()[0];
-						break;
-					case ' ':
-						vertices.push_back(glm::vec3(1.0f));
-						array = &vertices.back()[0];
-						break;
-				}
+				float array[3];
 				short vp = 0;
 				char* i = nullptr;
 				for (char& c : s)
@@ -58,10 +46,24 @@ Mesh Engine::Assets::load_obj(std::filesystem::path path)
 					}
 				}
 				array[vp] = atof(i);
+				switch (s[1])
+				{
+					case 't':
+						mesh.add_data<2>(i_uv, {array[0], 1 - array[1]});
+						break;
+					case 'n':
+						mesh.add_data<3>(i_normal, {array[0], array[1], array[2]});
+						break;
+					case ' ':
+						mesh.add_data<3>(i_position, {array[0], array[1], array[2]});
+						break;
+				}
 			}
 			else if (s[0] == 'f')
 			{
 				size_t left = 2;
+				int face_index = 0;
+				std::array<std::vector<int>, 3> face;
 				for (size_t i = left; i <= s.size(); i++)
 				{
 					if (s[i] == ' ' || s[i] == '\0')
@@ -82,7 +84,19 @@ Mesh Engine::Assets::load_obj(std::filesystem::path path)
 								s[j] = c;
 							}
 						}
-						// position
+						face[face_index] = {indices[0] - 1, indices[2] - 1, indices[1] - 1};//mesh.add_face({{,,}});
+						//LOG("adding face! ", face_index);
+						if (face_index == 2)
+						{
+							mesh.add_face(face);
+							face_index = 0;
+						}
+						else
+						{
+							//LOG("this does not happen for some reason...");
+							face_index++;
+						}
+						/*/ position
 						vertex[0] = vertices[indices[0] - 1][0];
 						vertex[1] = vertices[indices[0] - 1][1];
 						vertex[2] = vertices[indices[0] - 1][2];
@@ -95,6 +109,7 @@ Mesh Engine::Assets::load_obj(std::filesystem::path path)
 						vertex[7] = 1 - uvs[indices[1] - 1][1];
 
 						mesh.add_vertex(vertex);
+						left = i + 1;*/
 						left = i + 1;
 					}
 				}
@@ -104,119 +119,32 @@ Mesh Engine::Assets::load_obj(std::filesystem::path path)
 
 	file.close();
 
-	/*/ DEBUG
-	std::cout << "Mesh vertices(" << mesh.get_vertices().size() << "): " << std::endl;
-	int i = 0;
-	for (const float& e : mesh.get_vertices())
-	{
-		std::cout << e << ", ";
-		i = (i + 1) % 8;
-		if (i == 0)
-			std::cout << "\n";
-	}
-	std::cout << "\n";
-	//*/
-
+	mesh.lock();
 	return mesh;
 }
 
-void Engine::Assets::load_obj_vertices_and_indices(std::filesystem::path path, std::vector<GLfloat>& vertices, std::vector<int>& indices)
+Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
 {
-	std::ifstream file(path);
-	if (!file)
-		throw std::logic_error("Could not find file in path '" + path.string() + "'");
+	Mesh mesh(&bone_vertex_props);
+	int i_position = mesh.get_index_by_name("position");
+	int i_normal = mesh.get_index_by_name("normal");
+	int i_uv = mesh.get_index_by_name("uv");
+	int i_weights = mesh.get_index_by_name("weights");
 
-	std::string s;
-
-	while (getline(file, s))
-	{
-		if (!s.empty())
-		{
-			if (s[0] == 'v' && s[1] == ' ')
-			{
-				short vp = 0;
-				char* i = nullptr;
-				for (char& c : s)
-				{
-					if (c == ' ')
-					{
-						if (!i)
-							i = &c + 1;
-						else
-						{
-							c = '\0';
-							vertices.push_back(atof(i));
-							i = &c + 1;
-							c = ' ';
-							vp += 1;
-							if (vp >= 2)
-								break;
-						}
-					}
-				}
-				vertices.push_back(atof(i));
-			}
-			else if (s[0] == 'f')
-			{
-				size_t left = 2;
-				for (size_t i = left; i <= s.size(); i++)
-				{
-					if (s[i] == ' ' || s[i] == '\0')
-					{
-						for (size_t j = left; j <= s.size(); j++)
-						{
-							if (s[j] == '/')
-							{
-								s[j] = '\0';
-								indices.push_back(atoi(&s[left]) - 1);
-								s[j] = '/';
-								break;
-							}
-						}
-						left = i + 1;
-					}
-				}
-			}
-		}
-	}
-
-	file.close();
-
-	/*/
-	std::cout << "Vertices:";
-	for (size_t i = 0; i < vertices.size(); i++)
-	{
-		if (i % 3 == 0)
-			std::cout << std::endl;
-		std::cout << vertices[i] << ", ";
-	}
-	std::cout << "\nIndices: ";
-	for (size_t i = 0; i < indices.size(); i++)
-	{
-		if (i % 3 == 0)
-			std::cout << std::endl;
-		std::cout << indices[i] << ", ";
-	}
-	std::cout << "\n";
-	*/
-}
-
-Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
-{
 	std::ifstream file;
 	std::string s;
 	// Reading .bones
-	std::filesystem::path path = path_without_ext;
-	path += ".bones";
+	std::filesystem::path path_a = path;
+	path_a += ".bones";
 	
 	//std::cout << "reading " << path << ":\n";
-	file.open(path);
-	std::vector<glm::vec4> bone_influences;
+	file.open(path_a);
+	if (!file)
+		throw std::logic_error("could not find file in path '" + path_a.string() + "'");
 	while (getline(file, s))
 	{
 		if (s.size() == 0)
 			continue;
-		//int vertex_index = -1;
 		std::vector<int> bone_indices;
 		std::vector<float> bone_weights;
 
@@ -226,7 +154,6 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 			if (c == ' ')
 			{
 				c = '\0';
-				//vertex_index = atoi(&s[0]);
 				c = ' ';
 				previous = (&c) + 1;
 			}
@@ -245,25 +172,6 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 				previous = (&c) + 1;
 			}
 		}
-		//std::cout << "for vertex " << vertex_index << ": ";
-		
-		/*
-		float max = 0;
-		int index_of_max;
-		for (size_t i = 0; i < bone_indices.size(); i++)
-		{
-			//std::cout << "bone(" << bone_indices[i] << "|" << bone_weights[i] << "), ";
-			if (bone_weights[i] >= max)
-			{
-				max = bone_weights[i];
-				index_of_max = i;
-			}
-		}
-		if (bone_indices.size())
-			bone_influences.push_back(glm::vec4{bone_indices[index_of_max] + 0.9999f, -1, -1, -1});
-		else
-			bone_influences.push_back(glm::vec4{-1, -1, -1, -1});//a*/
-	
 
 		std::vector<std::pair<int, float>> bone_inf;
 		for (size_t i = 0; i < bone_indices.size(); i++)
@@ -274,46 +182,23 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 		glm::vec4 fn = {-1, -1, -1, -1};
 		for (size_t i = 0; i < bone_inf.size(); i++)
 			fn[i] = std::min(bone_inf[i].second, 0.9999f) + bone_inf[i].first;
-		bone_influences.push_back(fn);//glm::vec4{bone_indices[index_of_max] + 0.9999f, -1, -1, -1});
+		mesh.add_data<4>(i_weights, fn);
 	}
 	file.close();
 
-	// Reading .obj
-	path = path_without_ext;
-	path += ".obj";
-	Mesh mesh(&bone_vertex_props);
-	file.open(path);
+	auto path_b = path;
+	path_b += ".obj";
+	file.open(path_b);
 	if (!file)
-		throw std::logic_error("Could not find file in path '" + path.string() + "'");
+		throw std::logic_error("could not find file in path '" + path_b.string() + "'");
 
-	std::vector<glm::vec3> vertices;
-	std::vector<glm::vec3> normals;
-	std::vector<glm::vec2> uvs;
-	vertices.reserve(bone_influences.size());
-
-	float vertex[12];
-	while (getline(file, s).good())
+	while (getline(file, s))
 	{
 		if (!s.empty())
 		{
 			if (s[0] == 'v')
 			{
-				float* array = nullptr;
-				switch (s[1])
-				{
-					case 't':
-						uvs.push_back(glm::vec2(1.0f));
-						array = &uvs.back()[0];
-						break;
-					case 'n':
-						normals.push_back(glm::vec3(1.0f));
-						array = &normals.back()[0];
-						break;
-					case ' ':
-						vertices.push_back(glm::vec3(1.0f));
-						array = &vertices.back()[0];
-						break;
-				}
+				float array[3];
 				short vp = 0;
 				char* i = nullptr;
 				for (char& c : s)
@@ -335,12 +220,26 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 					}
 				}
 				array[vp] = atof(i);
+				switch (s[1])
+				{
+					case 't':
+						mesh.add_data<2>(i_uv, {array[0], array[1]});
+						break;
+					case 'n':
+						mesh.add_data<3>(i_normal, {array[0], array[1], array[2]});
+						break;
+					case ' ':
+						mesh.add_data<3>(i_position, {array[0], array[1], array[2]});
+						break;
+				}
 			}
 			else if (s[0] == 'f')
 			{
 				size_t left = 2;
 				for (size_t i = left; i <= s.size(); i++)
 				{
+					int face_index = 0;
+					std::array<std::vector<int>, 3> face;
 					if (s[i] == ' ' || s[i] == '\0')
 					{
 						int indices[3];
@@ -359,7 +258,15 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 								s[j] = c;
 							}
 						}
-						// position
+						face[face_index] = {indices[0] - 1, indices[2] - 1, indices[1] - 1, indices[0] - 1};//mesh.add_face({{,,}});
+						if (face_index == 2)
+						{
+							mesh.add_face(face);
+							face_index = 0;
+						}
+						else
+							face_index++;
+						/*/ position
 						vertex[0] = vertices[indices[0] - 1][0];
 						vertex[1] = vertices[indices[0] - 1][1];
 						vertex[2] = vertices[indices[0] - 1][2];
@@ -370,13 +277,9 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 						// uvs
 						vertex[6] = uvs[indices[1] - 1][0];
 						vertex[7] = 1 - uvs[indices[1] - 1][1];
-						// bones
-						vertex[8] = bone_influences[indices[0] - 1][0];
-						vertex[9] = bone_influences[indices[0] - 1][1];
-						vertex[10] = bone_influences[indices[0] - 1][2];
-						vertex[11] = bone_influences[indices[0] - 1][3];
 
 						mesh.add_vertex(vertex);
+						left = i + 1;*/
 						left = i + 1;
 					}
 				}
@@ -386,7 +289,7 @@ Mesh Engine::Assets::load_obj_and_bones(std::filesystem::path path_without_ext)
 
 	file.close();
 
+	mesh.lock();
 	return mesh;
-
 }
 
