@@ -177,6 +177,14 @@ Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
 			bone_inf.push_back({bone_indices[i], bone_weights[i]});
 		std::sort(bone_inf.begin(), bone_inf.end(), [](std::pair<int, float> a, std::pair<int, float> b){ return a.second < b.second; });
 		bone_inf.resize(std::min(bone_inf.size(), static_cast<size_t>(4)));
+		float max_value_of_bone_inf = -1;
+		for (auto& b : bone_inf)
+		{
+			if (b.second > max_value_of_bone_inf)
+				max_value_of_bone_inf = b.second;
+		}
+		for (auto& b : bone_inf)
+			b.second /= max_value_of_bone_inf;
 
 		glm::vec4 fn = {-1, -1, -1, -1};
 		for (size_t i = 0; i < bone_inf.size(); i++)
