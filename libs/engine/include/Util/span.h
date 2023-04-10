@@ -61,6 +61,11 @@ namespace Engine {
 		};
 
 		public:
+			span()
+			{
+				_ptr = nullptr;
+				_size = 0;
+			}
 			span(T* ptr, size_t size)
 			{
 				_ptr = ptr;
@@ -85,6 +90,11 @@ namespace Engine {
 			size_t size()
 			{
 				return this->_size;
+			}
+
+			bool empty()
+			{
+				return this->_size == 0;
 			}
 
 			T& operator[](size_t index)

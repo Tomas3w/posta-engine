@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/norm.hpp>
 #include <bullet/btBulletDynamicsCommon.h>
 #include "engine/include/Util/span.h"
 
