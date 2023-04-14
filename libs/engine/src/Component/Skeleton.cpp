@@ -14,6 +14,7 @@ Engine::Component::Transform Skeleton::str_to_transform(std::string s)
 	}
 	Transform transform(glm::vec3(numbers[0], numbers[1], numbers[2]));
 	transform.set_rotation(glm::quat(numbers[3], numbers[4], numbers[5], numbers[6]));
+	transform.set_scale({numbers[7], numbers[8], numbers[9]});
 	return transform;
 }
 
