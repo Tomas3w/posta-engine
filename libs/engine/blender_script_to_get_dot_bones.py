@@ -16,32 +16,6 @@ def prant(*args, **kwargs):
                 bpy.ops.console.scrollback_append(c, text=line)
                 #file.write(line + "\n")
 
-"""
-prant(context.object.name)
-prant(context.object.animation_data)
-
-if context.object.type == 'ARMATURE':
-    armature = context.object.data
-    for bone in armature.bones:
-        prant(f'"{bone.name}",')
-#"""
-
-"""
-esqueleto = bpy.data.objects['Esqueleto']
-#prant(esqueleto.pose.bones['L.pie'].matrix)
-
-path = "/home/tomas/Documentos/proyectos/Proyecto Posta/build/app/assets/blender_matrices.txt"
-t = ""
-for bone in esqueleto.pose.bones:
-    #t += "\n" + bone.name + "\n"
-    for v in bone.matrix:
-        for e in v:
-            t += str(e) + " "
-with open(path, "w") as file:
-    file.write(t)
-
-#"""
-
 # Returns the index of the bone
 def get_index_from_bone_name(name):
     for i, pb in enumerate(bpy.context.active_object.parent.pose.bones):
@@ -143,11 +117,12 @@ def save_skeleton_and_animations(path, skeleton_filename, sample_rate):
         # for each animation record each bone location and rotation
         final_animations = {}
         for animation in obj.animation_data.nla_tracks:
-            # selecting animation
-            for anim in obj.animation_data.nla_tracks:
-                anim.mute = not anim == animation
-            # reading pose data
-            final_animations[animation.name] = get_animation(obj, animation, sample_rate)
+            if len(animation.strips) != 0:
+                # selecting animation
+                for anim in obj.animation_data.nla_tracks:
+                    anim.mute = not anim == animation
+                # reading pose data
+                final_animations[animation.name] = get_animation(obj, animation, sample_rate)
         #prant(final_animations.keys())
 
         # saving animations
@@ -170,12 +145,12 @@ def save_obj(path):
     bpy.ops.export_scene.obj(filepath=path, use_materials=False, use_triangles=True, use_selection=True, axis_forward='-Z', axis_up='Y', use_mesh_modifiers=False)
     #bpy.ops.export_scene.obj(filepath=path, use_materials=False, use_triangles=True, use_selection=True, axis_forward='Y', axis_up='Z', use_mesh_modifiers=False) # DEBUG
 
-assets_directory = "C:\\Users\\tomas\\Documents\\guardable\\Proyecto Posta\\build\\app\\assets\\"
-base_directory = assets_directory + "test/"
+assets_directory = "C:\\posta-engine\\apps\\shadow_test\\assets\\unidad\\"
+base_directory = assets_directory + "mago/"
 
-#save_obj(base_directory + "test.obj")
+#save_obj(base_directory + "mago.obj")
 
-#save_bones_file(base_directory + "test.bones")
+#save_bones_file(base_directory + "mago.bones")
 save_skeleton_and_animations(base_directory, "skeleton.skl", 1)
 
 

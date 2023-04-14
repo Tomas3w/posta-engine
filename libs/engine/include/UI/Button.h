@@ -10,6 +10,7 @@ namespace Engine::UI {
 		public:
 			/// Constructs a button
 			Button(Rect _rect);
+			Button() = default;
 			/// Overload of loop with x_offset = y_offset = 0
 			bool loop();
 			/// Updates the button state
