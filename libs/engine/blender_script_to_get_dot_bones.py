@@ -74,6 +74,9 @@ def to_opengl_axes(element):
         #return mathutils.Euler((eula.x, eula.z, -eula.y), 'XYZ').to_quaternion()
     raise TypeError()
 
+def to_opengl_scale_axes(vector):
+    return mathutils.Vector((vector.x, vector.z, vector.y))
+
 # The function expects an armature to be selected
 # Saves in a .skl file the skeleton structure along with its rest transforms
 # It also saves the animations in the same directory (argument path) as .anm files
@@ -84,7 +87,8 @@ def save_skeleton_and_animations(path, skeleton_filename, sample_rate):
             #loc = obj.matrix_world @ mathutils.Vector(pb.head)
             loc = obj.matrix_world @ mathutils.Vector(pb.matrix.to_translation())
             rot = mathutils.Quaternion(pb.matrix.to_quaternion())
-            bones_transforms.append((loc, rot, (pb.head - pb.tail).length))
+            scl = pb.matrix.to_scale()
+            bones_transforms.append((loc, rot, scl, (pb.head - pb.tail).length))
         return bones_transforms
 
     def get_animation(obj, nla_track, sample_rate):
@@ -106,13 +110,14 @@ def save_skeleton_and_animations(path, skeleton_filename, sample_rate):
     # saving skeleton structure
     with open(path + "/" + skeleton_filename, "w") as file:
         for pb, bone in zip(obj.pose.bones, get_skeleton_pose_data(obj)):
-            file.write(f"{pb.name} {pb.parent_recursive[0].name if pb.parent_recursive else ''} {bone[2]}\n")
+            file.write(f"{pb.name} {pb.parent_recursive[0].name if pb.parent_recursive else ''} {bone[3]}\n")
     # saving skeleton rest pose data
     with open(path + "/rest.anmr", "w") as file:
         for bone in get_skeleton_pose_data(obj):
             location = to_opengl_axes(bone[0])
             rotation = to_opengl_axes(bone[1])
-            file.write(" ".join([str(x) for x in itertools.chain(location, rotation)]) + "\n")
+            scale = to_opengl_scale_axes(bone[2])
+            file.write(" ".join([str(x) for x in itertools.chain(location, rotation, scale)]) + "\n")
     if obj.animation_data != None:
         # for each animation record each bone location and rotation
         final_animations = {}
@@ -138,19 +143,20 @@ def save_skeleton_and_animations(path, skeleton_filename, sample_rate):
                         #prant(bone)
                         location = to_opengl_axes(bone[0])
                         rotation = to_opengl_axes(bone[1])
-                        file.write(" ".join([str(x) for x in itertools.chain(location, rotation)]) + "\n")
+                        scale = to_opengl_scale_axes(bone[2])
+                        file.write(" ".join([str(x) for x in itertools.chain(location, rotation, scale)]) + "\n")
 
 # The function expects a mesh to be selected
 def save_obj(path):
     bpy.ops.export_scene.obj(filepath=path, use_materials=False, use_triangles=True, use_selection=True, axis_forward='-Z', axis_up='Y', use_mesh_modifiers=False)
     #bpy.ops.export_scene.obj(filepath=path, use_materials=False, use_triangles=True, use_selection=True, axis_forward='Y', axis_up='Z', use_mesh_modifiers=False) # DEBUG
 
-assets_directory = "C:\\posta-engine\\apps\\shadow_test\\assets\\unidad\\"
-base_directory = assets_directory + "mago/"
+assets_directory = "C:\\Users\\tomas\\Documents\\guardable\GitHub\\posta-engine\\apps\\age\\assets\\"
+base_directory = assets_directory + "tropa/"
 
-#save_obj(base_directory + "mago.obj")
+#save_obj(base_directory + "tropa.obj")
 
-#save_bones_file(base_directory + "mago.bones")
+#save_bones_file(base_directory + "tropa.bones")
 save_skeleton_and_animations(base_directory, "skeleton.skl", 1)
 
 
