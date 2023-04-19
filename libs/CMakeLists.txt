@@ -21,6 +21,7 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Component/Transform.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/include/Component/StaticMesh.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Component/StaticMesh.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Component/SmoothStaticMesh.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/include/Component/Camera.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/src/Component/Camera.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/engine/include/Component/Image.h"
