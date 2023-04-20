@@ -96,15 +96,14 @@ void SmoothStaticMesh::bind()
 
 void SmoothStaticMesh::draw_without_binding()
 {
-	glDrawElements(GL_TRIANGLES, n_indices, index_type/*GL_UNSIGNED_SHORT*/, 0);
+	glDrawElements(GL_TRIANGLES, n_indices, index_type, 0);
 	//glDrawArrays(GL_TRIANGLES, 0, n_indices); // DEBUG
 }
 
-/*void SmoothStaticMesh::draw_many_without_binding(size_t x)
+void SmoothStaticMesh::draw_many_without_binding(size_t x)
 {
-	glDrawElementsInstanced(GL_TRIANGLES, 0, 
-			ArraysInstanced(GL_TRIANGLES, 0, n_indices, x);
-}*/
+	glDrawElementsInstanced(GL_TRIANGLES, n_indices, index_type, 0, x);
+}
 
 void SmoothStaticMesh::draw()
 {

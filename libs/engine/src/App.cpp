@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <engine/include/LuaAPI/LuaAPI.h>
 #include <engine/include/Entity/Camera.h>
+#include <engine/include/Util/LoggingMacro.h>
 //#include <engine/include/Util/Shader.h>
 
 using Engine::App;
@@ -47,6 +48,8 @@ App::~App()
 
 void App::init()
 {
+	auto start_time = std::chrono::high_resolution_clock::now();
+
 	width = 640;
 	height = 480;
 	SDL_assert_release(SDL_Init(SDL_INIT_EVERYTHING) == 0);
@@ -136,6 +139,11 @@ void App::init()
 
 	// Init resource_bag
 	resource_bag = new Engine::ResourceBag;
+	
+	// Time to load...
+	auto end_time = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+	LOG("Time to init Engine::App: ", duration, "ms");
 }
 
 void App::init_physics()
@@ -206,13 +214,7 @@ void App::loop()
 					switch (event.window.event)
 					{
 						case SDL_WINDOWEVENT_RESIZED:
-							this->width = event.window.data1;
-							this->height = event.window.data2;
-							glViewport(0, 0, width, height);
-
-							// updates default camera projection matrix.
-							if (camera)
-								camera->set_resolution(width, height);
+							update_resolution(event.window.data1, event.window.data2);
 							break;
 					}
 					break;
@@ -320,9 +322,8 @@ void App::set_window_name(std::string name)
 
 void App::set_window_size(int w, int h)
 {
-	width = w;
-	height = h;
 	SDL_SetWindowSize(window, w, h);
+	update_resolution(w, h);
 }
 
 void App::hide_window_frame()
@@ -373,5 +374,16 @@ void App::disable_depth_test()
 void App::enable_depth_test()
 {
 	glEnable(GL_DEPTH_TEST);
+}
+
+void App::update_resolution(int w, int h)
+{
+	width = w;
+	height = h;
+	glViewport(0, 0, width, height);
+
+	// updates default camera projection matrix.
+	if (camera)
+		camera->set_resolution(width, height);
 }
 

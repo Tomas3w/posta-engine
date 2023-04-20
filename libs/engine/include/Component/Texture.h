@@ -29,9 +29,10 @@ namespace Engine::Component {
 			friend class Engine::DepthFramebuffer;
 			friend class Engine::Font;
 			friend class Image;
-		private:
+
 			/// SDL-Specific: Constructs a texture from a SDL_Surface*, it doesn't free the surface
 			Texture(SDL_Surface* image);
+		private:
 			/// OpenGL-specific: Constructs a texture from a texture-id
 			Texture(GLuint _texture);
 

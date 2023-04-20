@@ -150,6 +150,8 @@ namespace Engine {
 			ResourceBag* resource_bag;
 			
 		private:
+			void update_resolution(int w, int h);
+
 			int width, height;
 			SDL_GLContext context;
 
