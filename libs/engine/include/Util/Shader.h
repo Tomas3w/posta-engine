@@ -87,7 +87,7 @@ namespace Engine {
 				//glUseProgram(shader_program);
 				id = glGetUniformLocation(shader->get_program(), location.c_str());
 				if (id == -1)
-					throw std::invalid_argument("Uniform location does not exists, or isn't being used, location = '" + location + "'");
+					std::cout << "[WARNING] Uniform location does not exists, or isn't being used, location = '" + location + "'" << std::endl;
 				//std::cout << "after obtaining from " << shader_program << " the location " << location << ", we got " << id << "\n";
 				DO_DEFINES_OVER_EACH_TYPE_USED_BY_UNIFORMS(IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER)
 			}
