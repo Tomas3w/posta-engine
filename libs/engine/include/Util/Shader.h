@@ -22,6 +22,8 @@ namespace Engine {
 		FUNC##_GLM(vec3); \
 		FUNC##_GLM(vec2); \
 		FUNC##_MANY_VEC2(); \
+		FUNC##_MANY_VEC3(); \
+		FUNC##_MANY_VEC4(); \
 		FUNC##_ANIM_MAT4();
 	template<class T> inline void set_uniform(T value, GLint id);
 	template<> inline void set_uniform<bool>(bool value, GLint id) { glUniform1i(id, static_cast<int>(value)); }
@@ -33,6 +35,8 @@ namespace Engine {
 	template<> inline void set_uniform<glm::vec3>(glm::vec3 value, GLint id) { glUniform3fv(id, 1, &value[0]); }
 	template<> inline void set_uniform<glm::vec2>(glm::vec2 value, GLint id) { glUniform2fv(id, 1, &value[0]); }
 	template<> inline void set_uniform<Engine::span<glm::vec2>>(Engine::span<glm::vec2> value, GLint id) { glUniform2fv(id, value.size(), &value[0][0]); }
+	template<> inline void set_uniform<Engine::span<glm::vec3>>(Engine::span<glm::vec3> value, GLint id) { glUniform3fv(id, value.size(), &value[0][0]); }
+	template<> inline void set_uniform<Engine::span<glm::vec4>>(Engine::span<glm::vec4> value, GLint id) { glUniform4fv(id, value.size(), &value[0][0]); }
 	template<> inline void set_uniform<Engine::span<Engine::anim_mat4>>(Engine::span<Engine::anim_mat4> value, GLint id) { glUniformMatrix4fv(id, value.size(), false, reinterpret_cast<float*>(value.data())); }
 
 	template<class T>
@@ -41,8 +45,10 @@ namespace Engine {
 	// Specific for declaring uniform maps
 	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE(t) std::unordered_map<std::string, Uniform<t>> uniforms_##t
 	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_GLM(t) std::unordered_map<std::string, Uniform<glm::t>> uniforms_##t
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_ANIM_MAT4() std::unordered_map<std::string, Uniform<Engine::span<Engine::anim_mat4>>> uniforms_anim_mat4
 	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC2() std::unordered_map<std::string, Uniform<Engine::span<glm::vec2>>> uniforms_many_vec2
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC3() std::unordered_map<std::string, Uniform<Engine::span<glm::vec3>>> uniforms_many_vec3
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC4() std::unordered_map<std::string, Uniform<Engine::span<glm::vec4>>> uniforms_many_vec4
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_ANIM_MAT4() std::unordered_map<std::string, Uniform<Engine::span<Engine::anim_mat4>>> uniforms_anim_mat4
 
 	/// Shader abstract class
 	/** Derive from this class to make a shader */
@@ -76,6 +82,8 @@ namespace Engine {
 	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_GLM(t) if constexpr(std::is_same_v<T, glm::t>) { shader->uniforms_##t[location] = (*this); }
 	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_ANIM_MAT4() if constexpr(std::is_same_v<T, Engine::span<Engine::anim_mat4>>) { shader->uniforms_anim_mat4[location] = (*this); }
 	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC2() if constexpr(std::is_same_v<T, Engine::span<glm::vec2>>) { shader->uniforms_many_vec2[location] = (*this); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC3() if constexpr(std::is_same_v<T, Engine::span<glm::vec3>>) { shader->uniforms_many_vec3[location] = (*this); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC4() if constexpr(std::is_same_v<T, Engine::span<glm::vec4>>) { shader->uniforms_many_vec4[location] = (*this); }
 
 	template<class T>
 	class Uniform
@@ -108,10 +116,14 @@ namespace Engine {
 	#undef DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_GLM
 	#undef DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_ANIM_MAT4
 	#undef DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC2
+	#undef DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC3
+	#undef DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC4
 	#undef IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER
 	#undef IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_GLM
 	#undef IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_ANIM_MAT4
 	#undef IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC2
+	#undef IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC3
+	#undef IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC4
 	#undef DO_DEFINES_OVER_EACH_TYPE_USED_BY_UNIFORMS
 
 	/// TwoDShader, automatically set before calling on_draw_2d
