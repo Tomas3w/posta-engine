@@ -31,33 +31,20 @@ def create_build_symlinks_and_build_folder(name):
     subprocess.run(["ln", "-s" , os.path.abspath(f'apps/{name}/assets'), os.path.abspath(f'build/apps/{name}/assets')])
 
 def main():
-    value = input("Do you have permission for making symlinks? (Y/N): ")
-    if value != 'Y':
-        print("Can't make project if there is no permission")
-        return None
+    #value = input("Do you have permission for making symlinks? (Y/N): ")
+    #if value != 'Y':
+    #    print("Can't make project if there is no permission")
+    #    return None
     print(f"Creating project {sys.argv[1]} from template...")
     print("Copying template to a new folder...")
     copy_template_folder(sys.argv[1])
-    print("Adding line to make compilation possible...")
-    append_subdirectory(sys.argv[1])
+    #print("Adding line to make compilation possible...")
+    #append_subdirectory(sys.argv[1])
     print("Creating custom CMakeLists...")
     replace_template_name(sys.argv[1])
-    print("Creating build folders and symlinks...")
-    create_build_symlinks_and_build_folder(sys.argv[1])
+    #print("Creating build folders and symlinks...")
+    #create_build_symlinks_and_build_folder(sys.argv[1])
     print("Done!")
-"""
-echo "Creating project $1 from template..."
-cd ..
-echo "Creating folder..."
-cp -r template $1
-cd $1
-echo "Creating custom CMakeLists.txt..."
-python ../generator/replace_template_name.py $1
-echo "Creating build folders and symlinks..."
-cd ../generator
-./create_folders_and_symlinks $1
-echo "Done!"
-"""
 
 if __name__ == "__main__":
     main()
