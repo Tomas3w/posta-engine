@@ -2,7 +2,7 @@ import subprocess, os, sys
 
 def run(project_name):
     import build
-    if build.build(project_name):
+    if build.build(project_name, open('path_to_lib_cmake.txt').read().strip()):
         os.chdir(f"build/apps/{project_name}")
         
         p = subprocess.Popen(f"./{project_name}.exe", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

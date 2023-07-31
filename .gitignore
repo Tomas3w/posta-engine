@@ -14,3 +14,4 @@ _deps
 /apps/*
 /__pycache__
 /.vscode
+path_to_lib_cmake.txt

@@ -25,7 +25,7 @@ def create_build_symlinks_and_build_folder(name):
         if not os.path.exists(f'build/apps/{name}/assets'):
             subprocess.run(["ln", "-s" , os.path.abspath(f'apps/{name}/assets'), os.path.abspath(f'build/apps/{name}/assets')])
 
-def build(project_name):
+def build(project_name, path_to_lib_cmake):
     # creating CMakeLists.txt file
     with open("apps/CMakeLists.txt", 'w') as file:
         if project_name:
@@ -45,7 +45,7 @@ def build(project_name):
     for name in folders_of_directory('apps'):
         create_build_symlinks_and_build_folder(name)
     # initial configuration of cmake
-    if run_command("cmake -S . -B build -DCMAKE_PREFIX_PATH=/Users/tomas/Documents/noguardable-apps/w64devkit/x86_64-w64-mingw32/lib/cmake/ -G \"MinGW Makefiles\" -DCMAKE_EXPORT_COMPILE_COMMANDS=1") != 0:
+    if run_command("cmake -S . -B build -DCMAKE_PREFIX_PATH=" + path_to_lib_cmake + " -G \"MinGW Makefiles\" -DCMAKE_EXPORT_COMPILE_COMMANDS=1") != 0:
         return False
     # building
     if run_command("cmake --build build") != 0:
@@ -56,5 +56,5 @@ if __name__ == "__main__":
     project_name = None
     if len(sys.argv) > 1:
         project_name = sys.argv[1]
-    build(project_name)
+    build(project_name, open('path_to_lib_cmake.txt').read().strip())
 
