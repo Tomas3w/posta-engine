@@ -95,6 +95,8 @@ namespace Engine {
 			virtual void set_window_name(std::string name) final;
 			/** Sets the size of the window */
 			virtual void set_window_size(int w, int h) final;
+			/** Sets the size of the window to that of the screen */
+			virtual void set_window_size_to_screen_size() final;
 			/** Hides window's frame */
 			virtual void hide_window_frame() final;
 			/** Shows window's frame */

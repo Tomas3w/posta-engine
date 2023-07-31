@@ -326,6 +326,13 @@ void App::set_window_size(int w, int h)
 	update_resolution(w, h);
 }
 
+void App::set_window_size_to_screen_size()
+{
+	SDL_DisplayMode dm;
+	SDL_assert_release(SDL_GetDesktopDisplayMode(0, &dm) == 0);
+	set_window_size(dm.w, dm.h);
+}
+
 void App::hide_window_frame()
 {
 	SDL_SetWindowBordered(window, SDL_FALSE);
