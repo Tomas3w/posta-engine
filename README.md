@@ -59,7 +59,7 @@ Una vez instaladas estas librerias, agrega x86_64-w64-mingw32/bin en el PATH del
     
     python generate_project.py template
 Esto con el fin de crear un proyecto simple basado en la plantilla y para poder comprobar que no hubo errores con las dependencias.
-Luego, para compilar el motor junto a la plantilla, es importante crear el archivo path_to_lib_cmake.txt y poner dentro el path absoluto de x86_64-w64-mingw32, el contenido del archivo deberia parecerse a esto:
+Luego, para compilar el motor junto a la plantilla, es importante crear el archivo path_to_lib_cmake.txt y poner dentro el path absoluto de x86_64-w64-mingw32/lib/cmake, el contenido del archivo deberia parecerse a esto:
     
     /path/to/x86_64-w64-mingw32/lib/cmake/
 Si todo salio bien, debería ser posible ejecutar el template con:
