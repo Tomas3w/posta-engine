@@ -107,6 +107,8 @@ namespace Engine {
 			virtual void minimize_window() final;
 			/** Sets window to fullscreen if v == true, makes the window windowed if v == false */
 			virtual void set_fullscreen_state(bool v) final;
+			/** Adds a resource bag to the main resource bag, see Engine::ResourceBag for more info */
+			virtual void add_bag(Engine::ResourceBag*& bag_var, Engine::ResourceBag* bag_lit) final;
 
 			virtual bool is_click_pressed() const final;
 			virtual bool is_second_click_pressed() const final;
@@ -158,6 +160,34 @@ namespace Engine {
 			SDL_GLContext context;
 
 			float time_step;
+	};
+
+	class ResourceBeaconParent
+	{
+		public:
+			virtual ~ResourceBeaconParent() = default;
+			virtual void init() = 0;
+	};
+	extern std::vector<ResourceBeaconParent*> __app_beacons;
+	template<class T>
+	class ResourceBeacon : public ResourceBeaconParent
+	{
+		public:
+			ResourceBeacon()
+			{
+				__app_beacons.push_back(this);
+			}
+
+			T* bag;
+
+			friend class App;
+		private:
+			Engine::ResourceBag* _bag;
+			void init()
+			{
+				Engine::App::app->add_bag(_bag, new T());
+				bag = dynamic_cast<T*>(_bag);
+			}
 	};
 
 } // namespace Engine

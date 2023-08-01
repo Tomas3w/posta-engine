@@ -42,7 +42,6 @@ App::App()
 
 App::~App()
 {
-	//std::cout << "Deleting app(postaengine)" << std::endl;
 	dest();
 }
 
@@ -95,15 +94,7 @@ void App::init()
 
 	// Filling mesh2d with its vertices
 	Engine::Mesh _mesh2d(&Assets::basic_vertex_props);
-	/*float mesh2d_vertices[] = {
-		1.0, -1.0, 0.0, -0.0, -0.0, 1.0, 1.0, 1.0,
-		-1.0, 1.0, 0.0, -0.0, -0.0, 1.0, 0.0, 0.0,
-		-1.0, -1.0, 0.0, -0.0, -0.0, 1.0, 0.0, 1.0,
-		1.0, -1.0, 0.0, -0.0, -0.0, 1.0, 1.0, 1.0,
-		1.0, 1.0, 0.0, -0.0, -0.0, 1.0, 1.0, 0.0,
-		-1.0, 1.0, 0.0, -0.0, -0.0, 1.0, 0.0, 0.0,
-	};*/
-	//for (short i = 0; i < 6; i++)
+	
 	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), { 1, -1, 0});
 	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), {-1,  1, 0});
 	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), {-1, -1, 0});
@@ -186,6 +177,10 @@ void App::dest_physics()
 
 void App::loop()
 {
+	// final initialization for resource bags
+	for (ResourceBeaconParent* beacon : __app_beacons)
+		beacon->init();
+
 	Uint32 ticks;
 	SDL_Event event;
 
@@ -358,6 +353,11 @@ void App::set_fullscreen_state(bool v)
 	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN * v);
 }
 
+void App::add_bag(Engine::ResourceBag*& bag_var, Engine::ResourceBag* bag_lit)
+{
+	bag_var = resource_bag->add_bag(bag_lit);
+}
+
 bool App::is_click_pressed() const
 {
 	return SDL_BUTTON(SDL_BUTTON_LEFT) & mouse_state;
@@ -393,4 +393,6 @@ void App::update_resolution(int w, int h)
 	if (camera)
 		camera->set_resolution(width, height);
 }
+
+std::vector<Engine::ResourceBeaconParent*> Engine::__app_beacons;
 
