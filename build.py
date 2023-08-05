@@ -36,7 +36,7 @@ def build(project_name, path_to_lib_cmake):
                     found = True
                     break
             if not found:
-                print(f'The project named {project_name} does not exists')
+                print(f'The project named {project_name} does not exist')
                 return False
         else:
             for name in folders_of_directory('apps'):
