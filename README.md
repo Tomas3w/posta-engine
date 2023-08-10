@@ -65,6 +65,9 @@ Luego, para compilar el motor junto a la plantilla, es importante crear el archi
 Si todo salio bien, debería ser posible ejecutar el template con:
     
     python run.py template
+O tambien usando la herramienta posta.py
+
+    python bin/posta.py run template
 
 ## Documentación
 Link: https://tomas3w.github.io/posta-engine/
