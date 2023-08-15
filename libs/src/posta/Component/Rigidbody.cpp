@@ -1,4 +1,5 @@
 #include "engine/include/Component/Rigidbody.h"
+#include <engine/include/App.h>
 
 using Engine::Component::Rigidbody;
 

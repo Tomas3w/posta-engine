@@ -25,14 +25,8 @@ namespace Engine::Assets {
 
 	/// loads an .obj file into a Mesh
 	Mesh load_obj(std::filesystem::path path);
-
-	/// loads an .obj file into a collection of vertices and their indices, it is recomended to instead use load_obj_with_indices
-	//void load_obj_vertices_and_indices(std::filesystem::path path, std::vector<GLfloat>& vertices, std::vector<int>& indices);
-
-	/// loads an .obj file into a Mesh, including the indices
-	//Mesh load_obj_with_indices(std::filesystem::path path);
 	
-	/// loads an .obj file and a .bones file containing bones weight and indices
+	/// loads an .obj file and a .bones file containing bones weights and indices
 	/** A .bones contains the following format:
 	 * vertex_index1 bone_index1|bone_weight1,bone_index2|bone_weight2,bone_indexN|bone_weightN, \n
 	 * vertex_index2 ...

@@ -1,5 +1,6 @@
 #include "engine/include/Component/MeshStaticRigidbody.h"
 #include "engine/include/Util/LoggingMacro.h"
+#include "engine/include/App.h"
 
 using Engine::Component::MeshStaticRigidbody;
 

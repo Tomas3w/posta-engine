@@ -1,4 +1,5 @@
 #include "engine/include/Component/SphereRigidbody.h"
+#include "engine/include/App.h"
 
 using Engine::Component::SphereRigidbody;
 

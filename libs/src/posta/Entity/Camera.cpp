@@ -21,16 +21,6 @@ void Camera::get_resolution(int& width, int& height)
 	height = this->height;
 }
 
-void Camera::loop()
-{
-	//
-}
-
-void Camera::draw()
-{
-	//
-}
-
 void Camera::update_projection_matrix()
 {
 	camera->update_projection_matrix(width, height);

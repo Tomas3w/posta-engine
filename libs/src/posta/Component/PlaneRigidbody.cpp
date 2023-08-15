@@ -1,4 +1,5 @@
 #include "engine/include/Component/PlaneRigidbody.h"
+#include "engine/include/App.h"
 
 using Engine::Component::PlaneRigidbody;
 

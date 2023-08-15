@@ -1,3 +1,5 @@
+#ifndef APP_H
+#define APP_H
 #include <engine/include/App.h>
 #include <engine/include/Util/General.h>
 #include <engine/include/Util/Assets.h>
@@ -15,6 +17,7 @@
 #include "engine/include/Util/LoggingMacro.h"
 #include <fstream>
 #include <memory>
+#include <posta/basic.h>
 
 using namespace std;
 
@@ -35,3 +38,4 @@ class App : public Engine::App
 
 extern std::unique_ptr<App> app;
 
+#endif // APP_H

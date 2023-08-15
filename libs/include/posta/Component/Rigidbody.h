@@ -1,6 +1,5 @@
 #ifndef POSTAENGINE_RIGIDBODY_COMPONENT_H
 #define POSTAENGINE_RIGIDBODY_COMPONENT_H
-#include "engine/include/App.h"
 #include "engine/include/Component/Transform.h"
 #include "engine/include/Util/General.h"
 #include <iostream>

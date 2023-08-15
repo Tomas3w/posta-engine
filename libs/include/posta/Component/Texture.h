@@ -7,6 +7,8 @@
 
 namespace Engine {
 	class DepthFramebuffer;
+	class ColorFramebuffer;
+	class FloatColorFramebuffer;
 	class Font;
 }
 
@@ -27,6 +29,8 @@ namespace Engine::Component {
 			void bind(GLuint texture_unit = 0);
 
 			friend class Engine::DepthFramebuffer;
+			friend class Engine::ColorFramebuffer;
+			friend class Engine::FloatColorFramebuffer;
 			friend class Engine::Font;
 			friend class Image;
 

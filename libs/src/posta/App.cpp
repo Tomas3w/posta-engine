@@ -130,6 +130,9 @@ void App::init()
 
 	// Init resource_bag
 	resource_bag = new Engine::ResourceBag;
+
+	// Setting initial 60 fps delta_time
+	max_delta_time = 1 / 60.0f;
 	
 	// Time to load...
 	auto end_time = std::chrono::high_resolution_clock::now();
@@ -180,6 +183,8 @@ void App::loop()
 	// final initialization for resource bags
 	for (ResourceBeaconParent* beacon : __app_beacons)
 		beacon->init();
+	// doing custom start function
+	start();
 
 	Uint32 ticks;
 	SDL_Event event;
@@ -189,20 +194,20 @@ void App::loop()
 		ticks = SDL_GetTicks();
 		clear_frame_and_flip();
 
-
 		mouse_state = SDL_GetMouseState(&mouse_x, &mouse_y);
 		mouse_y = get_height() - mouse_y;
-		on_frame(); // runs custom code for each frame
-		on_draw();
+
+		// Runs custom code for each frame
+		current_scene->update(); 
+		// Binds shader2d and disables depth test for drawing 2D stuff
 		disable_depth_test();
 		shader2d->bind();
-		on_draw_2d();
+		current_scene->draw2d();
 		enable_depth_test();
-		
-		if (camera)
-			camera->loop();
+
 		while (SDL_PollEvent(&event))
 		{
+			current_scene->event(event);
 			switch (event.type)
 			{
 				case SDL_WINDOWEVENT:
@@ -216,19 +221,22 @@ void App::loop()
 				case SDL_QUIT:
 					exit_loop = true;
 			}
-			on_event(event);
 		}
+		// Updates physics world
 		step_physics();
+
+		// Changes scene if neccessary
+		if (next_scene)
+			current_scene.reset(next_scene.release());
 
 		// Updates delta time between frames
 		Uint32 nticks = SDL_GetTicks();
 		delta_time = (nticks - ticks) / 1000.0f;
 		
-		// corrects framerate
-		const float framerate = 1 / 60.0f;
-		if (delta_time < framerate)
+		// corrects max_delta_time
+		if (delta_time < max_delta_time)
 		{
-			float diff = framerate - delta_time;
+			float diff = max_delta_time - delta_time;
 			while ((SDL_GetTicks() - nticks) / 1000.0f < diff);
 			delta_time = (SDL_GetTicks() - ticks) / 1000.0f;
 		}
@@ -241,26 +249,6 @@ void App::step_physics()
 #ifndef DO_NOT_USE_PHYSICS
 	physics->world->stepSimulation(time_step);
 #endif
-}
-
-void App::on_draw()
-{
-	//
-}
-
-void App::on_draw_2d()
-{
-	//
-}
-
-void App::on_frame()
-{
-	//std::cout << delta_time << std::endl;
-}
-
-void App::on_event(SDL_Event& event)
-{
-	//
 }
 
 void App::manage_textbox_input(SDL_Event& event, Engine::UI::Textbox& textbox)
@@ -381,6 +369,16 @@ void App::disable_depth_test()
 void App::enable_depth_test()
 {
 	glEnable(GL_DEPTH_TEST);
+}
+
+void App::set_framerate_limit(float maximum_delta_time)
+{
+	max_delta_time = maximum_delta_time;
+}
+
+float App::get_framerate_limit()
+{
+	return max_delta_time;
 }
 
 void App::update_resolution(int w, int h)

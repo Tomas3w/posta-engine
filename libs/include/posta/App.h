@@ -30,6 +30,8 @@
 #include <unordered_set>
 #include <glm/gtx/string_cast.hpp>
 
+#include <engine/include/Util/Scene.h>
+
 
 namespace Engine {
 	//class Shader;
@@ -56,7 +58,7 @@ namespace Engine {
 
 			App();
 			App(const App&) = delete;
-			App operator=(const App&) = delete;
+			App& operator=(const App&) = delete;
 			virtual ~App();
 
 			/** Initiliazes application*/
@@ -66,19 +68,13 @@ namespace Engine {
 			virtual void dest() final;
 			virtual void dest_physics() final;
 
+			/** Before first frame */
+			virtual void start() {}
 			/** Main loop of the application */
 			virtual void loop() final;
 			/** Updates physics world */
 			virtual void step_physics() final;
-			/** Draw all of the 3d drawing stages of the application */
-			virtual void on_draw();
-			/** Draw all of the 2d drawing stages of the application */
-			virtual void on_draw_2d();
 
-			/** Runs every frame */
-			virtual void on_frame();
-			/** Runs for every SDL event */
-			virtual void on_event(SDL_Event& event);
 			/** Manages the input for a textbox object, should be called in the on_event method */
 			virtual void manage_textbox_input(SDL_Event& event, UI::Textbox& textbox) final;
 			/** Clears the screen and swaps render buffer */
@@ -119,6 +115,11 @@ namespace Engine {
 			/** Enable depth testing, primarly used for 3d drawing */
 			void enable_depth_test();
 
+			/** Sets the max framerate of the application */
+			void set_framerate_limit(float maximum_delta_time);
+			/** Gets the max framerate of the applciation */
+			float get_framerate_limit();
+
 			/** Map inputs to their values, use at when accessing input */
 			std::unordered_map<std::string, float> input;
 			/** Keyboard state */
@@ -152,14 +153,21 @@ namespace Engine {
 
 			/// Resource bag, see Engine::ResourceBag for more info
 			ResourceBag* resource_bag;
-			
+
+			/// Modify this to get to the next scene in the next frame
+			std::unique_ptr<Scene> next_scene;
+
 		private:
+			/// Current scene
+			std::unique_ptr<Scene> current_scene;
+
 			void update_resolution(int w, int h);
 
 			int width, height;
 			SDL_GLContext context;
 
 			float time_step;
+			float max_delta_time;
 	};
 
 	class ResourceBeaconParent

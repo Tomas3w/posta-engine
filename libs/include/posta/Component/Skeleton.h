@@ -68,7 +68,7 @@ namespace Engine::Component {
 			std::vector<Engine::Component::Transform> bone_transforms; // local to object, not to parent bone
 		private:
 			/// Splits str into numbers (by using space as a separator), and then returns a transform using those numbers
-			/// The format used is: 3 numbers corresponding to the position: x y z, then four numbers corresponding with the rotation (a quaternion) w x y z
+			/// The format used is: 3 numbers corresponding to the position: x y z, four numbers corresponding with the rotation (a quaternion) w x y z, and finally three numbers corresponding with the scale
 			static Transform str_to_transform(std::string s);
 			struct Animation
 			{
