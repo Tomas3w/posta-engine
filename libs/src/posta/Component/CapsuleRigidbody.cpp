@@ -1,5 +1,5 @@
-#include "engine/include/Component/CapsuleRigidbody.h"
-#include "engine/include/App.h"
+#include <posta/Component/CapsuleRigidbody.h>
+#include <posta/App.h>
 
 using Engine::Component::CapsuleRigidbody;
 

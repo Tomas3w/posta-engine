@@ -1,12 +1,12 @@
 #ifndef POSTAENGINE_IMAGE_COMPONENT_H
 #define POSTAENGINE_IMAGE_COMPONENT_H
-#include <engine/include/Util/General.h>
-#include <engine/include/Component/Texture.h>
-#include <engine/include/Component/StaticMesh.h>
-#include <engine/include/Util/Assets.h>
+#include <posta/Util/General.h>
+#include <posta/Component/Texture.h>
+#include <posta/Component/StaticMesh.h>
+#include <posta/Util/Assets.h>
 #include <iostream>
 #include <memory>
-#include <engine/include/UI/Rect.h>
+#include <posta/UI/Rect.h>
 
 namespace Engine::Component {
 	/// Image class, used to draw a 2D image in a given position, it stores a texture and its dimensions

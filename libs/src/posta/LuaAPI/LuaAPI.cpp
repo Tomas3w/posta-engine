@@ -1,8 +1,8 @@
-#include <engine/include/LuaAPI/LuaAPI.h>
+#include <posta/LuaAPI/LuaAPI.h>
 // Test
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
-#include <engine/include/App.h>
+#include <posta/App.h>
 
 using Engine::LuaAPI::LuaState;
 using Engine::LuaAPI::MayNotBeOwner;

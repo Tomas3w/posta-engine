@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_BOXRIGIDBODY_H
 #define POSTAENGINE_BOXRIGIDBODY_H
-#include "engine/include/Component/Rigidbody.h"
+#include <posta/Component/Rigidbody.h>
 
 namespace Engine::Component {
 	class BoxRigidbody : public Rigidbody

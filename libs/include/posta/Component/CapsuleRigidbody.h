@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_CAPSULERIGIDBODY_H
 #define POSTAENGINE_CAPSULERIGIDBODY_H
-#include "engine/include/Component/Rigidbody.h"
+#include <posta/Component/Rigidbody.h>
 
 namespace Engine::Component {
 	class CapsuleRigidbody : public Rigidbody

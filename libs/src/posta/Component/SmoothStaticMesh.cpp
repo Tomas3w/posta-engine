@@ -1,5 +1,5 @@
-#include <engine/include/Component/SmoothStaticMesh.h>
-#include <engine/include/Util/LoggingMacro.h>
+#include <posta/Component/SmoothStaticMesh.h>
+#include <posta/Util/LoggingMacro.h>
 
 using Engine::Component::SmoothStaticMesh;
 

@@ -1,9 +1,9 @@
 #ifndef POSTAENGINE_ENTITY_H
 #define POSTAENGINE_ENTITY_H
-#include "engine/include/Component/DrawableMesh.h"
+#include <posta/Component/DrawableMesh.h>
 #include <corecrt.h>
-#include <engine/include/Component/Transform.h>
-#include <engine/include/Component/Rigidbody.h>
+#include <posta/Component/Transform.h>
+#include <posta/Component/Rigidbody.h>
 #define POSTA_REGISTER_ENTITY_A(transform)
 #define POSTA_REGISTER_ENTITY_B(transform, drawable_mesh)
 #define POSTA_REGISTER_ENTITY_C(rigidbody)

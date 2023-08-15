@@ -3,16 +3,16 @@
 
 #include <iostream>
 
-#include <engine/include/Entity/Camera.h>
-#include <engine/include/Util/Assets.h>
-#include <engine/include/Component/StaticMesh.h>
-#include <engine/include/Util/Mesh.h>
-#include <engine/include/Util/Assets.h>
-#include <engine/include/Util/TCPConnToServer.h>
-#include <engine/include/Util/Shader.h>
-#include <engine/include/LuaAPI/LuaState.h>
-#include <engine/include/UI/Textbox.h>
-#include <engine/include/Util/ResourceBag.h>
+#include <posta/Entity/Camera.h>
+#include <posta/Util/Assets.h>
+#include <posta/Component/StaticMesh.h>
+#include <posta/Util/Mesh.h>
+#include <posta/Util/Assets.h>
+#include <posta/Util/TCPConnToServer.h>
+#include <posta/Util/Shader.h>
+#include <posta/LuaAPI/LuaState.h>
+#include <posta/UI/Textbox.h>
+#include <posta/Util/ResourceBag.h>
 
 #include <memory>
 #include <vector>
@@ -30,7 +30,7 @@
 #include <unordered_set>
 #include <glm/gtx/string_cast.hpp>
 
-#include <engine/include/Util/Scene.h>
+#include <posta/Util/Scene.h>
 
 
 namespace Engine {
@@ -68,8 +68,8 @@ namespace Engine {
 			virtual void dest() final;
 			virtual void dest_physics() final;
 
-			/** Before first frame */
-			virtual void start() {}
+			/** First function called in app, it returns the first scene*/
+			virtual Scene* start() { return nullptr; }
 			/** Main loop of the application */
 			virtual void loop() final;
 			/** Updates physics world */

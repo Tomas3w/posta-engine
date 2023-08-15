@@ -1,5 +1,5 @@
-#include <engine/include/Component/StaticMesh.h>
-#include <engine/include/Util/LoggingMacro.h>
+#include <posta/Component/StaticMesh.h>
+#include <posta/Util/LoggingMacro.h>
 
 using Engine::Component::StaticMesh;
 

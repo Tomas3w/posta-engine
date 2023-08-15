@@ -6,10 +6,10 @@
 #include <unordered_map>
 #include <fstream>
 #include <functional>
-#include "engine/include/Util/General.h"
-#include "engine/include/Util/Assets.h"
-#include "engine/include/Util/Shader.h"
-#include "engine/include/App.h"
+#include <posta/Util/General.h>
+#include <posta/Util/Assets.h>
+#include <posta/Util/Shader.h>
+#include <posta/App.h>
 #include <glm/gtx/string_cast.hpp>
 
 #include <filesystem>

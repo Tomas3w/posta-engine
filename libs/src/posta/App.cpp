@@ -1,12 +1,11 @@
-#include "engine/include/Util/ResourceBag.h"
-#include <engine/include/App.h>
+#include <posta/Util/ResourceBag.h>
+#include <posta/App.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include <engine/include/LuaAPI/LuaAPI.h>
-#include <engine/include/Entity/Camera.h>
-#include <engine/include/Util/LoggingMacro.h>
-//#include <engine/include/Util/Shader.h>
+#include <posta/LuaAPI/LuaAPI.h>
+#include <posta/Entity/Camera.h>
+#include <posta/Util/LoggingMacro.h>
 
 using Engine::App;
 using Engine::PhysicsGlobal;
@@ -150,6 +149,10 @@ void App::init_physics()
 
 void App::dest()
 {
+	// deleting all scenes
+	next_scene.reset();
+	current_scene.reset();
+
 	delete resource_bag;
 
 	lua_state.reset(); // it's important that the lua state is deleted before the context and physics
@@ -184,7 +187,11 @@ void App::loop()
 	for (ResourceBeaconParent* beacon : __app_beacons)
 		beacon->init();
 	// doing custom start function
-	start();
+	current_scene.reset(start());
+	// current_scene start
+	if (!current_scene)
+		throw std::logic_error("Well, this isn't right");
+	current_scene->start();
 
 	Uint32 ticks;
 	SDL_Event event;
@@ -227,7 +234,10 @@ void App::loop()
 
 		// Changes scene if neccessary
 		if (next_scene)
+		{
 			current_scene.reset(next_scene.release());
+			current_scene->start();
+		}
 
 		// Updates delta time between frames
 		Uint32 nticks = SDL_GetTicks();

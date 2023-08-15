@@ -1,5 +1,5 @@
-#include "engine/include/Component/Image.h"
-#include <engine/include/App.h>
+#include <posta/Component/Image.h>
+#include <posta/App.h>
 
 using Engine::Component::Image;
 

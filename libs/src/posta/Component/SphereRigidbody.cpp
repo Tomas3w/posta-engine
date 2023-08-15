@@ -1,5 +1,5 @@
-#include "engine/include/Component/SphereRigidbody.h"
-#include "engine/include/App.h"
+#include <posta/Component/SphereRigidbody.h>
+#include <posta/App.h>
 
 using Engine::Component::SphereRigidbody;
 

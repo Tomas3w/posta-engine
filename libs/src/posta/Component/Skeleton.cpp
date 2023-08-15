@@ -1,4 +1,4 @@
-#include "engine/include/Component/Skeleton.h"
+#include <posta/Component/Skeleton.h>
 
 using Engine::Component::Skeleton;
 

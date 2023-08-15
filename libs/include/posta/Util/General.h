@@ -7,7 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/norm.hpp>
 #include <bullet/btBulletDynamicsCommon.h>
-#include "engine/include/Util/span.h"
+#include <posta/Util/span.h>
 
 namespace Engine {
 	std::string read_file(std::filesystem::path path);

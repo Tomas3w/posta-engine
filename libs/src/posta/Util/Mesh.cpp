@@ -1,6 +1,6 @@
 #include <cstring>
-#include <engine/include/Util/Mesh.h>
-#include <engine/include/Util/LoggingMacro.h>
+#include <posta/Util/Mesh.h>
+#include <posta/Util/LoggingMacro.h>
 #include <limits>
 
 using Engine::Mesh;
@@ -92,7 +92,7 @@ void Mesh::generate_elements_data(std::vector<std::string> anchor_attributes)
 	size_t n_indices = faces_data.at(0).size();
 
 	std::vector<int> key(anchors.size());
-	for (int i = 0; i < n_indices; i++)
+	for (size_t i = 0; i < n_indices; i++)
 	{
 		int k = 0;
 		for (int j = 0; j < static_cast<int>(vertex_properties->attributes_sizes.size()); j++)
@@ -167,7 +167,7 @@ void Mesh::generate_elements_data(std::vector<std::string> anchor_attributes)
 	//
 	if (n_indices < std::numeric_limits<GLushort>::max())
 	{
-		for (int i = 0; i < n_indices; i++)
+		for (size_t i = 0; i < n_indices; i++)
 		{
 			int k = 0;
 			for (int j = 0; j < static_cast<int>(vertex_properties->attributes_sizes.size()); j++)
@@ -186,7 +186,7 @@ void Mesh::generate_elements_data(std::vector<std::string> anchor_attributes)
 	}
 	else
 	{
-		for (int i = 0; i < n_indices; i++)
+		for (size_t i = 0; i < n_indices; i++)
 		{
 			int k = 0;
 			for (int j = 0; j < static_cast<int>(vertex_properties->attributes_sizes.size()); j++)

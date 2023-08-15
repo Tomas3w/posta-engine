@@ -1,8 +1,8 @@
 #ifndef POSTAENGINE_FRAMEBUFFER_H
 #define POSTAENGINE_FRAMEBUFFER_H
 
-#include <engine/include/Util/General.h>
-#include <engine/include/Component/Texture.h>
+#include <posta/Util/General.h>
+#include <posta/Component/Texture.h>
 
 namespace Engine {
 	class Framebuffer

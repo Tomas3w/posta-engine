@@ -1,9 +1,9 @@
 #ifndef POSTAENGINE_TCPCONN_UTILITY_H
 #define POSTAENGINE_TCPCONN_UTILITY_H
-//#include <engine/include/App.h>
+//#include <posta/App.h>
 #include <SDL2/SDL_net.h>
-#include <engine/include/Util/span.h>
-#include <engine/include/Util/NetworkPackage.h>
+#include <posta/Util/span.h>
+#include <posta/Util/NetworkPackage.h>
 #include <array>
 
 namespace Engine {

@@ -1,7 +1,7 @@
 #ifndef POSTAENGINE_BUTTON_UI_H
 #define POSTAENGINE_BUTTON_UI_H
 #include <functional>
-#include <engine/include/UI/Rect.h>
+#include <posta/UI/Rect.h>
 
 namespace Engine::UI {
 	/// A button class, used to represent a button as a rectangle in the screen space

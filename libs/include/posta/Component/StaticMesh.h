@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_STATICMESH_COMPONENT_H
 #define POSTAENGINE_STATICMESH_COMPONENT_H
-#include <engine/include/Component/DrawableMesh.h>
+#include <posta/Component/DrawableMesh.h>
 
 namespace Engine::Component {
 	/// Static mesh component

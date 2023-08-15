@@ -1,7 +1,7 @@
 #ifndef POSTAENGINE_RIGIDBODY_COMPONENT_H
 #define POSTAENGINE_RIGIDBODY_COMPONENT_H
-#include "engine/include/Component/Transform.h"
-#include "engine/include/Util/General.h"
+#include <posta/Component/Transform.h>
+#include <posta/Util/General.h>
 #include <iostream>
 
 namespace Engine::Component {

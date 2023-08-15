@@ -1,5 +1,5 @@
-#include "engine/include/Component/BoxRigidbody.h"
-#include "engine/include/App.h"
+#include <posta/Component/BoxRigidbody.h>
+#include <posta/App.h>
 
 using Engine::Component::BoxRigidbody;
 

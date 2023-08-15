@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_PLANERIGIDBODY_H
 #define POSTAENGINE_PLANERIGIDBODY_H
-#include "engine/include/Component/Rigidbody.h"
+#include <posta/Component/Rigidbody.h>
 
 namespace Engine::Component {
 	class PlaneRigidbody : public Rigidbody

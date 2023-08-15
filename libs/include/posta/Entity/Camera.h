@@ -1,9 +1,9 @@
 #ifndef POSTAENGINE_CAMERA_ENTITY_H
 #define POSTAENGINE_CAMERA_ENTITY_H
 #include <memory>
-#include <engine/include/Entity/Entity.h>
-#include <engine/include/Component/Camera.h>
-#include <engine/include/Component/Transform.h>
+#include <posta/Entity/Entity.h>
+#include <posta/Component/Camera.h>
+#include <posta/Component/Transform.h>
 #include <glm/gtx/string_cast.hpp>
 
 namespace Engine::Entity {

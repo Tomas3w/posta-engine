@@ -1,8 +1,8 @@
 #ifndef POSTAENGINE_TEXTBOX_H
 #define POSTAENGINE_TEXTBOX_H
-#include <engine/include/UI/Rect.h>
-#include <engine/include/UI/Button.h>
-#include <engine/include/Util/Font.h>
+#include <posta/UI/Rect.h>
+#include <posta/UI/Button.h>
+#include <posta/Util/Font.h>
 
 namespace Engine::UI {
 	/// A box with a text on it

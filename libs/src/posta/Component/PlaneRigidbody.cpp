@@ -1,5 +1,5 @@
-#include "engine/include/Component/PlaneRigidbody.h"
-#include "engine/include/App.h"
+#include <posta/Component/PlaneRigidbody.h>
+#include <posta/App.h>
 
 using Engine::Component::PlaneRigidbody;
 

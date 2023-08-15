@@ -2,8 +2,8 @@
 #define POSTAENGINE_FONT_UTILITY_H
 #include <SDL2/SDL_ttf.h>
 #include <filesystem>
-#include <engine/include/Component/Texture.h>
-#include <engine/include/Component/Image.h>
+#include <posta/Component/Texture.h>
+#include <posta/Component/Image.h>
 #include <unordered_map>
 
 namespace Engine {

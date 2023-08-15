@@ -8,9 +8,10 @@ namespace Engine {
 		public:
 			virtual ~Scene() = default;
 
+			virtual void start() {}
 			virtual void draw2d() {}
 			virtual void update() {}
-			virtual void event(SDL_Event event) {}
+			virtual void event(SDL_Event& event) {}
 	};
 }
 

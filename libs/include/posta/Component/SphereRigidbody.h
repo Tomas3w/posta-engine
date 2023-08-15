@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_SPHERERIGIDBODY_H
 #define POSTAENGINE_SPHERERIGIDBODY_H
-#include "engine/include/Component/Rigidbody.h"
+#include <posta/Component/Rigidbody.h>
 
 namespace Engine::Component {
 	class SphereRigidbody : public Rigidbody

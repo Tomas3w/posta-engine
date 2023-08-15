@@ -1,6 +1,6 @@
-#include <engine/include/Util/Shader.h>
-#include <engine/include/App.h> // this needs to be here
-#include <engine/include/Util/LoggingMacro.h>
+#include <posta/Util/Shader.h>
+#include <posta/App.h> // this needs to be here
+#include <posta/Util/LoggingMacro.h>
 
 using Engine::Shader;
 

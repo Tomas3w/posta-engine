@@ -1,6 +1,6 @@
-#include "engine/include/Component/MeshStaticRigidbody.h"
-#include "engine/include/Util/LoggingMacro.h"
-#include "engine/include/App.h"
+#include <posta/Component/MeshStaticRigidbody.h>
+#include <posta/Util/LoggingMacro.h>
+#include <posta/App.h>
 
 using Engine::Component::MeshStaticRigidbody;
 

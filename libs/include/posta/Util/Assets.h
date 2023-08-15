@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <array>
 #include <algorithm>
-#include "engine/include/Util/Mesh.h"
+#include <posta/Util/Mesh.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace Engine::Assets {

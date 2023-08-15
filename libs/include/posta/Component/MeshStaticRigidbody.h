@@ -1,7 +1,7 @@
 #ifndef POSTAENGINE_MESHSTATICRIGIDBODY_H
 #define POSTAENGINE_MESHSTATICRIGIDBODY_H
-#include "engine/include/Component/Rigidbody.h"
-#include "engine/include/Util/Mesh.h"
+#include <posta/Component/Rigidbody.h>
+#include <posta/Util/Mesh.h>
 #include <memory>
 
 namespace Engine::Component {

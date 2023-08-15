@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_SMOOTHSTATICMESH_COMPONENT_H
 #define POSTAENGINE_SMOOTHSTATICMESH_COMPONENT_H
-#include <engine/include/Component/DrawableMesh.h>
+#include <posta/Component/DrawableMesh.h>
 
 namespace Engine::Component {
 	/// Smooth static mesh component

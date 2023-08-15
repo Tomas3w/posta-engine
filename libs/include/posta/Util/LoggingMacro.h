@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_LOGGINGMACRO_UTILITY_H
 #define POSTAENGINE_LOGGINGMACRO_UTILITY_H
-#include <engine/include/Util/Logging.h>
+#include <posta/Util/Logging.h>
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 	#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
