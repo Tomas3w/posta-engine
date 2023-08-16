@@ -76,7 +76,7 @@ namespace posta {
 			virtual void step_physics() final;
 
 			/** Manages the input for a textbox object, should be called in the on_event method */
-			virtual void manage_textbox_input(SDL_Event& event, UI::Textbox& textbox) final;
+			virtual void manage_textbox_input(SDL_Event& event, ui::Textbox& textbox) final;
 			/** Clears the screen and swaps render buffer */
 			virtual void clear_frame_and_flip() final;
 			/** Clears the screen (or framebuffer if one is binded) */
