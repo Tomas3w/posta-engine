@@ -3,7 +3,7 @@
 
 using posta::component::Image;
 
-glm::mat4 Image::matrix_for_rect(posta::UI::Rect rect, int screen_w, int screen_h)
+glm::mat4 Image::matrix_for_rect(posta::ui::Rect rect, int screen_w, int screen_h)
 {
 	float width = screen_w;
 	float height = screen_h;
@@ -37,15 +37,15 @@ Image::Image(posta::component::Texture* texture, int w, int h)
 
 glm::mat4 Image::get_matrix(int x, int y)
 {
-	return matrix_for_rect(posta::UI::Rect(x, y, w, h), posta::App::app->get_width(), posta::App::app->get_height());
+	return matrix_for_rect(posta::ui::Rect(x, y, w, h), posta::App::app->get_width(), posta::App::app->get_height());
 }
 
 glm::mat4 Image::get_matrix_with_size(int x, int y, int _w, int _h)
 {
-	return matrix_for_rect(posta::UI::Rect(x, y, _w, _h), posta::App::app->get_width(), posta::App::app->get_height());
+	return matrix_for_rect(posta::ui::Rect(x, y, _w, _h), posta::App::app->get_width(), posta::App::app->get_height());
 }
 
-glm::mat4 Image::get_matrix_with_size(posta::UI::Rect rect)
+glm::mat4 Image::get_matrix_with_size(posta::ui::Rect rect)
 {
 	return get_matrix_with_size(rect.x, rect.y, rect.w, rect.h);
 }

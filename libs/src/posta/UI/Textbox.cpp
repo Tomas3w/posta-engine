@@ -1,7 +1,7 @@
 #include <posta/UI/Textbox.h>
 #include <posta/App.h>
 
-using posta::UI::Textbox;
+using posta::ui::Textbox;
 
 void Textbox::loop(int x_offset, int y_offset)
 {
@@ -73,7 +73,7 @@ bool Textbox::is_selected()
 	return state;
 }
 
-posta::UI::Rect& Textbox::get_rect()
+posta::ui::Rect& Textbox::get_rect()
 {
 	return button.rect;
 }

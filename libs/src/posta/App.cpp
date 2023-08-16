@@ -261,7 +261,7 @@ void App::step_physics()
 #endif
 }
 
-void App::manage_textbox_input(SDL_Event& event, posta::UI::Textbox& textbox)
+void App::manage_textbox_input(SDL_Event& event, posta::ui::Textbox& textbox)
 {
 	switch (event.type)
 	{

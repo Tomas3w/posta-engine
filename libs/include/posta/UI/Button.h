@@ -3,7 +3,7 @@
 #include <functional>
 #include <posta/UI/Rect.h>
 
-namespace posta::UI {
+namespace posta::ui {
 	/// A button class, used to represent a button as a rectangle in the screen space
 	class Button
 	{

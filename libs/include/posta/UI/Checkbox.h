@@ -3,7 +3,7 @@
 #include <posta/UI/Button.h>
 #include <optional>
 
-namespace posta::UI {
+namespace posta::ui {
 	/// A checkbox class
 	class Checkbox
 	{

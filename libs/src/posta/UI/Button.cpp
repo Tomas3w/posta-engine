@@ -1,7 +1,7 @@
 #include <posta/UI/Button.h>
 #include <posta/App.h>
 
-using posta::UI::Button;
+using posta::ui::Button;
 
 Button::Button(Rect _rect)
 {
@@ -41,13 +41,13 @@ bool Button::loop(int x_offset, int y_offset, Rect _rect)
 	SDL_Rect a = *dynamic_cast<SDL_Rect*>(&rect);
 	SDL_Rect b;
 	SDL_IntersectRect(&a, dynamic_cast<SDL_Rect*>(&_rect), &b);
-	rect = posta::UI::Rect(b);
+	rect = posta::ui::Rect(b);
 	bool r = loop(x_offset, y_offset);
-	rect = posta::UI::Rect(a);
+	rect = posta::ui::Rect(a);
 	return r;
 }
 
-posta::UI::Rect& Button::get_rect()
+posta::ui::Rect& Button::get_rect()
 {
 	return rect;
 }

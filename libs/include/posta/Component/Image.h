@@ -14,7 +14,7 @@ namespace posta::component {
 	{
 	public:
 		/// Returns the matrix for a rectangle
-		static glm::mat4 matrix_for_rect(posta::UI::Rect rect, int screen_w, int screen_h);
+		static glm::mat4 matrix_for_rect(posta::ui::Rect rect, int screen_w, int screen_h);
 		/// Draws a rectangle with texture given by texture
 		static void draw_rect(posta::component::Texture* texture);
 		/// Creates an image from a file
@@ -24,7 +24,7 @@ namespace posta::component {
 
 		glm::mat4 get_matrix(int x, int y);
 		glm::mat4 get_matrix_with_size(int x, int y, int _w, int _h);
-		glm::mat4 get_matrix_with_size(posta::UI::Rect rect);
+		glm::mat4 get_matrix_with_size(posta::ui::Rect rect);
 		int get_w();
 		int get_h();
 		void set_w(int _w);

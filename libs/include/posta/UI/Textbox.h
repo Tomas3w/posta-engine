@@ -4,7 +4,7 @@
 #include <posta/UI/Button.h>
 #include <posta/Util/Font.h>
 
-namespace posta::UI {
+namespace posta::ui {
 	/// A box with a text on it
 	class Textbox
 	{
