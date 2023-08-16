@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstring>
 
-namespace Engine {
+namespace posta {
 	template <class T>
 	void log(T t)
 	{

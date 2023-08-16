@@ -9,7 +9,7 @@
 #include <bullet/btBulletDynamicsCommon.h>
 #include <posta/Util/span.h>
 
-namespace Engine {
+namespace posta {
 	std::string read_file(std::filesystem::path path);
 
 	btVector3 to_btVector3(glm::vec3 vec);

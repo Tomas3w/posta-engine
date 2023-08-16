@@ -1,7 +1,7 @@
 #include <posta/Util/General.h>
 #include <posta/Util/LoggingMacro.h>
 
-std::string Engine::read_file(std::filesystem::path path)
+std::string posta::read_file(std::filesystem::path path)
 {
 	std::ifstream file(path, std::ios::in|std::ios::ate);
 	if (!file)
@@ -20,17 +20,17 @@ std::string Engine::read_file(std::filesystem::path path)
 	return r;
 }
 
-btVector3 Engine::to_btVector3(glm::vec3 vec)
+btVector3 posta::to_btVector3(glm::vec3 vec)
 {
 	return btVector3(vec.x, vec.y, vec.z);
 }
 
-glm::vec3 Engine::from_btVector3(btVector3 vec)
+glm::vec3 posta::from_btVector3(btVector3 vec)
 {
 	return glm::vec3(vec.x(), vec.y(), vec.z());
 }
 
-std::string Engine::strip(std::string str)
+std::string posta::strip(std::string str)
 {
 	std::string s;
 	size_t first = std::string::npos;
@@ -56,7 +56,7 @@ std::string Engine::strip(std::string str)
 	return s;
 }
 
-std::vector<std::string> Engine::split(std::string str, char separator)
+std::vector<std::string> posta::split(std::string str, char separator)
 {
 	std::stringstream str_s(str);
 	std::string element;

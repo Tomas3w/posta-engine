@@ -1,7 +1,7 @@
 #include <posta/Component/StaticMesh.h>
 #include <posta/Util/LoggingMacro.h>
 
-using Engine::Component::StaticMesh;
+using posta::component::StaticMesh;
 
 StaticMesh::StaticMesh(Mesh mesh)
 {

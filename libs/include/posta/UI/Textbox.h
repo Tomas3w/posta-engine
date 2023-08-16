@@ -4,13 +4,13 @@
 #include <posta/UI/Button.h>
 #include <posta/Util/Font.h>
 
-namespace Engine::UI {
+namespace posta::UI {
 	/// A box with a text on it
 	class Textbox
 	{
 		public:
 			/// Constructs a textbox from a rectangle and a font, the font must be alive for as long as it is clickable
-			Textbox(Rect rect, Engine::Font* _font, int _font_size) :
+			Textbox(Rect rect, posta::Font* _font, int _font_size) :
 				has_change(true),
 				font_size(_font_size),
 				state(false),
@@ -44,7 +44,7 @@ namespace Engine::UI {
 			Rect& get_rect();
 			void set_rect(Rect rect);
 
-			Engine::Font* get_font_ptr();
+			posta::Font* get_font_ptr();
 
 			/// Inserts str in the cursor_pos
 			void add_text(std::string str);
@@ -68,7 +68,7 @@ namespace Engine::UI {
 			bool state;
 			/// Cursor position (in characters), 0 means the cursor is in the first character
 			size_t cursor_pos;
-			Engine::Font* font;
+			posta::Font* font;
 			/// Stores the shape of the textbox and its responsible for making the textbox selectable, its callback should not be changed
 			Button button;
 			std::string text;

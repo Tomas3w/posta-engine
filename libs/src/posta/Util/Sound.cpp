@@ -1,6 +1,6 @@
 #include <posta/Util/Sound.h>
 
-using Engine::Sound;
+using posta::Sound;
 
 void Sound::SoundPlaying::set_volume(float volume)
 {

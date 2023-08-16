@@ -1,9 +1,9 @@
 #include <posta/Util/TCPConnToServer.h>
 #include <posta/Util/LoggingMacro.h>
 
-using Engine::TCPConnToServer;
+using posta::TCPConnToServer;
 
-std::unordered_map<IPaddress, std::pair<Engine::Thread, std::unique_ptr<TCPConnToServer>>> TCPConnToServer::connections;
+std::unordered_map<IPaddress, std::pair<posta::Thread, std::unique_ptr<TCPConnToServer>>> TCPConnToServer::connections;
 
 bool operator==(const IPaddress &a, const IPaddress &b)
 {

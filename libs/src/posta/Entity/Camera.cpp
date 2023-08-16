@@ -1,8 +1,8 @@
 #include <posta/Entity/Camera.h>
 
-using Engine::Entity::Camera;
+using posta::Entity::Camera;
 
-Camera::Camera(Engine::Component::Camera* camera, int width, int height)
+Camera::Camera(posta::component::Camera* camera, int width, int height)
 {
 	this->camera.reset(camera);
 	set_resolution(width, height);

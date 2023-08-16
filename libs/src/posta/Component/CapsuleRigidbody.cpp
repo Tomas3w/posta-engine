@@ -1,7 +1,7 @@
 #include <posta/Component/CapsuleRigidbody.h>
 #include <posta/App.h>
 
-using Engine::Component::CapsuleRigidbody;
+using posta::component::CapsuleRigidbody;
 
 CapsuleRigidbody::CapsuleRigidbody(glm::vec3 position, float mass, float radius, float distance, glm::vec3 velocity)
 {
@@ -18,6 +18,6 @@ CapsuleRigidbody::CapsuleRigidbody(glm::vec3 position, float mass, float radius,
 	set_body(new btRigidBody(info));
 	App::app->physics->world->addRigidBody(get_body());
 
-	get_body()->applyCentralForce(Engine::to_btVector3(velocity));
+	get_body()->applyCentralForce(posta::to_btVector3(velocity));
 }
 

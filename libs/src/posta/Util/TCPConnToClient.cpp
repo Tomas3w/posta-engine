@@ -1,6 +1,6 @@
 #include <posta/Util/TCPConnToClient.h>
 
-using Engine::TCPConnToClient;
+using posta::TCPConnToClient;
 
 TCPConnToClient::TCPConnToClient(TCPsocket socket)
 {

@@ -2,7 +2,7 @@
 #define POSTAENGINE_SCENE_H
 #include <SDL2/SDL.h>
 
-namespace Engine {
+namespace posta {
 	class Scene
 	{
 		public:

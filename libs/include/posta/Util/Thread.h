@@ -4,7 +4,7 @@
 #include <thread>
 #include <atomic>
 
-namespace Engine {
+namespace posta {
 	class Thread
 	{
 		public:

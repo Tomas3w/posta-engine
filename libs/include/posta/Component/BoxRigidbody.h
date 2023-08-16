@@ -2,7 +2,7 @@
 #define POSTAENGINE_BOXRIGIDBODY_H
 #include <posta/Component/Rigidbody.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	class BoxRigidbody : public Rigidbody
 	{
 		public:

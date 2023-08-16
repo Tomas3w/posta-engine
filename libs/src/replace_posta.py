@@ -16,7 +16,7 @@ def recursively_replace_in_directory(directory, old_string, new_string):
 
 if __name__ == "__main__":
     directory_path = "posta"
-    old_string = "\"engine/include"
-    new_string = "<posta"
+    old_string = "Engine"
+    new_string = "Posta"
 
     recursively_replace_in_directory(directory_path, old_string, new_string)

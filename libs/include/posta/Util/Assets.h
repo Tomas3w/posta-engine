@@ -7,7 +7,7 @@
 #include <posta/Util/Mesh.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace Engine::Assets {
+namespace posta::assets {
 	/// Basic vertex properties
 	/** Vertex properties representing three components:
 	 *  - position: x, y, z

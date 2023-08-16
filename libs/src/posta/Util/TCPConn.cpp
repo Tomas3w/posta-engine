@@ -6,14 +6,14 @@
 #include <arpa/inet.h>
 #endif
 
-using Engine::TCPConn;
+using posta::TCPConn;
 
-std::string Engine::ip_to_string(Uint32 ip)
+std::string posta::ip_to_string(Uint32 ip)
 {
 	return std::to_string((ip << 24) >> 24) + "." + std::to_string((ip << 16) >> 24) + "." + std::to_string((ip << 8) >> 24) + "." + std::to_string(ip >> 24);
 }
 
-Uint32 Engine::string_to_ip(std::string s)
+Uint32 posta::string_to_ip(std::string s)
 {
 	Uint32 ip = 0;
 	s += '.';
@@ -72,12 +72,12 @@ TCPsocket TCPConn::get_socket()
 	return _socket;
 }
 
-bool TCPConn::send(Engine::NetworkPackage& package)
+bool TCPConn::send(posta::NetworkPackage& package)
 {
 	return send(package.get_type(), package.serialize());
 }
 
-bool TCPConn::send(uint32_t data_type, Engine::span<uint8_t> data)
+bool TCPConn::send(uint32_t data_type, posta::span<uint8_t> data)
 {
 	uint32_t data_size = data.size();
 	uint32_t n_data_size = htonl(data_size);
@@ -97,7 +97,7 @@ bool TCPConn::send(uint32_t data_type, Engine::span<uint8_t> data)
 	return true;
 }
 
-bool TCPConn::recv(uint32_t& data_type, Engine::span<uint8_t> data)
+bool TCPConn::recv(uint32_t& data_type, posta::span<uint8_t> data)
 {
 	if (SDLNet_CheckSockets(socket_set, 0) > 0)
 	{

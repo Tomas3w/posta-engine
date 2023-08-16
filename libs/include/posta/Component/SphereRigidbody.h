@@ -2,7 +2,7 @@
 #define POSTAENGINE_SPHERERIGIDBODY_H
 #include <posta/Component/Rigidbody.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	class SphereRigidbody : public Rigidbody
 	{
 		public:

@@ -1,7 +1,7 @@
 #include <posta/Component/Rigidbody.h>
 #include <posta/App.h>
 
-using Engine::Component::Rigidbody;
+using posta::component::Rigidbody;
 
 Rigidbody::~Rigidbody()
 {
@@ -20,16 +20,16 @@ glm::mat4 Rigidbody::get_matrix()
 	return matrix;
 }
 
-Engine::Component::Transform Rigidbody::get_transform()
+posta::component::Transform Rigidbody::get_transform()
 {
 	btTransform t;
 	body->getMotionState()->getWorldTransform(t);
-	return Engine::Component::Transform(t);
+	return posta::component::Transform(t);
 }
 
-void Rigidbody::set_transform(Engine::Component::Transform transform)
+void Rigidbody::set_transform(posta::component::Transform transform)
 {
-	btTransform tr = Engine::Component::Transform::tobtTransform(transform);
+	btTransform tr = posta::component::Transform::tobtTransform(transform);
 	body->setCenterOfMassTransform(tr);
 }
 

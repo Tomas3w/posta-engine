@@ -4,9 +4,9 @@
 #include <glm/gtx/string_cast.hpp>
 #include <posta/App.h>
 
-using Engine::LuaAPI::LuaState;
-using Engine::LuaAPI::MayNotBeOwner;
-/*using Engine::LuaAPI::Son;
+using posta::LuaAPI::LuaState;
+using posta::LuaAPI::MayNotBeOwner;
+/*using posta::LuaAPI::Son;
 
 static int func(lua_State* L)
 {
@@ -135,26 +135,26 @@ static glm::vec2* glm_vec2_new(lua_State* L)
 }
 
 /// Takes an path (a string) to an image file and returns an Image object
-static Engine::Component::Image* Image_new(lua_State* L)
+static posta::component::Image* Image_new(lua_State* L)
 {
 	std::string path = luaL_checkstring(L, 1);
-	return new Engine::Component::Image(path);
+	return new posta::component::Image(path);
 }
 
 /// Shader constructor
 /// Takes an path (a string) to an shader folder(folder containing a fragment.glsl and a vertex.glsl) and returns an Shader object in a MayNotBeOwner wrapper
-static MayNotBeOwner<Engine::Shader>* Shader_new(lua_State* L)
+static MayNotBeOwner<posta::Shader>* Shader_new(lua_State* L)
 {
 	std::string path = luaL_checkstring(L, 1);
-	return new MayNotBeOwner<Engine::Shader>(new Engine::Shader(path), true);
+	return new MayNotBeOwner<posta::Shader>(new posta::Shader(path), true);
 }
 
 /// Returns current binded shader, if no shader has been bind, returns nil
-static MayNotBeOwner<Engine::Shader> Shader__current()
+static MayNotBeOwner<posta::Shader> Shader__current()
 {
-	if (Engine::App::app->current_shader == nullptr)
-		return MayNotBeOwner<Engine::Shader>::nil();
-	return MayNotBeOwner<Engine::Shader>(Engine::App::app->current_shader, false);
+	if (posta::App::app->current_shader == nullptr)
+		return MayNotBeOwner<posta::Shader>::nil();
+	return MayNotBeOwner<posta::Shader>(posta::App::app->current_shader, false);
 }
 
 #define CHECK_FOR_THIRD_ARG_IN_UNIFORM(t) \
@@ -211,15 +211,15 @@ static MayNotBeOwner<Engine::Shader> Shader__current()
 		} \
 	}
 template<class T>
-static void CHECK_FOR_THIRD_ARG_IN_ALL_OF_THE_UNIFORMS(MayNotBeOwner<Engine::Shader>& self, std::string name_of_uniform, lua_State* L)
+static void CHECK_FOR_THIRD_ARG_IN_ALL_OF_THE_UNIFORMS(MayNotBeOwner<posta::Shader>& self, std::string name_of_uniform, lua_State* L)
 {
 	DO_DEFINES_OVER_EACH_TYPE_USED_BY_UNIFORMS(CHECK_FOR_THIRD_ARG_IN_UNIFORM)
 }
 
 static int Shader_set_uniform(lua_State* L)
 {
-	MayNotBeOwner<Engine::Shader>* _self = LuaState::LuaClass::method_checkself<MayNotBeOwner<Engine::Shader>>(L);
-	MayNotBeOwner<Engine::Shader>& self = *_self;
+	MayNotBeOwner<posta::Shader>* _self = LuaState::LuaClass::method_checkself<MayNotBeOwner<posta::Shader>>(L);
+	MayNotBeOwner<posta::Shader>& self = *_self;
 	//std::cout << "aqui estoy1!" << std::endl;
 	LuaState::LuaCFunction::unique_ptr<std::string> name(LuaState::LuaCFunction::getarg<std::string>(L, 2));
 	LuaState::LuaCFunction::checkarg(L, name.get(), 2);
@@ -230,15 +230,15 @@ static int Shader_set_uniform(lua_State* L)
 }
 
 /// Font
-static Engine::Font* Font_new(lua_State* L)
+static posta::Font* Font_new(lua_State* L)
 {
 	std::string path = luaL_checkstring(L, 1);
-	return new Engine::Font(path);
+	return new posta::Font(path);
 }
 
 static int Font_render_image(lua_State* L)
 {
-	Engine::Font* self = LuaState::LuaClass::method_checkself<Engine::Font>(L);
+	posta::Font* self = LuaState::LuaClass::method_checkself<posta::Font>(L);
 	LuaState::LuaCFunction::unique_ptr<std::string> text(LuaState::LuaCFunction::getarg<std::string>(L, 2));
 	LuaState::LuaCFunction::checkarg(L, text.get(), 2);
 	LuaState::LuaCFunction::unique_ptr<size_t> font_size(LuaState::LuaCFunction::getarg<size_t>(L, 3));
@@ -249,7 +249,7 @@ static int Font_render_image(lua_State* L)
 
 static int Font_get_text_size(lua_State* L)
 {
-	Engine::Font* self = LuaState::LuaClass::method_checkself<Engine::Font>(L);
+	posta::Font* self = LuaState::LuaClass::method_checkself<posta::Font>(L);
 	LuaState::LuaCFunction::unique_ptr<std::string> text(LuaState::LuaCFunction::getarg<std::string>(L, 2));
 	LuaState::LuaCFunction::checkarg(L, text.get(), 2);
 	LuaState::LuaCFunction::unique_ptr<size_t> font_size(LuaState::LuaCFunction::getarg<size_t>(L, 3));
@@ -267,7 +267,7 @@ static int Font_get_text_size(lua_State* L)
 }
 
 /// Rect constructor
-static Engine::UI::Rect* Rect_new(lua_State* L)
+static posta::UI::Rect* Rect_new(lua_State* L)
 {
 	LuaState::LuaCFunction::unique_ptr<int> x(LuaState::LuaCFunction::getarg<int>(L, 1));
 	LuaState::LuaCFunction::checkarg(L, x.get(), 1);
@@ -277,20 +277,20 @@ static Engine::UI::Rect* Rect_new(lua_State* L)
 	LuaState::LuaCFunction::checkarg(L, w.get(), 3);
 	LuaState::LuaCFunction::unique_ptr<int> h(LuaState::LuaCFunction::getarg<int>(L, 4));
 	LuaState::LuaCFunction::checkarg(L, h.get(), 4);
-	return new Engine::UI::Rect(*x, *y, *w, *h);
+	return new posta::UI::Rect(*x, *y, *w, *h);
 }
 
 /// Button constructor
-static Engine::UI::Button* Button_new(lua_State* L)
+static posta::UI::Button* Button_new(lua_State* L)
 {
-	LuaState::LuaCFunction::unique_ptr<Engine::UI::Rect> rect(LuaState::LuaCFunction::getarg<Engine::UI::Rect>(L, 1));
+	LuaState::LuaCFunction::unique_ptr<posta::UI::Rect> rect(LuaState::LuaCFunction::getarg<posta::UI::Rect>(L, 1));
 	LuaState::LuaCFunction::checkarg(L, rect.get(), 1);
-	return new Engine::UI::Button(*rect);
+	return new posta::UI::Button(*rect);
 }
 
 static int Button_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 {
-	Engine::UI::Button* self = LuaState::LuaClass::method_checkself<Engine::UI::Button>(L);
+	posta::UI::Button* self = LuaState::LuaClass::method_checkself<posta::UI::Button>(L);
 	bool r;
 	if (lua_type(L, 2) == LUA_TNONE)
 	{
@@ -304,7 +304,7 @@ static int Button_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 	LuaState::LuaCFunction::checkarg(L, y_offset.get(), 3);
 	if (lua_type(L, 4) != LUA_TNONE)
 	{
-		LuaState::LuaCFunction::unique_ptr<Engine::UI::Rect> _rect(LuaState::LuaCFunction::getarg<Engine::UI::Rect>(L, 4)); 
+		LuaState::LuaCFunction::unique_ptr<posta::UI::Rect> _rect(LuaState::LuaCFunction::getarg<posta::UI::Rect>(L, 4)); 
 		LuaState::LuaCFunction::checkarg(L, _rect.get(), 4);
 		r = self->loop(*x_offset, *y_offset, *_rect);
 	}
@@ -315,16 +315,16 @@ static int Button_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 }
 
 /// Checkbox constructor
-static Engine::UI::Checkbox* Checkbox_new(lua_State* L)
+static posta::UI::Checkbox* Checkbox_new(lua_State* L)
 {
-	LuaState::LuaCFunction::unique_ptr<Engine::UI::Rect> rect(LuaState::LuaCFunction::getarg<Engine::UI::Rect>(L, 1));
+	LuaState::LuaCFunction::unique_ptr<posta::UI::Rect> rect(LuaState::LuaCFunction::getarg<posta::UI::Rect>(L, 1));
 	LuaState::LuaCFunction::checkarg(L, rect.get(), 1);
-	return new Engine::UI::Checkbox(*rect);
+	return new posta::UI::Checkbox(*rect);
 }
 
 static int Checkbox_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 {
-	Engine::UI::Checkbox* self = LuaState::LuaClass::method_checkself<Engine::UI::Checkbox>(L);
+	posta::UI::Checkbox* self = LuaState::LuaClass::method_checkself<posta::UI::Checkbox>(L);
 	bool r;
 	if (lua_type(L, 2) == LUA_TNONE)
 	{
@@ -338,7 +338,7 @@ static int Checkbox_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 	LuaState::LuaCFunction::checkarg(L, y_offset.get(), 3);
 	if (lua_type(L, 4) != LUA_TNONE)
 	{
-		LuaState::LuaCFunction::unique_ptr<Engine::UI::Rect> _rect(LuaState::LuaCFunction::getarg<Engine::UI::Rect>(L, 4)); 
+		LuaState::LuaCFunction::unique_ptr<posta::UI::Rect> _rect(LuaState::LuaCFunction::getarg<posta::UI::Rect>(L, 4)); 
 		LuaState::LuaCFunction::checkarg(L, _rect.get(), 4);
 		r = self->loop(*x_offset, *y_offset, *_rect);
 	}
@@ -349,14 +349,14 @@ static int Checkbox_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 }
 
 /// CheckboxGroup constructor
-static Engine::UI::CheckboxGroup* CheckboxGroup_new(lua_State* L)
+static posta::UI::CheckboxGroup* CheckboxGroup_new(lua_State* L)
 {
-	return new Engine::UI::CheckboxGroup;
+	return new posta::UI::CheckboxGroup;
 }
 
 static int CheckboxGroup_loop(lua_State* L) // int x_offset, int y_offset, Rect _rect
 {
-	Engine::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<Engine::UI::CheckboxGroup>(L);
+	posta::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<posta::UI::CheckboxGroup>(L);
 	if (lua_type(L, 2) == LUA_TNONE)
 	{
 		self->loop();
@@ -368,7 +368,7 @@ static int CheckboxGroup_loop(lua_State* L) // int x_offset, int y_offset, Rect 
 	LuaState::LuaCFunction::checkarg(L, y_offset.get(), 3);
 	if (lua_type(L, 4) != LUA_TNONE)
 	{
-		LuaState::LuaCFunction::unique_ptr<Engine::UI::Rect> _rect(LuaState::LuaCFunction::getarg<Engine::UI::Rect>(L, 4)); 
+		LuaState::LuaCFunction::unique_ptr<posta::UI::Rect> _rect(LuaState::LuaCFunction::getarg<posta::UI::Rect>(L, 4)); 
 		LuaState::LuaCFunction::checkarg(L, _rect.get(), 4);
 		self->loop(*x_offset, *y_offset, *_rect);
 	}
@@ -379,7 +379,7 @@ static int CheckboxGroup_loop(lua_State* L) // int x_offset, int y_offset, Rect 
 
 static int CheckboxGroup_get_checked_index(lua_State* L)
 {
-	Engine::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<Engine::UI::CheckboxGroup>(L);
+	posta::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<posta::UI::CheckboxGroup>(L);
 	auto index = self->get_checked_index();
 	
 	int r = 0;
@@ -392,7 +392,7 @@ static int CheckboxGroup_get_checked_index(lua_State* L)
 // copies the checkbox in the index
 static int CheckboxGroup_get_checkbox(lua_State* L)
 {
-	Engine::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<Engine::UI::CheckboxGroup>(L);
+	posta::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<posta::UI::CheckboxGroup>(L);
 	LuaState::LuaCFunction::unique_ptr<int> index(LuaState::LuaCFunction::getarg<int>(L, 2)); 
 	LuaState::LuaCFunction::checkarg(L, index.get(), 2);
 	if ((*index) < 1 || (*index) > static_cast<int>(self->checkboxes.size()))
@@ -406,16 +406,16 @@ static int CheckboxGroup_get_checkbox(lua_State* L)
 
 static int CheckboxGroup_size(lua_State* L)
 {
-	Engine::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<Engine::UI::CheckboxGroup>(L);
+	posta::UI::CheckboxGroup* self = LuaState::LuaClass::method_checkself<posta::UI::CheckboxGroup>(L);
 	size_t r = self->checkboxes.size();
 	LuaState::LuaCFunction::push_value(L, r);
 	return 1;
 }
 
-void Engine::LuaAPI::load_api(LuaState& lua_state)
+void posta::LuaAPI::load_api(LuaState& lua_state)
 {
 	// Aliases
-	LUA_USE_THIS_ALIAS_FOR_CLASS_N(MayNotBeOwner<Engine::Shader>, Engine::Shader);
+	LUA_USE_THIS_ALIAS_FOR_CLASS_N(MayNotBeOwner<posta::Shader>, posta::Shader);
 	LUA_USE_THIS_ALIAS_FOR_CLASS(glm::mat4);
 	LUA_USE_THIS_ALIAS_FOR_CLASS(glm::mat3);
 	LUA_USE_THIS_ALIAS_FOR_CLASS(glm::vec4);
@@ -453,53 +453,53 @@ void Engine::LuaAPI::load_api(LuaState& lua_state)
 	LUA_STATIC_FUNC_MAKE_NARGS(posta, print_something, "print_something");*/
 
 	// Util
-	LUA_CLASS_MAKE(posta, Engine::Font, Font_new);
+	LUA_CLASS_MAKE(posta, posta::Font, Font_new);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(posta, "render_image", Font_render_image);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(posta, "get_text_size", Font_get_text_size);
 
-	LUA_CLASS_MAKE_S(posta, MayNotBeOwner<Engine::Shader>, Shader_new);
+	LUA_CLASS_MAKE_S(posta, MayNotBeOwner<posta::Shader>, Shader_new);
 	LUA_STATIC_FUNC_MAKE_NARGS(posta, Shader__current, "current");
 	LUA_METHOD_MAKE_FROM_LUAFUNC(posta, "set_uniform", Shader_set_uniform);
 
 	// Components
-	LUA_CLASS_MAKE(components, Engine::Component::Image, Image_new);
-	LUA_METHOD_MAKE(components, Engine::Component::Image, get_matrix, int, int);
-	LUA_METHOD_MAKE_NARGS(components, Engine::Component::Image, draw);
-	LUA_METHOD_MAKE_NARGS(components, Engine::Component::Image, get_w);
-	LUA_METHOD_MAKE_NARGS(components, Engine::Component::Image, get_h);
-	LUA_METHOD_MAKE(components, Engine::Component::Image, set_w, int);
-	LUA_METHOD_MAKE(components, Engine::Component::Image, set_h, int);
+	LUA_CLASS_MAKE(components, posta::component::Image, Image_new);
+	LUA_METHOD_MAKE(components, posta::component::Image, get_matrix, int, int);
+	LUA_METHOD_MAKE_NARGS(components, posta::component::Image, draw);
+	LUA_METHOD_MAKE_NARGS(components, posta::component::Image, get_w);
+	LUA_METHOD_MAKE_NARGS(components, posta::component::Image, get_h);
+	LUA_METHOD_MAKE(components, posta::component::Image, set_w, int);
+	LUA_METHOD_MAKE(components, posta::component::Image, set_h, int);
 
 	// UI
-	LUA_CLASS_MAKE(UI, Engine::UI::Rect, Rect_new);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Rect, get_x);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Rect, get_y);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Rect, get_w);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Rect, get_h);
-	LUA_METHOD_MAKE(UI, Engine::UI::Rect, set_x, int);
-	LUA_METHOD_MAKE(UI, Engine::UI::Rect, set_y, int);
-	LUA_METHOD_MAKE(UI, Engine::UI::Rect, set_w, int);
-	LUA_METHOD_MAKE(UI, Engine::UI::Rect, set_h, int);
+	LUA_CLASS_MAKE(UI, posta::UI::Rect, Rect_new);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Rect, get_x);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Rect, get_y);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Rect, get_w);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Rect, get_h);
+	LUA_METHOD_MAKE(UI, posta::UI::Rect, set_x, int);
+	LUA_METHOD_MAKE(UI, posta::UI::Rect, set_y, int);
+	LUA_METHOD_MAKE(UI, posta::UI::Rect, set_w, int);
+	LUA_METHOD_MAKE(UI, posta::UI::Rect, set_h, int);
 
-	LUA_CLASS_MAKE(UI, Engine::UI::Button, Button_new);
+	LUA_CLASS_MAKE(UI, posta::UI::Button, Button_new);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "loop", Button_loop);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Button, get_rect);
-	LUA_METHOD_MAKE(UI, Engine::UI::Button, set_rect, Engine::UI::Rect);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Button, is_pressed);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Button, is_highlighted);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Button, press);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Button, release);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Button, get_rect);
+	LUA_METHOD_MAKE(UI, posta::UI::Button, set_rect, posta::UI::Rect);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Button, is_pressed);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Button, is_highlighted);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Button, press);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Button, release);
 
-	LUA_CLASS_MAKE(UI, Engine::UI::Checkbox, Checkbox_new);
+	LUA_CLASS_MAKE(UI, posta::UI::Checkbox, Checkbox_new);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "loop", Checkbox_loop);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Checkbox, get_rect);
-	LUA_METHOD_MAKE(UI, Engine::UI::Checkbox, set_rect, Engine::UI::Rect);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Checkbox, is_checked);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Checkbox, is_highlighted);
-	LUA_METHOD_MAKE_NARGS(UI, Engine::UI::Checkbox, toggle);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Checkbox, get_rect);
+	LUA_METHOD_MAKE(UI, posta::UI::Checkbox, set_rect, posta::UI::Rect);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Checkbox, is_checked);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Checkbox, is_highlighted);
+	LUA_METHOD_MAKE_NARGS(UI, posta::UI::Checkbox, toggle);
 
-	LUA_CLASS_MAKE(UI, Engine::UI::CheckboxGroup, CheckboxGroup_new);
-	LUA_METHOD_MAKE(UI, Engine::UI::CheckboxGroup, add_checkbox, Engine::UI::Checkbox);
+	LUA_CLASS_MAKE(UI, posta::UI::CheckboxGroup, CheckboxGroup_new);
+	LUA_METHOD_MAKE(UI, posta::UI::CheckboxGroup, add_checkbox, posta::UI::Checkbox);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "loop", CheckboxGroup_loop);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "get_checked_index", CheckboxGroup_get_checked_index);
 	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "get_checkbox", CheckboxGroup_get_checkbox);

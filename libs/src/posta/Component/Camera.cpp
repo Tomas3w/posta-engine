@@ -1,8 +1,8 @@
 #include <posta/Component/Camera.h>
 #include <cmath>
 
-using Engine::Component::PCamera;
-using Engine::Component::OCamera;
+using posta::component::PCamera;
+using posta::component::OCamera;
 
 PCamera::PCamera(float _near, float _far)
 {

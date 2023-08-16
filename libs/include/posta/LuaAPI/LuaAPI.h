@@ -7,7 +7,7 @@
 #include <posta/UI/Button.h>
 #include <posta/UI/Checkbox.h>
 
-namespace Engine::LuaAPI {
+namespace posta::LuaAPI {
 
 	void load_api(LuaState& lua_state);
 }

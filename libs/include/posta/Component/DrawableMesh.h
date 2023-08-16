@@ -2,7 +2,7 @@
 #define POSTAENGINE_DRAWABLEMESH_COMPONENT_H
 #include <posta/Util/Mesh.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Abstract class for mesh types that can be drawn
 	class DrawableMesh
 	{

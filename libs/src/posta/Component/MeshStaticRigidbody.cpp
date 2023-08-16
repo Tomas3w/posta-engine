@@ -2,7 +2,7 @@
 #include <posta/Util/LoggingMacro.h>
 #include <posta/App.h>
 
-using Engine::Component::MeshStaticRigidbody;
+using posta::component::MeshStaticRigidbody;
 
 MeshStaticRigidbody::MeshStaticRigidbody(glm::vec3 position, Mesh& mesh)
 {

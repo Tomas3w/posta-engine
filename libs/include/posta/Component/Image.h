@@ -8,23 +8,23 @@
 #include <memory>
 #include <posta/UI/Rect.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Image class, used to draw a 2D image in a given position, it stores a texture and its dimensions
 	class Image
 	{
 	public:
 		/// Returns the matrix for a rectangle
-		static glm::mat4 matrix_for_rect(Engine::UI::Rect rect, int screen_w, int screen_h);
+		static glm::mat4 matrix_for_rect(posta::UI::Rect rect, int screen_w, int screen_h);
 		/// Draws a rectangle with texture given by texture
-		static void draw_rect(Engine::Component::Texture* texture);
+		static void draw_rect(posta::component::Texture* texture);
 		/// Creates an image from a file
 		Image(std::filesystem::path path);
 		/// Creates an image from a texture and its dimensions, takes ownership of the texture pointer
-		Image(Engine::Component::Texture* texture, int w, int h);
+		Image(posta::component::Texture* texture, int w, int h);
 
 		glm::mat4 get_matrix(int x, int y);
 		glm::mat4 get_matrix_with_size(int x, int y, int _w, int _h);
-		glm::mat4 get_matrix_with_size(Engine::UI::Rect rect);
+		glm::mat4 get_matrix_with_size(posta::UI::Rect rect);
 		int get_w();
 		int get_h();
 		void set_w(int _w);
@@ -36,7 +36,7 @@ namespace Engine::Component {
 		/// Only draws, the texture and the mesh used are the previously binded
 		void only_draw();
 
-		std::unique_ptr<Engine::Component::Texture> texture;
+		std::unique_ptr<posta::component::Texture> texture;
 		int w, h;
 	};
 }

@@ -1,6 +1,6 @@
 #include <posta/Component/Transform.h>
 
-using Engine::Component::Transform;
+using posta::component::Transform;
 
 btTransform Transform::tobtTransform(const Transform& transform)
 {
@@ -133,11 +133,11 @@ Transform Transform::as_origin_to(Transform transform) const
 {
 	// TOTEST, already tested against as_local_to
 	/*
-		Engine::Component::Transform a({0, 0, 0});
+		posta::component::Transform a({0, 0, 0});
 		a.set_rotation(glm::rotate(glm::quat(1, 0, 0, 0), static_cast<float>(M_PI / 2), glm::vec3(0, 0, 1)));
-		Engine::Component::Transform b({1, 0, 0});
-		Engine::Component::Transform c = b.as_local_to(a);
-		Engine::Component::Transform d = a.as_origin_to(c);
+		posta::component::Transform b({1, 0, 0});
+		posta::component::Transform c = b.as_local_to(a);
+		posta::component::Transform d = a.as_origin_to(c);
 		// d should be equal to b
 	*/
 	Transform r;

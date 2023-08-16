@@ -8,7 +8,7 @@
 #include <cstring>
 #include <map>
 
-namespace Engine {
+namespace posta {
 	/// Structure containing the vertex properties for meshes
 	struct VertexProperties
 	{

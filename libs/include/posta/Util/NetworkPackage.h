@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-namespace Engine {
+namespace posta {
 	namespace NetworkPackageTypeSize
 	{
 		constexpr inline uint32_t size(const uint8_t value) { return sizeof(uint8_t); }
@@ -80,41 +80,41 @@ namespace Engine {
 		};
 
 		virtual uint32_t get_type() = 0; // should return the type with a unique id
-		virtual Engine::span<uint8_t> serialize() = 0;
-		virtual void deserialize(Engine::span<uint8_t>) = 0;
+		virtual posta::span<uint8_t> serialize() = 0;
+		virtual void deserialize(posta::span<uint8_t>) = 0;
 
 		std::vector<uint8_t> data; 
 	};
 
 /// basic writing
-void operator<<(Engine::NetworkPackage::Writer& writer, const uint8_t& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const uint16_t& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const uint32_t& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const int8_t& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const int16_t& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const int32_t& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const glm::vec3& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const glm::quat& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const std::string& value); /// Assumes sizeof(char) == 1
-void operator<<(Engine::NetworkPackage::Writer& writer, const float& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const std::vector<uint8_t>& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const std::vector<uint16_t>& value);
-void operator<<(Engine::NetworkPackage::Writer& writer, const std::vector<uint32_t>& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const uint8_t& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const uint16_t& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const uint32_t& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const int8_t& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const int16_t& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const int32_t& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const glm::vec3& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const glm::quat& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const std::string& value); /// Assumes sizeof(char) == 1
+void operator<<(posta::NetworkPackage::Writer& writer, const float& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<uint8_t>& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<uint16_t>& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<uint32_t>& value);
 
 /// basic reading
-void operator>>(Engine::NetworkPackage::Writer& writer, uint8_t& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, uint16_t& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, uint32_t& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, int8_t& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, int16_t& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, int32_t& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, glm::vec3& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, glm::quat& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, std::string& value); /// Assumes sizeof(char) == 1
-void operator>>(Engine::NetworkPackage::Writer& writer, float& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, std::vector<uint8_t>& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, std::vector<uint16_t>& value);
-void operator>>(Engine::NetworkPackage::Writer& writer, std::vector<uint32_t>& value);
+void operator>>(posta::NetworkPackage::Writer& writer, uint8_t& value);
+void operator>>(posta::NetworkPackage::Writer& writer, uint16_t& value);
+void operator>>(posta::NetworkPackage::Writer& writer, uint32_t& value);
+void operator>>(posta::NetworkPackage::Writer& writer, int8_t& value);
+void operator>>(posta::NetworkPackage::Writer& writer, int16_t& value);
+void operator>>(posta::NetworkPackage::Writer& writer, int32_t& value);
+void operator>>(posta::NetworkPackage::Writer& writer, glm::vec3& value);
+void operator>>(posta::NetworkPackage::Writer& writer, glm::quat& value);
+void operator>>(posta::NetworkPackage::Writer& writer, std::string& value); /// Assumes sizeof(char) == 1
+void operator>>(posta::NetworkPackage::Writer& writer, float& value);
+void operator>>(posta::NetworkPackage::Writer& writer, std::vector<uint8_t>& value);
+void operator>>(posta::NetworkPackage::Writer& writer, std::vector<uint16_t>& value);
+void operator>>(posta::NetworkPackage::Writer& writer, std::vector<uint32_t>& value);
 
 	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
 	class NetworkPackageTemplate : public NetworkPackage
@@ -128,12 +128,12 @@ void operator>>(Engine::NetworkPackage::Writer& writer, std::vector<uint32_t>& v
 		}
 
 		uint32_t get_type() { return PACKAGE_TYPE; }
-		Engine::span<uint8_t> serialize()
+		posta::span<uint8_t> serialize()
 		{
 			data.resize(this->size());
 			Writer writer(data.data());
 			this->write_value_to(writer);
-			return Engine::make_span(data);
+			return posta::make_span(data);
 		}
 
 		constexpr void write_value_to(Writer& writer)
@@ -142,7 +142,7 @@ void operator>>(Engine::NetworkPackage::Writer& writer, std::vector<uint32_t>& v
 			rest.write_value_to(writer);
 		}
 
-		void deserialize(Engine::span<uint8_t> _data)
+		void deserialize(posta::span<uint8_t> _data)
 		{
 			Writer writer(_data.data());
 			this->read_value_from(writer);
@@ -178,14 +178,14 @@ void operator>>(Engine::NetworkPackage::Writer& writer, std::vector<uint32_t>& v
 			writer >> value;
 		}
 		uint32_t get_type() { return PACKAGE_TYPE; }
-		Engine::span<uint8_t> serialize()
+		posta::span<uint8_t> serialize()
 		{
 			data.resize(this->size());
 			Writer writer(data.data());
 			this->write_value_to(writer);
-			return Engine::make_span(data);
+			return posta::make_span(data);
 		}
-		void deserialize(Engine::span<uint8_t> _data)
+		void deserialize(posta::span<uint8_t> _data)
 		{
 			Writer writer(_data.data());
 			this->read_value_from(writer);

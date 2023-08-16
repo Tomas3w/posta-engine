@@ -2,7 +2,7 @@
 #define POSTAENGINE_SMOOTHSTATICMESH_COMPONENT_H
 #include <posta/Component/DrawableMesh.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Smooth static mesh component
 	/** Used to bind a mesh when drawing, the vertex data cannot
 	 * be modified after creation. This differs from StaticMesh because of how vertices share properties, this makes it more lightweight and it makes it look more smooth, but it doesn't work well for some shapes, like cubes for example */

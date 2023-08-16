@@ -7,7 +7,7 @@
 #include <fstream>
 #include <posta/Util/General.h>
 
-namespace Engine {
+namespace posta {
 	class ConfigFile
 	{
 	public:

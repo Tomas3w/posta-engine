@@ -33,7 +33,7 @@
 #include <posta/Util/Scene.h>
 
 
-namespace Engine {
+namespace posta {
 	//class Shader;
 
 	struct PhysicsGlobal {
@@ -52,7 +52,7 @@ namespace Engine {
 	class App
 	{
 		public:
-			static std::unique_ptr<Engine::Component::StaticMesh> mesh2d;
+			static std::unique_ptr<posta::component::StaticMesh> mesh2d;
 			/** Global application variable */
 			static App* app;
 
@@ -103,8 +103,8 @@ namespace Engine {
 			virtual void minimize_window() final;
 			/** Sets window to fullscreen if v == true, makes the window windowed if v == false */
 			virtual void set_fullscreen_state(bool v) final;
-			/** Adds a resource bag to the main resource bag, see Engine::ResourceBag for more info */
-			virtual void add_bag(Engine::ResourceBag*& bag_var, Engine::ResourceBag* bag_lit) final;
+			/** Adds a resource bag to the main resource bag, see posta::ResourceBag for more info */
+			virtual void add_bag(posta::ResourceBag*& bag_var, posta::ResourceBag* bag_lit) final;
 
 			virtual bool is_click_pressed() const final;
 			virtual bool is_second_click_pressed() const final;
@@ -151,7 +151,7 @@ namespace Engine {
 			/// LuaState
 			std::unique_ptr<LuaAPI::LuaState> lua_state;
 
-			/// Resource bag, see Engine::ResourceBag for more info
+			/// Resource bag, see posta::ResourceBag for more info
 			ResourceBag* resource_bag;
 
 			/// Modify this to get to the next scene in the next frame
@@ -190,15 +190,15 @@ namespace Engine {
 
 			friend class App;
 		private:
-			Engine::ResourceBag* _bag;
+			posta::ResourceBag* _bag;
 			void init()
 			{
-				Engine::App::app->add_bag(_bag, new T());
+				posta::App::app->add_bag(_bag, new T());
 				bag = dynamic_cast<T*>(_bag);
 			}
 	};
 
-} // namespace Engine
+} // namespace posta
 
 #endif // POSTAENGINE_APP_H
 

@@ -4,7 +4,7 @@
 #include <posta/Util/Mesh.h>
 #include <memory>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Class used to make a Static Rigidbody from a Mesh object
 	class MeshStaticRigidbody : public Rigidbody
 	{

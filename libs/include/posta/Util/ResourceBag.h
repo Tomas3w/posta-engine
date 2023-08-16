@@ -3,11 +3,11 @@
 #include <vector>
 #include <memory>
 
-namespace Engine {
+namespace posta {
 	/// Use this class to hold all the assets in your project.
 	/// For example: textures, meshes, rigidbodies, etc.
-	/// When used, make sure to add all of your ResourceBags in the Engine::App::resource_bag so the application is able to
-	/// delete all the resources in the bags, this also implies that your resource bags are own by Engine::App and not by you
+	/// When used, make sure to add all of your ResourceBags in the posta::App::resource_bag so the application is able to
+	/// delete all the resources in the bags, this also implies that your resource bags are own by posta::App and not by you
 	class ResourceBag
 	{
 	public:

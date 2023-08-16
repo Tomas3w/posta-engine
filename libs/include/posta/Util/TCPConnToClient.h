@@ -2,7 +2,7 @@
 #define POSTAENGINE_TCPCONNTOCLIENTE_H
 #include <posta/Util/TCPConn.h>
 
-namespace Engine {
+namespace posta {
 	class TCPConnToClient : public TCPConn
 	{
 	public:

@@ -1,9 +1,9 @@
 #include <posta/Util/Assets.h>
 #include <posta/Util/LoggingMacro.h>
 
-using Engine::Mesh;
+using posta::Mesh;
 
-Mesh Engine::Assets::load_obj(std::filesystem::path path)
+Mesh posta::assets::load_obj(std::filesystem::path path)
 {
 	//LOG("loading path: ", path);
 	Mesh mesh(&basic_vertex_props);
@@ -123,7 +123,7 @@ Mesh Engine::Assets::load_obj(std::filesystem::path path)
 	return mesh;
 }
 
-Mesh Engine::Assets::load_obj_with_bones(std::filesystem::path path)
+Mesh posta::assets::load_obj_with_bones(std::filesystem::path path)
 {
 	Mesh mesh(&bone_vertex_props);
 	int i_position = mesh.get_index_by_name("position");

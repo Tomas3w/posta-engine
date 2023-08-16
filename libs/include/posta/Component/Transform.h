@@ -6,7 +6,7 @@
 #include <iostream>
 #include <bullet/btBulletDynamicsCommon.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Stores the transformation information of an object; rotation, translation and scale
 	class Transform
 	{

@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Abstract class for all camera-like components
 	class Camera
 	{

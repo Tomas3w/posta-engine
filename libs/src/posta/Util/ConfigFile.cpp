@@ -1,6 +1,6 @@
 #include <posta/Util/ConfigFile.h>
 
-using Engine::ConfigFile;
+using posta::ConfigFile;
 
 ConfigFile::Data::Data(std::string value)
 {
@@ -49,7 +49,7 @@ size_t ConfigFile::Data::size()
 
 ConfigFile::Data ConfigFile::to_data(std::string str)
 {
-	str = Engine::strip(str);
+	str = posta::strip(str);
 	if (str.empty() || str[0] != '(' || str[str.size() - 1] != ')')
 		return Data(str);
 	str.insert(str.end() - 1, ',');
@@ -117,7 +117,7 @@ ConfigFile::ConfigFile(std::filesystem::path path)
 		right.insert(right.begin(), line.begin() + pos + 1, line.end());
 
 		// Adding this to the raw data
-		data[Engine::strip(left)] = Engine::strip(right);
+		data[posta::strip(left)] = posta::strip(right);
 		line_pos++;
 	}
 	file.close();

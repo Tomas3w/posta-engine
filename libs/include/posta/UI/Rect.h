@@ -2,7 +2,7 @@
 #define POSTAENGINE_RECT_UI_H
 #include <SDL2/SDL.h>
 
-namespace Engine::UI {
+namespace posta::UI {
 	class Rect : public SDL_Rect
 	{
 	public:
@@ -29,7 +29,7 @@ namespace Engine::UI {
 		{
 			SDL_Rect result;
 			SDL_IntersectRect(this, &rect, &result);
-			return Engine::UI::Rect(result);
+			return posta::UI::Rect(result);
 		}
 
 		int get_x()

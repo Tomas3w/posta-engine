@@ -7,10 +7,10 @@
 #include <posta/Entity/Camera.h>
 #include <posta/Util/LoggingMacro.h>
 
-using Engine::App;
-using Engine::PhysicsGlobal;
+using posta::App;
+using posta::PhysicsGlobal;
 
-std::unique_ptr<Engine::Component::StaticMesh> App::mesh2d;
+std::unique_ptr<posta::component::StaticMesh> App::mesh2d;
 
 PhysicsGlobal::PhysicsGlobal()
 {
@@ -92,7 +92,7 @@ void App::init()
 	exit_loop = false;
 
 	// Filling mesh2d with its vertices
-	Engine::Mesh _mesh2d(&Assets::basic_vertex_props);
+	posta::Mesh _mesh2d(&assets::basic_vertex_props);
 	
 	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), { 1, -1, 0});
 	_mesh2d.add_data<3>(_mesh2d.get_index_by_name("position"), {-1,  1, 0});
@@ -106,16 +106,16 @@ void App::init()
 	_mesh2d.add_face({{{0, 0, 0}, {1, 0, 3}, {2, 0, 2}}});
 	_mesh2d.add_face({{{0, 0, 0}, {3, 0, 1}, {1, 0, 3}}});
 	_mesh2d.lock();
-	mesh2d.reset(new Engine::Component::StaticMesh(_mesh2d));
+	mesh2d.reset(new posta::component::StaticMesh(_mesh2d));
 	// Init shader2d
-	shader2d.reset(new Engine::TwoDShader());
+	shader2d.reset(new posta::TwoDShader());
 
 	// Init shader3d
-	shader3d.reset(new Engine::ThreeDShader());
+	shader3d.reset(new posta::ThreeDShader());
 
 	// Init default camera
-	camera.reset(new Engine::Entity::Camera(
-		new Engine::Component::PCamera(0.01f, 200.0f, M_PI / 4),
+	camera.reset(new posta::Entity::Camera(
+		new posta::component::PCamera(0.01f, 200.0f, M_PI / 4),
 		get_width(),
 		get_height()
 		));
@@ -124,11 +124,11 @@ void App::init()
 	init_physics();
 
 	// Init lua state with api
-	lua_state.reset(new Engine::LuaAPI::LuaState);
-	Engine::LuaAPI::load_api(*lua_state);
+	lua_state.reset(new posta::LuaAPI::LuaState);
+	posta::LuaAPI::load_api(*lua_state);
 
 	// Init resource_bag
-	resource_bag = new Engine::ResourceBag;
+	resource_bag = new posta::ResourceBag;
 
 	// Setting initial 60 fps delta_time
 	max_delta_time = 1 / 60.0f;
@@ -136,7 +136,7 @@ void App::init()
 	// Time to load...
 	auto end_time = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-	LOG("Time to init Engine::App: ", duration, "ms");
+	LOG("Time to init posta::App: ", duration, "ms");
 }
 
 void App::init_physics()
@@ -261,7 +261,7 @@ void App::step_physics()
 #endif
 }
 
-void App::manage_textbox_input(SDL_Event& event, Engine::UI::Textbox& textbox)
+void App::manage_textbox_input(SDL_Event& event, posta::UI::Textbox& textbox)
 {
 	switch (event.type)
 	{
@@ -351,7 +351,7 @@ void App::set_fullscreen_state(bool v)
 	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN * v);
 }
 
-void App::add_bag(Engine::ResourceBag*& bag_var, Engine::ResourceBag* bag_lit)
+void App::add_bag(posta::ResourceBag*& bag_var, posta::ResourceBag* bag_lit)
 {
 	bag_var = resource_bag->add_bag(bag_lit);
 }
@@ -402,5 +402,5 @@ void App::update_resolution(int w, int h)
 		camera->set_resolution(width, height);
 }
 
-std::vector<Engine::ResourceBeaconParent*> Engine::__app_beacons;
+std::vector<posta::ResourceBeaconParent*> posta::__app_beacons;
 

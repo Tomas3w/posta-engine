@@ -3,7 +3,7 @@
 #include <posta/Util/LoggingMacro.h>
 #include <limits>
 
-using Engine::Mesh;
+using posta::Mesh;
 
 Mesh::Mesh(const VertexProperties* properties)
 {
@@ -67,7 +67,7 @@ const std::vector<int>& Mesh::get_indices(int attribute_index)
 	return faces_data.at(attribute_index);
 }
 
-const Engine::VertexProperties* Mesh::get_vertex_properties() const
+const posta::VertexProperties* Mesh::get_vertex_properties() const
 {
 	return vertex_properties;
 }

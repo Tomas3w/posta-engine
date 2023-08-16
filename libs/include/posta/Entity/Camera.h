@@ -6,11 +6,11 @@
 #include <posta/Component/Transform.h>
 #include <glm/gtx/string_cast.hpp>
 
-namespace Engine::Entity {
+namespace posta::Entity {
 	class Camera : public Entity
 	{
 		public:
-			Camera(Engine::Component::Camera* camera, int width, int height);
+			Camera(posta::component::Camera* camera, int width, int height);
 			void set_resolution(int width, int height);
 			void get_resolution(int& width, int& height);
 			
@@ -21,8 +21,8 @@ namespace Engine::Entity {
 			glm::mat4 get_projection_matrix();
 
 			// This is a unique_ptr so the camera can use an orthographic or projection view
-			std::unique_ptr<Engine::Component::Camera> camera;
-			Engine::Component::Transform transform;
+			std::unique_ptr<posta::component::Camera> camera;
+			posta::component::Transform transform;
 		private:
 			//glm::vec3 position;
 			//glm::quat rotation;

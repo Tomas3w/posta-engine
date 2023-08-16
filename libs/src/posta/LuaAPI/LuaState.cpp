@@ -1,6 +1,6 @@
 #include <posta/LuaAPI/LuaState.h>
 
-using Engine::LuaAPI::LuaState;
+using posta::LuaAPI::LuaState;
 
 std::unordered_map<std::string, std::string> LuaState::LuaClass::type_lua_names;
 

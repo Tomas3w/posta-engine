@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <algorithm>
 
-namespace Engine {
+namespace posta {
 	/// Sound class for managing all kinds of sound, the sound is loaded in memory and read when needed
 	class Sound
 	{

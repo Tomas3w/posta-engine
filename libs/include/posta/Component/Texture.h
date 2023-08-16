@@ -5,14 +5,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-namespace Engine {
+namespace posta {
 	class DepthFramebuffer;
 	class ColorFramebuffer;
 	class FloatColorFramebuffer;
 	class Font;
 }
 
-namespace Engine::Component {
+namespace posta::component {
 	class Image;
 
 	/// Class that stores a texture, the texture cannot be modified after creation
@@ -28,10 +28,10 @@ namespace Engine::Component {
 			/// Binds the texture
 			void bind(GLuint texture_unit = 0);
 
-			friend class Engine::DepthFramebuffer;
-			friend class Engine::ColorFramebuffer;
-			friend class Engine::FloatColorFramebuffer;
-			friend class Engine::Font;
+			friend class posta::DepthFramebuffer;
+			friend class posta::ColorFramebuffer;
+			friend class posta::FloatColorFramebuffer;
+			friend class posta::Font;
 			friend class Image;
 
 			/// SDL-Specific: Constructs a texture from a SDL_Surface*, it doesn't free the surface

@@ -10,7 +10,7 @@
 #include <unordered_map>
 #include <SDL2/SDL.h>
 
-namespace Engine::LuaAPI
+namespace posta::LuaAPI
 {
 	/// Class for having lua objects derived from real types, but may not be created in lua directly
 	/// The class contains a pointer to the actual type but the class as a whole may not be the owner of this pointer

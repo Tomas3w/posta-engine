@@ -1,7 +1,7 @@
 #include <posta/Component/SmoothStaticMesh.h>
 #include <posta/Util/LoggingMacro.h>
 
-using Engine::Component::SmoothStaticMesh;
+using posta::component::SmoothStaticMesh;
 
 SmoothStaticMesh::SmoothStaticMesh(Mesh mesh)
 {

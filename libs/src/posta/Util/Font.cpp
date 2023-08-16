@@ -1,6 +1,6 @@
 #include <posta/Util/Font.h>
 
-using Engine::Font;
+using posta::Font;
 
 Font::Font(std::filesystem::path path)
 {
@@ -13,7 +13,7 @@ Font::~Font()
 		TTF_CloseFont(font.second._font);
 }
 
-Engine::Component::Texture* Font::render_text(std::string text, size_t font_size, int* w, int* h)
+posta::component::Texture* Font::render_text(std::string text, size_t font_size, int* w, int* h)
 {
 	auto it = get_iterator_for_font(font_size);
 	int u, v;
@@ -24,13 +24,13 @@ Engine::Component::Texture* Font::render_text(std::string text, size_t font_size
 	return it->second.render_text(text, font_size, width, height);
 }
 
-Engine::Component::Image* Font::render_image(std::string text, size_t font_size)
+posta::component::Image* Font::render_image(std::string text, size_t font_size)
 {
 	if (text.empty())
 		text = " ";
 	int w, h;
-	Engine::Component::Texture* texture = render_text(text, font_size, &w, &h);
-	return new Engine::Component::Image(texture, w, h);
+	posta::component::Texture* texture = render_text(text, font_size, &w, &h);
+	return new posta::component::Image(texture, w, h);
 }
 
 int Font::get_text_size(std::string text, size_t font_size, int& w, int& h)
@@ -76,7 +76,7 @@ Font::InternalFont::InternalFont(std::filesystem::path path, size_t font_size)
 	TTF_SizeUTF8(_font, " ", &char_width, &char_height);
 }
 
-Engine::Component::Texture* Font::InternalFont::render_text(std::string text, size_t font_size, int* w, int* h)
+posta::component::Texture* Font::InternalFont::render_text(std::string text, size_t font_size, int* w, int* h)
 {
 	//std::cout << "ttf inits2: " << TTF_WasInit() << std::endl;
 	//std::cout << "a " << _font << std::endl;
@@ -84,7 +84,7 @@ Engine::Component::Texture* Font::InternalFont::render_text(std::string text, si
 	(*w) = img->w;
 	(*h) = img->h;
 	//std::cout << "b" << std::endl;
-	Engine::Component::Texture* texture = new Engine::Component::Texture(img);
+	posta::component::Texture* texture = new posta::component::Texture(img);
 	SDL_FreeSurface(img);
 	//std::cout << "c" << std::endl;
 	return texture;

@@ -2,7 +2,7 @@
 #define POSTAENGINE_CAPSULERIGIDBODY_H
 #include <posta/Component/Rigidbody.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	class CapsuleRigidbody : public Rigidbody
 	{
 		public:

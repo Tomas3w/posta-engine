@@ -1,14 +1,14 @@
 #include <posta/Util/Framebuffer.h>
 #include <posta/App.h>
 
-using Engine::Framebuffer;
-using Engine::DepthFramebuffer;
-using Engine::ColorFramebuffer;
-using Engine::FloatColorFramebuffer;
+using posta::Framebuffer;
+using posta::DepthFramebuffer;
+using posta::ColorFramebuffer;
+using posta::FloatColorFramebuffer;
 
 void Framebuffer::unbind_framebuffer()
 {
-	glViewport(0, 0, Engine::App::app->get_width(), Engine::App::app->get_height());
+	glViewport(0, 0, posta::App::app->get_width(), posta::App::app->get_height());
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
@@ -23,7 +23,7 @@ Framebuffer::~Framebuffer()
 	glDeleteFramebuffers(1, &fbo);
 }
 
-//std::unique_ptr<Engine::Component::Texture> texture;
+//std::unique_ptr<posta::component::Texture> texture;
 
 DepthFramebuffer::DepthFramebuffer(int _w, int _h)
 {
@@ -41,7 +41,7 @@ DepthFramebuffer::DepthFramebuffer(int _w, int _h)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	texture.reset(new Engine::Component::Texture(depthMap));
+	texture.reset(new posta::component::Texture(depthMap));
 
 	// assigning the texture to the framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
@@ -72,7 +72,7 @@ ColorFramebuffer::ColorFramebuffer(int _w, int _h)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	texture.reset(new Engine::Component::Texture(textureMap));
+	texture.reset(new posta::component::Texture(textureMap));
 
 	// assigning the texture to the framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
@@ -101,7 +101,7 @@ FloatColorFramebuffer::FloatColorFramebuffer(int _w, int _h)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	texture.reset(new Engine::Component::Texture(textureMap));
+	texture.reset(new posta::component::Texture(textureMap));
 
 	// assigning the texture to the framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);

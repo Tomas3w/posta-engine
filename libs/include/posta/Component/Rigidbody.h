@@ -4,7 +4,7 @@
 #include <posta/Util/General.h>
 #include <iostream>
 
-namespace Engine::Component {
+namespace posta::component {
 	class Rigidbody
 	{
 		public:
@@ -16,9 +16,9 @@ namespace Engine::Component {
 			/// Returns the transforms matrix
 			virtual glm::mat4 get_matrix() final;
 			/// Returns a new transform object of the internal rigidbody
-			virtual Engine::Component::Transform get_transform() final;
+			virtual posta::component::Transform get_transform() final;
 			/// Set transform, ignores scale of transform
-			virtual void set_transform(Engine::Component::Transform transform);
+			virtual void set_transform(posta::component::Transform transform);
 			
 			/// Returns the internal rigidbody pointer
 			virtual btRigidBody* get_body() final;

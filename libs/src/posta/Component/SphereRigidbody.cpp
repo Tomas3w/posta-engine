@@ -1,7 +1,7 @@
 #include <posta/Component/SphereRigidbody.h>
 #include <posta/App.h>
 
-using Engine::Component::SphereRigidbody;
+using posta::component::SphereRigidbody;
 
 SphereRigidbody::SphereRigidbody(glm::vec3 position, float mass, float radius, glm::vec3 velocity)
 {
@@ -17,6 +17,6 @@ SphereRigidbody::SphereRigidbody(glm::vec3 position, float mass, float radius, g
 	set_body(new btRigidBody(info));
 	App::app->physics->world->addRigidBody(get_body());
 
-	get_body()->applyCentralForce(Engine::to_btVector3(velocity));
+	get_body()->applyCentralForce(posta::to_btVector3(velocity));
 }
 

@@ -6,7 +6,7 @@
 #include <posta/Component/Image.h>
 #include <unordered_map>
 
-namespace Engine {
+namespace posta {
 	/// A font class, used to draw text into textures and images
 	class Font
 	{
@@ -22,10 +22,10 @@ namespace Engine {
 			/// \param font_size size of the font, the final resolution of a given font size depends upon the font
 			/// \param w width in pixels, optional parameter, defaults to null
 			/// \param h height in pixels, optional parameter, defaults to null
-			Engine::Component::Texture* render_text(std::string text, size_t font_size, int* w = nullptr, int* h = nullptr);
+			posta::component::Texture* render_text(std::string text, size_t font_size, int* w = nullptr, int* h = nullptr);
 
 			/// Returns an image object with a text on it
-			Engine::Component::Image* render_image(std::string text, size_t font_size);
+			posta::component::Image* render_image(std::string text, size_t font_size);
 
 			/// Returns 0 on success, -1 on failure
 			int get_text_size(std::string text, size_t font_size, int& w, int& h);
@@ -44,7 +44,7 @@ namespace Engine {
 			{
 				InternalFont() = default;
 				InternalFont(std::filesystem::path path, size_t font_size);
-				Engine::Component::Texture* render_text(std::string text, size_t font_size, int* w, int* h);
+				posta::component::Texture* render_text(std::string text, size_t font_size, int* w, int* h);
 				/// Returns 0 on success, -1 on failure
 				int get_text_size(std::string text, int& w, int& h);
 				

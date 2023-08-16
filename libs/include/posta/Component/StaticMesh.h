@@ -2,7 +2,7 @@
 #define POSTAENGINE_STATICMESH_COMPONENT_H
 #include <posta/Component/DrawableMesh.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	/// Static mesh component
 	/** Used to bind a mesh when drawing, the vertex data cannot
 	 * be modified after creation */

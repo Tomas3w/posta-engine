@@ -1,7 +1,7 @@
 #include <posta/Component/Texture.h>
 #include <iostream>
 
-using Engine::Component::Texture;
+using posta::component::Texture;
 
 Texture::Texture(std::filesystem::path path)
 {

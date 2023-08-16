@@ -1,7 +1,7 @@
 #include <posta/UI/Textbox.h>
 #include <posta/App.h>
 
-using Engine::UI::Textbox;
+using posta::UI::Textbox;
 
 void Textbox::loop(int x_offset, int y_offset)
 {
@@ -30,7 +30,7 @@ std::string Textbox::get_text() const
 
 void Textbox::select()
 {
-	int& mouse_x = Engine::App::app->mouse_x;
+	int& mouse_x = posta::App::app->mouse_x;
 	int nx = button.rect.x + _x_offset;
 	int dnx = mouse_x - nx;
 	if (dnx >= 0 && dnx < button.rect.w)
@@ -73,7 +73,7 @@ bool Textbox::is_selected()
 	return state;
 }
 
-Engine::UI::Rect& Textbox::get_rect()
+posta::UI::Rect& Textbox::get_rect()
 {
 	return button.rect;
 }
@@ -83,7 +83,7 @@ void Textbox::set_rect(Rect rect)
 	button.rect = rect;
 }
 
-Engine::Font* Textbox::get_font_ptr()
+posta::Font* Textbox::get_font_ptr()
 {
 	return font;
 }

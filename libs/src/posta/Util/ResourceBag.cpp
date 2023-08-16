@@ -1,6 +1,6 @@
 #include <posta/Util/ResourceBag.h>
 
-using Engine::ResourceBag;
+using posta::ResourceBag;
 
 ResourceBag* ResourceBag::add_bag(ResourceBag *resource_bag)
 {

@@ -18,7 +18,7 @@ namespace std {
 
 bool operator==(const IPaddress &a, const IPaddress &b);
 
-namespace Engine {
+namespace posta {
 	class TCPConnToServer : public TCPConn
 	{
 	public:

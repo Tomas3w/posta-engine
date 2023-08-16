@@ -1,9 +1,9 @@
 #include <posta/Component/Image.h>
 #include <posta/App.h>
 
-using Engine::Component::Image;
+using posta::component::Image;
 
-glm::mat4 Image::matrix_for_rect(Engine::UI::Rect rect, int screen_w, int screen_h)
+glm::mat4 Image::matrix_for_rect(posta::UI::Rect rect, int screen_w, int screen_h)
 {
 	float width = screen_w;
 	float height = screen_h;
@@ -11,7 +11,7 @@ glm::mat4 Image::matrix_for_rect(Engine::UI::Rect rect, int screen_w, int screen
 	return r;
 }
 
-void Image::draw_rect(Engine::Component::Texture* texture)
+void Image::draw_rect(posta::component::Texture* texture)
 {
 	texture->bind();
 	App::mesh2d->draw();
@@ -24,11 +24,11 @@ Image::Image(std::filesystem::path path)
 		throw std::logic_error(std::string("couldn't find texture file (while constructing Image): '") + path.string().c_str() + "'");
 	w = img->w;
 	h = img->h;
-	texture.reset(new Engine::Component::Texture(img));
+	texture.reset(new posta::component::Texture(img));
 	SDL_FreeSurface(img);
 }
 
-Image::Image(Engine::Component::Texture* texture, int w, int h)
+Image::Image(posta::component::Texture* texture, int w, int h)
 {
 	this->texture.reset(texture);
 	this->w = w;
@@ -37,15 +37,15 @@ Image::Image(Engine::Component::Texture* texture, int w, int h)
 
 glm::mat4 Image::get_matrix(int x, int y)
 {
-	return matrix_for_rect(Engine::UI::Rect(x, y, w, h), Engine::App::app->get_width(), Engine::App::app->get_height());
+	return matrix_for_rect(posta::UI::Rect(x, y, w, h), posta::App::app->get_width(), posta::App::app->get_height());
 }
 
 glm::mat4 Image::get_matrix_with_size(int x, int y, int _w, int _h)
 {
-	return matrix_for_rect(Engine::UI::Rect(x, y, _w, _h), Engine::App::app->get_width(), Engine::App::app->get_height());
+	return matrix_for_rect(posta::UI::Rect(x, y, _w, _h), posta::App::app->get_width(), posta::App::app->get_height());
 }
 
-glm::mat4 Image::get_matrix_with_size(Engine::UI::Rect rect)
+glm::mat4 Image::get_matrix_with_size(posta::UI::Rect rect)
 {
 	return get_matrix_with_size(rect.x, rect.y, rect.w, rect.h);
 }

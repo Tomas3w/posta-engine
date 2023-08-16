@@ -2,7 +2,7 @@
 #include <posta/App.h> // this needs to be here
 #include <posta/Util/LoggingMacro.h>
 
-using Engine::Shader;
+using posta::Shader;
 
 Shader::Shader(std::filesystem::path path)
 {
@@ -11,7 +11,7 @@ Shader::Shader(std::filesystem::path path)
 
 	// vertex
 	GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	std::string vertex_shader_file = Engine::read_file(path / "vertex.glsl");
+	std::string vertex_shader_file = posta::read_file(path / "vertex.glsl");
 	const char* vertex_shader_source = vertex_shader_file.c_str();
 	glShaderSource(vertex_shader, 1, &vertex_shader_source, nullptr);
 	glCompileShader(vertex_shader);
@@ -25,7 +25,7 @@ Shader::Shader(std::filesystem::path path)
 
 	// fragment
 	GLuint fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	std::string fragment_shader_file = Engine::read_file(path / "fragment.glsl");
+	std::string fragment_shader_file = posta::read_file(path / "fragment.glsl");
 	//LOG(fragment_shader_file);
 	const char* fragment_shader_source = fragment_shader_file.c_str();
 	glShaderSource(fragment_shader, 1, &fragment_shader_source, nullptr);
@@ -70,6 +70,6 @@ GLuint Shader::get_program() const
 void Shader::bind()
 {
 	glUseProgram(shader_program);
-	Engine::App::app->current_shader = this;
+	posta::App::app->current_shader = this;
 }
 

@@ -4,7 +4,7 @@
 #include <posta/Util/General.h>
 #include <posta/Component/Texture.h>
 
-namespace Engine {
+namespace posta {
 	class Framebuffer
 	{
 		public:
@@ -22,7 +22,7 @@ namespace Engine {
 			int w, h;
 			
 			/// Texture of the framebuffer, it is guarantee to not be null
-			std::unique_ptr<Engine::Component::Texture> texture;
+			std::unique_ptr<posta::component::Texture> texture;
 
 			friend class DepthFramebuffer;
 			friend class ColorFramebuffer;

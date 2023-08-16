@@ -1,8 +1,8 @@
 #include <posta/Component/Skeleton.h>
 
-using Engine::Component::Skeleton;
+using posta::component::Skeleton;
 
-Engine::Component::Transform Skeleton::str_to_transform(std::string s)
+posta::component::Transform Skeleton::str_to_transform(std::string s)
 {
 	std::stringstream s_s(s);
 	std::string number;
@@ -18,7 +18,7 @@ Engine::Component::Transform Skeleton::str_to_transform(std::string s)
 	return transform;
 }
 
-static void print_bones(std::vector<Skeleton::Bone>& bones, std::vector<Engine::Component::Transform> bone_transforms, int level = 0)
+static void print_bones(std::vector<Skeleton::Bone>& bones, std::vector<posta::component::Transform> bone_transforms, int level = 0)
 {
 	for (auto& bone : bones)
 	{
@@ -83,7 +83,7 @@ Skeleton::Skeleton(std::filesystem::path path)
 	{
 		Bone bone;
 		bone.index = i;
-		std::vector<std::string> parts = Engine::split(line, ' ');
+		std::vector<std::string> parts = posta::split(line, ' ');
 		bone.name = parts[0];
 		bone.parent_name = parts[1];
 		bone.length = stof(parts[2]);
@@ -131,19 +131,19 @@ void Skeleton::add_animation(std::filesystem::path path)
 	// getting data from file
 	// fps
 	getline(file, line);
-	auto vec = Engine::split(line, '#');
+	auto vec = posta::split(line, '#');
 	float fps = stof(vec[0]);
 	// frames
 	getline(file, line);
-	vec = Engine::split(line, '#');
+	vec = posta::split(line, '#');
 	int frames = stoi(vec[0]);
 	// sample rate
 	getline(file, line);
-	vec = Engine::split(line, '#');
+	vec = posta::split(line, '#');
 	int sample_rate = stoi(vec[0]);
 	// bones count
 	getline(file, line);
-	vec = Engine::split(line, '#');
+	vec = posta::split(line, '#');
 	int bone_count = stoi(vec[0]);
 	if (static_cast<size_t>(bone_count) != Bone::count_of_bones(root_bones))
 		throw std::logic_error(std::string("number of bones of animation is not equal to bones of skeleton, in file: ") + path.string());
@@ -171,7 +171,7 @@ float Skeleton::get_animation_duration(std::string name)
 	return -1;
 }
 
-Engine::span<Engine::anim_mat4> Skeleton::get_animation_matrices(AnimationPlayer& player, bool advance_time)
+posta::span<posta::anim_mat4> Skeleton::get_animation_matrices(AnimationPlayer& player, bool advance_time)
 {
 	// Getting and updating bone_transforms
 	auto& animation = player.animations[0];
@@ -189,10 +189,10 @@ Engine::span<Engine::anim_mat4> Skeleton::get_animation_matrices(AnimationPlayer
 		(*kt) = it->get_matrix() * glm::inverse(*jt);
 	if (advance_time)
 		player.time += App::app->delta_time;
-	return Engine::span<Engine::anim_mat4>(models.data(), models.size());
+	return posta::span<posta::anim_mat4>(models.data(), models.size());
 }
 
-std::vector<std::vector<Engine::Component::Transform>>& Skeleton::Animation::get_local_frames(std::vector<Bone>& root_bones)
+std::vector<std::vector<posta::component::Transform>>& Skeleton::Animation::get_local_frames(std::vector<Bone>& root_bones)
 {
 	// TOTEST
 	if (local_frames.empty())
@@ -206,8 +206,8 @@ std::vector<std::vector<Engine::Component::Transform>>& Skeleton::Animation::get
 			Bone::on_bones(root_bones, [&](Bone* bone){
 				if (bone->parent)
 				{
-					Engine::Component::Transform& parent_transform = frame[bone->parent->index];
-					Engine::Component::Transform& child_transform = frame[bone->index];
+					posta::component::Transform& parent_transform = frame[bone->parent->index];
+					posta::component::Transform& child_transform = frame[bone->index];
 					local_frame[bone->index] = parent_transform.as_origin_to(child_transform);
 				}
 				else
@@ -219,16 +219,16 @@ std::vector<std::vector<Engine::Component::Transform>>& Skeleton::Animation::get
 	return local_frames;
 }
 
-Engine::span<Engine::anim_mat4> Skeleton::get_blend_animation_matrices(AnimationPlayer& player, bool advance_time)
+posta::span<posta::anim_mat4> Skeleton::get_blend_animation_matrices(AnimationPlayer& player, bool advance_time)
 {
 	// TOIMPROVE
 	bone_transforms = rest_transforms;
-	std::vector<Engine::Component::Transform> local_transforms(rest_transforms.size());
+	std::vector<posta::component::Transform> local_transforms(rest_transforms.size());
 	Bone::on_bones(root_bones, [&](Bone* bone){
 		if (bone->parent)
 		{
-			Engine::Component::Transform& parent_transform = bone_transforms[bone->parent->index];
-			Engine::Component::Transform& child_transform = bone_transforms[bone->index];
+			posta::component::Transform& parent_transform = bone_transforms[bone->parent->index];
+			posta::component::Transform& child_transform = bone_transforms[bone->index];
 			local_transforms[bone->index] = parent_transform.as_origin_to(child_transform);
 		}
 		else
@@ -262,6 +262,6 @@ Engine::span<Engine::anim_mat4> Skeleton::get_blend_animation_matrices(Animation
 		(*kt) = it->get_matrix() * glm::inverse(*jt);
 	if (advance_time)
 		player.time += App::app->delta_time;
-	return Engine::span<Engine::anim_mat4>(models.data(), models.size());
+	return posta::span<posta::anim_mat4>(models.data(), models.size());
 }
 

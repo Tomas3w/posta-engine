@@ -10,6 +10,6 @@
 	#error "unknown OS for debug logging"
 #endif
 
-#define LOG(...) Engine::log('[', __FILENAME__, ':', __LINE__, "]\t", __VA_ARGS__);
+#define LOG(...) posta::log('[', __FILENAME__, ':', __LINE__, "]\t", __VA_ARGS__);
 
 #endif // POSTAENGINE_LOGGINGMACRO_UTILITY_H

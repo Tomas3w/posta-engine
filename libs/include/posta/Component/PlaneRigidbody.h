@@ -2,7 +2,7 @@
 #define POSTAENGINE_PLANERIGIDBODY_H
 #include <posta/Component/Rigidbody.h>
 
-namespace Engine::Component {
+namespace posta::component {
 	class PlaneRigidbody : public Rigidbody
 	{
 		public:
