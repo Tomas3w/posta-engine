@@ -1,4 +1,5 @@
 #include <posta/Component/Skeleton.h>
+#include <posta/Util/LoggingMacro.h>
 
 using posta::component::Skeleton;
 

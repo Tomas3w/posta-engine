@@ -1,4 +1,4 @@
-#include <posta/Util/TCPConnOfServer.h>
+#include <posta/Network/TCPConnOfServer.h>
 
 using posta::TCPConnOfServer;
 

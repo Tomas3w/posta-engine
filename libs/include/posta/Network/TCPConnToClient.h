@@ -1,6 +1,6 @@
 #ifndef POSTAENGINE_TCPCONNTOCLIENTE_H
 #define POSTAENGINE_TCPCONNTOCLIENTE_H
-#include <posta/Util/TCPConn.h>
+#include <posta/Network/TCPConn.h>
 
 namespace posta {
 	class TCPConnToClient : public TCPConn

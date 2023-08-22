@@ -46,9 +46,9 @@ void print_something()
 }*/
 
 #define LUA_METHOD_MAKE(lib, t, m, ...) \
-	(lib.classes.back().methods.push_back(LuaState::LuaCFunction::from_method<t, decltype(t::m), &t::m, __VA_ARGS__>(#m)))
+	(lib.classes.back().methods.push_back(LuaState::LuaCFunction::from_method<t, decltype(&t::m), &t::m, __VA_ARGS__>(#m)))
 #define LUA_METHOD_MAKE_NARGS(lib, t, m) \
-	(lib.classes.back().methods.push_back(LuaState::LuaCFunction::from_method<t, decltype(t::m), &t::m>(#m)))
+	(lib.classes.back().methods.push_back(LuaState::LuaCFunction::from_method<t, decltype(&t::m), &t::m>(#m)))
 #define LUA_METHOD_MAKE_FROM_LUAFUNC(lib, name, f) \
 	(lib.classes.back().methods.push_back(LuaState::LuaCFunction(name, f)))
 
@@ -60,9 +60,9 @@ void print_something()
 	(lib.classes.push_back(LuaState::LuaClass::from_class<t, ctor, true>()))
 
 #define LUA_FUNC_MAKE(lib, f, ...) \
-	(lib.functions.push_back(LuaState::LuaCFunction::from_func<decltype(f), &f, __VA_ARGS__>(#f)))
+	(lib.functions.push_back(LuaState::LuaCFunction::from_func<decltype(&f), &f, __VA_ARGS__>(#f)))
 #define LUA_FUNC_MAKE_NARGS(lib, f) \
-	(lib.functions.push_back(LuaState::LuaCFunction::from_func<decltype(f), &f>(#f)))
+	(lib.functions.push_back(LuaState::LuaCFunction::from_func<decltype(&f), &f>(#f)))
 
 #define LUA_USE_THIS_ALIAS_FOR_CLASS(x) \
 	(LuaState::LuaClass::add_alias_to_class<x>(#x))
@@ -70,9 +70,9 @@ void print_something()
 	(LuaState::LuaClass::add_alias_to_class<x>(#y))
 
 #define LUA_STATIC_FUNC_MAKE(lib, f, name, ...) \
-	(lib.classes.back().static_functions.push_back(LuaState::LuaCFunction::from_func<decltype(f), &f, __VA_ARGS__>(name)))
+	(lib.classes.back().static_functions.push_back(LuaState::LuaCFunction::from_func<decltype(&f), &f, __VA_ARGS__>(name)))
 #define LUA_STATIC_FUNC_MAKE_NARGS(lib, f, name) \
-	(lib.classes.back().static_functions.push_back(LuaState::LuaCFunction::from_func<decltype(f), &f>(name)))
+	(lib.classes.back().static_functions.push_back(LuaState::LuaCFunction::from_func<decltype(&f), &f>(name)))
 
 /// Returns a new glm 4x4 matrix (glm::mat4) with the value of the identity
 static glm::mat4* glm_mat4_new(lua_State* L)

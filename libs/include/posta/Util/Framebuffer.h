@@ -8,7 +8,7 @@ namespace posta {
 	class Framebuffer
 	{
 		public:
-			/// Unbinds any framebuffer previously binded, the following draw calls will be done on the screen
+			/// Unbinds any framebuffer previously binded, the following draw calls will be done on the screen (except in editor mode of course)
 			static void unbind_framebuffer();
 			/// Binds the framebuffer, once binded the following draw calls will be done on this framebuffer and not on the the screen
 			/// This only binds the framebuffer, make sure to also call clear() on this framebuffer after binding so that something
@@ -27,7 +27,11 @@ namespace posta {
 			friend class DepthFramebuffer;
 			friend class ColorFramebuffer;
 			friend class FloatColorFramebuffer;
+			friend class App;
 		private:
+			static void set_default(Framebuffer* framebuffer);
+			static GLuint default_fbo;
+
 			GLuint fbo;
 	};
 	

@@ -1,4 +1,4 @@
-#include <posta/Util/TCPConn.h>
+#include <posta/Network/TCPConn.h>
 // Include htonl and others
 #ifdef _WIN32
 #include <winsock.h>

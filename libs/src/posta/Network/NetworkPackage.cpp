@@ -1,4 +1,4 @@
-#include <posta/Util/NetworkPackage.h>
+#include <posta/Network/NetworkPackage.h>
 // Include htonl and others
 #ifdef _WIN32
 #include <winsock.h>

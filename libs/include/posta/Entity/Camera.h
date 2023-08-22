@@ -6,7 +6,7 @@
 #include <posta/Component/Transform.h>
 #include <glm/gtx/string_cast.hpp>
 
-namespace posta::Entity {
+namespace posta::entity {
 	class Camera : public Entity
 	{
 		public:

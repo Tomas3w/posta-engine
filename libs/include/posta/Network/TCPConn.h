@@ -3,7 +3,7 @@
 //#include <posta/App.h>
 #include <SDL2/SDL_net.h>
 #include <posta/Util/span.h>
-#include <posta/Util/NetworkPackage.h>
+#include <posta/Network/NetworkPackage.h>
 #include <array>
 
 namespace posta {

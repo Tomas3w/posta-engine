@@ -6,10 +6,12 @@ using posta::DepthFramebuffer;
 using posta::ColorFramebuffer;
 using posta::FloatColorFramebuffer;
 
+GLuint Framebuffer::default_fbo = 0;
+
 void Framebuffer::unbind_framebuffer()
 {
 	glViewport(0, 0, posta::App::app->get_width(), posta::App::app->get_height());
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, default_fbo);
 }
 
 void Framebuffer::bind()
@@ -21,6 +23,14 @@ void Framebuffer::bind()
 Framebuffer::~Framebuffer()
 {
 	glDeleteFramebuffers(1, &fbo);
+}
+
+void Framebuffer::set_default(Framebuffer* framebuffer)
+{
+	if (framebuffer)
+		default_fbo = framebuffer->fbo;
+	else
+		default_fbo = 0;
 }
 
 //std::unique_ptr<posta::component::Texture> texture;

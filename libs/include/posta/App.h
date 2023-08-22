@@ -3,12 +3,13 @@
 
 #include <iostream>
 
+#include <posta/Util/Framebuffer.h>
 #include <posta/Entity/Camera.h>
 #include <posta/Util/Assets.h>
 #include <posta/Component/StaticMesh.h>
 #include <posta/Util/Mesh.h>
 #include <posta/Util/Assets.h>
-#include <posta/Util/TCPConnToServer.h>
+#include <posta/Network/TCPConnToServer.h>
 #include <posta/Util/Shader.h>
 #include <posta/LuaAPI/LuaState.h>
 #include <posta/UI/Textbox.h>
@@ -81,6 +82,8 @@ namespace posta {
 			virtual void clear_frame_and_flip() final;
 			/** Clears the screen (or framebuffer if one is binded) */
 			virtual void clear_frame() final;
+			/** Clears only the depth component of the frame (or framebuffer if one is binded) */
+			virtual void clear_depth() final;
 
 			/** \return width of the window */
 			virtual const int& get_width() const final;
@@ -120,6 +123,13 @@ namespace posta {
 			/** Gets the max framerate of the applciation */
 			float get_framerate_limit();
 
+			/** Set mouse confined state to the window */
+			void set_mouse_confined_state(bool confined);
+			bool get_mouse_confined_state();
+
+			/** Returns true if the application is in editor mode */
+			bool is_editor_mode_enabled();
+
 			/** Map inputs to their values, use at when accessing input */
 			std::unordered_map<std::string, float> input;
 			/** Keyboard state */
@@ -132,13 +142,13 @@ namespace posta {
 			/** Set to true to (in the next frame) exit the app */
 			bool exit_loop;
 			/** Time in seconds since the last frame */
-			float delta_time;
+			float delta_time = 1;
 			
 			/// Main window
 			SDL_Window* window;
 
 			/** Default camera */
-			std::unique_ptr<Entity::Camera> camera;
+			std::unique_ptr<entity::Camera> camera;
 
 			/** Current shader */
 			Shader* current_shader = nullptr;
@@ -157,7 +167,22 @@ namespace posta {
 			/// Modify this to get to the next scene in the next frame
 			std::unique_ptr<Scene> next_scene;
 
+			friend class entity::Camera;
+			friend class entity::Entity;
 		private:
+			void draw_editor_viewport(bool front);
+			void handle_editor_loop();
+			void handle_editor_events(SDL_Event& event);
+			#ifndef EDITOR_DISABLED
+			std::unordered_map<std::string, float> editor_input;
+			#endif
+
+			/// Internal framebuffer to store the 2D output of the scene's draw2d method when in editor mode
+			std::unique_ptr<ColorFramebuffer> editor_2d_framebuffer;
+
+			/// Editor camera
+			std::unique_ptr<entity::Camera> editor_camera;
+
 			/// Current scene
 			std::unique_ptr<Scene> current_scene;
 
@@ -168,8 +193,12 @@ namespace posta {
 
 			float time_step;
 			float max_delta_time;
+
+			/// True if the user has entered editor_mode
+			bool editor_mode_status = false;
 	};
 
+	// ResourceBag section
 	class ResourceBeaconParent
 	{
 		public:

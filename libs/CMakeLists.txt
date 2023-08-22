@@ -2,6 +2,7 @@ cmake_policy(SET CMP0072 NEW)
 
 add_library(
 	postaengine
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Entity/Entity.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/ResourceBag.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/LuaAPI/LuaAPI.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/LuaAPI/LuaState.cpp"
@@ -29,11 +30,11 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/General.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/Font.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/ConfigFile.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/NetworkPackage.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/TCPConn.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/TCPConnOfServer.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/TCPConnToServer.cpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/TCPConnToClient.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/NetworkPackage.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConn.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConnOfServer.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConnToServer.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConnToClient.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/Framebuffer.cpp"
 )
 
@@ -54,5 +55,5 @@ find_package(Bullet REQUIRED)
 target_include_directories(postaengine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" ${LUA_INCLUDE_DIR})
 target_link_libraries(postaengine PUBLIC SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_net::SDL2_net SDL2_mixer::SDL2_mixer OpenGL::GL OpenGL::GLU GLEW::GLEW ${BULLET_LIBRARIES} ${LUA_LIBRARIES})
 target_compile_features(postaengine PUBLIC cxx_std_17)
-target_compile_options(postaengine PUBLIC -Wall -Wpedantic)
+target_compile_options(postaengine PUBLIC -Wall -Wpedantic -g)
 
