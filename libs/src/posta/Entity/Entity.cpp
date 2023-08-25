@@ -5,6 +5,7 @@
 using posta::entity::Entity;
 using posta::entity::EmptyType;
 using posta::entity::CameraType;
+using posta::entity::RigidbodyType;
 
 std::unordered_set<Entity*> posta::entity::entities;
 
@@ -34,6 +35,24 @@ void CameraType::draw_front()
 		Entity::draw_camera_outline(*transform, camera->get(), framebuffer, *width, *height);
 }
 
+RigidbodyType::RigidbodyType(posta::component::Rigidbody* _rigidbody, posta::component::DrawableMesh* _drawable_mesh)
+{
+	rigidbody = _rigidbody;
+	drawable_meshes.push_back(_drawable_mesh);
+}
+
+void RigidbodyType::draw_back()
+{
+	auto transform = rigidbody->get_transform();
+	for (component::DrawableMesh* drawable_mesh : drawable_meshes)
+		Entity::draw_outline(drawable_mesh, transform);
+}
+
+void RigidbodyType::draw_front()
+{
+	//Entity::draw_transform(rigidbody->get_transform());
+}
+
 Entity::EditorGraphics::EditorGraphics() :
 	arrow(posta::assets::load_obj("common/editor/arrow.obj")),
 	blank_texture("common/blank.png")
@@ -57,6 +76,44 @@ posta::entity::Type* Entity::get_internal_entity_type()
 	return type.get();
 }
 
+void Entity::draw_outline(component::DrawableMesh* drawable_mesh, posta::component::Transform transform)
+{
+	transform.set_scale(transform.get_scale() * 1.05f);
+	graphics()->blank_texture.bind();
+	graphics()->shader.bind();
+	graphics()->shader.width = posta::App::app->get_width();
+	graphics()->shader.height = posta::App::app->get_height();
+	graphics()->shader.line = false;
+	graphics()->shader.global_color = {1, 0.75, 0, 1};
+	graphics()->shader.model = transform.get_matrix();
+	graphics()->shader.normal_model = transform.get_normal_matrix();
+	graphics()->shader.projection_view = posta::App::app->camera->get_projection_view_matrix();
+	drawable_mesh->draw();
+}
+
+void Entity::draw_line(glm::vec3 i, glm::vec3 f, glm::vec4 color, float line_width)
+{
+	glm::vec3 i_real = posta::App::app->editor_camera->point_on_screen(i);
+	if (i_real.z < -1 || i_real.z > 1)
+		return;
+	glm::vec3 f_real = posta::App::app->editor_camera->point_on_screen(f);
+	if (f_real.z < -1 || f_real.z > 1)
+		return;
+	graphics()->blank_texture.bind();
+	graphics()->shader.bind();
+	graphics()->shader.width = posta::App::app->get_width();
+	graphics()->shader.height = posta::App::app->get_height();
+	graphics()->shader.global_color = color;
+	graphics()->shader.line_width = line_width;
+	graphics()->shader.line = true;
+	graphics()->shader.linei = {i_real.x, i_real.y};
+	graphics()->shader.linef = {f_real.x, f_real.y};
+	graphics()->shader.model = glm::mat4(1.0f);
+	graphics()->shader.normal_model = glm::mat4(1.0f);
+	graphics()->shader.projection_view = glm::mat4(1.0f);
+	posta::App::app->mesh2d->draw();
+}
+
 void Entity::draw_transform(posta::component::Transform transform)
 {
 	transform.set_scale(glm::vec3(glm::length(transform.get_position() - posta::App::app->editor_camera->transform.get_position()) / 10.0f));
@@ -67,7 +124,7 @@ void Entity::draw_transform(posta::component::Transform transform)
 	graphics()->shader.bind();
 	graphics()->shader.width = posta::App::app->get_width();
 	graphics()->shader.height = posta::App::app->get_height();
-	graphics()->shader.outline = false;
+	graphics()->shader.line = false;
 	graphics()->shader.global_color = {0, 0, 1, 1};
 	graphics()->shader.model = transform.get_matrix();
 	graphics()->shader.normal_model = transform.get_normal_matrix();
@@ -91,37 +148,39 @@ void Entity::draw_camera_outline(posta::component::Transform transform, posta::c
 {
 	draw_transform(transform);
 
-	glDisable(GL_CULL_FACE);
 	// Drawing near plane
-	transform.set_position(transform.get_position() - transform.front() * 0.01f);
+	std::vector<glm::vec3> all_points;
 	float length = glm::length(glm::vec2(width, height));
-	transform.set_scale({(width / length) / 4.0f, (height / length) / 4.0f, 1});
-	graphics()->blank_texture.bind();
-	graphics()->shader.bind();
-	graphics()->shader.width = posta::App::app->get_width();
-	graphics()->shader.height = posta::App::app->get_height();
-	graphics()->shader.global_color = {1, 1, 1, 1};
-	graphics()->shader.outline = true;
-	graphics()->shader.model = transform.get_matrix();
-	graphics()->shader.normal_model = transform.get_normal_matrix();
-	graphics()->shader.projection_view = posta::App::app->camera->get_projection_view_matrix();
-	posta::App::app->mesh2d->draw();
-
-	// Drawing far plane
-	transform.set_position(transform.get_position() - transform.front() * 0.55f);
-	transform.set_scale(transform.get_scale() * 2.0f);
-	graphics()->shader.model = transform.get_matrix();
-	graphics()->shader.normal_model = transform.get_normal_matrix();
-	graphics()->shader.projection_view = posta::App::app->camera->get_projection_view_matrix();
-	posta::App::app->mesh2d->draw();
-	// Drawing framebuffer and enabling culling faces
-	glEnable(GL_CULL_FACE);
+	glm::vec3 first_square_origin = {width / length / 4.0f, height / length / 4.0f, -0.01f};
+	glm::vec3 second_square_origin = {width / length / 2.0f, height / length / 2.0f, -0.56f};
+	for (glm::vec3 first_point : std::vector<glm::vec3>{first_square_origin, second_square_origin})
+	{
+		std::vector<glm::vec3> points;
+		points.push_back(first_point);
+		points.push_back({-first_point.x, first_point.y, first_point.z});
+		points.push_back({-first_point.x, -first_point.y, first_point.z});
+		points.push_back({first_point.x, -first_point.y, first_point.z});
+		for (glm::vec3& point : points)
+			point = transform.to_local(point) + transform.get_position();
+		all_points.insert(all_points.end(), points.begin(), points.end());
+		for (size_t i = 1; i < points.size() + 1; i++)
+			draw_line(points[i % points.size()], points[(i - 1) % points.size()], {1, 1, 1, 1}, 1);
+	}
+	for (size_t i = 0; i < all_points.size() / 2; i++)
+		draw_line(all_points[i], all_points[i + 4], {1, 1, 1, 1}, 1);
+	draw_line(transform.to_local(second_square_origin + glm::vec3(0, 0.1f, 0)) + transform.get_position(), transform.to_local(glm::vec3{-second_square_origin.x, second_square_origin.y, second_square_origin.z} + glm::vec3(0, 0.1f, 0)) + transform.get_position(), {1, 1, 1, 1}, 1);
+	
+	// Drawing framebuffer
 	if (framebuffer)
 	{
+		float length = glm::length(glm::vec2(width, height));
+		transform.set_position(transform.get_position() - transform.front() * 0.56f);
+		transform.set_scale({(width / length) / 2.0f, (height / length) / 2.0f, 1});
+
 		glCullFace(GL_FRONT);
 		framebuffer->texture->bind();
 		graphics()->shader.global_color = {1, 1, 1, 1};
-		graphics()->shader.outline = false;
+		graphics()->shader.line = false;
 		transform.set_scale({transform.get_scale().x, -transform.get_scale().y, transform.get_scale().z});
 		graphics()->shader.model = transform.get_matrix();
 		graphics()->shader.normal_model = transform.get_normal_matrix();

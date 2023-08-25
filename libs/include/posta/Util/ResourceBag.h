@@ -14,7 +14,7 @@ namespace posta {
 		virtual ~ResourceBag() = default;
 
 		/// Adds the bag to the array of bags and returns it.
-		/// One way of using this function is by having a class called (for example) 'Resources' inside of one of your class
+		/// One way of using this function is by having a class called (for example) 'Resources' inside of one of your classes
 		/// and have a static pointer to the Resources class, that pointer is then created in the constructor of your application
 		/// and the returning value is assigned to that static pointer.
 		virtual ResourceBag* add_bag(ResourceBag* resource_bag) final;

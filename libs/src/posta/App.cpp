@@ -286,16 +286,17 @@ void App::loop()
 						case POSTA_EDITOR_KEY_SWITCH:
 							if (!editor_mode_status && camera)
 							{
-								editor_input["prev_on_screen"] = get_mouse_confined_state();
 								dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov = M_PI / 4;
 								editor_camera->update_projection_matrix();
 								editor_camera->transform = camera->transform;
+
+								editor_mode_status = !editor_mode_status;
+								if (!editor_mode_status)
+									set_mouse_confined_state(editor_input["prev_on_screen"]);
+								for (std::pair<const std::string, float>& e : editor_input)
+									e.second = 0;
+								editor_input["prev_on_screen"] = get_mouse_confined_state();
 							}
-							editor_mode_status = !editor_mode_status;
-							if (!editor_mode_status)
-								set_mouse_confined_state(editor_input["prev_on_screen"]);
-							for (std::pair<const std::string, float>& e : editor_input)
-								e.second = 0;
 							break;
 					}
 					break;
@@ -486,11 +487,6 @@ bool App::is_editor_mode_enabled()
 	return editor_mode_status;
 }
 
-static float approach(float& o, float n, float speed = 1 / 2.0f)
-{
-	return o = (o * (1 - speed) + n * speed);
-}
-
 void App::draw_editor_viewport(bool front)
 {
 	for (posta::entity::Entity* entity : posta::entity::entities)
@@ -502,9 +498,22 @@ void App::draw_editor_viewport(bool front)
 
 void App::handle_editor_loop()
 {
-	approach(dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov, M_PI / 2, 1 / 10.0f);
+	// approaching camera or leaving camera
+	if (editor_input["editor_switch"])
+	{
+		auto pcamera = dynamic_cast<posta::component::PCamera*>(camera->camera.get());
+		if (pcamera)
+			dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov = glm::mix(dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov, pcamera->__fov, 0.1f);
+		editor_camera->transform = editor_camera->transform.interpolate(camera->transform, editor_input["interpolate_editor_camera"]);
+		editor_input["interpolate_editor_camera"] = glm::mix(editor_input["interpolate_editor_camera"], 1.0f, 0.1f);
+		if (editor_input["interpolate_editor_camera"] > 0.9f || glm::distance2(editor_camera->transform.get_position(), camera->transform.get_position()) < 0.1f)
+			editor_mode_status = false;
+	}
+	else
+		dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov = glm::mix(dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov, (float)M_PI / 2, 0.1f);
 	editor_camera->update_projection_matrix();
 
+	// moving editor_camera
 	auto& transform = editor_camera->transform;
 	float force = 10 * delta_time;
 	transform.set_position(transform.get_position() + force * transform.right() * editor_input["right"]);
@@ -521,7 +530,7 @@ void App::handle_editor_loop()
 	transform.set_position(transform.get_position() + force * forward * editor_input["backward"]);
 
 	for (std::string direction : {"left", "right", "forward", "backward", "up", "down"})
-		approach(editor_input[direction], editor_input["o" + direction], 1 / 10.0f);
+		editor_input[direction] = glm::mix(editor_input[direction], editor_input["o" + direction], 0.1f);
 }
 
 #ifndef POSTA_EDITOR_KEY_MOVE_UP
@@ -573,6 +582,9 @@ void App::handle_editor_events(SDL_Event& event)
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym)
 			{
+				case POSTA_EDITOR_KEY_SWITCH:
+					editor_input["editor_switch"] = 1;
+					break;
 				case POSTA_EDITOR_KEY_MOVE_LEFT:
 					editor_input["oleft"] = 1;
 					break;
@@ -616,7 +628,7 @@ void App::handle_editor_events(SDL_Event& event)
 			}
 			break;
 		case SDL_MOUSEBUTTONUP:
-			if (event.button.button == SDL_BUTTON_LEFT)
+			if (event.button.button == SDL_BUTTON_RIGHT)
 				set_mouse_confined_state(!get_mouse_confined_state());
 			break;
 	}

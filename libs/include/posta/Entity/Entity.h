@@ -52,6 +52,17 @@ namespace posta::entity {
 			CameraType(posta::component::Transform* _transform, std::unique_ptr<posta::component::Camera>* _camera, int* width, int* height);
 			void draw_front() override;
 	};
+
+	class RigidbodyType : public Type
+	{
+		private:
+			posta::component::Rigidbody* rigidbody = nullptr;
+		public:
+			std::vector<posta::component::DrawableMesh*> drawable_meshes;
+			RigidbodyType(posta::component::Rigidbody* _rigidbody, posta::component::DrawableMesh* _drawable_mesh = nullptr);
+			void draw_back() override;
+			void draw_front() override;
+	};
 	#endif
 
 	/** Base class for every entity in the editor
@@ -78,7 +89,10 @@ namespace posta::entity {
 								projection_view(posta::Uniform<glm::mat4>(this, "projection_view")),
 								normal_model(posta::Uniform<glm::mat3>(this, "normal_model")),
 								global_color(posta::Uniform<glm::vec4>(this, "global_color")),
-								outline(posta::Uniform<bool>(this, "outline")),
+								line(posta::Uniform<bool>(this, "line")),
+								linei(posta::Uniform<glm::vec2>(this, "linei")),
+								linef(posta::Uniform<glm::vec2>(this, "linef")),
+								line_width(posta::Uniform<float>(this, "line_width")),
 								width(posta::Uniform<float>(this, "width")),
 								height(posta::Uniform<float>(this, "height"))
 							{}
@@ -87,7 +101,10 @@ namespace posta::entity {
 							posta::Uniform<glm::mat4> projection_view;
 							posta::Uniform<glm::mat3> normal_model;
 							posta::Uniform<glm::vec4> global_color;
-							posta::Uniform<bool> outline;
+							posta::Uniform<bool> line;
+							posta::Uniform<glm::vec2> linei;
+							posta::Uniform<glm::vec2> linef;
+							posta::Uniform<float> line_width;
 							posta::Uniform<float> width;
 							posta::Uniform<float> height;
 					} shader;
@@ -109,10 +126,13 @@ namespace posta::entity {
 			
 			friend class EmptyType;
 			friend class CameraType;
+			friend class RigidbodyType;
 		private:
 			static EditorGraphics* graphics();
 			static std::unique_ptr<EditorGraphics> __graphics;
 
+			static void draw_outline(component::DrawableMesh* drawable_mesh, posta::component::Transform transform);
+			static void draw_line(glm::vec3 i, glm::vec3 f, glm::vec4 color, float line_width);
 			static void draw_transform(posta::component::Transform transform);
 			static void draw_camera_outline(posta::component::Transform transform, posta::component::Camera* camera, posta::Framebuffer* framebuffer, int width, int height);
 

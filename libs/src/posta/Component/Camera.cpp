@@ -1,6 +1,7 @@
 #include <posta/Component/Camera.h>
 #include <cmath>
 
+using posta::component::Camera;
 using posta::component::PCamera;
 using posta::component::OCamera;
 

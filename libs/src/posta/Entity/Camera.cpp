@@ -1,5 +1,6 @@
 #include <posta/Entity/Camera.h>
 #include <posta/App.h>
+#include <posta/Util/LoggingMacro.h>
 
 using posta::entity::Camera;
 
@@ -22,6 +23,20 @@ void Camera::get_resolution(int& width, int& height)
 {
 	width = this->width;
 	height = this->height;
+}
+
+glm::vec3 Camera::point_on_screen(glm::vec3 position)
+{
+	camera->update_projection_matrix(width, height);
+	glm::vec4 rposition = {position.x, position.y, position.z, 1.0f};
+	glm::vec4 fpoint = get_projection_matrix() * transform.get_view_matrix() * rposition;
+	fpoint /= fpoint.w;
+	glm::vec2 point(fpoint.x, fpoint.y);
+	point /= 2.0f;
+	point += glm::vec2(0.5f);
+	point.x *= width;
+	point.y *= height;
+	return glm::vec3(point, fpoint.z);
 }
 
 void Camera::update_projection_matrix()

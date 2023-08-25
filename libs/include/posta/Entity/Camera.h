@@ -13,6 +13,9 @@ namespace posta::entity {
 			Camera(posta::component::Camera* camera, int width, int height);
 			void set_resolution(int width, int height);
 			void get_resolution(int& width, int& height);
+
+			/// Returns the coordinates of a point on the screen, the z coordinate is the depth, values outside the range [-1, 1] are invalid points
+			glm::vec3 point_on_screen(glm::vec3 position);
 			
 			void update_projection_matrix();
 			/// Returns projection * view matrix, projection comes from the camera component and view represents the position and rotation of the transform

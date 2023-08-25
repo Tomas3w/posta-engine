@@ -10,6 +10,7 @@ namespace posta::component {
 		public:
 			Camera() = default;
 			virtual ~Camera() = default;
+
 			/** Updates projection matrix based on type of camera */
 			virtual void update_projection_matrix(const int width, const int height) = 0;
 

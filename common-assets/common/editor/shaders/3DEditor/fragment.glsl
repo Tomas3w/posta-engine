@@ -10,22 +10,33 @@ uniform vec4 global_color;
 
 uniform sampler2D intexture;
 
-uniform bool outline;
+uniform bool line;
+uniform vec2 linei;
+uniform vec2 linef;
+uniform float line_width;
 uniform float width;
 uniform float height;
 
-bool is_in_outline_range(vec2 uv)
+bool is_inside_point(vec2 uv)
 {
-	float val = 10;
-	float xval = val / width;
-	float yval = val / height;
-	return uv.x > xval && uv.y > yval && uv.x < 1 - xval && uv.y < 1 - yval;
+	uv.y = 1 - uv.y;
+	uv.x *= width;
+	uv.y *= height;
+
+	if (dot(normalize(linei - linef), normalize(linei - uv)) < 0)
+		return false;
+	if (dot(normalize(linef - linei), normalize(linef - uv)) < 0)
+		return false;
+
+	float d = dot(normalize(uv - linei), normalize(linef - linei));
+	float dist = sin(acos(d)) * length(uv - linei);
+	return dist < line_width;
 }
 
 void main()
 {
 	vec4 tex = texture(intexture, UV);
-	if (outline && is_in_outline_range(UV))
+	if (line && !is_inside_point(UV))
 		discard;
 	color = tex * global_color;
 }
