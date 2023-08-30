@@ -30,7 +30,8 @@ posta::component::Transform Rigidbody::get_transform()
 void Rigidbody::set_transform(posta::component::Transform transform)
 {
 	btTransform tr = posta::component::Transform::tobtTransform(transform);
-	body->setCenterOfMassTransform(tr);
+	body->setWorldTransform(tr);
+	body->getMotionState()->setWorldTransform(tr);
 }
 
 btRigidBody* Rigidbody::get_body()

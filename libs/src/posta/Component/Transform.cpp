@@ -12,7 +12,6 @@ btTransform Transform::tobtTransform(const Transform& transform)
 
 Transform::Transform(btTransform t)
 {
-	// TOTEST, rotation may be broken
 	btVector3 pos = t.getOrigin();
 	position = glm::vec3(pos.getX(), pos.getY(), pos.getZ());
 	scale = glm::vec3(1.0f);
@@ -33,32 +32,37 @@ Transform::Transform(glm::vec3 pos)
 	rotation = glm::quat_cast(glm::mat4(1.0f));
 }
 
-void Transform::set_position(glm::vec3 pos)
+Transform& Transform::set_position(glm::vec3 pos)
 {
 	position = pos;
+	return *this;
 }
 
-void Transform::set_rotation(glm::quat rot)
+Transform& Transform::set_rotation(glm::quat rot)
 {
 	rotation = rot;
+	return *this;
 }
 
-void Transform::set_rotation(glm::vec3 rot)
+Transform& Transform::set_rotation(glm::vec3 rot)
 {
 	rotation = glm::quat_cast(glm::mat4(1.0f));
 	rotation = glm::rotate(rotation, rot.x, {1, 0, 0});
 	rotation = glm::rotate(rotation, rot.y, {0, 1, 0});
 	rotation = glm::rotate(rotation, rot.z, {0, 0, 1});
+	return *this;
 }
 
-void Transform::set_rotation(glm::vec4 rot)
+Transform& Transform::set_rotation(glm::vec4 rot)
 {
 	rotation = glm::rotate(glm::quat_cast(glm::mat4(1.0f)), rot.w, {rot.x, rot.y, rot.z});
+	return *this;
 }
 
-void Transform::set_scale(glm::vec3 sca)
+Transform& Transform::set_scale(glm::vec3 sca)
 {
 	scale = sca;
+	return *this;
 }
 
 const glm::vec3& Transform::get_position() const
@@ -121,7 +125,6 @@ glm::vec3 Transform::from_local(glm::vec3 vec) const
 
 Transform Transform::as_local_to(Transform transform) const
 {
-	// TOTEST
 	Transform r;
 	r.set_position(transform.to_local(position) + transform.position);
 	r.set_rotation(transform.rotation * rotation);
@@ -131,15 +134,6 @@ Transform Transform::as_local_to(Transform transform) const
 
 Transform Transform::as_origin_to(Transform transform) const
 {
-	// TOTEST, already tested against as_local_to
-	/*
-		posta::component::Transform a({0, 0, 0});
-		a.set_rotation(glm::rotate(glm::quat(1, 0, 0, 0), static_cast<float>(M_PI / 2), glm::vec3(0, 0, 1)));
-		posta::component::Transform b({1, 0, 0});
-		posta::component::Transform c = b.as_local_to(a);
-		posta::component::Transform d = a.as_origin_to(c);
-		// d should be equal to b
-	*/
 	Transform r;
 	r.set_scale(transform.scale / scale);
 	r.set_rotation(-(glm::inverse(transform.rotation) * rotation));
@@ -148,7 +142,7 @@ Transform Transform::as_origin_to(Transform transform) const
 	return r;
 }
 
-Transform Transform::interpolate(Transform transform, float factor)
+Transform Transform::interpolate(Transform transform, float factor) const
 {
 	factor = glm::clamp(factor, 0.0f, 1.0f);
 	Transform tr;
@@ -156,5 +150,10 @@ Transform Transform::interpolate(Transform transform, float factor)
 	tr.set_rotation(glm::slerp(rotation, transform.rotation, factor));
 	tr.set_scale(scale * (1 - factor) + transform.scale * factor);
 	return tr;
+}
+
+Transform& Transform::look_at(glm::vec3 position, glm::vec3 up)
+{
+	return set_rotation(glm::quatLookAt(glm::normalize(position - get_position()), up));
 }
 

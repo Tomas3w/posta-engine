@@ -15,11 +15,11 @@ namespace posta::component {
 			Transform(btTransform t);
 			Transform();
 			Transform(glm::vec3 pos);
-			void set_position(glm::vec3 pos);
-			void set_rotation(glm::quat rot);
-			void set_rotation(glm::vec3 rot);
-			void set_rotation(glm::vec4 rot);
-			void set_scale(glm::vec3 scale);
+			Transform& set_position(glm::vec3 pos);
+			Transform& set_rotation(glm::quat rot);
+			Transform& set_rotation(glm::vec3 rot);
+			Transform& set_rotation(glm::vec4 rot);
+			Transform& set_scale(glm::vec3 scale);
 
 			const glm::vec3& get_position() const;
 			const glm::quat& get_rotation() const;
@@ -52,7 +52,10 @@ namespace posta::component {
 
 			/// Linear interpolation (for translation and scale) and a spherical interpolation (of rotation) of this transform by the transform argument
 			/** \param factor factor of the interpolation: 0 = returns this, 1 = returns the transform argument */
-			Transform interpolate(Transform transform, float factor);
+			Transform interpolate(Transform transform, float factor) const;
+
+			/// Sets the rotation so that the transform looks at something, the eye of the transform is looking at -Z
+			Transform& look_at(glm::vec3 position, glm::vec3 up = {0, 1, 0});
 		private:
 			glm::vec3 position;
 			glm::quat rotation;

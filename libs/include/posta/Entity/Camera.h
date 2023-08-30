@@ -23,6 +23,12 @@ namespace posta::entity {
 			/// Returns the projection matrix
 			glm::mat4 get_projection_matrix();
 
+			/// Returns the near_plane position in world-space from a screen-space position
+			glm::vec3 get_point_on_near_plane(glm::vec2 pixel_position);
+
+			/// Returns the far_plane position in world-space from a screen-space position
+			glm::vec3 get_point_on_far_plane(glm::vec2 pixel_position);
+
 			// This is a unique_ptr so the camera can use an orthographic or projection view
 			std::unique_ptr<posta::component::Camera> camera;
 			posta::component::Transform transform;

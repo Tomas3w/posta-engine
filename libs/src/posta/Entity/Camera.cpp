@@ -48,7 +48,7 @@ glm::mat4 Camera::get_projection_view_matrix()
 {
 	#ifndef POSTA_EDITOR_DISABLED
 	if (posta::App::app->is_editor_mode_enabled() && this == posta::App::app->camera.get())
-		return posta::App::app->editor_camera->get_projection_view_matrix();
+		return posta::App::app->editor.camera->get_projection_view_matrix();
 	#endif
 	return camera->projection * transform.get_view_matrix();
 }
@@ -57,8 +57,24 @@ glm::mat4 Camera::get_projection_matrix()
 {
 	#ifndef POSTA_EDITOR_DISABLED
 	if (posta::App::app->is_editor_mode_enabled() && this == posta::App::app->camera.get())
-		return posta::App::app->editor_camera->get_projection_matrix();
+		return posta::App::app->editor.camera->get_projection_matrix();
 	#endif
 	return camera->projection;
+}
+
+glm::vec3 Camera::get_point_on_near_plane(glm::vec2 pixel_position)
+{
+	auto point_on_clip_space = glm::vec4(pixel_position.x / width * 2 - 1, pixel_position.y / height * 2 - 1, -1, 1);
+	point_on_clip_space = glm::inverse(get_projection_view_matrix()) * point_on_clip_space;
+	point_on_clip_space /= point_on_clip_space.w;
+	return glm::vec3(point_on_clip_space.x, point_on_clip_space.y, point_on_clip_space.z);
+}
+
+glm::vec3 Camera::get_point_on_far_plane(glm::vec2 pixel_position)
+{
+	auto point_on_clip_space = glm::vec4(pixel_position.x / width * 2 - 1, pixel_position.y / height * 2 - 1, 1, 1);
+	point_on_clip_space = glm::inverse(get_projection_view_matrix()) * point_on_clip_space;
+	point_on_clip_space /= point_on_clip_space.w;
+	return glm::vec3(point_on_clip_space.x, point_on_clip_space.y, point_on_clip_space.z);
 }
 

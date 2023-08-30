@@ -123,8 +123,9 @@ void App::init()
 		get_height()
 		));
 	// Init editor camera
-	editor_camera.reset(new posta::entity::Camera(
+	editor.camera.reset(new posta::entity::Camera(
 		new posta::component::PCamera(0.01f, 200.0f, M_PI / 2),
+		//new posta::component::OCamera(0.0f, 100.0f, 7),
 		get_width(),
 		get_height()
 		));
@@ -150,10 +151,10 @@ void App::init()
 
 void App::init_physics()
 {
-#ifndef DO_NOT_USE_PHYSICS
+	#ifndef DO_NOT_USE_PHYSICS
 	time_step = 1.0f / 60.0f;
 	physics = new PhysicsGlobal();
-#endif
+	#endif
 }
 
 void App::dest()
@@ -203,7 +204,7 @@ void App::loop()
 	current_scene.reset(start());
 	// current_scene start
 	if (!current_scene)
-		throw std::logic_error("Well, this isn't right");
+		throw std::logic_error("current_scene was not set");
 	current_scene->start();
 
 	Uint32 ticks = SDL_GetTicks();
@@ -219,29 +220,44 @@ void App::loop()
 
 		// If the editor is on, the backside of the editor viewport will be drawn
 		#ifndef POSTA_EDITOR_DISABLED
+		if (!editor.outline_framebuffer)
+			editor.outline_framebuffer.reset(new ColorFramebuffer(get_width(), get_height()));
+		if (!editor.draw2d_framebuffer)
+			editor.draw2d_framebuffer.reset(new ColorFramebuffer(get_width(), get_height()));
+		// Making the camera have a framebuffer
+		dynamic_cast<posta::entity::CameraType*>(camera->get_internal_entity_type())->framebuffer = editor.draw2d_framebuffer.get();
 		if (is_editor_mode_enabled())
 		{
-			draw_editor_viewport(false);
+			editor.outline_framebuffer->bind();
+			editor.outline_framebuffer->clear();
+			editor.draw_viewport(false);
+			editor.outline_framebuffer->unbind_framebuffer();
 			clear_depth();
 		}
 		#endif
 		// Runs custom code for each frame
-		current_scene->update(); 
+		current_scene->update();
+
+		// Drawing inbetween things from the editor
+		#ifndef POSTA_EDITOR_DISABLED
+		if (is_editor_mode_enabled())
+		{
+			editor.draw_inbetween();
+			clear_depth();
+			posta::entity::Entity::draw_whole_outline(editor.outline_framebuffer->texture.get());
+		}
+		#endif
 
 		// If the editor is on, the 2d part will be drawn to a framebuffer and the editor front drawings will be present
 		#ifndef POSTA_EDITOR_DISABLED
 		if (is_editor_mode_enabled())
 		{
 			// Drawing transforms, outlines, and cameras
-			draw_editor_viewport(true);
+			editor.draw_viewport(true);
 			// Binding the shader2d framebuffer
-			if (!editor_2d_framebuffer)
-				editor_2d_framebuffer.reset(new ColorFramebuffer(get_width(), get_height()));
-			editor_2d_framebuffer->bind();
+			editor.draw2d_framebuffer->bind();
 			// This is to prevent unbinding
-			Framebuffer::set_default(editor_2d_framebuffer.get());
-			// Making the camera have a framebuffer
-			dynamic_cast<posta::entity::CameraType*>(camera->get_internal_entity_type())->framebuffer = editor_2d_framebuffer.get();
+			Framebuffer::set_default(editor.draw2d_framebuffer.get());
 		}
 		#endif
 		// Binds shader2d and disables depth test for drawing 2D stuff
@@ -255,8 +271,8 @@ void App::loop()
 		if (is_editor_mode_enabled())
 		{
 			Framebuffer::set_default(nullptr);
-			editor_2d_framebuffer->unbind_framebuffer();
-			handle_editor_loop();
+			editor.draw2d_framebuffer->unbind_framebuffer();
+			editor.handle_loop();
 		}
 		#endif
 
@@ -265,7 +281,7 @@ void App::loop()
 		{
 			#ifndef POSTA_EDITOR_DISABLED
 			if (is_editor_mode_enabled()) // disables scene events, replacing them with the editor events only
-				handle_editor_events(event);
+				editor.handle_events(event);
 			else
 			#endif
 				current_scene->event(event);
@@ -284,18 +300,19 @@ void App::loop()
 					switch (event.key.keysym.sym)
 					{
 						case POSTA_EDITOR_KEY_SWITCH:
-							if (!editor_mode_status && camera)
+							if (!editor.mode_status && camera)
 							{
-								dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov = M_PI / 4;
-								editor_camera->update_projection_matrix();
-								editor_camera->transform = camera->transform;
+								if (dynamic_cast<posta::component::PCamera*>(editor.camera->camera.get()))
+									dynamic_cast<posta::component::PCamera*>(editor.camera->camera.get())->__fov = M_PI / 4;
+								editor.camera->update_projection_matrix();
+								editor.camera->transform = camera->transform;
 
-								editor_mode_status = !editor_mode_status;
-								if (!editor_mode_status)
-									set_mouse_confined_state(editor_input["prev_on_screen"]);
-								for (std::pair<const std::string, float>& e : editor_input)
+								editor.mode_status = !editor.mode_status;
+								if (!editor.mode_status)
+									set_mouse_confined_state(editor.input["prev_on_screen"]);
+								for (std::pair<const std::string, float>& e : editor.input)
 									e.second = 0;
-								editor_input["prev_on_screen"] = get_mouse_confined_state();
+								editor.input["prev_on_screen"] = get_mouse_confined_state();
 							}
 							break;
 					}
@@ -332,9 +349,9 @@ void App::loop()
 
 void App::step_physics()
 {
-#ifndef DO_NOT_USE_PHYSICS
+	#ifndef DO_NOT_USE_PHYSICS
 	physics->world->stepSimulation(time_step);
-#endif
+	#endif
 }
 
 void App::manage_textbox_input(SDL_Event& event, posta::ui::Textbox& textbox)
@@ -484,55 +501,176 @@ bool App::get_mouse_confined_state()
 
 bool App::is_editor_mode_enabled()
 {
-	return editor_mode_status;
+	return editor.mode_status;
 }
 
-void App::draw_editor_viewport(bool front)
+btCollisionWorld::ClosestRayResultCallback App::cast_ray(glm::vec3 src, glm::vec3 dest)
+{
+	btVector3 origin = posta::to_btVector3(src);
+	btVector3 destination = posta::to_btVector3(dest);
+	btCollisionWorld::ClosestRayResultCallback callback(origin, destination);
+	physics->world->rayTest(origin, destination, callback);
+	return callback;
+}
+
+btCollisionWorld::AllHitsRayResultCallback App::cast_ray_all_hits(glm::vec3 src, glm::vec3 dest)
+{
+	btVector3 origin = posta::to_btVector3(src);
+	btVector3 destination = posta::to_btVector3(dest);
+	btCollisionWorld::AllHitsRayResultCallback callback(origin, destination);
+	physics->world->rayTest(origin, destination, callback);
+	return callback;
+}
+
+static glm::vec3 intersect_ray_on_plane(glm::vec3 plane_pos, glm::vec3 plane_normal, glm::vec3 ray_src, glm::vec3 ray_dir)
+{
+	auto obj_pos = plane_pos;
+	auto dotProduct = glm::dot(ray_dir, plane_normal);
+	auto t = dot(plane_normal, obj_pos - ray_src) / dotProduct;
+	return ray_src + t * ray_dir;
+}
+
+glm::vec3 App::Editor::get_selected_object_moving_position()
+{
+	posta::entity::Entity* entity = get_selected_entity();
+	if (entity)
+	{
+		glm::vec2 pixel_position(app->mouse_x, app->mouse_y);
+		glm::vec3 pos = entity->get_transform().get_position();
+		auto ray_src = camera->get_point_on_near_plane(pixel_position);
+		auto ray_dir = glm::normalize(camera->get_point_on_far_plane(pixel_position) - ray_src);
+		switch (moving_object_axis)
+		{
+			case MOVING_OBJECT_AXIS::ALONG_CAMERA_PLANE:
+				pos = intersect_ray_on_plane(entity->get_transform().get_position(), camera->transform.front(), ray_src, ray_dir);
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_X:
+				pos = intersect_ray_on_plane(ray_src, glm::normalize(glm::cross({0, 1, 0}, ray_dir)), entity->get_transform().get_position(), {1, 0, 0});
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_Y:
+				pos = intersect_ray_on_plane(ray_src, glm::normalize(glm::cross({1, 0, 0}, ray_dir)), entity->get_transform().get_position(), {0, 1, 0});
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_Z:
+				pos = intersect_ray_on_plane(ray_src, glm::normalize(glm::cross({0, 1, 0}, ray_dir)), entity->get_transform().get_position(), {0, 0, 1});
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_LOCAL_X:
+				pos = intersect_ray_on_plane(ray_src, glm::normalize(glm::cross(entity->get_transform().up(), ray_dir)), entity->get_transform().get_position(), entity->get_transform().right());
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_LOCAL_Y:
+				pos = intersect_ray_on_plane(ray_src, glm::normalize(glm::cross(entity->get_transform().right(), ray_dir)), entity->get_transform().get_position(), entity->get_transform().up());
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_LOCAL_Z:
+				pos = intersect_ray_on_plane(ray_src, glm::normalize(glm::cross(entity->get_transform().up(), ray_dir)), entity->get_transform().get_position(), entity->get_transform().front());
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_YZ_PLANE:
+				pos = intersect_ray_on_plane(entity->get_transform().get_position(), {1, 0, 0}, ray_src, ray_dir);
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_XZ_PLANE:
+				pos = intersect_ray_on_plane(entity->get_transform().get_position(), {0, 1, 0}, ray_src, ray_dir);
+				break;
+			case MOVING_OBJECT_AXIS::ALONG_XY_PLANE:
+				pos = intersect_ray_on_plane(entity->get_transform().get_position(), {0, 0, 1}, ray_src, ray_dir);
+				break;
+			default:
+				LOG("error, the MOVING_OBJECT_AXIS in this switch was not implemented or defined");
+				break;
+		}
+		return pos;
+	}
+	return {0, 0, 0};
+}
+
+void App::Editor::draw_inbetween()
+{
+	posta::entity::Entity* entity = get_selected_entity();
+	if (entity && moving_object_axis != MOVING_OBJECT_AXIS::OFF)
+	{
+		posta::component::Transform transform = entity->get_transform();
+		transform.set_position(get_selected_object_moving_position());
+		auto dm_type = dynamic_cast<posta::entity::TypeWithDrawableMeshes*>(entity->get_internal_entity_type());
+		if (dm_type)
+			posta::entity::Entity::draw_moving_object(dm_type, transform);
+	}
+}
+
+void App::Editor::draw_viewport(bool front)
 {
 	for (posta::entity::Entity* entity : posta::entity::entities)
 	{
-		if (entity != editor_camera.get())
+		if (entity != camera.get())
 			entity->__draw_entity(front);
 	}
 }
 
-void App::handle_editor_loop()
+void App::Editor::handle_loop()
 {
 	// approaching camera or leaving camera
-	if (editor_input["editor_switch"])
+	if (dynamic_cast<posta::component::PCamera*>(camera->camera.get()) && dynamic_cast<posta::component::PCamera*>(camera->camera.get()))
 	{
-		auto pcamera = dynamic_cast<posta::component::PCamera*>(camera->camera.get());
-		if (pcamera)
-			dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov = glm::mix(dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov, pcamera->__fov, 0.1f);
-		editor_camera->transform = editor_camera->transform.interpolate(camera->transform, editor_input["interpolate_editor_camera"]);
-		editor_input["interpolate_editor_camera"] = glm::mix(editor_input["interpolate_editor_camera"], 1.0f, 0.1f);
-		if (editor_input["interpolate_editor_camera"] > 0.9f || glm::distance2(editor_camera->transform.get_position(), camera->transform.get_position()) < 0.1f)
-			editor_mode_status = false;
+		if (input["editor_switch"])
+		{
+			auto pcamera = dynamic_cast<posta::component::PCamera*>(camera->camera.get());
+			if (pcamera)
+				dynamic_cast<posta::component::PCamera*>(camera->camera.get())->__fov = glm::mix(dynamic_cast<posta::component::PCamera*>(camera->camera.get())->__fov, pcamera->__fov, 0.1f);
+			camera->transform = app->camera->transform.interpolate(camera->transform, input["interpolate_editor_camera"]);
+			if (input["editor_switch"])
+			{
+				input["interpolate_editor_camera"] = glm::mix(input["interpolate_editor_camera"], 1.0f, 0.1f);
+				if (input["interpolate_editor_camera"] > 0.9f || glm::distance2(camera->transform.get_position(), app->camera->transform.get_position()) < 0.1f)
+					mode_status = false;
+			}
+		}
+		else
+			dynamic_cast<posta::component::PCamera*>(camera->camera.get())->__fov = glm::mix(dynamic_cast<posta::component::PCamera*>(camera->camera.get())->__fov, (float)M_PI / 2, 0.1f);
 	}
-	else
-		dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov = glm::mix(dynamic_cast<posta::component::PCamera*>(editor_camera->camera.get())->__fov, (float)M_PI / 2, 0.1f);
-	editor_camera->update_projection_matrix();
+	else if (input["editor_switch"])
+		mode_status = false;
+	camera->update_projection_matrix();
 
 	// moving editor_camera
-	auto& transform = editor_camera->transform;
-	float force = 10 * delta_time;
-	transform.set_position(transform.get_position() + force * transform.right() * editor_input["right"]);
-	transform.set_position(transform.get_position() - force * transform.right() * editor_input["left"]);
-	transform.set_position(transform.get_position() + force * glm::vec3(0, 1, 0) * editor_input["up"]);
-	transform.set_position(transform.get_position() - force * glm::vec3(0, 1, 0) * editor_input["down"]);
+	auto& transform = camera->transform;
+	float force = 10 * app->delta_time;
+	transform.set_position(transform.get_position() + force * transform.right() * input["right"]);
+	transform.set_position(transform.get_position() - force * transform.right() * input["left"]);
+	transform.set_position(transform.get_position() + force * glm::vec3(0, 1, 0) * input["up"]);
+	transform.set_position(transform.get_position() - force * glm::vec3(0, 1, 0) * input["down"]);
 	glm::vec3 forward = transform.front();
 	forward.y = 0;
 	if (length(forward) == 0)
 		forward = transform.up();
 	else
 		forward = glm::normalize(forward);
-	transform.set_position(transform.get_position() - force * forward * editor_input["forward"]);
-	transform.set_position(transform.get_position() + force * forward * editor_input["backward"]);
+	transform.set_position(transform.get_position() - force * forward * input["forward"]);
+	transform.set_position(transform.get_position() + force * forward * input["backward"]);
 
 	for (std::string direction : {"left", "right", "forward", "backward", "up", "down"})
-		editor_input[direction] = glm::mix(editor_input[direction], editor_input["o" + direction], 0.1f);
+		input[direction] = glm::mix(input[direction], input["o" + direction], 0.1f);
 }
 
+#ifndef POSTA_EDITOR_KEY_MODIFIER1
+#define POSTA_EDITOR_KEY_MODIFIER1 SDLK_LSHIFT
+#endif
+#ifndef POSTA_EDITOR_KEY_MODIFIER2
+#define POSTA_EDITOR_KEY_MODIFIER2 SDLK_RSHIFT
+#endif
+#ifndef POSTA_EDITOR_KEY_X_AXIS
+#define POSTA_EDITOR_KEY_X_AXIS SDLK_x
+#endif
+#ifndef POSTA_EDITOR_KEY_Y_AXIS
+#define POSTA_EDITOR_KEY_Y_AXIS SDLK_y
+#endif
+#ifndef POSTA_EDITOR_KEY_Z_AXIS
+#define POSTA_EDITOR_KEY_Z_AXIS SDLK_z
+#endif
+#ifndef POSTA_EDITOR_KEY_MOVE_OBJECT
+#define POSTA_EDITOR_KEY_MOVE_OBJECT SDLK_g
+#endif
+#ifndef POSTA_EDITOR_KEY_MOVE_TO_OBJECT
+#define POSTA_EDITOR_KEY_MOVE_TO_OBJECT SDLK_PERIOD
+#endif
+#ifndef POSTA_EDITOR_KEY_SWITCH_PERSPECTIVE
+#define POSTA_EDITOR_KEY_SWITCH_PERSPECTIVE SDLK_o
+#endif
 #ifndef POSTA_EDITOR_KEY_MOVE_UP
 #define POSTA_EDITOR_KEY_MOVE_UP SDLK_e
 #endif
@@ -551,7 +689,8 @@ void App::handle_editor_loop()
 #ifndef POSTA_EDITOR_KEY_MOVE_BACKWARD
 #define POSTA_EDITOR_KEY_MOVE_BACKWARD SDLK_s
 #endif
-void App::handle_editor_events(SDL_Event& event)
+
+void App::Editor::handle_events(SDL_Event& event)
 {
 	#ifndef POSTA_EDITOR_DISABLED
 	switch (event.type)
@@ -559,80 +698,195 @@ void App::handle_editor_events(SDL_Event& event)
 		case SDL_KEYUP:
 			switch (event.key.keysym.sym)
 			{
+				case POSTA_EDITOR_KEY_X_AXIS:
+					if (moving_object_axis != MOVING_OBJECT_AXIS::OFF)
+					{
+						if (input["modifier1"] || input["modifier2"])
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_YZ_PLANE;
+						else if (moving_object_axis == MOVING_OBJECT_AXIS::ALONG_X)
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_LOCAL_X;
+						else
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_X;
+					}
+					break;
+				case POSTA_EDITOR_KEY_Y_AXIS:
+					if (moving_object_axis != MOVING_OBJECT_AXIS::OFF)
+					{
+						if (input["modifier1"] || input["modifier2"])
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_XZ_PLANE;
+						else if (moving_object_axis == MOVING_OBJECT_AXIS::ALONG_Y)
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_LOCAL_Y;
+						else
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_Y;
+					}
+					break;
+				case POSTA_EDITOR_KEY_Z_AXIS:
+					if (moving_object_axis != MOVING_OBJECT_AXIS::OFF)
+					{
+						if (input["modifier1"] || input["modifier2"])
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_XY_PLANE;
+						else if (moving_object_axis == MOVING_OBJECT_AXIS::ALONG_Z)
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_LOCAL_Z;
+						else
+							moving_object_axis = MOVING_OBJECT_AXIS::ALONG_Z;
+					}
+					break;
+				case POSTA_EDITOR_KEY_MODIFIER1:
+					input["modifier1"] = 0;
+					break;
+				case POSTA_EDITOR_KEY_MODIFIER2:
+					input["modifier2"] = 0;
+					break;
+				case POSTA_EDITOR_KEY_MOVE_OBJECT:
+					if (moving_object_axis == MOVING_OBJECT_AXIS::OFF)
+						moving_object_axis = MOVING_OBJECT_AXIS::ALONG_CAMERA_PLANE;
+					break;
 				case POSTA_EDITOR_KEY_MOVE_LEFT:
-					editor_input["oleft"] = 0;
+					input["oleft"] = 0;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_RIGHT:
-					editor_input["oright"] = 0;
+					input["oright"] = 0;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_FORWARD:
-					editor_input["oforward"] = 0;
+					input["oforward"] = 0;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_BACKWARD:
-					editor_input["obackward"] = 0;
+					input["obackward"] = 0;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_UP:
-					editor_input["oup"] = 0;
+					input["oup"] = 0;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_DOWN:
-					editor_input["odown"] = 0;
+					input["odown"] = 0;
 					break;
 			}
 			break;
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym)
 			{
+				case POSTA_EDITOR_KEY_MODIFIER1:
+					input["modifier1"] = 1;
+					break;
+				case POSTA_EDITOR_KEY_MODIFIER2:
+					input["modifier2"] = 1;
+					break;
+				case POSTA_EDITOR_KEY_MOVE_TO_OBJECT:
+					{
+						posta::entity::Entity* entity = get_selected_entity();
+						posta::entity::TypeWithRigidbody* rb_type = nullptr;
+						if (entity)
+							rb_type = dynamic_cast<posta::entity::TypeWithRigidbody*>(entity->get_internal_entity_type());
+						if (rb_type)
+						{
+							auto callback = app->cast_ray_all_hits(camera->transform.get_position(), entity->get_transform().get_position());
+							if (callback.hasHit())
+							{
+								for (int i = 0; i < callback.m_collisionObjects.size(); i++)
+								{
+									if (callback.m_collisionObjects.at(i) == rb_type->get_rigidbody().get_body())
+									{
+										auto point = posta::from_btVector3(callback.m_hitPointWorld.at(i));
+										auto dir = glm::normalize(camera->transform.get_position() - entity->get_transform().get_position());
+										camera->transform.set_position(point + dir * 10.0f);
+										camera->transform.look_at(entity->get_transform().get_position());
+									}
+								}
+							}
+						}
+					}
+					break;
+				case POSTA_EDITOR_KEY_SWITCH_PERSPECTIVE:
+					if (dynamic_cast<component::PCamera*>(camera->camera.get()))
+						camera->camera.reset(new posta::component::OCamera(0.0f, 100.0f, 7));
+					else
+						camera->camera.reset(new posta::component::PCamera(0.01f, 200.0f, M_PI / 2));
+					break;
 				case POSTA_EDITOR_KEY_SWITCH:
-					editor_input["editor_switch"] = 1;
+					input["editor_switch"] = 1;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_LEFT:
-					editor_input["oleft"] = 1;
+					input["oleft"] = 1;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_RIGHT:
-					editor_input["oright"] = 1;
+					input["oright"] = 1;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_FORWARD:
-					editor_input["oforward"] = 1;
+					input["oforward"] = 1;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_BACKWARD:
-					editor_input["obackward"] = 1;
+					input["obackward"] = 1;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_UP:
-					editor_input["oup"] = 1;
+					input["oup"] = 1;
 					break;
 				case POSTA_EDITOR_KEY_MOVE_DOWN:
-					editor_input["odown"] = 1;
+					input["odown"] = 1;
 					break;
 			}
 			break;
 		case SDL_MOUSEMOTION:
-			if (get_mouse_confined_state())
+			if (app->get_mouse_confined_state())
 			{
 				float xrel = event.motion.xrel, yrel = event.motion.yrel;
 				float s = -M_PI / 1000.0f;
 
-				glm::quat rot = editor_camera->transform.get_rotation();
+				glm::quat rot = camera->transform.get_rotation();
 				float m = (1 - (glm::dot(glm::vec3(0, -1, 0), rot * glm::vec3(0, 0, -1)) + 1) / 2.0f) * M_PI;
 
 				glm::vec3 up = {0, 1, 0};
 				glm::quat first_rotation = glm::rotate(rot, std::min(std::max(yrel * s, -m), static_cast<float>(M_PI - m)), glm::vec3(1, 0, 0));
-				editor_camera->transform.set_rotation(glm::rotate(first_rotation, xrel * s, glm::toMat3(glm::inverse(first_rotation)) * up));
-					/*
-				else if (scene == CLIENT)
-				{
-					player_move_data.mov_x = xrel * s * 2;
-					player_move_data.mov_y = yrel * s * 2;
-				}
-				else
-					players[controlling]->rotate_view(yrel * s, xrel * s);*/
+				camera->transform.set_rotation(glm::rotate(first_rotation, xrel * s, glm::toMat3(glm::inverse(first_rotation)) * up));
 			}
 			break;
 		case SDL_MOUSEBUTTONUP:
-			if (event.button.button == SDL_BUTTON_RIGHT)
-				set_mouse_confined_state(!get_mouse_confined_state());
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				if (moving_object_axis != MOVING_OBJECT_AXIS::OFF)
+				{
+					posta::entity::Entity* entity = get_selected_entity();
+					if (entity)
+						entity->set_transform(entity->get_transform().set_position(get_selected_object_moving_position()));
+					moving_object_axis = MOVING_OBJECT_AXIS::OFF;
+				}
+				else
+				{
+					glm::vec2 pixel_position(app->mouse_x, app->mouse_y);
+					auto first_point = camera->get_point_on_near_plane(pixel_position);
+					auto second_point = camera->get_point_on_far_plane(pixel_position);
+					auto callback = app->cast_ray(first_point, second_point);
+					currently_selected_type_entity = nullptr;
+					if (callback.hasHit())
+					{
+						for (entity::Entity* entity : entity::entities)
+						{
+							auto internal_entity_type = entity->get_internal_entity_type();
+							auto rb_type = dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type);
+							if (rb_type && rb_type->get_rigidbody().get_body() == callback.m_collisionObject)
+								currently_selected_type_entity = internal_entity_type;
+						}
+					}
+				}
+			}
+			else if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				if (moving_object_axis != MOVING_OBJECT_AXIS::OFF)
+					moving_object_axis = MOVING_OBJECT_AXIS::OFF;
+				else
+					app->set_mouse_confined_state(!app->get_mouse_confined_state());
+			}
 			break;
 	}
 	#endif
+}
+
+posta::entity::Entity* App::Editor::get_selected_entity()
+{
+	for (posta::entity::Entity* entity : posta::entity::entities)
+	{
+		if (entity->get_internal_entity_type() == currently_selected_type_entity)
+			return entity;
+	}
+	return nullptr;
 }
 
 void App::update_resolution(int w, int h)
@@ -646,8 +900,10 @@ void App::update_resolution(int w, int h)
 		camera->set_resolution(width, height);
 	#ifndef POSTA_EDITOR_DISABLED
 	// updates editor_camera
-	if (editor_camera)
-		editor_camera->set_resolution(width, height);
+	if (editor.camera)
+		editor.camera->set_resolution(width, height);
+	editor.draw2d_framebuffer.reset();
+	editor.outline_framebuffer.reset();
 	#endif
 }
 

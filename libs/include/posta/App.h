@@ -130,6 +130,11 @@ namespace posta {
 			/** Returns true if the application is in editor mode */
 			bool is_editor_mode_enabled();
 
+			/** Casts a ray from src to dest and returns a callback object from Bullet physics */
+			btCollisionWorld::ClosestRayResultCallback cast_ray(glm::vec3 src, glm::vec3 dest);
+			/** Casts a ray from src to dest and returns a callback object from Bullet physics, the ray can hit multiple objects in its way */
+			btCollisionWorld::AllHitsRayResultCallback cast_ray_all_hits(glm::vec3 src, glm::vec3 dest);
+
 			/** Map inputs to their values, use at when accessing input */
 			std::unordered_map<std::string, float> input;
 			/** Keyboard state */
@@ -167,22 +172,59 @@ namespace posta {
 			/// Modify this to get to the next scene in the next frame
 			std::unique_ptr<Scene> next_scene;
 
+			#ifndef EDITOR_DISABLED
+			struct Editor
+			{
+				public:
+					/// This pointer may be invalid, it's just use for comparison, not for getting the actual type entity
+					entity::Type* currently_selected_type_entity = nullptr;
+
+					enum class MOVING_OBJECT_AXIS
+					{
+						OFF,
+						ALONG_CAMERA_PLANE,
+						ALONG_X,
+						ALONG_Y,
+						ALONG_Z,
+						ALONG_LOCAL_X,
+						ALONG_LOCAL_Y,
+						ALONG_LOCAL_Z,
+						ALONG_XY_PLANE,
+						ALONG_YZ_PLANE,
+						ALONG_XZ_PLANE,
+					} moving_object_axis;
+				private:
+					glm::vec3 get_selected_object_moving_position();
+					void draw_inbetween();
+					void draw_viewport(bool front);
+					void handle_loop();
+					void handle_events(SDL_Event& event);
+
+					/// Gets the selected entity, if any.
+					entity::Entity* get_selected_entity();
+
+					std::unordered_map<std::string, float> input;
+
+					/// Internal framebuffer to store the 2D output of the scene's draw2d method when in editor mode
+					std::unique_ptr<ColorFramebuffer> draw2d_framebuffer;
+					/// Internal fraembuffer to store the 3D output of the background of the editor scene
+					std::unique_ptr<ColorFramebuffer> outline_framebuffer;
+
+					/// Editor camera
+					std::unique_ptr<entity::Camera> camera;
+
+					/// True if the user has entered editor_mode
+					bool mode_status = false;
+
+					friend class App;
+					friend class entity::Entity;
+					friend class entity::Camera;
+			} editor;
+			#endif
+
 			friend class entity::Camera;
 			friend class entity::Entity;
 		private:
-			void draw_editor_viewport(bool front);
-			void handle_editor_loop();
-			void handle_editor_events(SDL_Event& event);
-			#ifndef EDITOR_DISABLED
-			std::unordered_map<std::string, float> editor_input;
-			#endif
-
-			/// Internal framebuffer to store the 2D output of the scene's draw2d method when in editor mode
-			std::unique_ptr<ColorFramebuffer> editor_2d_framebuffer;
-
-			/// Editor camera
-			std::unique_ptr<entity::Camera> editor_camera;
-
 			/// Current scene
 			std::unique_ptr<Scene> current_scene;
 
@@ -193,9 +235,6 @@ namespace posta {
 
 			float time_step;
 			float max_delta_time;
-
-			/// True if the user has entered editor_mode
-			bool editor_mode_status = false;
 	};
 
 	// ResourceBag section
