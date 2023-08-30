@@ -340,7 +340,7 @@ void App::loop()
 		if (delta_time < max_delta_time)
 		{
 			float diff = max_delta_time - delta_time;
-			while ((SDL_GetTicks() - nticks) / 1000.0f < diff);
+			std::this_thread::sleep_for(std::chrono::milliseconds(int(diff * 1000)));
 			delta_time = (SDL_GetTicks() - ticks) / 1000.0f;
 		}
 	}
