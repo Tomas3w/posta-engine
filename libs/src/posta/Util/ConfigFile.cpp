@@ -88,7 +88,7 @@ ConfigFile::ConfigFile(std::filesystem::path path)
 	if (!file)
 		throw std::logic_error(std::string("Couldn't load file '") + path.string() + "'");
 	std::string line;
-	size_t line_pos;
+	size_t line_pos = 0;
 	while (getline(file, line))
 	{
 		// Skipping comments
