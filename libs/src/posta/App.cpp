@@ -189,10 +189,10 @@ void App::dest()
 
 void App::dest_physics()
 {
-#ifndef DO_NOT_USE_PHYSICS
+	#ifndef DO_NOT_USE_PHYSICS
 	delete physics;
 	physics = nullptr;
-#endif
+	#endif
 }
 
 void App::loop()

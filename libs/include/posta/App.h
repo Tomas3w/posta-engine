@@ -161,7 +161,7 @@ namespace posta {
 			std::unique_ptr<ThreeDShader> shader3d;
 
 			/// Physics world
-			PhysicsGlobal* physics;
+			PhysicsGlobal* physics = nullptr;
 
 			/// LuaState
 			std::unique_ptr<LuaAPI::LuaState> lua_state;
