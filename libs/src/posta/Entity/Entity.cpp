@@ -7,7 +7,7 @@ using posta::entity::Entity;
 using posta::entity::EmptyType;
 using posta::entity::CameraType;
 using posta::entity::RigidbodyType;
-//using posta::entity::MeshType;
+using posta::entity::MeshType;
 
 std::unordered_set<Entity*> posta::entity::entities;
 
@@ -80,12 +80,15 @@ RigidbodyType::RigidbodyType(posta::component::Rigidbody* _rigidbody, posta::com
 
 void RigidbodyType::draw_back()
 {
-	auto transform = rigidbody->get_transform();
 	if (this == posta::App::app->editor.currently_selected_type_entity)
-	{
-		for (component::DrawableMesh* drawable_mesh : drawable_meshes)
-			Entity::draw_outline(drawable_mesh, transform);
-	}
+		draw_back_as_selected();
+}
+
+void RigidbodyType::draw_back_as_selected()
+{
+	auto transform = rigidbody->get_transform();
+	for (component::DrawableMesh* drawable_mesh : drawable_meshes)
+		Entity::draw_outline(drawable_mesh, transform);
 }
 
 void RigidbodyType::draw_front()
@@ -123,6 +126,47 @@ void RigidbodyType::set_transform(posta::component::Transform transform)
         if (rigidBody)
 			rigidBody->setActivationState(states[i]);
     }
+}
+
+void MeshType::draw_meshes()
+{
+	for (auto dw_mesh : drawable_meshes)
+		dw_mesh->draw();
+}
+
+MeshType::MeshType(posta::component::Transform* _transform, posta::component::DrawableMesh* _drawable_mesh)
+{
+	transform = _transform;
+	if (_drawable_mesh)
+		drawable_meshes.push_back(_drawable_mesh);
+}
+
+void MeshType::draw_back()
+{
+	if (this == posta::App::app->editor.currently_selected_type_entity)
+		draw_back_as_selected();
+}
+
+void MeshType::draw_back_as_selected()
+{
+	for (component::DrawableMesh* drawable_mesh : drawable_meshes)
+		Entity::draw_outline(drawable_mesh, *transform);
+}
+
+void MeshType::draw_front()
+{
+	if (this == posta::App::app->editor.currently_selected_type_entity)
+		Entity::draw_transform(*transform);
+}
+
+posta::component::Transform MeshType::get_transform()
+{
+	return *transform;
+}
+
+void MeshType::set_transform(posta::component::Transform _transform)
+{
+	*transform = _transform;
 }
 
 Entity::EditorGraphics::EditorGraphics() :

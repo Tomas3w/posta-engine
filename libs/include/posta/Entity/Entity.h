@@ -28,6 +28,7 @@ namespace posta::entity {
 			virtual ~Type() = default;
 			virtual void draw_front() {}
 			virtual void draw_back() {}
+			virtual void draw_back_as_selected() {}
 			virtual component::Transform get_transform() = 0;
 			virtual void set_transform(component::Transform) = 0;
 	};
@@ -82,6 +83,23 @@ namespace posta::entity {
 
 			RigidbodyType(posta::component::Rigidbody* _rigidbody, posta::component::DrawableMesh* _drawable_mesh = nullptr);
 			void draw_back() override;
+			void draw_back_as_selected() override;
+			void draw_front() override;
+			component::Transform get_transform() override;
+			void set_transform(component::Transform transform) override;
+	};
+
+	class MeshType : public TypeWithDrawableMeshes, public Type
+	{
+		public:
+			posta::component::Transform* transform = nullptr;
+			std::vector<posta::component::DrawableMesh*> drawable_meshes;
+
+			void draw_meshes() override;
+
+			MeshType(posta::component::Transform* _transform, posta::component::DrawableMesh* _drawable_mesh = nullptr);
+			void draw_back() override;
+			void draw_back_as_selected() override;
 			void draw_front() override;
 			component::Transform get_transform() override;
 			void set_transform(component::Transform transform) override;

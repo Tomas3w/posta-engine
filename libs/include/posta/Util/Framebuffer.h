@@ -26,6 +26,7 @@ namespace posta {
 
 			friend class DepthFramebuffer;
 			friend class ColorFramebuffer;
+			friend class ColorDepthFramebuffer;
 			friend class FloatColorFramebuffer;
 			friend class App;
 		private:
@@ -46,6 +47,14 @@ namespace posta {
 	{
 		public:
 			ColorFramebuffer(int _w, int _h);
+			void clear() override;
+	};
+
+	class ColorDepthFramebuffer : public Framebuffer
+	{
+		public:
+			std::unique_ptr<posta::component::Texture> texture_depth;
+			ColorDepthFramebuffer(int _w, int _h);
 			void clear() override;
 	};
 

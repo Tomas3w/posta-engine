@@ -8,6 +8,7 @@
 namespace posta {
 	class DepthFramebuffer;
 	class ColorFramebuffer;
+	class ColorDepthFramebuffer;
 	class FloatColorFramebuffer;
 	class Font;
 }
@@ -30,6 +31,7 @@ namespace posta::component {
 
 			friend class posta::DepthFramebuffer;
 			friend class posta::ColorFramebuffer;
+			friend class posta::ColorDepthFramebuffer;
 			friend class posta::FloatColorFramebuffer;
 			friend class posta::Font;
 			friend class Image;

@@ -860,10 +860,42 @@ void App::Editor::handle_events(SDL_Event& event)
 						for (entity::Entity* entity : entity::entities)
 						{
 							auto internal_entity_type = entity->get_internal_entity_type();
-							auto rb_type = dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type);
-							if (rb_type && rb_type->get_rigidbody().get_body() == callback.m_collisionObject)
-								currently_selected_type_entity = internal_entity_type;
+							if (auto rb_type = dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type))
+							{
+								if (rb_type->get_rigidbody().get_body() == callback.m_collisionObject)
+									currently_selected_type_entity = internal_entity_type;
+							}
 						}
+					}
+					else
+					{
+						outline_framebuffer->bind();
+						for (entity::Entity* entity : entity::entities)
+						{
+							auto internal_entity_type = entity->get_internal_entity_type();
+							if (!dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type) && dynamic_cast<entity::TypeWithDrawableMeshes*>(internal_entity_type))
+							{
+								outline_framebuffer->clear();
+								internal_entity_type->draw_back_as_selected();
+								Uint32 pixel = 13;
+								float depth = -1;
+								glReadPixels(app->mouse_x, app->mouse_y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+								LOG("depth ", depth);
+								glReadPixels(app->mouse_x, app->mouse_y, 1, 1, GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, &pixel);
+								Uint32 data[] = {
+									(pixel << 24) & 0xff,
+									(pixel << 16) & 0xff,
+									(pixel <<  8) & 0xff,
+									(pixel <<  0) & 0xff,
+								};
+								Uint32 sum = 0;
+								for (int i = 0; i < 4; i++)
+									sum += data[i];
+								if (sum > 0)
+									currently_selected_type_entity = internal_entity_type;
+							}
+						}
+						outline_framebuffer->unbind_framebuffer();
 					}
 				}
 			}
