@@ -8,6 +8,7 @@
 #include <glm/gtx/norm.hpp>
 #include <bullet/btBulletDynamicsCommon.h>
 #include <posta/Util/span.h>
+#include <GL/glew.h>
 
 namespace posta {
 	std::string read_file(std::filesystem::path path);
@@ -18,6 +19,8 @@ namespace posta {
 	std::string strip(std::string str);
 
 	std::vector<std::string> split(std::string str, char separator);
+
+	std::string get_glError(GLenum error);
 }
 
 #endif // POSTAENGINE_GENERAL_H

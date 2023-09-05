@@ -221,7 +221,7 @@ void App::loop()
 		// If the editor is on, the backside of the editor viewport will be drawn
 		#ifndef POSTA_EDITOR_DISABLED
 		if (!editor.outline_framebuffer)
-			editor.outline_framebuffer.reset(new ColorFramebuffer(get_width(), get_height()));
+			editor.outline_framebuffer.reset(new ColorDepthFramebuffer(get_width(), get_height()));
 		if (!editor.draw2d_framebuffer)
 			editor.draw2d_framebuffer.reset(new ColorFramebuffer(get_width(), get_height()));
 		// Making the camera have a framebuffer
@@ -850,11 +850,13 @@ void App::Editor::handle_events(SDL_Event& event)
 				}
 				else
 				{
+					// cast a ray to search for the object in the mouse cursor
 					glm::vec2 pixel_position(app->mouse_x, app->mouse_y);
 					auto first_point = camera->get_point_on_near_plane(pixel_position);
 					auto second_point = camera->get_point_on_far_plane(pixel_position);
 					auto callback = app->cast_ray(first_point, second_point);
 					currently_selected_type_entity = nullptr;
+					float current_depth = 1;
 					if (callback.hasHit())
 					{
 						for (entity::Entity* entity : entity::entities)
@@ -863,40 +865,52 @@ void App::Editor::handle_events(SDL_Event& event)
 							if (auto rb_type = dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type))
 							{
 								if (rb_type->get_rigidbody().get_body() == callback.m_collisionObject)
+								{
 									currently_selected_type_entity = internal_entity_type;
+									current_depth = glm::distance(first_point, posta::from_btVector3(callback.m_hitPointWorld)) / glm::distance(first_point, second_point);
+									break;
+								}
 							}
 						}
 					}
-					else
+					// for objects not present on the physics engine, draw them and search for collision with the mouse
+					outline_framebuffer->bind();
+					for (entity::Entity* entity : entity::entities)
 					{
-						outline_framebuffer->bind();
-						for (entity::Entity* entity : entity::entities)
+						auto internal_entity_type = entity->get_internal_entity_type();
+						if (!dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type) && dynamic_cast<entity::TypeWithDrawableMeshes*>(internal_entity_type))
 						{
-							auto internal_entity_type = entity->get_internal_entity_type();
-							if (!dynamic_cast<entity::TypeWithRigidbody*>(internal_entity_type) && dynamic_cast<entity::TypeWithDrawableMeshes*>(internal_entity_type))
+							outline_framebuffer->clear();
+							internal_entity_type->draw_back_as_selected();
+							Uint32 pixel = 13;
+							float depth = -2;
+							glReadPixels(app->mouse_x, app->mouse_y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+							glReadPixels(app->mouse_x, app->mouse_y, 1, 1, GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, &pixel);
+							Uint32 data[] = {
+								(pixel << 24) & 0xff,
+								(pixel << 16) & 0xff,
+								(pixel <<  8) & 0xff,
+								(pixel <<  0) & 0xff,
+							};
+							Uint32 sum = 0;
+							for (int i = 0; i < 4; i++)
+								sum += data[i];
+							// making current_depth linear in case of perspective view
+							if (auto pcamera = dynamic_cast<component::PCamera*>(camera->camera.get()))
 							{
-								outline_framebuffer->clear();
-								internal_entity_type->draw_back_as_selected();
-								Uint32 pixel = 13;
-								float depth = -1;
-								glReadPixels(app->mouse_x, app->mouse_y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
-								LOG("depth ", depth);
-								glReadPixels(app->mouse_x, app->mouse_y, 1, 1, GL_RGBA, GL_UNSIGNED_INT_8_8_8_8_REV, &pixel);
-								Uint32 data[] = {
-									(pixel << 24) & 0xff,
-									(pixel << 16) & 0xff,
-									(pixel <<  8) & 0xff,
-									(pixel <<  0) & 0xff,
-								};
-								Uint32 sum = 0;
-								for (int i = 0; i < 4; i++)
-									sum += data[i];
-								if (sum > 0)
-									currently_selected_type_entity = internal_entity_type;
+								float _near = pcamera->__near;
+								float _far = pcamera->__far;
+								float ndc = depth * 2.0 - 1.0;
+								depth = (2.0 * _near * _far) / (_far + _near - ndc * (_far - _near)) / _far;
+							}
+							if (sum > 0 && depth < current_depth)
+							{
+								current_depth = depth;
+								currently_selected_type_entity = internal_entity_type;
 							}
 						}
-						outline_framebuffer->unbind_framebuffer();
 					}
+					outline_framebuffer->unbind_framebuffer();
 				}
 			}
 			else if (event.button.button == SDL_BUTTON_RIGHT)

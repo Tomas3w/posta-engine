@@ -208,7 +208,7 @@ namespace posta {
 					/// Internal framebuffer to store the 2D output of the scene's draw2d method when in editor mode
 					std::unique_ptr<ColorFramebuffer> draw2d_framebuffer;
 					/// Internal fraembuffer to store the 3D output of the background of the editor scene
-					std::unique_ptr<ColorFramebuffer> outline_framebuffer;
+					std::unique_ptr<ColorDepthFramebuffer> outline_framebuffer;
 
 					/// Editor camera
 					std::unique_ptr<entity::Camera> camera;

@@ -5,7 +5,6 @@ using posta::component::StaticMesh;
 
 StaticMesh::StaticMesh(Mesh mesh)
 {
-	//LOG("here we are");
 	const VertexProperties* props = mesh.get_vertex_properties();
 	n_vertices = mesh.get_vertex_data().size() / props->sum_of_sizes;
 
