@@ -1,13 +1,13 @@
-#include "MainScene.h"
+#include "Game.h"
 #include <posta/Util/LoggingMacro.h>
 
 using namespace std;
 
-MainScene::MainScene() :
+Game::Game() :
 	blank_texture("common/blank.png"),
 	cube_smesh(posta::assets::load_obj("common/cube.obj"))
 {
-	LOG("Init MainScene");
+	LOG("Init Game");
 	// Setting default value for use_bones
 	app->shader3d->use_bones = false;
 
@@ -18,12 +18,12 @@ MainScene::MainScene() :
 	t = 0;
 }
 
-MainScene::~MainScene()
+Game::~Game()
 {
-	LOG("Dest MainScene");
+	LOG("Dest Game");
 }
 
-void MainScene::update()
+void Game::update()
 {
 	// advances time variable...
 	t += app->delta_time / 2;
@@ -42,7 +42,7 @@ void MainScene::update()
 	cube_smesh.draw();
 }
 
-void MainScene::event(SDL_Event& event)
+void Game::event(SDL_Event& event)
 {
 	// event handling
 }

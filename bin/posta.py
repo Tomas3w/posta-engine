@@ -17,14 +17,17 @@ def argument(index, name):
     return argument_error_type.NOERROR
 
 def print_help():
-    print("Posta")
-    print("Possible uses:")
+    print("Posta, possible uses:")
     print(" posta run <project-name>")
     print("\tRuns the project specified by <project-name>")
     print(" posta debug <project-name>")
     print("\tOpens a gdb session with the project's executable")
     print(" posta build [<project-name>]")
     print("\tBuild the project specified by <project-name>, if not specified it builds all the projects known by posta")
+    print(" posta make <project-name>")
+    print("\tGenerates a template project with the name <project-name>")
+    print(" posta make-class <class-name> <project-name>")
+    print("\tGenerates a class with the name <class-name> and puts it in the files <project-name>/include/<class-name> and <project-name>/src/<class-name>\n\tIncludes those files inside of the sources.cmake file")
 def main():
     script_path = os.path.abspath(sys.argv[0])
     script_dir = os.path.dirname(script_path)
@@ -61,6 +64,17 @@ def main():
             project_name = sys.argv[2]
         generate_project.main(sys.argv[2])
         return None
+    elif argument(1, "make-class") == argument_error_type.NOERROR:
+        if len(sys.argv) < 3:
+            print("Missing class name")
+        elif len(sys.argv) < 4:
+            print("Missing project name")
+        else:
+            import make_class
+            class_name = sys.argv[2]
+            project_name = sys.argv[3]
+            make_class.make_class(class_name, project_name)
+            return None
     elif len(sys.argv) >= 2:
         print("Argument not recognized:", sys.argv[1])
     print_help()

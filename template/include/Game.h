@@ -1,12 +1,12 @@
-#ifndef MAINSCENE_H
-#define MAINSCENE_H
+#ifndef GAME_H
+#define GAME_H
 #include <posta/Util/Scene.h>
 #include <posta/Component/Texture.h>
 #include <posta/Component/StaticMesh.h>
 #include <posta/Util/Assets.h>
 #include "App.h"
 
-class MainScene : public posta::Scene
+class Game : public posta::Scene
 {
 	public:
 		posta::component::Texture blank_texture;
@@ -16,8 +16,8 @@ class MainScene : public posta::Scene
 		void update() override;
 		void event(SDL_Event& event) override;
 
-		MainScene();
-		~MainScene();
+		Game();
+		~Game();
 };
 
-#endif // MAINSCENE_H
+#endif // GAME_H

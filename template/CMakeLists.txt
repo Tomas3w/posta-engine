@@ -1,8 +1,5 @@
-add_executable(template
-	src/App.cpp 
-	src/main.cpp
-	src/MainScene.cpp
-)
+include(sources.cmake)
+add_executable(template ${SOURCES})
 
 include_directories(${BULLET_INCLUDE_DIR})
 
