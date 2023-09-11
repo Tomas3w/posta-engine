@@ -14,6 +14,9 @@ MeshStaticRigidbody::MeshStaticRigidbody(glm::vec3 position, Mesh& mesh)
 	btTransform t;
 	t.setIdentity();
 	t.setOrigin(to_btVector3(position));
+
+	if (indices.size() == 0 || vertices.size() == 0)
+		throw std::logic_error("couldn't create MeshStaticRigidbody with a mesh with 0 indices or vertices");
 	
 	tarray = new btTriangleIndexVertexArray(
 		indices.size() / 3, // num of triangles

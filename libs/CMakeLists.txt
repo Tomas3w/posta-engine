@@ -36,6 +36,7 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConnToServer.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConnToClient.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/Framebuffer.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/EventEmitter.cpp"
 )
 
 target_compile_options(postaengine PUBLIC -I${CMAKE_PREFIX_PATH}/../../include/bullet)
@@ -55,5 +56,5 @@ find_package(Bullet REQUIRED)
 target_include_directories(postaengine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" ${LUA_INCLUDE_DIR})
 target_link_libraries(postaengine PUBLIC SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_net::SDL2_net SDL2_mixer::SDL2_mixer OpenGL::GL OpenGL::GLU GLEW::GLEW ${BULLET_LIBRARIES} ${LUA_LIBRARIES})
 target_compile_features(postaengine PUBLIC cxx_std_17)
-target_compile_options(postaengine PUBLIC -Wall -Wpedantic -g)
+target_compile_options(postaengine PUBLIC -Wall -Wpedantic -g -mconsole)
 

@@ -35,7 +35,7 @@
 
 
 namespace posta {
-	//class Shader;
+	class EventEmitter;
 
 	struct PhysicsGlobal {
 		PhysicsGlobal();
@@ -53,6 +53,18 @@ namespace posta {
 	class App
 	{
 		public:
+			using EventCallback = void (*)(SDL_Event, EventEmitter*);
+			/*struct Event
+			{
+				Event();
+				void call(SDL_Event event) const
+				{
+					callback(event, emitter);
+				}
+				EventCallback callback = nullptr;
+				EventEmitter* emitter  = nullptr;
+			};*/
+
 			static std::unique_ptr<posta::component::StaticMesh> mesh2d;
 			/** Global application variable */
 			static App* app;
@@ -134,6 +146,9 @@ namespace posta {
 			btCollisionWorld::ClosestRayResultCallback cast_ray(glm::vec3 src, glm::vec3 dest);
 			/** Casts a ray from src to dest and returns a callback object from Bullet physics, the ray can hit multiple objects in its way */
 			btCollisionWorld::AllHitsRayResultCallback cast_ray_all_hits(glm::vec3 src, glm::vec3 dest);
+
+			/** Registers an input from a key */
+			void register_keypress_input(SDL_Keycode key, std::string name);
 
 			/** Map inputs to their values, use at when accessing input */
 			std::unordered_map<std::string, float> input;
@@ -224,6 +239,7 @@ namespace posta {
 
 			friend class entity::Camera;
 			friend class entity::Entity;
+			friend class EventEmitter;
 		private:
 			/// Current scene
 			std::unique_ptr<Scene> current_scene;
@@ -235,6 +251,22 @@ namespace posta {
 
 			float time_step;
 			float max_delta_time;
+
+			/// Inputs from keyboard
+			std::unordered_map<SDL_Keycode, std::string> keypress_inputs;
+
+			/// Event callbacks
+			std::unordered_map<SDL_Keycode, std::array<std::unordered_map<EventEmitter*, std::unordered_set<EventCallback>>, 2>> key_events;
+			std::array<std::unordered_map<EventEmitter*, std::unordered_set<EventCallback>>, 2> mouse_left_button_events;
+			std::array<std::unordered_map<EventEmitter*, std::unordered_set<EventCallback>>, 2> mouse_right_button_events;
+			std::array<std::unordered_map<EventEmitter*, std::unordered_set<EventCallback>>, 2> mouse_middle_button_events;
+			std::unordered_map<SDL_EventType, std::unordered_map<EventEmitter*, std::unordered_set<EventCallback>>> general_events;
+			void register_keypress_event(SDL_Keycode keycode, bool down, EventCallback event, EventEmitter* emitter);
+			void register_mouse_left_button_event(EventCallback event, EventEmitter* emitter, bool down);
+			void register_mouse_right_button_event(EventCallback event, EventEmitter* emitter, bool down);
+			void register_mouse_middle_button_event(EventCallback event, EventEmitter* emitter, bool down);
+			void register_general_event(SDL_EventType type, EventCallback event, EventEmitter* emitter);
+			void manage_event_callbacks(SDL_Event& event);
 	};
 
 	// ResourceBag section

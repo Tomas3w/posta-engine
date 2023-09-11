@@ -284,7 +284,10 @@ void App::loop()
 				editor.handle_events(event);
 			else
 			#endif
+			{
 				current_scene->event(event);
+				manage_event_callbacks(event);
+			}
 			switch (event.type)
 			{
 				case SDL_WINDOWEVENT:
@@ -295,8 +298,8 @@ void App::loop()
 							break;
 					}
 					break;
-				#ifndef POSTA_EDITOR_DISABLED
 				case SDL_KEYDOWN:
+					#ifndef POSTA_EDITOR_DISABLED
 					switch (event.key.keysym.sym)
 					{
 						case POSTA_EDITOR_KEY_SWITCH:
@@ -316,8 +319,14 @@ void App::loop()
 							}
 							break;
 					}
+					#endif
+					if (!is_editor_mode_enabled() && keypress_inputs.count(event.key.keysym.sym))
+						input[keypress_inputs[event.key.keysym.sym]] = 1;
 					break;
-				#endif
+				case SDL_KEYUP:
+					if (!is_editor_mode_enabled() && keypress_inputs.count(event.key.keysym.sym))
+						input[keypress_inputs[event.key.keysym.sym]] = 0;
+					break;
 				case SDL_QUIT:
 					exit_loop = true;
 			}
@@ -501,7 +510,11 @@ bool App::get_mouse_confined_state()
 
 bool App::is_editor_mode_enabled()
 {
+	#ifndef POSTA_EDITOR_DISABLED
 	return editor.mode_status;
+	#else
+	return false;
+	#endif
 }
 
 btCollisionWorld::ClosestRayResultCallback App::cast_ray(glm::vec3 src, glm::vec3 dest)
@@ -520,6 +533,11 @@ btCollisionWorld::AllHitsRayResultCallback App::cast_ray_all_hits(glm::vec3 src,
 	btCollisionWorld::AllHitsRayResultCallback callback(origin, destination);
 	physics->world->rayTest(origin, destination, callback);
 	return callback;
+}
+
+void App::register_keypress_input(SDL_Keycode key, std::string name)
+{
+	keypress_inputs[key] = name;
 }
 
 static glm::vec3 intersect_ray_on_plane(glm::vec3 plane_pos, glm::vec3 plane_normal, glm::vec3 ray_src, glm::vec3 ray_dir)
@@ -647,6 +665,9 @@ void App::Editor::handle_loop()
 		input[direction] = glm::mix(input[direction], input["o" + direction], 0.1f);
 }
 
+#ifndef POSTA_EDITOR_KEY_SHOW_FPS
+#define POSTA_EDITOR_KEY_SHOW_FPS SDLK_f
+#endif
 #ifndef POSTA_EDITOR_KEY_MODIFIER1
 #define POSTA_EDITOR_KEY_MODIFIER1 SDLK_LSHIFT
 #endif
@@ -698,6 +719,12 @@ void App::Editor::handle_events(SDL_Event& event)
 		case SDL_KEYUP:
 			switch (event.key.keysym.sym)
 			{
+				case POSTA_EDITOR_KEY_SHOW_FPS:
+					if (app->delta_time > 0)
+						LOG("fps: ", 1.0f / app->delta_time)
+					else
+						LOG("fps: inf");
+					break;
 				case POSTA_EDITOR_KEY_X_AXIS:
 					if (moving_object_axis != MOVING_OBJECT_AXIS::OFF)
 					{
@@ -951,6 +978,78 @@ void App::update_resolution(int w, int h)
 	editor.draw2d_framebuffer.reset();
 	editor.outline_framebuffer.reset();
 	#endif
+}
+
+void App::register_keypress_event(SDL_Keycode keycode, bool down, EventCallback event, EventEmitter* emitter)
+{
+	key_events[keycode][down][emitter].insert(event);
+}
+
+void App::register_mouse_left_button_event(EventCallback event, EventEmitter* emitter, bool down)
+{
+	mouse_left_button_events[down][emitter].insert(event);
+}
+
+void App::register_mouse_right_button_event(EventCallback event, EventEmitter* emitter, bool down)
+{
+	mouse_right_button_events[down][emitter].insert(event);
+}
+
+void App::register_mouse_middle_button_event(EventCallback event, EventEmitter* emitter, bool down)
+{
+	mouse_middle_button_events[down][emitter].insert(event);
+}
+
+void App::register_general_event(SDL_EventType type, EventCallback event, EventEmitter* emitter)
+{
+	general_events[type][emitter].insert(event);
+}
+
+void App::manage_event_callbacks(SDL_Event& event)
+{
+	switch (event.type)
+	{
+		case SDL_KEYDOWN:
+		case SDL_KEYUP:
+			for (auto& p : key_events[event.key.keysym.sym][event.type == SDL_KEYDOWN])
+			{
+				for (auto& callback : p.second)
+					callback(event, p.first);
+			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+		case SDL_MOUSEBUTTONUP:
+			switch (event.button.button)
+			{
+				case SDL_BUTTON_LEFT:
+					for (auto& p : mouse_left_button_events[event.type == SDL_MOUSEBUTTONDOWN])
+					{
+						for (auto& callback : p.second)
+							callback(event, p.first);
+					}
+					break;
+				case SDL_BUTTON_RIGHT:
+					for (auto& p : mouse_right_button_events[event.type == SDL_MOUSEBUTTONDOWN])
+					{
+						for (auto& callback : p.second)
+							callback(event, p.first);
+					}
+					break;
+				case SDL_BUTTON_MIDDLE:
+					for (auto& p : mouse_middle_button_events[event.type == SDL_MOUSEBUTTONDOWN])
+					{
+						for (auto& callback : p.second)
+							callback(event, p.first);
+					}
+					break;
+			}
+			break;
+	}
+	for (auto& p : general_events[(SDL_EventType)event.type])
+	{
+		for (auto& callback : p.second)
+			callback(event, p.first);
+	}
 }
 
 std::vector<posta::ResourceBeaconParent*> posta::__app_beacons;
