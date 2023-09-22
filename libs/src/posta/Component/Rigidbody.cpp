@@ -1,5 +1,6 @@
 #include <posta/Component/Rigidbody.h>
 #include <posta/App.h>
+#include <posta/Util/LoggingMacro.h>
 
 using posta::component::Rigidbody;
 
@@ -9,6 +10,9 @@ Rigidbody::~Rigidbody()
 	delete body->getCollisionShape();
 	App::app->physics->world->removeRigidBody(body);
 	delete body;
+
+	for (auto c : constraints)
+		c->remove_rigidbodies();
 }
 
 glm::mat4 Rigidbody::get_matrix()
@@ -42,5 +46,22 @@ btRigidBody* Rigidbody::get_body()
 void Rigidbody::set_body(btRigidBody* body)
 {
 	this->body = body;
+}
+
+void Rigidbody::add_constraint(Constraint* constraint)
+{
+	constraints.push_back(constraint);
+}
+
+void Rigidbody::remove_constraint(Constraint* constraint)
+{
+	for (auto it = constraints.begin(); it != constraints.end(); it++)
+	{
+		if ((*it) == constraint)
+		{
+			constraints.erase(it);
+			break;
+		}
+	}
 }
 

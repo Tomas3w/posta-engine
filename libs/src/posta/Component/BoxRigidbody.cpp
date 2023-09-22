@@ -17,6 +17,6 @@ BoxRigidbody::BoxRigidbody(glm::vec3 position, float mass, glm::vec3 ext, glm::v
 	set_body(new btRigidBody(info));
 	App::app->physics->world->addRigidBody(get_body());
 
-	get_body()->applyCentralForce(posta::to_btVector3(velocity));
+	get_body()->setLinearVelocity(posta::to_btVector3(velocity));
 }
 

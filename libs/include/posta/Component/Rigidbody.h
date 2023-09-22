@@ -1,5 +1,6 @@
 #ifndef POSTAENGINE_RIGIDBODY_COMPONENT_H
 #define POSTAENGINE_RIGIDBODY_COMPONENT_H
+#include "posta/Component/Constraint.h"
 #include <posta/Component/Transform.h>
 #include <posta/Util/General.h>
 #include <iostream>
@@ -7,11 +8,12 @@
 namespace posta::component {
 	class Rigidbody
 	{
-		public:
+		protected:
 			Rigidbody() = default;
+			virtual ~Rigidbody();
+		public:
 			Rigidbody(const Rigidbody&) = delete;
 			Rigidbody& operator=(const Rigidbody&) = delete;
-			virtual ~Rigidbody() = 0;
 
 			/// Returns the transforms matrix
 			virtual glm::mat4 get_matrix() final;
@@ -24,8 +26,15 @@ namespace posta::component {
 			virtual btRigidBody* get_body() final;
 			/// Sets the internal rigidbody pointer
 			virtual void set_body(btRigidBody* body) final;
+
 		private:
-			btRigidBody* body;
+			std::vector<Constraint*> constraints; // all the constraints associated with this rigidbody
+			btRigidBody* body = nullptr;
+
+			void add_constraint(Constraint* constraint);
+			void remove_constraint(Constraint* constraint);
+
+			friend class Constraint;
 	};
 }
 

@@ -1,9 +1,10 @@
 
 def inc_text(class_name):
-    return f"""#ifndef {class_name.upper()}_H
-#define {class_name.upper()}_H
+    guard_name = class_name.replace('/', '_').upper() + '_H'
+    return f"""#ifndef {guard_name}
+#define {guard_name}
 
-class {class_name}
+class {class_name[class_name.rfind('/') + 1:]}
 {{
     public:
         //
@@ -11,7 +12,7 @@ class {class_name}
         //
 }};
 
-#endif // {class_name.upper()}_H
+#endif // {guard_name}
 """
 
 def src_text(class_name):

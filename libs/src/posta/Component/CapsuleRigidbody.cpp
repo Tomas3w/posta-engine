@@ -18,6 +18,6 @@ CapsuleRigidbody::CapsuleRigidbody(glm::vec3 position, float mass, float radius,
 	set_body(new btRigidBody(info));
 	App::app->physics->world->addRigidBody(get_body());
 
-	get_body()->applyCentralForce(posta::to_btVector3(velocity));
+	get_body()->setLinearVelocity(posta::to_btVector3(velocity));
 }
 
