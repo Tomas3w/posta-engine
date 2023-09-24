@@ -150,8 +150,6 @@ def install_sdl2_net():
 def install_sdl_all():
     print("[posta] Installing SDL2...")
     run(install_sdl2)
-    print("[posta] Installing SDL_image...")
-    run(install_sdl2_image)
     print("[posta] Installing freetype...")
     run(install_freetype)
     print("[posta] Installing SDL_ttf...")
@@ -160,6 +158,12 @@ def install_sdl_all():
     run(install_sdl2_mixer)
     print("[posta] Installing SDL_net...")
     run(install_sdl2_net)
+    print("[posta] Installing zlib...")
+    run(install_zlib)
+    print("[posta] Installing libpng...")
+    run(install_libpng)
+    print("[posta] Installing SDL_image...")
+    run(install_sdl2_image)
     return 0
 
 def install_glew():
@@ -246,14 +250,14 @@ def install_bullet():
 
 def install_zlib():
     folder_name = 'zlib-1.3'
-    zip_filename = 'zlib13.zip'
+    zip_filename = 'zlib-1.3.tar.gz'
     if not os.path.exists(folder_name):
-        url = 'https://www.zlib.net/zlib13.zip'
+        url = 'https://www.zlib.net/zlib-1.3.tar.gz'
         print('[posta] Downloading latest zlib release...')
         if not os.path.exists(zip_filename):
             download(url, zip_filename)
         print('[posta] Extracting ' + zip_filename + '...')
-        folder = extract_zip(zip_filename)
+        folder = extract_tar_gz(zip_filename)
         os.chdir(folder)
         print('[posta] Compiling zlib...')
         resultcode = os.system("cmake -S . -B build -DCMAKE_PREFIX_PATH=\"" + path_to_lib_cmake + "\" -G \"MinGW Makefiles\" -DCMAKE_INSTALL_PREFIX=\"../w64devkit/x86_64-w64-mingw32\"")
@@ -266,10 +270,10 @@ def install_zlib():
     return 0
 
 def install_libpng():
-    folder_name = 'libpng-1.6.40'
-    zip_filename = 'libpng-1.6.40.zip'
+    folder_name = 'lpng1640'
+    zip_filename = 'lpng1640.zip'
     if not os.path.exists(folder_name):
-        url = 'https://github.com/glennrp/libpng/archive/refs/tags/v1.6.40.zip'
+        url = 'https://sitsa.dl.sourceforge.net/project/libpng/libpng16/1.6.40/lpng1640.zip'
         print('[posta] Downloading latest libpng release...')
         if not os.path.exists(zip_filename):
             download(url, zip_filename)
@@ -303,10 +307,6 @@ def make_development_environment():
     os.environ['PATH'] = os.environ.get('PATH', '') + ';' + os.path.abspath('w64devkit/bin')
     print("[posta] Installing CMake...")
     run(install_cmake)
-    print("[posta] Installing zlib...")
-    run(install_zlib)
-    print("[posta] Installing libpng...")
-    run(install_libpng)
     print("[posta] Installing SDL libraries...")
     run(install_sdl_all)
     print("[posta] Installing GLEW...")
