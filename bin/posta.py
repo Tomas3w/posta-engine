@@ -33,6 +33,9 @@ def main():
     script_dir = os.path.dirname(script_path)
     os.chdir(script_dir)
     os.chdir('..')
+
+    os.environ['PATH'] = os.environ.get('PATH', '') + ';' + os.path.abspath('bin/internal/w64devkit/bin')
+
     if argument(1, "run") == argument_error_type.NOERROR:
         if len(sys.argv) < 3:
             print('Missing project name to run')
