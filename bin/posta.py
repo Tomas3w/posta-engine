@@ -90,6 +90,7 @@ def main():
             project_name = sys.argv[2]
             path = sys.argv[3]
             export_project.export_project(project_name, path)
+            return None
     elif len(sys.argv) >= 2:
         print("Argument not recognized:", sys.argv[1])
     print_help()
