@@ -5,66 +5,29 @@
 ### Windows
 
 Primero, instalar lo siguiente:
-- El compilador *MinGW*, recomiendo instalar el kit *w64devkit*.
-- Python (versión 3.10 en adelante)
-- CMake (versión 3.16 en adelante)
+- Python (versión 3.10 en adelante, aunque probablemnte funcione con versiones más antiguas)
 
-Una vez instalado, busca la carpeta que contenga include, lib, bin, man, etc. En *w64devkit* esta dentro de x86_64-w64-mingw32, en esta carpeta se van a copiar la version de development de las siguientes librerias:
-- SDL
+Luego, clona el repositorio donde quieras, dentro del mismo ejecutar:
 
-  Para instalar SDL vaya a: https://github.com/libsdl-org/SDL/releases y descarge la ultima version con el nombre: SDL2-devel-X.X.X-mingw.zip, donde X.X.X es la versión.
-  Una vez descargado extraega los elementos de la sub carpeta x86_64-w64-mingw32 dentro de la carpeta x86_64-w64-mingw32 anteriormente mencionada
-- SDL_image
-  
-  Mismo proceso que SDL pero con este link: https://github.com/libsdl-org/SDL_image/releases
-- SDL_ttf
+    cd bin
+    python bin\devenv-setup.py
+Con esto, se instalarán las librerias del motor junto a w64devkit (y con esto último un compilador de C++)
+Una vez instaladas estas librerias, agregar posta-engine\bin\internal\w64devkit\x86_64-w64-mingw32\bin en el PATH del sistema.
 
-  Mismo proceso que SDL pero con este link: https://github.com/libsdl-org/SDL_ttf/releases
-- SDL_net
-
-  https://github.com/libsdl-org/SDL_net/releases
-- SDL_mixer
-
-  https://github.com/libsdl-org/SDL_mixer/releases
-- GLEW
-
-  Descarge los binarios de este link: https://glew.sourceforge.net/, una vez tenga el comprimido, se extrae los elementos de la sub carpeta glew-X.X.X dentro de x86_64-w64-mingw32
-- Lua
-
-    Descarge el codigo fuente en https://www.lua.org/download.html (lua-5.4.x.tar.gz), extraegalo en una carpeta, ejecute los siguiente comandos:
-
-        mkdir src/build
-        make INSTALL_TOP=src/build PLAT=mingw TO_BIN="lua.exe luac.exe"
-        make install INSTALL_TOP=src/build PLAT=mingw TO_BIN="lua.exe luac.exe"
-    
-    Una vez hecho esto, copie el contenido dentro de src/build en x86_64-w64-mingw32
-- Bullet
-
-  Descarge el codigo en https://github.com/bulletphysics/bullet3, y dentro de la carpeta descargada, ejecuta:
-        
-        mkdir build
-        cd build
-        cmake-gui ..
-  Recomiendo utilizar cmake-gui y deshabilitar los ejemplos y los unit tests, además de todo esto es necesario elegir la ruta donde se va a instalar, en nuestro caso seria en x86_64-w64-mingw32.
-  Para compilar e instalar hacer:
-        
-        make install
-- glm
- 
-  Descargar el archivo que se encuentra en este link: https://github.com/g-truc/glm/releases y descomprimir la carpeta (NO EL CONTENIDO) glm en x86_64-w64-mingw32, también hay que tener cuidado de no copiar la carpeta base del comprimido, sino la carpeta glm que esta dentro de glm
-
-
-
-Una vez instaladas estas librerias, agrega x86_64-w64-mingw32/bin en el PATH del sistema. Luego, clona el repositorio, y dentro ejecuta:
+## Úso
+Si la instalación funcionó, ejecutar dentro de la carpeta posta-engine:
     
     python bin/posta.py make template
 Esto con el fin de crear un proyecto simple basado en la plantilla y para poder comprobar que no hubo errores con las dependencias.
-Luego, para compilar el motor junto a la plantilla, es importante crear el archivo path_to_lib_cmake.txt y poner dentro el path absoluto de x86_64-w64-mingw32/lib/cmake, el contenido del archivo deberia parecerse a esto:
-    
-    /path/to/x86_64-w64-mingw32/lib/cmake/
 Si todo salio bien, debería ser posible ejecutar el template con:
 
     python bin/posta.py run template
+El código fuente de los proyectos creados por el motor se encontrarán dentro de posta-engine/apps
+Para exportar un proyecto, ejecutar:
+
+    python bin/posta.py export your-project path/to/project
+your-project es el nombre del proyecto que se quiere exportar y path/to/project es el lugar donde se exportará el proyecto, por ejemplo, en este caso, el proyecto your-project se instalará en la carpeta path/to/project/your-project.
+El projecto exportado contendrá un .exe, dlls y dos carpetas: assets y common. También, se puede ejecutar sin ningúna configuración extra tan solo ejecutando el exe, debería funcionar en cualquiera computadora.
 
 ## Documentación
 Link: https://tomas3w.github.io/posta-engine/
