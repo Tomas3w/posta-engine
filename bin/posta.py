@@ -28,6 +28,8 @@ def print_help():
     print("\tGenerates a template project with the name <project-name>")
     print(" posta make-class <class-name> <project-name>")
     print("\tGenerates a class with the name <class-name> and puts it in the files <project-name>/include/<class-name> and <project-name>/src/<class-name>\n\tIncludes those files inside of the sources.cmake file")
+    print(" posta export <project-name> <path>")
+    print("\tExports the project named <project-name> into a folder pointed by <path>, the final export folder will then be in <path>/<project_name>")
 def main():
     script_path = os.path.abspath(sys.argv[0])
     script_dir = os.path.dirname(script_path)
@@ -78,6 +80,16 @@ def main():
             project_name = sys.argv[3]
             make_class.make_class(class_name, project_name)
             return None
+    elif argument(1, "export") == argument_error_type.NOERROR:
+        if len(sys.argv) < 3:
+            print("Missing project name")
+        elif len(sys.argv) < 4:
+            print("Missing export path")
+        else:
+            import export_project
+            project_name = sys.argv[2]
+            path = sys.argv[3]
+            export_project.export_project(project_name, path)
     elif len(sys.argv) >= 2:
         print("Argument not recognized:", sys.argv[1])
     print_help()
