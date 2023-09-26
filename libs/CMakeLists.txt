@@ -9,6 +9,7 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/App.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/UI/Textbox.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/UI/Button.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Component/HingeConstraint.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Component/Constraint.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Component/Skeleton.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Component/Transform.cpp"
