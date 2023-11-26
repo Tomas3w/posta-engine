@@ -10,9 +10,9 @@ namespace posta::component {
 	{
 		protected:
 			Rigidbody() = default;
-			virtual ~Rigidbody();
 		public:
 			Rigidbody(const Rigidbody&) = delete;
+			virtual ~Rigidbody();
 			Rigidbody& operator=(const Rigidbody&) = delete;
 
 			/// Returns the transforms matrix
