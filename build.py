@@ -45,7 +45,8 @@ def build(project_name, path_to_lib_cmake):
     for name in folders_of_directory('apps'):
         create_build_symlinks_and_build_folder(name)
     # initial configuration of cmake
-    if run_command("cmake -S . -B build -DCMAKE_PREFIX_PATH=" + path_to_lib_cmake + " -G \"Ninja\" -DCMAKE_EXPORT_COMPILE_COMMANDS=1") != 0:
+    generator = 'MinGW Makefiles' # replace with Ninja for the ninja geenrator
+    if run_command("cmake -S . -B build -DCMAKE_PREFIX_PATH=" + path_to_lib_cmake + " -G \"" + generator + "\" -DCMAKE_EXPORT_COMPILE_COMMANDS=1") != 0:
         return False
     # building
     if run_command("cmake --build build") != 0:
