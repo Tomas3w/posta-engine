@@ -4,13 +4,22 @@ global_headers = {
     'Authorization': f'Bearer {bearer_token}'
 } if bearer_token else {}
 
-import os, zipfile, tarfile
+import os, zipfile, tarfile, importlib
 from datetime import datetime
 
 path_to_lib_cmake = None
 
 def install_required_python_dependencies():
-    return os.system('python -m pip install -r requirements.txt')
+    code = os.system('python -m pip install -r requirements.txt')
+    if code != 0:
+        exit()
+    requests = importlib.import_module('requests')
+    return (requests,)
+
+try:
+    import requests
+except ImportError as e:
+    requests, = install_required_python_dependencies()
 
 def progress_bar(percent, newline_if_1 = True):
     length = 20
@@ -58,7 +67,6 @@ def download(url, filepath):
     return urlretrieve(url, filepath, lambda count, block_size, total_size: progress_bar(count * block_size / total_size if total_size != -1 else -1))
 
 def install_w64devkit():
-    import requests
     if not os.path.exists('w64devkit'):
         response = requests.get("https://api.github.com/repos/skeeto/w64devkit/releases/latest", headers=global_headers)
         metadata = response.json()
@@ -96,7 +104,6 @@ def install_freetype():
     return 0
 
 def install_sdl_like_from_source(name, url_name, release_source, author = 'libsdl-org'):
-    import requests
     response = requests.get(f"https://api.github.com/repos/{author}/{url_name}/releases/latest", headers=global_headers)
     metadata = response.json()
     version = metadata["name"].split()[-1]
@@ -189,7 +196,6 @@ def install_lua():
     return 0
 
 def install_glm():
-    import requests
     response = requests.get("https://api.github.com/repos/g-truc/glm/releases/latest", headers=global_headers)
     metadata = response.json()
     version = metadata["name"].split()[-1]
@@ -206,7 +212,6 @@ def install_glm():
     return 0
 
 def install_cmake():
-    import requests
     response = requests.get("https://api.github.com/repos/Kitware/CMake/releases/latest", headers=global_headers)
     metadata = response.json()
     version = metadata["tag_name"].split('v')[-1]
@@ -223,7 +228,6 @@ def install_cmake():
     return 0
 
 def install_bullet():
-    import requests
     response = requests.get("https://api.github.com/repos/bulletphysics/bullet3/releases/latest", headers=global_headers)
     metadata = response.json()
     version = metadata["tag_name"]
@@ -296,7 +300,6 @@ def run(func):
 
 def make_development_environment():
     print("[posta] Installing required dependencies...")
-    run(install_required_python_dependencies)
     try:
         os.mkdir('internal')
     except FileExistsError:

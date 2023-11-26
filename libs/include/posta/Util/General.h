@@ -10,6 +10,10 @@
 #include <posta/Util/span.h>
 #include <GL/glew.h>
 
+#ifndef M_PI
+#define M_PI (3.14159265358979323846)
+#endif
+
 namespace posta {
 	std::string read_file(std::filesystem::path path);
 

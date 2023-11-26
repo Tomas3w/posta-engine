@@ -1,7 +1,7 @@
 var searchData=
 [
   ['manage_5ftextbox_5finput_0',['manage_textbox_input',['../classposta_1_1_app.html#ae9b1862ce13c6ec25e01cb958e2c7d96',1,'posta::App']]],
-  ['matrix_5ffor_5frect_1',['matrix_for_rect',['../classposta_1_1component_1_1_image.html#a44a4d33d36ee497f68646e42c5dcf703',1,'posta::component::Image']]],
+  ['matrix_5ffor_5frect_1',['matrix_for_rect',['../classposta_1_1component_1_1_image.html#a44a4d33d36ee497f68646e42c5dcf703',1,'posta::component::Image::matrix_for_rect(posta::ui::Rect rect, int screen_w, int screen_h)'],['../classposta_1_1component_1_1_image.html#ac21f133d608fc1b2e171b16d29595c98',1,'posta::component::Image::matrix_for_rect(posta::ui::Rect rect, int screen_w, int screen_h, float angle)']]],
   ['maximize_5fwindow_2',['maximize_window',['../classposta_1_1_app.html#af00bbc9717f664451caca00cc790a0e8',1,'posta::App']]],
   ['maynotbeowner_3',['MayNotBeOwner',['../classposta_1_1_lua_a_p_i_1_1_may_not_be_owner.html',1,'posta::LuaAPI']]],
   ['maynotbeownerisnil_4',['MayNotBeOwnerIsNil',['../structposta_1_1_lua_a_p_i_1_1_lua_state_1_1_may_not_be_owner_is_nil.html',1,'posta::LuaAPI::LuaState']]],

@@ -12,7 +12,7 @@
 
 namespace posta::LuaAPI
 {
-	/// Class for having lua objects derived from real types, but may not be created in lua directly
+	/// Class for having lua objects derived from real types, but that may not be created in lua directly
 	/// The class contains a pointer to the actual type but the class as a whole may not be the owner of this pointer
 	/// It can also be used to return nil for the functions LuaCFunction::from_method and LuaCFunction::from_func (using the nil static member function)
 	template <class T>

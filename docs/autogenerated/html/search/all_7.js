@@ -19,7 +19,7 @@ var searchData=
   ['get_5findex_5fby_5fname_16',['get_index_by_name',['../classposta_1_1_mesh.html#a63474b7458fd70b503324c10d31154ce',1,'posta::Mesh']]],
   ['get_5findices_17',['get_indices',['../classposta_1_1_mesh.html#a752187a84a685136f66aded937a407bd',1,'posta::Mesh']]],
   ['get_5finternal_5fentity_5ftype_18',['get_internal_entity_type',['../classposta_1_1entity_1_1_entity.html#a8701bcd09311353d5668272e306fd4cf',1,'posta::entity::Entity']]],
-  ['get_5fmatrix_19',['get_matrix',['../classposta_1_1component_1_1_rigidbody.html#a41996beaf417eddc13433302a1cad76b',1,'posta::component::Rigidbody']]],
+  ['get_5fmatrix_19',['get_matrix',['../classposta_1_1component_1_1_image.html#aacdd66f3bb39dcbb1541197dd1503e0b',1,'posta::component::Image::get_matrix()'],['../classposta_1_1component_1_1_rigidbody.html#a41996beaf417eddc13433302a1cad76b',1,'posta::component::Rigidbody::get_matrix()']]],
   ['get_5fnormal_5fmatrix_20',['get_normal_matrix',['../classposta_1_1component_1_1_transform.html#a5d6f1e921e23e0b0811a3cc6acf07d7d',1,'posta::component::Transform']]],
   ['get_5fpoint_5fon_5ffar_5fplane_21',['get_point_on_far_plane',['../classposta_1_1entity_1_1_camera.html#a3aa3d1c6cbe50291f7e2d20ff278fa3d',1,'posta::entity::Camera']]],
   ['get_5fpoint_5fon_5fnear_5fplane_22',['get_point_on_near_plane',['../classposta_1_1entity_1_1_camera.html#ad3885d908d7deeb13fa23b4a49cf473e',1,'posta::entity::Camera']]],

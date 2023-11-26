@@ -3,6 +3,7 @@ var searchData=
   ['_5f_5fdraw_5fentity_0',['__draw_entity',['../classposta_1_1entity_1_1_entity.html#a819ad8f53d1dc26b838576b70e9d106e',1,'posta::entity::Entity']]],
   ['_5f_5ffov_1',['__fov',['../classposta_1_1component_1_1_p_camera.html#a05bde3ffbd7ae3aa8fca37df8185173a',1,'posta::component::PCamera']]],
   ['_5f_5ffree_5fgraphics_2',['__free_graphics',['../classposta_1_1entity_1_1_entity.html#a2f1bf28eabe196b1604c4691f5132d15',1,'posta::entity::Entity']]],
-  ['_5f_5fregister_3',['__register',['../classposta_1_1entity_1_1_entity.html#a061918671c3804f32d9f5c7c84a633e2',1,'posta::entity::Entity']]],
-  ['_5f_5fsize_4',['__size',['../classposta_1_1component_1_1_o_camera.html#ae959d3079b393fd46e4221da89a7ec21',1,'posta::component::OCamera']]]
+  ['_5f_5fget_5fmatrix_3',['__get_matrix',['../classposta_1_1component_1_1_image.html#aae176a4962c914346d6a24a1c01c8d3f',1,'posta::component::Image']]],
+  ['_5f_5fregister_4',['__register',['../classposta_1_1entity_1_1_entity.html#a061918671c3804f32d9f5c7c84a633e2',1,'posta::entity::Entity']]],
+  ['_5f_5fsize_5',['__size',['../classposta_1_1component_1_1_o_camera.html#ae959d3079b393fd46e4221da89a7ec21',1,'posta::component::OCamera']]]
 ];

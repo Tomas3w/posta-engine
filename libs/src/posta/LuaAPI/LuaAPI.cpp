@@ -463,7 +463,7 @@ void posta::LuaAPI::load_api(LuaState& lua_state)
 
 	// Components
 	LUA_CLASS_MAKE(components, posta::component::Image, Image_new);
-	LUA_METHOD_MAKE(components, posta::component::Image, get_matrix, int, int);
+	LUA_METHOD_MAKE(components, posta::component::Image, __get_matrix, int, int);
 	LUA_METHOD_MAKE_NARGS(components, posta::component::Image, draw);
 	LUA_METHOD_MAKE_NARGS(components, posta::component::Image, get_w);
 	LUA_METHOD_MAKE_NARGS(components, posta::component::Image, get_h);
