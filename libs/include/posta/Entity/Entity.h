@@ -7,7 +7,9 @@
 #include <posta/Component/Texture.h>
 #include <posta/Component/StaticMesh.h>
 #include <posta/Component/DrawableMesh.h>
+#ifdef _WIN32
 #include <corecrt.h>
+#endif
 #include <posta/Component/Transform.h>
 #include <posta/Component/Rigidbody.h>
 #include <posta/Util/Shader.h>

@@ -47,10 +47,10 @@ def build(project_name, path_to_lib_cmake):
     # initial configuration of cmake
     with open('bin/internal/generator.txt') as generator_file:
         generator = generator_file.read()
-    if run_command("cmake -S . -B build -DCMAKE_PREFIX_PATH=" + path_to_lib_cmake + " -G \"" + generator + "\" -DCMAKE_EXPORT_COMPILE_COMMANDS=1") != 0:
+    if run_command(['cmake', '-S', '.', '-B', 'build', f'-DCMAKE_PREFIX_PATH="{path_to_lib_cmake}"', '-G', f'{generator}', '-DCMAKE_EXPORT_COMPILE_COMMANDS=1']) != 0:
         return False
     # building
-    if run_command("cmake --build build") != 0:
+    if run_command(['cmake', '--build', 'build']) != 0:
         return False
     return True
 

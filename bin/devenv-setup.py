@@ -4,7 +4,7 @@ global_headers = {
     'Authorization': f'Bearer {bearer_token}'
 } if bearer_token else {}
 
-import os, zipfile, tarfile, importlib
+import os, zipfile, tarfile, importlib, platform
 from datetime import datetime
 
 path_to_lib_cmake = None
@@ -305,33 +305,42 @@ def make_development_environment():
     except FileExistsError:
         pass
     os.chdir('internal')
-    print("[posta] Installing w64devkit...")
-    run(install_w64devkit)
-    os.environ['PATH'] = os.environ.get('PATH', '') + ';' + os.path.abspath('w64devkit/bin')
-    print("[posta] Installing CMake...")
-    run(install_cmake)
-    print("[posta] Installing SDL libraries...")
-    run(install_sdl_all)
-    print("[posta] Installing GLEW...")
-    run(install_glew)
-    print("[posta] Installing Lua...")
-    run(install_lua)
-    print("[posta] Installing glm...")
-    run(install_glm)
-    print("[posta] Installing Bullet...")
-    run(install_bullet)
+    if platform.system() == "Windows":
+        print("[posta] Windows OS Detected")
+        print("[posta] Installing w64devkit...")
+        run(install_w64devkit)
+        os.environ['PATH'] = os.environ.get('PATH', '') + ';' + os.path.abspath('w64devkit/bin')
+        print("[posta] Installing CMake...")
+        run(install_cmake)
+        print("[posta] Installing SDL libraries...")
+        run(install_sdl_all)
+        print("[posta] Installing GLEW...")
+        run(install_glew)
+        print("[posta] Installing Lua...")
+        run(install_lua)
+        print("[posta] Installing glm...")
+        run(install_glm)
+        print("[posta] Installing Bullet...")
+        run(install_bullet)
+    else:
+        print("[posta] !! Automatically compiling and installing dependencies only works in windows at the time !!")
+        print("[posta] !! Continuing with the rest of the installation... !!")
+        if platform.system() == "Linux":
+            print("[posta] Linux Kernel Detected")
+            global path_to_lib_cmake
+            path_to_lib_cmake = '/usr/lib/cmake/'
     if path_to_lib_cmake != None:
-        print("[posta] Retwriting path_to_lib_cmake...")
+        print("[posta] Retwriting path_to_lib_cmake.txt...")
         with open('../../path_to_lib_cmake.txt', 'w') as file:
             file.write(path_to_lib_cmake)
     print("[posta] Creating generator file...")
     with open('generator.txt', 'w') as file:
-        file.write('MinGW Makefiles')
-    print("[posta] Done!")
+        if platform.system() == "Windows":
+            file.write('MinGW Makefiles')
+        elif platform.system() == "Linux":
+            file.write('Unix Makefiles')
+    print("[posta] Done! -- Note: You can delete everything inside bin/internal now, except for w64devkit and generator.txt")
 
 if __name__ == "__main__":
-    #os.chdir('internal')
-    #os.environ['PATH'] = os.environ.get('PATH', '') + ';' + os.path.abspath('w64devkit/bin')
-    #run(install_bullet)
     make_development_environment()
 

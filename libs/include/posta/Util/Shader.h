@@ -6,6 +6,7 @@
 #include <iostream>
 #include <filesystem>
 #include <unordered_map>
+#include <utility>
 #include <posta/Util/General.h>
 
 namespace posta {
@@ -43,12 +44,12 @@ namespace posta {
 	class Uniform;
 
 	// Specific for declaring uniform maps
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE(t) std::unordered_map<std::string, Uniform<t>> uniforms_##t
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_GLM(t) std::unordered_map<std::string, Uniform<glm::t>> uniforms_##t
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC2() std::unordered_map<std::string, Uniform<posta::span<glm::vec2>>> uniforms_many_vec2
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC3() std::unordered_map<std::string, Uniform<posta::span<glm::vec3>>> uniforms_many_vec3
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC4() std::unordered_map<std::string, Uniform<posta::span<glm::vec4>>> uniforms_many_vec4
-	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_ANIM_MAT4() std::unordered_map<std::string, Uniform<posta::span<posta::anim_mat4>>> uniforms_anim_mat4
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE(t) std::unordered_map<std::string, std::unique_ptr<Uniform<t>>> uniforms_##t
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_GLM(t) std::unordered_map<std::string, std::unique_ptr<Uniform<glm::t>>> uniforms_##t
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC2() std::unordered_map<std::string, std::unique_ptr<Uniform<posta::span<glm::vec2>>>> uniforms_many_vec2
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC3() std::unordered_map<std::string, std::unique_ptr<Uniform<posta::span<glm::vec3>>>> uniforms_many_vec3
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_MANY_VEC4() std::unordered_map<std::string, std::unique_ptr<Uniform<posta::span<glm::vec4>>>> uniforms_many_vec4
+	#define DECLARE_UNIFORM_UNORDERED_MAP_WITH_TYPE_ANIM_MAT4() std::unordered_map<std::string, std::unique_ptr<Uniform<posta::span<posta::anim_mat4>>>> uniforms_anim_mat4
 
 	/// Shader abstract class
 	/** Derive from this class to make a shader */
@@ -78,12 +79,12 @@ namespace posta {
 			GLuint shader_program;
 	};
 
-	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER(t) if constexpr(std::is_same_v<T, t>) { shader->uniforms_##t[location] = (*this); }
-	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_GLM(t) if constexpr(std::is_same_v<T, glm::t>) { shader->uniforms_##t[location] = (*this); }
-	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_ANIM_MAT4() if constexpr(std::is_same_v<T, posta::span<posta::anim_mat4>>) { shader->uniforms_anim_mat4[location] = (*this); }
-	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC2() if constexpr(std::is_same_v<T, posta::span<glm::vec2>>) { shader->uniforms_many_vec2[location] = (*this); }
-	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC3() if constexpr(std::is_same_v<T, posta::span<glm::vec3>>) { shader->uniforms_many_vec3[location] = (*this); }
-	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC4() if constexpr(std::is_same_v<T, posta::span<glm::vec4>>) { shader->uniforms_many_vec4[location] = (*this); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER(t) if constexpr(std::is_same_v<T, t>) { shader->uniforms_##t[location].reset(new Uniform<t>(*this)); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_GLM(t) if constexpr(std::is_same_v<T, glm::t>) { shader->uniforms_##t[location].reset(new Uniform<glm::t>(*this)); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_ANIM_MAT4() if constexpr(std::is_same_v<T, posta::span<posta::anim_mat4>>) { shader->uniforms_anim_mat4[location].reset(new Uniform<posta::span<posta::anim_mat4>>(*this)); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC2() if constexpr(std::is_same_v<T, posta::span<glm::vec2>>) { shader->uniforms_many_vec2[location].reset(new Uniform<posta::span<glm::vec2>>(*this)); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC3() if constexpr(std::is_same_v<T, posta::span<glm::vec3>>) { shader->uniforms_many_vec3[location].reset(new Uniform<posta::span<glm::vec3>>(*this)); }
+	#define IF_OF_TYPE_ADD_TO_UNORDERED_MAP_OF_SHADER_MANY_VEC4() if constexpr(std::is_same_v<T, posta::span<glm::vec4>>) { shader->uniforms_many_vec4[location].reset(new Uniform<posta::span<glm::vec4>>(*this)); }
 
 	template<class T>
 	class Uniform

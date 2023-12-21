@@ -34,6 +34,6 @@ namespace posta::component {
 			size_t n_indices;
 			int index_type;
 	};
-};
+}
 
 #endif // POSTAENGINE_SMOOTHSTATICMESH_COMPONENT_H

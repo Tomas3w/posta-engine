@@ -21,6 +21,6 @@ namespace posta {
 
 		std::vector<std::unique_ptr<ResourceBag>> resource_bags;
 	};
-};
+}
 
 #endif // POSTA_RESOURCEBAG_UTILITY_H

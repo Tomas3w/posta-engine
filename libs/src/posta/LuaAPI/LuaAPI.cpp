@@ -186,7 +186,7 @@ static MayNotBeOwner<posta::Shader> Shader__current()
 		if (arg_value) \
 		{ \
 			if (self->uniforms_##t.count(*name)) \
-				self->uniforms_##t[*name].set_value(*arg_value); \
+				self->uniforms_##t[*name]->set_value(*arg_value); \
 			else \
 			{ \
 				CHECK_FOR_THIRD_ARG_IN_ALL_OF_THE_UNIFORMS<t>(self, *name, L); \
@@ -201,7 +201,7 @@ static MayNotBeOwner<posta::Shader> Shader__current()
 		if (arg_value) \
 		{ \
 			if (self->uniforms_##t.count(*name)) \
-				self->uniforms_##t[*name].set_value(*arg_value); \
+				self->uniforms_##t[*name]->set_value(*arg_value); \
 			else \
 			{ \
 				CHECK_FOR_THIRD_ARG_IN_ALL_OF_THE_UNIFORMS<glm::t>(self, *name, L); \
@@ -434,9 +434,9 @@ void posta::LuaAPI::load_api(LuaState& lua_state)
 	// posta
 	LuaState::LuaLibrary posta("posta");
 	posta.sublibraries.emplace_back("components");
-	posta.sublibraries.emplace_back("UI");
+	posta.sublibraries.emplace_back("ui");
 	LuaState::LuaLibrary& components = posta.sublibraries[0];
-	LuaState::LuaLibrary& UI = posta.sublibraries[1];
+	LuaState::LuaLibrary& ui = posta.sublibraries[1];
 	
 	// Test
 	/*posta.functions.push_back(LuaState::LuaCFunction("func", func));
@@ -470,40 +470,40 @@ void posta::LuaAPI::load_api(LuaState& lua_state)
 	LUA_METHOD_MAKE(components, posta::component::Image, set_w, int);
 	LUA_METHOD_MAKE(components, posta::component::Image, set_h, int);
 
-	// UI
-	LUA_CLASS_MAKE(UI, posta::ui::Rect, Rect_new);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Rect, get_x);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Rect, get_y);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Rect, get_w);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Rect, get_h);
-	LUA_METHOD_MAKE(UI, posta::ui::Rect, set_x, int);
-	LUA_METHOD_MAKE(UI, posta::ui::Rect, set_y, int);
-	LUA_METHOD_MAKE(UI, posta::ui::Rect, set_w, int);
-	LUA_METHOD_MAKE(UI, posta::ui::Rect, set_h, int);
+	// ui
+	LUA_CLASS_MAKE(ui, posta::ui::Rect, Rect_new);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Rect, get_x);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Rect, get_y);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Rect, get_w);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Rect, get_h);
+	LUA_METHOD_MAKE(ui, posta::ui::Rect, set_x, int);
+	LUA_METHOD_MAKE(ui, posta::ui::Rect, set_y, int);
+	LUA_METHOD_MAKE(ui, posta::ui::Rect, set_w, int);
+	LUA_METHOD_MAKE(ui, posta::ui::Rect, set_h, int);
 
-	LUA_CLASS_MAKE(UI, posta::ui::Button, Button_new);
-	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "loop", Button_loop);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Button, get_rect);
-	LUA_METHOD_MAKE(UI, posta::ui::Button, set_rect, posta::ui::Rect);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Button, is_pressed);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Button, is_highlighted);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Button, press);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Button, release);
+	LUA_CLASS_MAKE(ui, posta::ui::Button, Button_new);
+	LUA_METHOD_MAKE_FROM_LUAFUNC(ui, "loop", Button_loop);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Button, get_rect);
+	LUA_METHOD_MAKE(ui, posta::ui::Button, set_rect, posta::ui::Rect);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Button, is_pressed);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Button, is_highlighted);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Button, press);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Button, release);
 
-	LUA_CLASS_MAKE(UI, posta::ui::Checkbox, Checkbox_new);
-	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "loop", Checkbox_loop);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Checkbox, get_rect);
-	LUA_METHOD_MAKE(UI, posta::ui::Checkbox, set_rect, posta::ui::Rect);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Checkbox, is_checked);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Checkbox, is_highlighted);
-	LUA_METHOD_MAKE_NARGS(UI, posta::ui::Checkbox, toggle);
+	LUA_CLASS_MAKE(ui, posta::ui::Checkbox, Checkbox_new);
+	LUA_METHOD_MAKE_FROM_LUAFUNC(ui, "loop", Checkbox_loop);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Checkbox, get_rect);
+	LUA_METHOD_MAKE(ui, posta::ui::Checkbox, set_rect, posta::ui::Rect);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Checkbox, is_checked);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Checkbox, is_highlighted);
+	LUA_METHOD_MAKE_NARGS(ui, posta::ui::Checkbox, toggle);
 
-	LUA_CLASS_MAKE(UI, posta::ui::CheckboxGroup, CheckboxGroup_new);
-	LUA_METHOD_MAKE(UI, posta::ui::CheckboxGroup, add_checkbox, posta::ui::Checkbox);
-	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "loop", CheckboxGroup_loop);
-	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "get_checked_index", CheckboxGroup_get_checked_index);
-	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "get_checkbox", CheckboxGroup_get_checkbox);
-	LUA_METHOD_MAKE_FROM_LUAFUNC(UI, "size", CheckboxGroup_size);
+	LUA_CLASS_MAKE(ui, posta::ui::CheckboxGroup, CheckboxGroup_new);
+	LUA_METHOD_MAKE(ui, posta::ui::CheckboxGroup, add_checkbox, posta::ui::Checkbox);
+	LUA_METHOD_MAKE_FROM_LUAFUNC(ui, "loop", CheckboxGroup_loop);
+	LUA_METHOD_MAKE_FROM_LUAFUNC(ui, "get_checked_index", CheckboxGroup_get_checked_index);
+	LUA_METHOD_MAKE_FROM_LUAFUNC(ui, "get_checkbox", CheckboxGroup_get_checkbox);
+	LUA_METHOD_MAKE_FROM_LUAFUNC(ui, "size", CheckboxGroup_size);
 
 
 	// Loading the api into the lua state

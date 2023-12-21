@@ -44,6 +44,10 @@ add_library(
 
 target_compile_options(postaengine PUBLIC -I${CMAKE_PREFIX_PATH}/../../include/bullet)
 
+if (UNIX)
+	list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake-3.18/Modules")
+endif (UNIX)
+
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf REQUIRED)

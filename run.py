@@ -1,11 +1,14 @@
-import subprocess, os, sys
+import subprocess, os, sys, platform
 
 def run(project_name):
     import build
     if build.build(project_name, open('path_to_lib_cmake.txt').read().strip()):
         os.chdir(f"build/apps/{project_name}")
         
-        p = subprocess.Popen(f"./{project_name}.exe", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        if platform.system() == "Windows":
+            p = subprocess.Popen(f"./{project_name}.exe", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        else:
+            p = subprocess.Popen(f"./{project_name}", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         while p.poll() is None:
             l = p.stdout.readline()
             print(l.decode(), end='')
