@@ -324,6 +324,9 @@ def make_development_environment():
         print("[posta] Retwriting path_to_lib_cmake...")
         with open('../../path_to_lib_cmake.txt', 'w') as file:
             file.write(path_to_lib_cmake)
+    print("[posta] Creating generator file...")
+    with open('generator.txt', 'w') as file:
+        file.write('MinGW Makefiles')
     print("[posta] Done!")
 
 if __name__ == "__main__":
