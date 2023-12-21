@@ -1,9 +1,27 @@
+#include <posta/Network/NetworkPackage.h>
 #include <cstring>
 #include <posta/Util/Mesh.h>
 #include <posta/Util/LoggingMacro.h>
 #include <limits>
 
 using posta::Mesh;
+
+bool posta::VertexProperties::operator==(const VertexProperties& other)
+{
+	return attribute_name == other.attribute_name
+		&& interpolation_type == other.interpolation_type
+		&& attributes_sizes == other.attributes_sizes
+		&& sum_of_sizes == other.sum_of_sizes;
+}
+
+glm::vec3 Mesh::calculate_normal(std::array<glm::vec3, 3> points)
+{
+	auto dir = glm::cross(points[1] - points[0], points[2] - points[0]);
+	auto norm = glm::normalize(dir);
+	//LOG("a ", glm::to_string(points[0]), " b ", glm::to_string(points[1]), " c ", glm::to_string(points[2]));
+	//LOG("ag ", glm::to_string(norm));
+	return norm;//glm::vec3(0, 1, 0);//norm;
+}
 
 Mesh::Mesh(const VertexProperties* properties)
 {
@@ -80,7 +98,8 @@ void Mesh::generate_elements_data(std::vector<std::string> anchor_attributes)
 {
 	check_if_locked();
 	if (!elements_vertex_data.empty())
-		throw std::logic_error("elements for this mesh have already been generated");
+		return;
+	//	throw std::logic_error("elements for this mesh have already been generated");
 	
 	// Obtaining anchors indices
 	std::vector<int> anchors;
@@ -111,8 +130,9 @@ void Mesh::generate_elements_data(std::vector<std::string> anchor_attributes)
 			vertices[key].first.back()[j] = faces_data[j][i];
 	}
 	//
-	for (auto& v : vertices)
+	for (auto __it = vertices.begin(), __ft = vertices.end(); __it != __ft; __it++)//auto& v : vertices)
 	{
+		auto& v = *__it;
 		auto& combinations = v.second.first;
 		auto& vertex_data = v.second.second;
 		vertex_data.resize(vertex_properties->sum_of_sizes);
@@ -244,6 +264,118 @@ void Mesh::check_if_not_locked() const
 {
 	if (is_locked)
 		throw std::logic_error("mesh should not be locked for this mesh operation");
+}
+
+template<> inline uint32_t posta::NetworkPackageTypeSize::size<posta::VertexProperties::INTERPOLATION_TYPE>(const std::vector<posta::VertexProperties::INTERPOLATION_TYPE>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
+namespace posta {
+	void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<posta::VertexProperties::INTERPOLATION_TYPE>& value)
+	{
+		uint32_t size = value.size();
+		writer << size;
+		for (auto& v : value)
+			writer << static_cast<uint32_t>(v);
+	}
+	void operator>>(posta::NetworkPackage::Writer& writer, std::vector<posta::VertexProperties::INTERPOLATION_TYPE>& value)
+	{
+		uint32_t size;
+		writer >> size;
+		value.resize(size);
+		
+		for (size_t i = 0; i < size; i++)
+		{
+			uint32_t v;
+			writer >> v;
+			value[i] = static_cast<posta::VertexProperties::INTERPOLATION_TYPE>(v);
+		}
+	}
+}
+
+void Mesh::dump_to_filestream(std::fstream& stream)
+{
+	if (!stream.is_open())
+		throw std::logic_error("mesh dump_to_filestream cannot work with a closed stream");
+
+	auto size = posta::NetworkPackageTypeSize::size_many(
+		vertex_properties->attribute_name,
+		vertex_properties->interpolation_type,
+		vertex_properties->attributes_sizes,
+		vertex_properties->sum_of_sizes,
+		vertex_data,
+		elements_vertex_data,
+		elements_indices_ushort,
+		elements_indices_uint,
+		data,
+		faces_data,
+		(uint8_t&)is_locked
+	);
+	uint8_t* dump = new uint8_t[size];
+
+	//LOG("output size ", size);
+	posta::NetworkPackage::Writer writer(dump);
+	writer.write_many(
+		vertex_properties->attribute_name,
+		vertex_properties->interpolation_type,
+		vertex_properties->attributes_sizes,
+		vertex_properties->sum_of_sizes,
+		vertex_data,
+		elements_vertex_data,
+		elements_indices_ushort,
+		elements_indices_uint,
+		data,
+		faces_data,
+		(uint8_t&)is_locked
+	);
+
+	stream.write(reinterpret_cast<char*>(dump), size);
+}
+
+void Mesh::read_dumped_filestream(std::fstream& stream)
+{
+	if (!stream || !stream.is_open())
+		throw std::logic_error("mesh read_dumped_filestream cannot work with a closed (or failed) stream");
+
+	stream.seekg(0, std::ios::end);
+	uint32_t size = stream.tellg();
+	stream.seekg(0, std::ios::beg);
+
+	//LOG("input size ", size);
+	uint8_t* dump = new uint8_t[size];
+	stream.read(reinterpret_cast<char*>(dump), size);
+
+	posta::NetworkPackage::Writer writer(dump);
+	VertexProperties* aux_vertex_properties = new VertexProperties;
+	//aux_vertex_properties->attribute_name = std::vector<std::string>();
+	writer.read_many(
+		aux_vertex_properties->attribute_name,
+		aux_vertex_properties->interpolation_type,
+		aux_vertex_properties->attributes_sizes,
+		aux_vertex_properties->sum_of_sizes,
+		vertex_data,
+		elements_vertex_data,
+		elements_indices_ushort,
+		elements_indices_uint,
+		data,
+		faces_data,
+		(uint8_t&)is_locked
+	);
+	vertex_properties = aux_vertex_properties;
+
+	VertexProperties* found = nullptr;
+	for (auto& v : __dumped_vertex_properties)
+	{
+		if ((*aux_vertex_properties) == (*v))
+		{
+			found = v.get();
+			break;
+		}
+	}
+	if (found)
+	{
+		vertex_properties = found;
+		delete aux_vertex_properties;
+	}
+	else
+		__dumped_vertex_properties.emplace_back(aux_vertex_properties);
 }
 
 void Mesh::lock()

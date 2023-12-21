@@ -25,6 +25,9 @@ namespace posta::assets {
 
 	/// loads an .obj file into a Mesh
 	Mesh load_obj(std::filesystem::path path);
+
+	/// loads an .obj file into a Mesh and caches it for next loading, the cache will be stored at path + '.cache'
+	Mesh load_obj_and_cache(std::filesystem::path path, bool smooth = false);
 	
 	/// loads an .obj file and a .bones file containing bones weights and indices
 	/** A .bones contains the following format:

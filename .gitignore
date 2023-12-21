@@ -15,4 +15,6 @@ _deps
 /__pycache__
 /.vscode
 /bin/internal
+/.undodir
+Session.vim
 path_to_lib_cmake.txt

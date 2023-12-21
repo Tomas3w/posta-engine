@@ -21,9 +21,18 @@ namespace posta {
 		constexpr inline uint32_t size(const glm::quat value) { return sizeof(glm::quat); }
 		inline uint32_t size(const std::string& value) { return sizeof(uint32_t) + value.size(); }
 		constexpr inline uint32_t size(const float& value) { return sizeof(uint32_t); }
-		inline uint32_t size(const std::vector<uint8_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint8_t); }
-		inline uint32_t size(const std::vector<uint16_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint16_t); }
-		inline uint32_t size(const std::vector<uint32_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
+		template<class T>
+		inline uint32_t size(const std::vector<T>& value)
+		{
+			uint32_t _size = sizeof(uint32_t);
+			for (auto& e : value)
+				_size += size(e);
+			return _size;
+		}
+		template<> inline uint32_t size<uint8_t>(const std::vector<uint8_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint8_t); }
+		template<> inline uint32_t size<uint16_t>(const std::vector<uint16_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint16_t); }
+		template<> inline uint32_t size<uint32_t>(const std::vector<uint32_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
+		template<> inline uint32_t size<float>(const std::vector<float>& value) { return sizeof(uint32_t) + value.size() * size((float)0); }
 
 		template<class T>
 		constexpr inline uint32_t size_many(const T& value)
@@ -100,6 +109,15 @@ void operator<<(posta::NetworkPackage::Writer& writer, const float& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<uint8_t>& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<uint16_t>& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<uint32_t>& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<float>& value);
+template<class T>
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<T>& value)
+{
+	uint32_t size = value.size();
+	writer << size;
+	for (auto& v : value)
+		writer << v;
+}
 
 /// basic reading
 void operator>>(posta::NetworkPackage::Writer& writer, uint8_t& value);
@@ -115,6 +133,17 @@ void operator>>(posta::NetworkPackage::Writer& writer, float& value);
 void operator>>(posta::NetworkPackage::Writer& writer, std::vector<uint8_t>& value);
 void operator>>(posta::NetworkPackage::Writer& writer, std::vector<uint16_t>& value);
 void operator>>(posta::NetworkPackage::Writer& writer, std::vector<uint32_t>& value);
+void operator>>(posta::NetworkPackage::Writer& writer, std::vector<float>& value);
+template<class T>
+void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
+{
+	uint32_t size;
+	writer >> size;
+	value.resize(size);
+	
+	for (size_t i = 0; i < size; i++)
+		writer >> value[i];
+}
 
 	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
 	class NetworkPackageTemplate : public NetworkPackage

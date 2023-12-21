@@ -17,10 +17,11 @@ namespace posta {
 			SLERP,
 			LERP,
 		};
-		const std::vector<std::string> attribute_name;
-		const std::vector<INTERPOLATION_TYPE> interpolation_type; // tells how should attributes be interpolated
-		const std::vector<GLubyte> attributes_sizes; // sizes of each component of the vertex (not in bytes, but in floats)
-		const GLubyte sum_of_sizes; // sum of the sizes of attributes_sizes (not in bytes, but in floats)
+		std::vector<std::string> attribute_name;
+		std::vector<INTERPOLATION_TYPE> interpolation_type; // tells how should attributes be interpolated
+		std::vector<GLubyte> attributes_sizes; // sizes of each component of the vertex (not in bytes, but in floats)
+		uint8_t sum_of_sizes; // sum of the sizes of attributes_sizes (not in bytes, but in floats)
+		bool operator==(const VertexProperties& other);
 	};
 
 	/// Utility class representing a mesh
@@ -29,6 +30,10 @@ namespace posta {
 	class Mesh
 	{
 		public:
+			/// Calculates the normal given a face form with three points.
+			/// The points should be in counter-clockwise as seen from a direction opposing the normal
+			static glm::vec3 calculate_normal(std::array<glm::vec3, 3> points);
+
 			/// Constructs an empty mesh using properties as the format
 			/** \param properties a VertexProperties pointer, the 
 			 * reference must be valid as long as the Mesh is being used */
@@ -71,11 +76,19 @@ namespace posta {
 			/// Returns true if the indices can fit in a vector of GLushort's.
 			bool are_elements_indices_short();
 
+			/// Writes the internal state to a file stream, this state can then read into a mesh with read_dumped_filestream.
+			/// Not to be used for mesh storage (since multiple platform may have different internal states), but useful for cached meshes
+			void dump_to_filestream(std::fstream& stream);
+			/// Reads the internal state previously saved using dump_to_filestream
+			void read_dumped_filestream(std::fstream& stream);
+
 			/// Locks the mesh from further changes
 			/// A mesh that is locked cannot be modified in the future, certain methods (like get_vertices_without_indices) can still alter
 			/// the object to some degree, but these changes will no be noticeable by the callers
 			void lock();
 		private:
+			static inline std::vector<std::unique_ptr<VertexProperties>> __dumped_vertex_properties;
+
 			void check_if_locked() const;
 			void check_if_not_locked() const;
 

@@ -123,6 +123,14 @@ void posta::operator<<(NetworkPackage::Writer& writer, const std::vector<uint32_
 		writer << v;
 }
 
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const std::vector<float>& value)
+{
+	uint32_t size = value.size();
+	writer << size;
+	for (auto& v : value)
+		writer << v;
+}
+
 // basic reading
 void posta::operator>>(NetworkPackage::Writer& writer, uint8_t& value)
 {
@@ -235,6 +243,16 @@ void posta::operator>>(NetworkPackage::Writer& writer, std::vector<uint16_t>& va
 }
 
 void posta::operator>>(NetworkPackage::Writer& writer, std::vector<uint32_t>& value)
+{
+	uint32_t size;
+	writer >> size;
+	value.resize(size);
+	
+	for (size_t i = 0; i < size; i++)
+		writer >> value[i];
+}
+
+void posta::operator>>(NetworkPackage::Writer& writer, std::vector<float>& value)
 {
 	uint32_t size;
 	writer >> size;

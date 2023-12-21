@@ -1,3 +1,4 @@
+#include <chrono>
 #include <posta/Util/Assets.h>
 #include <posta/Util/LoggingMacro.h>
 
@@ -7,18 +8,21 @@ Mesh posta::assets::load_obj(std::filesystem::path path)
 {
 	//LOG("loading path: ", path);
 	Mesh mesh(&basic_vertex_props);
+
 	std::ifstream file(path);
 	if (!file)
 		throw std::logic_error("Could not find file in path '" + path.string() + "'");
+	file.close();
 
 	int i_position = mesh.get_index_by_name("position");
 	int i_normal = mesh.get_index_by_name("normal");
 	int i_uv = mesh.get_index_by_name("uv");
 
 	std::string s;
+	auto fileread = std::stringstream(read_file(path));
 
 	//float vertex[8];
-	while (getline(file, s))
+	while (getline(fileread, s))//getline(file, s))
 	{
 		if (!s.empty())
 		{
@@ -117,9 +121,35 @@ Mesh posta::assets::load_obj(std::filesystem::path path)
 		}
 	}
 
-	file.close();
+	//file.close();
 
 	mesh.lock();
+	//LOG("difference ", std::chrono::duration_cast<std::chrono::microseconds>(fini - init).count() * 1e-6);
+	return mesh;
+}
+
+Mesh posta::assets::load_obj_and_cache(std::filesystem::path path, bool smooth)
+{
+	Mesh mesh(&basic_vertex_props);
+	auto cache_path = path;
+	cache_path.replace_extension(cache_path.extension().string() + ".cache");
+	// Checks if cache file exists and loads it instead of the .obj
+	if (std::filesystem::exists(cache_path))
+	{
+		std::fstream file(cache_path, std::ios::in | std::ios::binary);
+		mesh.read_dumped_filestream(file);
+		file.close();
+		return mesh;
+	}
+
+	// Loads .obj file and saves cache file
+	mesh = load_obj(path);
+	if (smooth)
+		mesh.generate_elements_data({"position", "uv"});
+
+	std::fstream file(cache_path, std::ios::out | std::ios::binary);
+	mesh.dump_to_filestream(file);
+	file.close();
 	return mesh;
 }
 

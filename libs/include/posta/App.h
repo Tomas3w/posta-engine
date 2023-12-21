@@ -191,6 +191,13 @@ namespace posta {
 			struct Editor
 			{
 				public:
+					posta::component::Transform get_camera_transform()
+					{
+						if (!camera)
+							return posta::component::Transform();
+						return camera->transform;
+					}
+
 					/// This pointer may be invalid, it's just use for comparison, not for getting the actual type entity
 					entity::Type* currently_selected_type_entity = nullptr;
 

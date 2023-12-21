@@ -3,7 +3,7 @@
 
 std::string posta::read_file(std::filesystem::path path)
 {
-	std::ifstream file(path, std::ios::in|std::ios::ate);
+	std::ifstream file(path, std::ios::in|std::ios::binary|std::ios::ate);
 	if (!file)
 		throw std::logic_error("read_file failed opening file: '" + path.string() + "', error: " + strerror(errno));
 

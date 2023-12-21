@@ -124,7 +124,7 @@ void App::init()
 		));
 	// Init editor camera
 	editor.camera.reset(new posta::entity::Camera(
-		new posta::component::PCamera(0.01f, 200.0f, M_PI / 2),
+		new posta::component::PCamera(0.01f, 10000.0f, M_PI / 2),
 		//new posta::component::OCamera(0.0f, 100.0f, 7),
 		get_width(),
 		get_height()
