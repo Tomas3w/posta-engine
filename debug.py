@@ -1,4 +1,4 @@
-import subprocess, os, sys
+import subprocess, os, sys, platform
 
 def debug(project_name):
     import build
@@ -13,7 +13,10 @@ def debug(project_name):
         print(p.stdout.read().decode(), end='')
         return p.returncode
         """
-        return os.system(f'gdb {project_name}.exe')
+        if platform.system() == 'Windows':
+            return os.system(f'gdb {project_name}.exe')
+        else:
+            return os.system(f'gdb {project_name}')
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
