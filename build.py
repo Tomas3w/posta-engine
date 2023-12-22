@@ -46,7 +46,7 @@ def build(project_name, path_to_lib_cmake):
         create_build_symlinks_and_build_folder(name)
     # initial configuration of cmake
     with open('bin/internal/generator.txt') as generator_file:
-        generator = generator_file.read()
+        generator = generator_file.read().strip()
     if run_command(['cmake', '-S', '.', '-B', 'build', f'-DCMAKE_PREFIX_PATH="{path_to_lib_cmake}"', '-G', f'{generator}', '-DCMAKE_EXPORT_COMPILE_COMMANDS=1']) != 0:
         return False
     # building

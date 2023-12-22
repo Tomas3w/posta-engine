@@ -15,6 +15,8 @@ using posta::PhysicsGlobal;
 
 std::unique_ptr<posta::component::StaticMesh> App::mesh2d;
 
+posta::S__app_beacons* App::__app_beacons = nullptr;
+
 PhysicsGlobal::PhysicsGlobal()
 {
 	collisionConfiguration = new btDefaultCollisionConfiguration();
@@ -53,12 +55,12 @@ void App::init()
 
 	width = 640;
 	height = 480;
-	SDL_assert_release(SDL_Init(SDL_INIT_EVERYTHING) == 0);
+	(SDL_Init(SDL_INIT_EVERYTHING) == 0);
 	SDL_assert_release(IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG);
 	SDL_assert_release(TTF_Init() == 0);
 	SDL_assert_release(SDLNet_Init() == 0);
 	SDL_assert_release(Mix_Init(MIX_INIT_OGG) == MIX_INIT_OGG);
-	SDL_assert_release(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) == 0);
+	(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) == 0);
 	Mix_AllocateChannels(10);
 	
 	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
@@ -198,7 +200,7 @@ void App::dest_physics()
 void App::loop()
 {
 	// final initialization for resource bags
-	for (ResourceBeaconParent* beacon : __app_beacons)
+	for (ResourceBeaconParent* beacon : __app_beacons->beacons)
 		beacon->init();
 	// doing custom start function
 	current_scene.reset(start());
@@ -1051,6 +1053,4 @@ void App::manage_event_callbacks(SDL_Event& event)
 			callback(event, p.first);
 	}
 }
-
-std::vector<posta::ResourceBeaconParent*> posta::__app_beacons;
 

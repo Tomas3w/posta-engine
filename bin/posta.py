@@ -2,7 +2,8 @@
 from enum import Enum
 import sys, os
 
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+script_path = os.path.realpath(os.path.abspath(sys.argv[0]))
+parent_dir = os.path.abspath(os.path.join(script_path, "../.."))
 sys.path.append(parent_dir)
 
 class argument_error_type(Enum):
@@ -31,7 +32,6 @@ def print_help():
     print(" posta export <project-name> <path>")
     print("\tExports the project named <project-name> into a folder pointed by <path>, the final export folder will then be in <path>/<project_name>")
 def main():
-    script_path = os.path.abspath(sys.argv[0])
     script_dir = os.path.dirname(script_path)
     os.chdir(script_dir)
     os.chdir('..')

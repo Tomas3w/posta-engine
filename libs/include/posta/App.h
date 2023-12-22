@@ -46,6 +46,17 @@ namespace posta {
 		btSequentialImpulseConstraintSolver* solver;
 		btDiscreteDynamicsWorld* world;
 	};
+
+	class ResourceBeaconParent
+	{
+		public:
+			virtual ~ResourceBeaconParent() = default;
+			virtual void init() = 0;
+	};
+
+	struct S__app_beacons {
+		std::vector<ResourceBeaconParent*> beacons;
+	};
 	
 	//! Application class
 	/** Stores the application global variables and is used as a
@@ -66,6 +77,9 @@ namespace posta {
 			};*/
 
 			static std::unique_ptr<posta::component::StaticMesh> mesh2d;
+			/// Internal use.
+			// This shouldn't be a pointer, but that causes a segfault for some unknown reason in linux
+			static S__app_beacons* __app_beacons;
 			/** Global application variable */
 			static App* app;
 
@@ -277,30 +291,26 @@ namespace posta {
 	};
 
 	// ResourceBag section
-	class ResourceBeaconParent
-	{
-		public:
-			virtual ~ResourceBeaconParent() = default;
-			virtual void init() = 0;
-	};
-	extern std::vector<ResourceBeaconParent*> __app_beacons;
 	template<class T>
 	class ResourceBeacon : public ResourceBeaconParent
 	{
 		public:
 			ResourceBeacon()
 			{
-				__app_beacons.push_back(this);
+				if (App::__app_beacons == nullptr)
+					App::__app_beacons = new S__app_beacons; // this pointer is never freed
+				App::__app_beacons->beacons.push_back(this);
 			}
 
-			T* bag;
+			T* bag = nullptr;
 
 			friend class App;
 		private:
-			posta::ResourceBag* _bag;
+			posta::ResourceBag* _bag = nullptr;
 			void init()
 			{
-				posta::App::app->add_bag(_bag, new T());
+				_bag = new T();
+				posta::App::app->resource_bag->add_bag(_bag);
 				bag = dynamic_cast<T*>(_bag);
 			}
 	};
