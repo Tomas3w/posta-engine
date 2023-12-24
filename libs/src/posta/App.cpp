@@ -200,8 +200,11 @@ void App::dest_physics()
 void App::loop()
 {
 	// final initialization for resource bags
-	for (ResourceBeaconParent* beacon : __app_beacons->beacons)
-		beacon->init();
+	if (__app_beacons)
+	{
+		for (ResourceBeaconParent* beacon : __app_beacons->beacons)
+			beacon->init();
+	}
 	// doing custom start function
 	current_scene.reset(start());
 	// current_scene start
