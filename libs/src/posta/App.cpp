@@ -9,6 +9,7 @@
 #ifndef POSTA_EDITOR_KEY_SWITCH
 #define POSTA_EDITOR_KEY_SWITCH SDLK_SLASH
 #endif
+#define POSTA_SDL_ERROR(x) if (!(x)) { std::cout << "[ERROR]\t" << #x << "\t" << SDL_GetError() << '\n'; }
 
 using posta::App;
 using posta::PhysicsGlobal;
@@ -55,12 +56,12 @@ void App::init()
 
 	width = 640;
 	height = 480;
-	(SDL_Init(SDL_INIT_EVERYTHING) == 0);
-	SDL_assert_release(IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG);
-	SDL_assert_release(TTF_Init() == 0);
-	SDL_assert_release(SDLNet_Init() == 0);
-	SDL_assert_release(Mix_Init(MIX_INIT_OGG) == MIX_INIT_OGG);
-	(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) == 0);
+	POSTA_SDL_ERROR(SDL_Init(SDL_INIT_EVERYTHING) == 0);
+	POSTA_SDL_ERROR(IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG);
+	POSTA_SDL_ERROR(TTF_Init() == 0);
+	POSTA_SDL_ERROR(SDLNet_Init() == 0);
+	POSTA_SDL_ERROR(Mix_Init(MIX_INIT_OGG) == MIX_INIT_OGG);
+	POSTA_SDL_ERROR(Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) == 0);
 	Mix_AllocateChannels(10);
 	
 	window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
