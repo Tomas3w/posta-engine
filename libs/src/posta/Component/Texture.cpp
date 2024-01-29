@@ -50,6 +50,13 @@ Texture::~Texture()
 	glDeleteTextures(1, &texture);
 }
 
+void Texture::swap(Texture& o)
+{
+	auto prev_texture = o.texture;
+	o.texture = texture;
+	texture = prev_texture;
+}
+
 void Texture::bind(GLuint texture_unit)
 {
 	glActiveTexture(GL_TEXTURE0 + texture_unit);

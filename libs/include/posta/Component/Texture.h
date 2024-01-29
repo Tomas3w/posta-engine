@@ -26,6 +26,8 @@ namespace posta::component {
 			Texture operator=(const Texture&) = delete;
 			~Texture();
 
+			void swap(Texture& o);
+
 			/// Binds the texture
 			void bind(GLuint texture_unit = 0);
 
