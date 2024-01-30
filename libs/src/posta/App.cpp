@@ -213,12 +213,12 @@ void App::loop()
 		throw std::logic_error("current_scene was not set");
 	current_scene->start();
 
-	Uint32 ticks = SDL_GetTicks();
+	auto ticks = std::chrono::steady_clock::now();
 	SDL_Event event;
 
 	while (!exit_loop)
 	{
-		ticks = SDL_GetTicks();
+		ticks = std::chrono::steady_clock::now();
 		clear_frame_and_flip();
 
 		mouse_state = SDL_GetMouseState(&mouse_x, &mouse_y);
@@ -348,15 +348,14 @@ void App::loop()
 		}
 
 		// Updates delta time between frames
-		Uint32 nticks = SDL_GetTicks();
-		delta_time = (nticks - ticks) / 1000.0f;
+		delta_time = (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - ticks).count()) / 1000000.0f;
 		
 		// corrects max_delta_time
 		if (delta_time < max_delta_time)
 		{
 			float diff = max_delta_time - delta_time;
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(diff * 1000)));
-			delta_time = (SDL_GetTicks() - ticks) / 1000.0f;
+			std::this_thread::sleep_for(std::chrono::microseconds(int(diff * 1000000)));
+			delta_time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - ticks).count() / 1000000.0f;
 		}
 	}
 
