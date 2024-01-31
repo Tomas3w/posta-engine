@@ -29,7 +29,7 @@ namespace posta::component {
 			void swap(Texture& o);
 
 			/// Binds the texture
-			void bind(GLuint texture_unit = 0);
+			void bind(GLuint texture_unit = 0) const;
 
 			friend class posta::DepthFramebuffer;
 			friend class posta::ColorFramebuffer;

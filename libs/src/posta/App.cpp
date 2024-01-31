@@ -337,6 +337,7 @@ void App::loop()
 					exit_loop = true;
 			}
 		}
+
 		// Updates physics world
 		step_physics();
 
@@ -350,7 +351,7 @@ void App::loop()
 		// Updates delta time between frames
 		delta_time = (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - ticks).count()) / 1000000.0f;
 		
-		// corrects max_delta_time
+		// Corrects max_delta_time
 		if (delta_time < max_delta_time)
 		{
 			float diff = max_delta_time - delta_time;

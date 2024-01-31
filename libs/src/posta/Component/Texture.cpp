@@ -57,7 +57,7 @@ void Texture::swap(Texture& o)
 	texture = prev_texture;
 }
 
-void Texture::bind(GLuint texture_unit)
+void Texture::bind(GLuint texture_unit) const
 {
 	glActiveTexture(GL_TEXTURE0 + texture_unit);
 	glBindTexture(GL_TEXTURE_2D, texture);
