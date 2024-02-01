@@ -103,19 +103,19 @@ void Image::set_h(int _h)
 	h = _h;
 }
 
-void Image::draw()
+void Image::draw() const
 {
 	texture->bind();
 	App::mesh2d->draw();
 }
 
-void Image::only_bind()
+void Image::only_bind() const
 {
 	texture->bind();
 	App::mesh2d->bind();
 }
 
-void Image::only_draw()
+void Image::only_draw() const
 {
 	App::mesh2d->draw_without_binding();
 }

@@ -364,7 +364,7 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-	entities.erase(this);
+	entities.erase(this); // TODO ?? fails for some reason
 }
 
 void Entity::__draw_entity(bool front)

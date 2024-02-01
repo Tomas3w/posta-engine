@@ -32,22 +32,22 @@ StaticMesh::~StaticMesh()
 	glDeleteVertexArrays(1, &vao);
 }
 
-void StaticMesh::bind()
+void StaticMesh::bind() const
 {
 	glBindVertexArray(vao);
 }
 
-void StaticMesh::draw_without_binding()
+void StaticMesh::draw_without_binding() const
 {
 	glDrawArrays(GL_TRIANGLES, 0, n_vertices);
 }
 
-void StaticMesh::draw_many_without_binding(size_t x)
+void StaticMesh::draw_many_without_binding(size_t x) const
 {
 	glDrawArraysInstanced(GL_TRIANGLES, 0, n_vertices, x);
 }
 
-void StaticMesh::draw()
+void StaticMesh::draw() const
 {
 	bind();
 	draw_without_binding();

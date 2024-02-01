@@ -18,17 +18,17 @@ namespace posta::component {
 			~SmoothStaticMesh();
 
 			/// Binds the mesh, following draw calls will then use this mesh
-			void bind() override;
+			void bind() const override;
 
 			/// Draws the mesh without binding it
 			/** Faster drawing than having to bind and then draw every time,
 			 * useful for drawing many times the same mesh */
-			void draw_without_binding() override;
+			void draw_without_binding() const override;
 			/// Draws x instances of the same mesh in one single draw call
-			void draw_many_without_binding(size_t x) override;
+			void draw_many_without_binding(size_t x) const override;
 
 			/// Binds and then draws the mesh
-			void draw() override;
+			void draw() const override;
 		private:
 			GLuint vbo, ebo, vao;
 			size_t n_indices;

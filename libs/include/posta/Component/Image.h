@@ -38,11 +38,11 @@ namespace posta::component {
 		void set_w(int _w);
 		void set_h(int _h);
 		/// Binds the texture and then draws the image (calling Image::mesh2d.draw())
-		void draw();
+		void draw() const;
 		/// Only binds the texture, and the 2d mesh, faster if one wishes to draw a lot of images
-		void only_bind();
+		void only_bind() const;
 		/// Only draws, the texture and the mesh used are the previously binded
-		void only_draw();
+		void only_draw() const;
 
 		std::unique_ptr<posta::component::Texture> texture;
 		int w, h;
