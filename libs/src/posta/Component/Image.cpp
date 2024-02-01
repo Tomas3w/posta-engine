@@ -48,47 +48,47 @@ Image::Image(posta::component::Texture* texture, int w, int h)
 	this->h = h;
 }
 
-glm::mat4 Image::__get_matrix(int x, int y)
+glm::mat4 Image::__get_matrix(int x, int y) const
 {
 	return get_matrix(x, y);
 }
 
-glm::mat4 Image::get_matrix(int x, int y)
+glm::mat4 Image::get_matrix(int x, int y) const
 {
 	return matrix_for_rect(posta::ui::Rect(x, y, w, h), posta::App::app->get_width(), posta::App::app->get_height());
 }
 
-glm::mat4 Image::get_matrix(int x, int y, float angle)
+glm::mat4 Image::get_matrix(int x, int y, float angle) const
 {
 	return matrix_for_rect(posta::ui::Rect(x, y, w, h), posta::App::app->get_width(), posta::App::app->get_height(), angle);
 }
 
-glm::mat4 Image::get_matrix(int x, int y, int _w, int _h)
+glm::mat4 Image::get_matrix(int x, int y, int _w, int _h) const
 {
 	return matrix_for_rect(posta::ui::Rect(x, y, _w, _h), posta::App::app->get_width(), posta::App::app->get_height());
 }
 
-glm::mat4 Image::get_matrix(int x, int y, int _w, int _h, float angle)
+glm::mat4 Image::get_matrix(int x, int y, int _w, int _h, float angle) const
 {
 	return matrix_for_rect(posta::ui::Rect(x, y, _w, _h), posta::App::app->get_width(), posta::App::app->get_height(), angle);
 }
 
-glm::mat4 Image::get_matrix(posta::ui::Rect rect)
+glm::mat4 Image::get_matrix(posta::ui::Rect rect) const
 {
 	return get_matrix(rect.x, rect.y, rect.w, rect.h);
 }
 
-glm::mat4 Image::get_matrix(posta::ui::Rect rect, float angle)
+glm::mat4 Image::get_matrix(posta::ui::Rect rect, float angle) const
 {
 	return get_matrix(rect.x, rect.y, rect.w, rect.h, angle);
 }
 
-int Image::get_w()
+int Image::get_w() const
 {
 	return w;
 }
 
-int Image::get_h()
+int Image::get_h() const
 {
 	return h;
 }

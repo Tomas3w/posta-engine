@@ -25,16 +25,16 @@ namespace posta::component {
 		Image(posta::component::Texture* texture, int w, int h);
 
 		/// Internal use
-		glm::mat4 __get_matrix(int x, int y);
+		glm::mat4 __get_matrix(int x, int y) const;
 		/// Returns a matrix for a 2D object in the position given by x and y
-		glm::mat4 get_matrix(int x, int y);
-		glm::mat4 get_matrix(int x, int y, float angle);
-		glm::mat4 get_matrix(int x, int y, int _w, int _h);
-		glm::mat4 get_matrix(int x, int y, int _w, int _h, float angle);
-		glm::mat4 get_matrix(posta::ui::Rect rect);
-		glm::mat4 get_matrix(posta::ui::Rect rect, float angle);
-		int get_w();
-		int get_h();
+		glm::mat4 get_matrix(int x, int y) const;
+		glm::mat4 get_matrix(int x, int y, float angle) const;
+		glm::mat4 get_matrix(int x, int y, int _w, int _h) const;
+		glm::mat4 get_matrix(int x, int y, int _w, int _h, float angle) const;
+		glm::mat4 get_matrix(posta::ui::Rect rect) const;
+		glm::mat4 get_matrix(posta::ui::Rect rect, float angle) const;
+		int get_w() const;
+		int get_h() const;
 		void set_w(int _w);
 		void set_h(int _h);
 		/// Binds the texture and then draws the image (calling Image::mesh2d.draw())
