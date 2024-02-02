@@ -139,6 +139,9 @@ namespace posta {
 			virtual bool is_second_click_pressed() const final;
 			virtual bool is_middle_click_pressed() const final;
 
+			/** Returns a path to a user-specific folder, it creates it if it doesn't exists */
+			std::filesystem::path get_user_folder(std::string folder_name) const;
+
 			/** Disable depth testing, primarly used for 2d drawing */
 			void disable_depth_test();
 			/** Enable depth testing, primarly used for 3d drawing */
