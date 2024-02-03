@@ -489,7 +489,7 @@ std::filesystem::path App::get_user_folder(std::string folder_name) const
 #if defined(_WIN32)
 	std::string env_var = getenv("APPDATA");
 	if (std::all_of(env_var.begin(), env_var.end(), isspace)) throw std::logic_error("Not found environment variable 'APPDATA'");
-	auto path = std::filesystem::path(env_var) / "Roaming" / folder_name;
+	auto path = std::filesystem::path(env_var) / folder_name;
 #elif defined(__unix__)
 	std::string env_var = getenv("HOME");
 	if (std::all_of(env_var.begin(), env_var.end(), isspace)) throw std::logic_error("Not found environment variable 'HOME'");
