@@ -10,13 +10,6 @@ namespace posta::ui {
 		{
 			x = y = w = h = 0;
 		}
-		Rect(double _x, double _y, double _w, double _h)
-		{
-			x = static_cast<double>(_x);
-			y = static_cast<double>(_y);
-			w = static_cast<double>(_w);
-			h = static_cast<double>(_h);
-		}
 		Rect(int _x, int _y, int _w, int _h)
 		{
 			x = _x;
