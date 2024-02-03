@@ -1,0 +1,70 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+App	../../app/src/main.cpp	/^		App() :$/;"	f	class:App	file:
+App	../../app/src/main.cpp	/^class App : public Engine::App$/;"	c	file:
+CLIENT	../../app/src/main.cpp	/^	CLIENT$/;"	e	enum:Scene	file:
+CLIENT_WAITING	../../app/src/main.cpp	/^	CLIENT_WAITING,$/;"	e	enum:Scene	file:
+SERVER	../../app/src/main.cpp	/^	SERVER,$/;"	e	enum:Scene	file:
+SERVER_WAITING	../../app/src/main.cpp	/^	SERVER_WAITING,$/;"	e	enum:Scene	file:
+Scene	../../app/src/main.cpp	/^enum Scene$/;"	g	file:
+__anon1be882980102	../../app/src/main.cpp	/^			button(0, 0, button_image.w, button_image.h, [](){ LOG("se presiono!"); }),$/;"	f	class:App	file:
+__anon1be882980202	../../app/src/main.cpp	/^			button.set_callback([&](){$/;"	f	function:App::App	file:
+a	../../app/src/main.cpp	/^	int a, b, c;$/;"	m	struct:ground	typeref:typename:int	file:
+address	../../app/src/main.cpp	/^		IPaddress address;$/;"	m	class:App	typeref:typename:IPaddress	file:
+anim_player	../../app/src/main.cpp	/^		Engine::Component::Skeleton::AnimationPlayer anim_player;$/;"	m	class:App	typeref:typename:Engine::Component::Skeleton::AnimationPlayer	file:
+app	../../app/src/main.cpp	/^std::unique_ptr<App> app = nullptr;$/;"	v	typeref:typename:std::unique_ptr<App>
+b	../../app/src/main.cpp	/^	int a, b, c;$/;"	m	struct:ground	typeref:typename:int	file:
+blank_texture	../../app/src/main.cpp	/^		Engine::Component::Texture blank_texture;$/;"	m	class:App	typeref:typename:Engine::Component::Texture	file:
+bone_to_use_to_use	../../app/src/main.cpp	/^		int bone_to_use_to_use = 0;$/;"	m	class:App	typeref:typename:int	file:
+boxes	../../app/src/main.cpp	/^		vector<unique_ptr<Engine::Component::BoxRigidbody>> boxes;$/;"	m	class:App	typeref:typename:vector<unique_ptr<Engine::Component::BoxRigidbody>>	file:
+button	../../app/src/main.cpp	/^		Engine::UI::Button button;$/;"	m	class:App	typeref:typename:Engine::UI::Button	file:
+button_image	../../app/src/main.cpp	/^		Engine::Component::Image button_image;$/;"	m	class:App	typeref:typename:Engine::Component::Image	file:
+c	../../app/src/main.cpp	/^	int a, b, c;$/;"	m	struct:ground	typeref:typename:int	file:
+capsules	../../app/src/main.cpp	/^		vector<unique_ptr<Engine::Component::CapsuleRigidbody>> capsules;$/;"	m	class:App	typeref:typename:vector<unique_ptr<Engine::Component::CapsuleRigidbody>>	file:
+center_message	../../app/src/main.cpp	/^		Text center_message;$/;"	m	class:App	typeref:typename:Text	file:
+checkbox	../../app/src/main.cpp	/^		Engine::UI::Checkbox checkbox;$/;"	m	class:App	typeref:typename:Engine::UI::Checkbox	file:
+checkbox_group	../../app/src/main.cpp	/^		Engine::UI::CheckboxGroup checkbox_group;$/;"	m	class:App	typeref:typename:Engine::UI::CheckboxGroup	file:
+checkbox_off	../../app/src/main.cpp	/^		Engine::Component::Image checkbox_off;$/;"	m	class:App	typeref:typename:Engine::Component::Image	file:
+checkbox_on	../../app/src/main.cpp	/^		Engine::Component::Image checkbox_on;$/;"	m	class:App	typeref:typename:Engine::Component::Image	file:
+client_con	../../app/src/main.cpp	/^		unique_ptr<Engine::TCPConnToServer> client_con;$/;"	m	class:App	typeref:typename:unique_ptr<Engine::TCPConnToServer>	file:
+connections	../../app/src/main.cpp	/^		vector<unique_ptr<Engine::TCPConnToClient>> connections;$/;"	m	class:App	typeref:typename:vector<unique_ptr<Engine::TCPConnToClient>>	file:
+connections_names	../../app/src/main.cpp	/^		vector<string> connections_names;$/;"	m	class:App	typeref:typename:vector<string>	file:
+controlling	../../app/src/main.cpp	/^		string controlling; \/\/ player being controlled;$/;"	m	class:App	typeref:typename:string	file:
+count_of_players	../../app/src/main.cpp	/^		int count_of_players;$/;"	m	class:App	typeref:typename:int	file:
+font	../../app/src/main.cpp	/^		Engine::Font font;$/;"	m	class:App	typeref:typename:Engine::Font	file:
+ground	../../app/src/main.cpp	/^struct ground$/;"	s	file:
+main	../../app/src/main.cpp	/^int main(int argc, char* argv[])$/;"	f	typeref:typename:int
+mapa	../../app/src/main.cpp	/^		Mapa mapa;$/;"	m	class:App	typeref:typename:Mapa	file:
+meats	../../app/src/main.cpp	/^		vector<unique_ptr<Meat>> meats; \/\/ from the players that have died$/;"	m	class:App	typeref:typename:vector<unique_ptr<Meat>>	file:
+nickname	../../app/src/main.cpp	/^		string nickname;$/;"	m	class:App	typeref:typename:string	file:
+number_of_connections_with_names	../../app/src/main.cpp	/^		size_t number_of_connections_with_names;$/;"	m	class:App	typeref:typename:size_t	file:
+on_draw	../../app/src/main.cpp	/^		void on_draw() override$/;"	f	class:App	typeref:typename:void	file:
+on_event	../../app/src/main.cpp	/^		void on_event(SDL_Event& event) override$/;"	f	class:App	typeref:typename:void	file:
+on_frame	../../app/src/main.cpp	/^		void on_frame() override$/;"	f	class:App	typeref:typename:void	file:
+own_server_connection_data	../../app/src/main.cpp	/^		PlayerConnectionData own_server_connection_data;$/;"	m	class:App	typeref:typename:PlayerConnectionData	file:
+player_move_data	../../app/src/main.cpp	/^		PlayerMovData player_move_data; \/\/ this is sent to the server$/;"	m	class:App	typeref:typename:PlayerMovData	file:
+player_move_data_prevs	../../app/src/main.cpp	/^		vector<PlayerMovData> player_move_data_prevs;$/;"	m	class:App	typeref:typename:vector<PlayerMovData>	file:
+players	../../app/src/main.cpp	/^		unordered_map<string, unique_ptr<Player>> players;$/;"	m	class:App	typeref:typename:unordered_map<string,unique_ptr<Player>>	file:
+players_connection_data	../../app/src/main.cpp	/^		vector<PlayerConnectionData> players_connection_data;$/;"	m	class:App	typeref:typename:vector<PlayerConnectionData>	file:
+scene	../../app/src/main.cpp	/^		Scene scene;$/;"	m	class:App	typeref:typename:Scene	file:
+server_con	../../app/src/main.cpp	/^		unique_ptr<Engine::TCPConnOfServer> server_con;$/;"	m	class:App	typeref:typename:unique_ptr<Engine::TCPConnOfServer>	file:
+shader	../../app/src/main.cpp	/^		BasicShader shader;$/;"	m	class:App	typeref:typename:BasicShader	file:
+skeleton_test	../../app/src/main.cpp	/^		Engine::Component::Skeleton skeleton_test;$/;"	m	class:App	typeref:typename:Engine::Component::Skeleton	file:
+spheres	../../app/src/main.cpp	/^		vector<unique_ptr<Engine::Component::SphereRigidbody>> spheres;$/;"	m	class:App	typeref:typename:vector<unique_ptr<Engine::Component::SphereRigidbody>>	file:
+static_mesh_capsule	../../app/src/main.cpp	/^		Engine::Component::StaticMesh static_mesh_capsule;$/;"	m	class:App	typeref:typename:Engine::Component::StaticMesh	file:
+static_mesh_cube	../../app/src/main.cpp	/^		Engine::Component::StaticMesh static_mesh_cube;$/;"	m	class:App	typeref:typename:Engine::Component::StaticMesh	file:
+static_mesh_sphere	../../app/src/main.cpp	/^		Engine::Component::StaticMesh static_mesh_sphere;$/;"	m	class:App	typeref:typename:Engine::Component::StaticMesh	file:
+static_mesh_test	../../app/src/main.cpp	/^		Engine::Component::StaticMesh static_mesh_test;$/;"	m	class:App	typeref:typename:Engine::Component::StaticMesh	file:
+static_mesh_test_cargador	../../app/src/main.cpp	/^		Engine::Component::StaticMesh static_mesh_test_cargador;$/;"	m	class:App	typeref:typename:Engine::Component::StaticMesh	file:
+test_cargador_texture	../../app/src/main.cpp	/^		Engine::Component::Texture test_cargador_texture;$/;"	m	class:App	typeref:typename:Engine::Component::Texture	file:
+test_player_names	../../app/src/main.cpp	/^vector<string> test_player_names = {"Jhon", "Carlos", "Roberto", "Esteban", "Steve", "Gil", "Gui/;"	v	typeref:typename:vector<string>
+texture	../../app/src/main.cpp	/^		Engine::Component::Texture texture;$/;"	m	class:App	typeref:typename:Engine::Component::Texture	file:
+weapons_items	../../app/src/main.cpp	/^		vector<unique_ptr<WeaponItem>> weapons_items;$/;"	m	class:App	typeref:typename:vector<unique_ptr<WeaponItem>>	file:
+~App	../../app/src/main.cpp	/^		~App()$/;"	f	class:App	file:

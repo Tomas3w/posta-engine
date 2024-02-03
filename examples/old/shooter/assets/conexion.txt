@@ -1,0 +1,6 @@
+cliente = no
+nickname = s
+players = 0
+
+puerto = 7777
+ip = 127.0.0.1
