@@ -355,8 +355,10 @@ void App::loop()
 		if (delta_time < max_delta_time)
 		{
 			float diff = max_delta_time - delta_time;
-			std::this_thread::sleep_for(std::chrono::microseconds(int(diff * 1000000)));
-			delta_time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - ticks).count() / 1000000.0f;
+			//std::this_thread::sleep_for(std::chrono::microseconds(int(diff * 1000000)));
+			std::this_thread::sleep_for(std::chrono::milliseconds(std::max(int(diff * 1000) - 1, 0)));
+			
+			while(delta_time + 0.00001 < max_delta_time) delta_time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - ticks).count() / 1000000.0f;
 		}
 	}
 
