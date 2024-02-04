@@ -6,6 +6,14 @@
 #include <arpa/inet.h>
 #endif
 
+#if __BIG_ENDIAN__
+# define htonll(x) (x)
+# define ntohll(x) (x)
+#else
+# define htonll(x) (((uint64_t)htonl((x) & 0xFFFFFFFF) << 32) | htonl((x) >> 32))
+# define ntohll(x) (((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32) | ntohl((x) >> 32))
+#endif
+
 using posta::NetworkPackage;
 
 NetworkPackage::Writer::Writer(uint8_t* ptr)
@@ -43,6 +51,12 @@ void posta::operator<<(NetworkPackage::Writer& writer, const uint32_t& value)
 	writer.write(&v, sizeof(v));
 }
 
+void posta::operator<<(NetworkPackage::Writer& writer, const uint64_t& value)
+{
+	uint64_t v = htonll(value);
+	writer.write(&v, sizeof(v));
+}
+
 void posta::operator<<(NetworkPackage::Writer& writer, const int8_t& value)
 {
 	writer.write(&value, sizeof(value));
@@ -60,13 +74,12 @@ void posta::operator<<(NetworkPackage::Writer& writer, const int32_t& value)
 	writer.write(&v, sizeof(v));
 }
 
-void posta::operator<<(NetworkPackage::Writer& writer, const glm::vec3& value)
+void posta::operator<<(NetworkPackage::Writer& writer, const int64_t& value)
 {
-	//writer.write(&value, sizeof(value));
-	writer << value.x;
-	writer << value.y;
-	writer << value.z;
+	uint64_t v = htonl(reinterpret_cast<const uint64_t&>(value));
+	writer.write(&v, sizeof(v));
 }
+
 
 void posta::operator<<(NetworkPackage::Writer& writer, const glm::quat& value)
 {
@@ -100,6 +113,44 @@ void posta::operator<<(NetworkPackage::Writer& writer, const float& value)
 	writer << v;
 }
 
+void posta::operator<<(NetworkPackage::Writer& writer, const double& value)
+{
+	int _exp;
+	double significand = frexp(value, &_exp);
+	int16_t mexp = _exp;
+	uint16_t exp = reinterpret_cast<uint16_t&>(mexp);
+
+	int64_t integer = static_cast<int64_t>(significand * pow(2, 52));
+	bool is_positive = integer >= 0;
+	uint64_t uinteger = abs(integer);
+
+	//           mantissa           is-positive                  exponent
+	uint64_t v = (uinteger << 11) | (is_positive ? 0:1UL << 63) | exp;
+	writer << v;
+}
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::vec3& value)
+{
+	writer << static_cast<float>(value[0]);
+	writer << static_cast<float>(value[1]);
+	writer << static_cast<float>(value[2]);
+}
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::vec2& value)
+{
+	writer << value[0];
+	writer << value[1];
+}
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec3& value)
+{
+	writer << value[0];
+	writer << value[1];
+	writer << value[2];
+}
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec2& value)
+{
+	writer << value[0];
+	writer << value[1];
+}
+
 void posta::operator<<(NetworkPackage::Writer& writer, const std::vector<uint8_t>& value) // WARNING: Not tested
 {
 	uint32_t size = value.size();
@@ -116,6 +167,13 @@ void posta::operator<<(NetworkPackage::Writer& writer, const std::vector<uint16_
 }
 
 void posta::operator<<(NetworkPackage::Writer& writer, const std::vector<uint32_t>& value)
+{
+	uint32_t size = value.size();
+	writer << size;
+	for (auto& v : value)
+		writer << v;
+}
+void posta::operator<<(NetworkPackage::Writer& writer, const std::vector<uint64_t>& value)
 {
 	uint32_t size = value.size();
 	writer << size;
@@ -148,6 +206,11 @@ void posta::operator>>(NetworkPackage::Writer& writer, uint32_t& value)
 	writer.read(&value, sizeof(value));
 	value = ntohl(value);
 }
+void posta::operator>>(NetworkPackage::Writer& writer, uint64_t& value)
+{
+	writer.read(&value, sizeof(value));
+	value = ntohll(value);
+}
 
 void posta::operator>>(NetworkPackage::Writer& writer, int8_t& value)
 {
@@ -170,13 +233,14 @@ void posta::operator>>(NetworkPackage::Writer& writer, int32_t& value)
 	value = (*reinterpret_cast<int32_t*>(&nn));
 }
 
-void posta::operator>>(NetworkPackage::Writer& writer, glm::vec3& value)
+void posta::operator>>(NetworkPackage::Writer& writer, int64_t& value)
 {
-	//writer.read(&value, sizeof(value));
-	writer >> value.x;
-	writer >> value.y;
-	writer >> value.z;
+	writer.read(&value, sizeof(value));
+	uint64_t* n = reinterpret_cast<uint64_t*>(&value);
+	uint64_t nn = ntohl(*n);
+	value = (*reinterpret_cast<int64_t*>(&nn));
 }
+
 
 void posta::operator>>(NetworkPackage::Writer& writer, glm::quat& value)
 {
@@ -208,20 +272,43 @@ void posta::operator>>(NetworkPackage::Writer& writer, float& value)
 	int8_t exp = (v << 24) >> 24;
 	float significand = integer / static_cast<float>(pow(2, 22));
 	value = ldexp(significand, exp) * (is_positive ? 1:-1);
-	/*
-	int _exp;
-	float significand = frexp(value, &_exp);
-	int8_t exp;
-	exp = _exp;
+}
 
-	int32_t integer = static_cast<int32_t>(significand * pow(2, 22));
-	bool is_positive = integer >= 0;
-	uint32_t uinteger = abs(integer);
-
-	//           mantissa          is-positive   exponent
-	uint32_t v = (uinteger << 8) | (is_positive ? 1UL << 31:0) | exp;
-	writer << v;
-	*/
+void posta::operator>>(NetworkPackage::Writer& writer, double& value)
+{
+	uint64_t v;
+	writer >> v;
+	bool is_positive = !static_cast<bool>((v >> 63) & 1u);
+	v &= ~(1ul << 63);
+	uint64_t uinteger = v >> 11;
+	
+	int64_t integer = uinteger;
+	
+	int16_t exp = (v << 53) >> 53;
+	double significand = integer / static_cast<double>(pow(2, 52));
+	value = ldexp(significand, exp) * (is_positive ? 1:-1);
+}
+void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::vec3& value)
+{
+	writer >> value[0];
+	writer >> value[1];
+	writer >> value[2];
+}
+void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::vec2& value)
+{
+	writer >> value[0];
+	writer >> value[1];
+}
+void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::dvec3& value)
+{
+	writer >> value[0];
+	writer >> value[1];
+	writer >> value[2];
+}
+void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::dvec2& value)
+{
+	writer >> value[0];
+	writer >> value[1];
 }
 
 void posta::operator>>(NetworkPackage::Writer& writer, std::vector<uint8_t>& value)
@@ -243,6 +330,16 @@ void posta::operator>>(NetworkPackage::Writer& writer, std::vector<uint16_t>& va
 }
 
 void posta::operator>>(NetworkPackage::Writer& writer, std::vector<uint32_t>& value)
+{
+	uint32_t size;
+	writer >> size;
+	value.resize(size);
+	
+	for (size_t i = 0; i < size; i++)
+		writer >> value[i];
+}
+
+void posta::operator>>(NetworkPackage::Writer& writer, std::vector<uint64_t>& value)
 {
 	uint32_t size;
 	writer >> size;

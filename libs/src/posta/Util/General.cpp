@@ -10,13 +10,10 @@ std::string posta::read_file(std::filesystem::path path)
 	std::streamsize size = file.tellg();
 	file.seekg(0);
 
-	char* s = new char[size + 1];
-	memset(s, 0, size + 1);
-	file.read(s, size);
+	std::string r(size, '\0');
+	file.read(r.data(), size);
 
 	file.close();
-	std::string r = s;
-	delete[] s;
 	return r;
 }
 
