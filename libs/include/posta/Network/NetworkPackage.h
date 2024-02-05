@@ -103,11 +103,11 @@ namespace posta {
 		virtual ~NetworkPackage() = default;
 
 		virtual uint32_t get_type() = 0; // should return the type with a unique id
-		/// Serializes the data and returns a reference to it
+		/// Serializes the data (along with the type) and returns a reference to it
 		virtual posta::span<uint8_t> serialize() = 0;
-		/// Deserializes the data given as argument, make sure that the data is of the corresponding type before trying to deserialize it
+		/// Deserializes the data given as argument (the data given SHOULD NOT include the type), make sure that the data is of the corresponding type before trying to deserialize it
 		virtual void deserialize(posta::span<uint8_t>) = 0;
-		/// Writes type and data to an ostream, the type is garantueed to be an uint32_t. To retrieve the data read the sizeof(uint32_t) bytes to first find out the type
+		/// Does the same as serialize but it also writes the data to a std::ostream
 		virtual posta::span<uint8_t> serialize(std::ostream& output) final
 		{
 			auto data = serialize();

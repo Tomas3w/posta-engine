@@ -1,4 +1,6 @@
 #include <posta/Network/NetworkPackage.h>
+#include <posta/Util/LoggingMacro.h>
+#include <bitset>
 // Include htonl and others
 #ifdef _WIN32
 #include <winsock.h>
@@ -104,9 +106,9 @@ void posta::operator<<(NetworkPackage::Writer& writer, const float& value)
 	int8_t mexp = _exp;
 	uint8_t exp = reinterpret_cast<uint8_t&>(mexp);
 
-	int32_t integer = static_cast<int32_t>(significand * pow(2, 22));
+	int32_t integer = static_cast<int32_t>(significand * (1ull << 22));
 	bool is_positive = integer >= 0;
-	uint32_t uinteger = abs(integer);
+	uint32_t uinteger = std::abs(integer);
 
 	//           mantissa           is-positive                  exponent
 	uint32_t v = (uinteger << 8) | (is_positive ? 0:1UL << 31) | exp;
@@ -119,10 +121,15 @@ void posta::operator<<(NetworkPackage::Writer& writer, const double& value)
 	double significand = frexp(value, &_exp);
 	int16_t mexp = _exp;
 	uint16_t exp = reinterpret_cast<uint16_t&>(mexp);
+	if (mexp < 0)
+	{
+		exp &= ~(1ul << 15); // exp[15] = 0
+		exp |=  (1ul << 10); // exp[10] = 1
+	}
 
-	int64_t integer = static_cast<int64_t>(significand * pow(2, 52));
+	int64_t integer = static_cast<int64_t>(significand * (1ull << 52));
 	bool is_positive = integer >= 0;
-	uint64_t uinteger = abs(integer);
+	uint64_t uinteger = std::abs(integer);
 
 	//           mantissa           is-positive                  exponent
 	uint64_t v = (uinteger << 11) | (is_positive ? 0:1UL << 63) | exp;
@@ -285,7 +292,12 @@ void posta::operator>>(NetworkPackage::Writer& writer, double& value)
 	int64_t integer = uinteger;
 	
 	int16_t exp = (v << 53) >> 53;
-	double significand = integer / static_cast<double>(pow(2, 52));
+	if (exp & (1ul << 10))
+	{
+		exp &= ~(1ul << 10); // exp[10] = 0
+		exp = -exp;
+	}
+	double significand = integer / static_cast<double>(1ull << 52);
 	value = ldexp(significand, exp) * (is_positive ? 1:-1);
 }
 void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::vec3& value)
