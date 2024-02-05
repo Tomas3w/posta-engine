@@ -10,8 +10,15 @@
 #include <fstream>
 
 namespace posta {
+	class WithSizeFunction
+	{
+	public:
+		virtual ~WithSizeFunction() = default;
+		virtual uint32_t size() const = 0;
+	};
 	namespace NetworkPackageTypeSize
 	{
+		inline uint32_t size(const WithSizeFunction& value) { return value.size(); }
 		constexpr inline uint32_t size(const uint8_t value) { return sizeof(uint8_t); }
 		constexpr inline uint32_t size(const uint16_t value) { return sizeof(uint16_t); }
 		constexpr inline uint32_t size(const uint32_t value) { return sizeof(uint32_t); }
@@ -187,13 +194,13 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
 }
 
 	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
-	class NetworkPackageTemplate : public NetworkPackage
+	class NetworkPackageTemplate : public NetworkPackage, public WithSizeFunction
 	{
 	public:
 
 		constexpr NetworkPackageTemplate(T& t, Ts&... ts) : value(t), rest(ts...) {}
 
-		constexpr uint32_t size()
+		uint32_t size() const override
 		{
 			return NetworkPackageTypeSize::size(value) + rest.size();
 		}
@@ -209,7 +216,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
 			return posta::make_span(data);
 		}
 
-		constexpr void write_value_to(Writer& writer)
+		constexpr void write_value_to(Writer& writer) const
 		{
 			writer << value;
 			rest.write_value_to(writer);
@@ -233,16 +240,16 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
 	};
 
 	template <const uint32_t PACKAGE_TYPE, class T>
-	class NetworkPackageTemplate<PACKAGE_TYPE, T> : public NetworkPackage
+	class NetworkPackageTemplate<PACKAGE_TYPE, T> : public NetworkPackage, public WithSizeFunction
 	{
 	public:
 		constexpr NetworkPackageTemplate(T& t) : value(t) {}
 
-		constexpr uint32_t size()
+		uint32_t size() const override
 		{
 			return NetworkPackageTypeSize::size(value);
 		}
-		constexpr void write_value_to(NetworkPackage::Writer& writer)
+		constexpr void write_value_to(NetworkPackage::Writer& writer) const
 		{
 			writer << value;
 		}
@@ -268,6 +275,18 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
 	private:
 		T& value;
 	};
+	
+	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
+	void operator<<(posta::NetworkPackage::Writer& writer, const NetworkPackageTemplate<PACKAGE_TYPE, T, Ts...>& value)
+	{
+		value.write_value_to(writer);
+	}
+	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
+	void operator>>(posta::NetworkPackage::Writer& writer, NetworkPackageTemplate<PACKAGE_TYPE, T, Ts...>& value)
+	{
+		value.read_value_from(writer);
+	}
+
 }
 
 #endif // POSTAENGINE_NETWORKPACKAGE_UTILITY_H
