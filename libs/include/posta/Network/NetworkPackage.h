@@ -18,54 +18,69 @@ namespace posta {
 	};
 	namespace NetworkPackageTypeSize
 	{
-		inline uint32_t size(const WithSizeFunction& value) { return value.size(); }
-		constexpr inline uint32_t size(const uint8_t value) { return sizeof(uint8_t); }
-		constexpr inline uint32_t size(const uint16_t value) { return sizeof(uint16_t); }
-		constexpr inline uint32_t size(const uint32_t value) { return sizeof(uint32_t); }
-		constexpr inline uint32_t size(const uint64_t value) { return sizeof(uint64_t); }
-		constexpr inline uint32_t size(const int8_t value) { return sizeof(int8_t); }
-		constexpr inline uint32_t size(const int16_t value) { return sizeof(int16_t); }
-		constexpr inline uint32_t size(const int32_t value) { return sizeof(int32_t); }
-		constexpr inline uint32_t size(const int64_t value) { return sizeof(int64_t); }
+		/// This type is neccessary for some reason I cannot understand, it is used as a dummy class for the operator<< for getting the size in bytes of different values
+		class type
+		{
+			//
+		};
+		static constexpr inline type type_t;
+		inline uint32_t operator<<(const type&, const WithSizeFunction& value) { return value.size(); }
+		constexpr inline uint32_t operator<<(const type&, const uint8_t value) { return sizeof(uint8_t); }
+		constexpr inline uint32_t operator<<(const type&, const uint16_t value) { return sizeof(uint16_t); }
+		constexpr inline uint32_t operator<<(const type&, const uint32_t value) { return sizeof(uint32_t); }
+		constexpr inline uint32_t operator<<(const type&, const uint64_t value) { return sizeof(uint64_t); }
+		constexpr inline uint32_t operator<<(const type&, const int8_t value) { return sizeof(int8_t); }
+		constexpr inline uint32_t operator<<(const type&, const int16_t value) { return sizeof(int16_t); }
+		constexpr inline uint32_t operator<<(const type&, const int32_t value) { return sizeof(int32_t); }
+		constexpr inline uint32_t operator<<(const type&, const int64_t value) { return sizeof(int64_t); }
 		//template <const size_t VECSIZE, class T>
-		//constexpr inline uint32_t size(const glm::vec<VECSIZE, T, glm::packed_highp> value) { return sizeof(glm::vec<VECSIZE, T, glm::packed_highp>); }
+		//constexpr inline uint32_t operator<<(const type&, const glm::vec<VECSIZE, T, glm::packed_highp> value) { return sizeof(glm::vec<VECSIZE, T, glm::packed_highp>); }
 		
-		constexpr inline uint32_t size(const glm::vec3 value) { return sizeof(glm::vec3); }
-		constexpr inline uint32_t size(const glm::vec2 value) { return sizeof(glm::vec2); }
-		constexpr inline uint32_t size(const glm::vec1 value) { return sizeof(glm::vec1); }
-		constexpr inline uint32_t size(const glm::dvec3 value) { return sizeof(glm::dvec3); }
-		constexpr inline uint32_t size(const glm::dvec2 value) { return sizeof(glm::dvec2); }
-		constexpr inline uint32_t size(const glm::dvec1 value) { return sizeof(glm::dvec1); }
-		constexpr inline uint32_t size(const glm::quat value) { return sizeof(glm::quat); }
-		inline uint32_t size(const std::string& value) { return sizeof(uint32_t) + value.size(); }
-		constexpr inline uint32_t size(const float& value) { return sizeof(uint32_t); }
-		constexpr inline uint32_t size(const double& value) { return sizeof(uint64_t); }
+		constexpr inline uint32_t operator<<(const type&, const glm::vec3 value) { return sizeof(glm::vec3); }
+		constexpr inline uint32_t operator<<(const type&, const glm::vec2 value) { return sizeof(glm::vec2); }
+		constexpr inline uint32_t operator<<(const type&, const glm::vec1 value) { return sizeof(glm::vec1); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec3 value) { return sizeof(glm::dvec3); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec2 value) { return sizeof(glm::dvec2); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec1 value) { return sizeof(glm::dvec1); }
+		constexpr inline uint32_t operator<<(const type&, const glm::quat value) { return sizeof(glm::quat); }
+		inline uint32_t operator<<(const type&, const std::string& value) { return sizeof(uint32_t) + value.size(); }
+		constexpr inline uint32_t operator<<(const type&, const float& value) { return sizeof(uint32_t); }
+		constexpr inline uint32_t operator<<(const type&, const double& value) { return sizeof(uint64_t); }
+		template<class T, std::size_t N>
+		inline uint32_t operator<<(const type&, const std::array<T, N>& value)
+		{
+			uint32_t _size = 0;
+			for (auto& e : value)
+				_size += (type_t << e);
+			return _size;
+		}
 		template<class T>
-		inline uint32_t size(const std::vector<T>& value)
+		inline uint32_t operator<<(const type&, const std::vector<T>& value)
 		{
 			uint32_t _size = sizeof(uint32_t);
 			for (auto& e : value)
-				_size += size(e);
+				_size += (type_t << e); // size(e);//
 			return _size;
 		}
-		template<> inline uint32_t size<uint8_t>(const std::vector<uint8_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint8_t); }
-		template<> inline uint32_t size<uint16_t>(const std::vector<uint16_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint16_t); }
-		template<> inline uint32_t size<uint32_t>(const std::vector<uint32_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
-		template<> inline uint32_t size<uint64_t>(const std::vector<uint64_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint64_t); }
-		template<> inline uint32_t size<float>(const std::vector<float>& value) { return sizeof(uint32_t) + value.size() * size((float)0); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint8_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint8_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint16_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint16_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint32_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint64_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint64_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<float>& value) { return sizeof(uint32_t) + value.size() * (type_t << (float)0); }
 
 		template<class T>
 		constexpr inline uint32_t size_many(const T& value)
 		{
-			return size(value);
+			return type_t << value; // size(value);//
 		}
 
 		template<class T, class... Args>
 		constexpr inline uint32_t size_many(const T& value, const Args&... args)
 		{
-			uint32_t v = size(value);
+			uint32_t v = type_t << value;
 			return v + size_many(args...);
 		}
+
 	}
 
 	class NetworkPackage
@@ -153,8 +168,14 @@ void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<float>&
 template<class T>
 void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<T>& value)
 {
-	uint32_t size = value.size();
+	const uint32_t size = value.size();
 	writer << size;
+	for (auto& v : value)
+		writer << v;
+}
+template<class T, std::size_t N>
+void operator<<(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
+{
 	for (auto& v : value)
 		writer << v;
 }
@@ -192,17 +213,26 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
 	for (size_t i = 0; i < size; i++)
 		writer >> value[i];
 }
+template<class T, std::size_t N>
+void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
+{
+	for (auto& v : value)
+		writer >> v;
+}
 
 	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
 	class NetworkPackageTemplate : public NetworkPackage, public WithSizeFunction
 	{
 	public:
 
-		constexpr NetworkPackageTemplate(T& t, Ts&... ts) : value(t), rest(ts...) {}
+		NetworkPackageTemplate(T& t, Ts&... ts) : value(t), rest(ts...) {}
+		//NetworkPackageTemplate(const NetworkPackageTemplate& other) {}
+		const NetworkPackageTemplate& operator=(const NetworkPackageTemplate& other) { return *this; }
 
 		uint32_t size() const override
 		{
-			return NetworkPackageTypeSize::size(value) + rest.size();
+			return (NetworkPackageTypeSize::type_t << value) + rest.size();
+			//return NetworkPackageTypeSize::size(value) + rest.size();
 		}
 
 		uint32_t get_type() override { return PACKAGE_TYPE; }
@@ -243,11 +273,14 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<T>& value)
 	class NetworkPackageTemplate<PACKAGE_TYPE, T> : public NetworkPackage, public WithSizeFunction
 	{
 	public:
-		constexpr NetworkPackageTemplate(T& t) : value(t) {}
+		NetworkPackageTemplate(T& t) : value(t) {}
+		//NetworkPackageTemplate(const NetworkPackageTemplate<PACKAGE_TYPE, T>& other) : value(other.value) {}
+		const NetworkPackageTemplate& operator=(const NetworkPackageTemplate<PACKAGE_TYPE, T>& other) { return *this; }
 
 		uint32_t size() const override
 		{
-			return NetworkPackageTypeSize::size(value);
+			return (NetworkPackageTypeSize::type_t << value);
+			//return NetworkPackageTypeSize::size(value);
 		}
 		constexpr void write_value_to(NetworkPackage::Writer& writer) const
 		{

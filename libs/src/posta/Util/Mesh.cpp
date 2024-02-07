@@ -266,7 +266,7 @@ void Mesh::check_if_not_locked() const
 		throw std::logic_error("mesh should not be locked for this mesh operation");
 }
 
-template<> inline uint32_t posta::NetworkPackageTypeSize::size<posta::VertexProperties::INTERPOLATION_TYPE>(const std::vector<posta::VertexProperties::INTERPOLATION_TYPE>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
+template<> inline uint32_t posta::NetworkPackageTypeSize::operator<<(const posta::NetworkPackageTypeSize::type&, const std::vector<posta::VertexProperties::INTERPOLATION_TYPE>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
 namespace posta {
 	void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<posta::VertexProperties::INTERPOLATION_TYPE>& value)
 	{
