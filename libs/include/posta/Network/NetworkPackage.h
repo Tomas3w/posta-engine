@@ -226,8 +226,10 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 	public:
 
 		NetworkPackageTemplate(T& t, Ts&... ts) : value(t), rest(ts...) {}
-		//NetworkPackageTemplate(const NetworkPackageTemplate& other) {}
-		const NetworkPackageTemplate& operator=(const NetworkPackageTemplate& other) { return *this; }
+		NetworkPackageTemplate(const NetworkPackageTemplate& other) = delete;
+		const NetworkPackageTemplate& operator=(const NetworkPackageTemplate& other) {
+			return *this;
+		}
 
 		uint32_t size() const override
 		{
@@ -264,7 +266,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 			rest.read_value_from(writer);
 		}
 
-	private:
+	//private:
 		T& value;
 		NetworkPackageTemplate<PACKAGE_TYPE, Ts...> rest;
 	};
@@ -274,8 +276,10 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 	{
 	public:
 		NetworkPackageTemplate(T& t) : value(t) {}
-		//NetworkPackageTemplate(const NetworkPackageTemplate<PACKAGE_TYPE, T>& other) : value(other.value) {}
-		const NetworkPackageTemplate& operator=(const NetworkPackageTemplate<PACKAGE_TYPE, T>& other) { return *this; }
+		NetworkPackageTemplate(const NetworkPackageTemplate<PACKAGE_TYPE, T>& other) = delete;
+		const NetworkPackageTemplate& operator=(const NetworkPackageTemplate<PACKAGE_TYPE, T>& other) {
+			return *this;
+		}
 
 		uint32_t size() const override
 		{
@@ -305,7 +309,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 			Writer writer(_data.data());
 			this->read_value_from(writer);
 		}
-	private:
+	//private:
 		T& value;
 	};
 	
