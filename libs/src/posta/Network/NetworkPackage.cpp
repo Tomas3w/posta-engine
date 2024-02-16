@@ -132,7 +132,7 @@ void posta::operator<<(NetworkPackage::Writer& writer, const double& value)
 	uint64_t uinteger = std::abs(integer);
 
 	//           mantissa           is-positive                  exponent
-	uint64_t v = (uinteger << 11) | (is_positive ? 0:1UL << 63) | exp;
+	uint64_t v = (uinteger << 11) | (is_positive ? 0:static_cast<uint64_t>(1UL) << 63) | exp;
 	writer << v;
 }
 void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::vec3& value)
@@ -286,7 +286,7 @@ void posta::operator>>(NetworkPackage::Writer& writer, double& value)
 	uint64_t v;
 	writer >> v;
 	bool is_positive = !static_cast<bool>((v >> 63) & 1u);
-	v &= ~(1ul << 63);
+	v &= ~(static_cast<uint64_t>(1ul) << 63);
 	uint64_t uinteger = v >> 11;
 	
 	int64_t integer = uinteger;
