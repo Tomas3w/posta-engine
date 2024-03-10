@@ -36,6 +36,11 @@ void NetworkPackage::Writer::read(void* ptr, size_t size)
 }
 
 // basic writing
+void posta::operator<<(NetworkPackage::Writer& writer, const bool& value)
+{
+	writer.write(&value, 1);
+}
+
 void posta::operator<<(NetworkPackage::Writer& writer, const uint8_t& value)
 {
 	writer.write(&value, sizeof(value));
@@ -197,6 +202,11 @@ void posta::operator<<(posta::NetworkPackage::Writer& writer, const std::vector<
 }
 
 // basic reading
+void posta::operator>>(NetworkPackage::Writer& writer, bool& value)
+{
+	writer.read(&value, 1);
+}
+
 void posta::operator>>(NetworkPackage::Writer& writer, uint8_t& value)
 {
 	writer.read(&value, sizeof(value));

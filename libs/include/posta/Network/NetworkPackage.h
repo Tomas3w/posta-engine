@@ -25,6 +25,7 @@ namespace posta {
 		};
 		static constexpr inline type type_t;
 		inline uint32_t operator<<(const type&, const WithSizeFunction& value) { return value.size(); }
+		constexpr inline uint32_t operator<<(const type&, const bool value) { return 1; }
 		constexpr inline uint32_t operator<<(const type&, const uint8_t value) { return sizeof(uint8_t); }
 		constexpr inline uint32_t operator<<(const type&, const uint16_t value) { return sizeof(uint16_t); }
 		constexpr inline uint32_t operator<<(const type&, const uint32_t value) { return sizeof(uint32_t); }
@@ -143,6 +144,7 @@ namespace posta {
 	};
 
 /// basic writing
+void operator<<(posta::NetworkPackage::Writer& writer, const bool& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const uint8_t& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const uint16_t& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const uint32_t& value);
@@ -181,6 +183,7 @@ void operator<<(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 }
 
 /// basic reading
+void operator>>(posta::NetworkPackage::Writer& writer, bool& value);
 void operator>>(posta::NetworkPackage::Writer& writer, uint8_t& value);
 void operator>>(posta::NetworkPackage::Writer& writer, uint16_t& value);
 void operator>>(posta::NetworkPackage::Writer& writer, uint32_t& value);
