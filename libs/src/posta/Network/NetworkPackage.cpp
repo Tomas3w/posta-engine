@@ -201,6 +201,17 @@ void posta::operator<<(posta::NetworkPackage::Writer& writer, const std::vector<
 		writer << v;
 }
 
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const std::vector<VirtualNetworkPackageKind*>& value)
+{
+	const uint32_t size = value.size();
+	writer << size;
+	for (auto& v : value)
+	{
+		writer << v->which;
+		v->write_value_to(writer);
+	}
+}
+
 // basic reading
 void posta::operator>>(NetworkPackage::Writer& writer, bool& value)
 {
@@ -379,5 +390,11 @@ void posta::operator>>(NetworkPackage::Writer& writer, std::vector<float>& value
 	
 	for (size_t i = 0; i < size; i++)
 		writer >> value[i];
+}
+
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const VirtualNetworkPackageKind* value)
+{
+	writer << value->which;
+	value->write_value_to(writer);
 }
 

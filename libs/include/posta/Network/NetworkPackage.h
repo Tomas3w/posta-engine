@@ -16,73 +16,6 @@ namespace posta {
 		virtual ~WithSizeFunction() = default;
 		virtual uint32_t size() const = 0;
 	};
-	namespace NetworkPackageTypeSize
-	{
-		/// This type is neccessary for some reason I cannot understand, it is used as a dummy class for the operator<< for getting the size in bytes of different values
-		class type
-		{
-			//
-		};
-		static constexpr inline type type_t;
-		inline uint32_t operator<<(const type&, const WithSizeFunction& value) { return value.size(); }
-		constexpr inline uint32_t operator<<(const type&, const bool value) { return 1; }
-		constexpr inline uint32_t operator<<(const type&, const uint8_t value) { return sizeof(uint8_t); }
-		constexpr inline uint32_t operator<<(const type&, const uint16_t value) { return sizeof(uint16_t); }
-		constexpr inline uint32_t operator<<(const type&, const uint32_t value) { return sizeof(uint32_t); }
-		constexpr inline uint32_t operator<<(const type&, const uint64_t value) { return sizeof(uint64_t); }
-		constexpr inline uint32_t operator<<(const type&, const int8_t value) { return sizeof(int8_t); }
-		constexpr inline uint32_t operator<<(const type&, const int16_t value) { return sizeof(int16_t); }
-		constexpr inline uint32_t operator<<(const type&, const int32_t value) { return sizeof(int32_t); }
-		constexpr inline uint32_t operator<<(const type&, const int64_t value) { return sizeof(int64_t); }
-		//template <const size_t VECSIZE, class T>
-		//constexpr inline uint32_t operator<<(const type&, const glm::vec<VECSIZE, T, glm::packed_highp> value) { return sizeof(glm::vec<VECSIZE, T, glm::packed_highp>); }
-		
-		constexpr inline uint32_t operator<<(const type&, const glm::vec3 value) { return sizeof(glm::vec3); }
-		constexpr inline uint32_t operator<<(const type&, const glm::vec2 value) { return sizeof(glm::vec2); }
-		constexpr inline uint32_t operator<<(const type&, const glm::vec1 value) { return sizeof(glm::vec1); }
-		constexpr inline uint32_t operator<<(const type&, const glm::dvec3 value) { return sizeof(glm::dvec3); }
-		constexpr inline uint32_t operator<<(const type&, const glm::dvec2 value) { return sizeof(glm::dvec2); }
-		constexpr inline uint32_t operator<<(const type&, const glm::dvec1 value) { return sizeof(glm::dvec1); }
-		constexpr inline uint32_t operator<<(const type&, const glm::quat value) { return sizeof(glm::quat); }
-		inline uint32_t operator<<(const type&, const std::string& value) { return sizeof(uint32_t) + value.size(); }
-		constexpr inline uint32_t operator<<(const type&, const float& value) { return sizeof(uint32_t); }
-		constexpr inline uint32_t operator<<(const type&, const double& value) { return sizeof(uint64_t); }
-		template<class T, std::size_t N>
-		inline uint32_t operator<<(const type&, const std::array<T, N>& value)
-		{
-			uint32_t _size = 0;
-			for (auto& e : value)
-				_size += (type_t << e);
-			return _size;
-		}
-		template<class T>
-		inline uint32_t operator<<(const type&, const std::vector<T>& value)
-		{
-			uint32_t _size = sizeof(uint32_t);
-			for (auto& e : value)
-				_size += (type_t << e); // size(e);//
-			return _size;
-		}
-		template<> inline uint32_t operator<<(const type&, const std::vector<uint8_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint8_t); }
-		template<> inline uint32_t operator<<(const type&, const std::vector<uint16_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint16_t); }
-		template<> inline uint32_t operator<<(const type&, const std::vector<uint32_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
-		template<> inline uint32_t operator<<(const type&, const std::vector<uint64_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint64_t); }
-		template<> inline uint32_t operator<<(const type&, const std::vector<float>& value) { return sizeof(uint32_t) + value.size() * (type_t << (float)0); }
-
-		template<class T>
-		constexpr inline uint32_t size_many(const T& value)
-		{
-			return type_t << value; // size(value);//
-		}
-
-		template<class T, class... Args>
-		constexpr inline uint32_t size_many(const T& value, const Args&... args)
-		{
-			uint32_t v = type_t << value;
-			return v + size_many(args...);
-		}
-
-	}
 
 	class NetworkPackage
 	{
@@ -143,6 +76,116 @@ namespace posta {
 		std::vector<uint8_t> data; 
 	};
 
+	class VirtualNetworkPackageKind : public WithSizeFunction
+	{
+	public:
+		VirtualNetworkPackageKind(uint32_t which) : which(which) {}
+		virtual void write_value_to(NetworkPackage::Writer& writer) const = 0;
+
+		/// Value that represents the underlying class, change this value when inheriting from this class, each class should have a unique value
+		uint32_t which = 0;
+	};
+	template <VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
+	class VirtualNetworkPackage : public VirtualNetworkPackageKind
+	{
+	public:
+		VirtualNetworkPackage(uint32_t which) : VirtualNetworkPackageKind(which) {}
+		/*
+	public:
+		static VirtualNetworkPackageKind* read_value_from(NetworkPackage::Writer& writer)
+		{
+			return MAKER(writer);
+		}
+		*/
+	};
+	namespace NetworkPackageTypeSize
+	{
+		/// This type is neccessary for some reason I cannot understand, it is used as a dummy class for the operator<< for getting the size in bytes of different values
+		class type
+		{
+			//
+		};
+		static constexpr inline type type_t;
+		inline uint32_t operator<<(const type&, const WithSizeFunction& value) { return value.size(); }
+		constexpr inline uint32_t operator<<(const type&, const bool value) { return 1; }
+		constexpr inline uint32_t operator<<(const type&, const uint8_t value) { return sizeof(uint8_t); }
+		constexpr inline uint32_t operator<<(const type&, const uint16_t value) { return sizeof(uint16_t); }
+		constexpr inline uint32_t operator<<(const type&, const uint32_t value) { return sizeof(uint32_t); }
+		constexpr inline uint32_t operator<<(const type&, const uint64_t value) { return sizeof(uint64_t); }
+		constexpr inline uint32_t operator<<(const type&, const int8_t value) { return sizeof(int8_t); }
+		constexpr inline uint32_t operator<<(const type&, const int16_t value) { return sizeof(int16_t); }
+		constexpr inline uint32_t operator<<(const type&, const int32_t value) { return sizeof(int32_t); }
+		constexpr inline uint32_t operator<<(const type&, const int64_t value) { return sizeof(int64_t); }
+		//template <const size_t VECSIZE, class T>
+		//constexpr inline uint32_t operator<<(const type&, const glm::vec<VECSIZE, T, glm::packed_highp> value) { return sizeof(glm::vec<VECSIZE, T, glm::packed_highp>); }
+		
+		constexpr inline uint32_t operator<<(const type&, const glm::vec3 value) { return sizeof(glm::vec3); }
+		constexpr inline uint32_t operator<<(const type&, const glm::vec2 value) { return sizeof(glm::vec2); }
+		constexpr inline uint32_t operator<<(const type&, const glm::vec1 value) { return sizeof(glm::vec1); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec3 value) { return sizeof(glm::dvec3); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec2 value) { return sizeof(glm::dvec2); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec1 value) { return sizeof(glm::dvec1); }
+		constexpr inline uint32_t operator<<(const type&, const glm::quat value) { return sizeof(glm::quat); }
+		inline uint32_t operator<<(const type&, const std::string& value) { return sizeof(uint32_t) + value.size(); }
+		constexpr inline uint32_t operator<<(const type&, const float& value) { return sizeof(uint32_t); }
+		constexpr inline uint32_t operator<<(const type&, const double& value) { return sizeof(uint64_t); }
+		template<class T, std::size_t N>
+		inline uint32_t operator<<(const type&, const std::array<T, N>& value)
+		{
+			uint32_t _size = 0;
+			for (auto& e : value)
+				_size += (type_t << e);
+			return _size;
+		}
+		template<class T>
+		inline uint32_t operator<<(const type&, const std::vector<T>& value)
+		{
+			uint32_t _size = sizeof(uint32_t);
+			for (auto& e : value)
+				_size += (type_t << e); // size(e);//
+			return _size;
+		}
+		template<> inline uint32_t operator<<(const type&, const std::vector<VirtualNetworkPackageKind*>& value)
+		{
+			uint32_t _size = sizeof(uint32_t);
+			for (auto& e : value)
+			{
+				_size += sizeof(uint32_t);
+				_size += e->size();
+			}
+			return _size;
+		}
+		template<std::size_t N> inline uint32_t operator<<(const type&, const std::array<VirtualNetworkPackageKind*, N>& value)
+		{
+			uint32_t _size = 0;
+			for (auto& e : value)
+			{
+				_size += sizeof(uint32_t);
+				_size += e->size();
+			}
+			return _size;
+		}
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint8_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint8_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint16_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint16_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint32_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint32_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<uint64_t>& value) { return sizeof(uint32_t) + value.size() * sizeof(uint64_t); }
+		template<> inline uint32_t operator<<(const type&, const std::vector<float>& value) { return sizeof(uint32_t) + value.size() * (type_t << (float)0); }
+
+		template<class T>
+		constexpr inline uint32_t size_many(const T& value)
+		{
+			return type_t << value; // size(value);//
+		}
+
+		template<class T, class... Args>
+		constexpr inline uint32_t size_many(const T& value, const Args&... args)
+		{
+			uint32_t v = type_t << value;
+			return v + size_many(args...);
+		}
+
+	}
+
 /// basic writing
 void operator<<(posta::NetworkPackage::Writer& writer, const bool& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const uint8_t& value);
@@ -180,6 +223,16 @@ void operator<<(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 {
 	for (auto& v : value)
 		writer << v;
+}
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<VirtualNetworkPackageKind*>& value);
+template<std::size_t N>
+void operator<<(posta::NetworkPackage::Writer& writer, std::array<VirtualNetworkPackageKind*, N>& value)
+{
+	for (auto& v : value)
+	{
+		writer << v->which;
+		v->write_value_to(writer);
+	}
 }
 
 /// basic reading
@@ -222,6 +275,28 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 	for (auto& v : value)
 		writer >> v;
 }
+template<VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
+void operator>>(posta::NetworkPackage::Writer& writer, std::vector<VirtualNetworkPackage<MAKER>*>& value)
+{
+	uint32_t size;
+	writer >> size;
+	value.resize(size);
+	
+	for (size_t i = 0; i < size; i++)
+	{
+		uint32_t underlying_type;
+		writer >> underlying_type;
+		value[i] = static_cast<VirtualNetworkPackage<MAKER>*>(MAKER(underlying_type, writer));
+	}
+}
+/*
+template<std::size_t N>
+void operator>>(posta::NetworkPackage::Writer& writer, std::array<VirtualNetworkPackage*, N>& value)
+{
+	for (auto& v : value)
+		writer >>
+}
+*/
 
 	template <const uint32_t PACKAGE_TYPE, class T, class... Ts>
 	class NetworkPackageTemplate : public NetworkPackage, public WithSizeFunction
@@ -269,7 +344,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 			rest.read_value_from(writer);
 		}
 
-	//private:
+	private:
 		T& value;
 		NetworkPackageTemplate<PACKAGE_TYPE, Ts...> rest;
 	};
@@ -312,7 +387,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 			Writer writer(_data.data());
 			this->read_value_from(writer);
 		}
-	//private:
+	private:
 		T& value;
 	};
 	
@@ -326,6 +401,17 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 	{
 		value.read_value_from(writer);
 	}
+
+	void operator<<(posta::NetworkPackage::Writer& writer, const VirtualNetworkPackageKind* value);
+	/*
+	template <VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
+	void operator>>(posta::NetworkPackage::Writer& writer, VirtualNetworkPackage<MAKER>* value)
+	{
+		writer << value.which;
+		value.read_value_from(writer);
+		value = kk
+	}
+	*/
 
 }
 
