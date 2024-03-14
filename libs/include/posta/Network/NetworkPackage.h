@@ -145,7 +145,8 @@ namespace posta {
 				_size += (type_t << e); // size(e);//
 			return _size;
 		}
-		template<> inline uint32_t operator<<(const type&, const std::vector<VirtualNetworkPackageKind*>& value)
+		template<VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
+		inline uint32_t operator<<(const type&, const std::vector<VirtualNetworkPackage<MAKER>*>& value)
 		{
 			uint32_t _size = sizeof(uint32_t);
 			for (auto& e : value)
@@ -155,7 +156,8 @@ namespace posta {
 			}
 			return _size;
 		}
-		template<std::size_t N> inline uint32_t operator<<(const type&, const std::array<VirtualNetworkPackageKind*, N>& value)
+		template<VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer), std::size_t N>
+		inline uint32_t operator<<(const type&, const std::array<VirtualNetworkPackage<MAKER>*, N>& value)
 		{
 			uint32_t _size = 0;
 			for (auto& e : value)
@@ -213,6 +215,7 @@ void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<float>&
 template<class T>
 void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<T>& value)
 {
+	//std::cout << "NetworkPackage.h: " << "writing a vector of " << (typeid(T).name()) << std::endl;
 	const uint32_t size = value.size();
 	writer << size;
 	for (auto& v : value)
@@ -224,9 +227,23 @@ void operator<<(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 	for (auto& v : value)
 		writer << v;
 }
-void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<VirtualNetworkPackageKind*>& value);
-template<std::size_t N>
-void operator<<(posta::NetworkPackage::Writer& writer, std::array<VirtualNetworkPackageKind*, N>& value)
+template<VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
+void operator<<(posta::NetworkPackage::Writer& writer, const std::vector<VirtualNetworkPackage<MAKER>*>& value)
+{
+	//std::cout << "NetworkPackage.h: " << "writing a vector of VirtualNetworkPackage<MAKER>*..." << " (" << value.size() << ")" << std::endl;
+	const uint32_t size = value.size();
+	writer << size;
+	for (auto& v : value)
+	{
+		//std::cout << "NetworkPackage.h: " << "writing first value: " << v->which << std::endl;
+		writer << v->which;
+		v->write_value_to(writer);
+		//std::cout << "NetworkPackage.h: " << "done writing..." << std::endl;
+	}
+	//std::cout << "NetworkPackage.h: " << "done writing!" << std::endl;
+}
+template<VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer), std::size_t N>
+void operator<<(posta::NetworkPackage::Writer& writer, std::array<VirtualNetworkPackage<MAKER>*, N>& value)
 {
 	for (auto& v : value)
 	{
@@ -278,6 +295,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<T, N>& value)
 template<VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
 void operator>>(posta::NetworkPackage::Writer& writer, std::vector<VirtualNetworkPackage<MAKER>*>& value)
 {
+	//std::cout << "NetworkPackage.h: " << "reading vector of VirtualNetworkPackage<MAKER>*..." << std::endl;
 	uint32_t size;
 	writer >> size;
 	value.resize(size);
@@ -286,8 +304,10 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::vector<VirtualNetwor
 	{
 		uint32_t underlying_type;
 		writer >> underlying_type;
+		//std::cout << "NetworkPackage.h: " << "underlying_type " << underlying_type << std::endl;
 		value[i] = static_cast<VirtualNetworkPackage<MAKER>*>(MAKER(underlying_type, writer));
 	}
+	//std::cout << "NetworkPackage.h: " << "done reading!" << std::endl;
 }
 /*
 template<std::size_t N>
@@ -402,7 +422,7 @@ void operator>>(posta::NetworkPackage::Writer& writer, std::array<VirtualNetwork
 		value.read_value_from(writer);
 	}
 
-	void operator<<(posta::NetworkPackage::Writer& writer, const VirtualNetworkPackageKind* value);
+	//void operator<<(posta::NetworkPackage::Writer& writer, const VirtualNetworkPackageKind* value);
 	/*
 	template <VirtualNetworkPackageKind* (*MAKER)(uint32_t underlying_type, NetworkPackage::Writer& writer)>
 	void operator>>(posta::NetworkPackage::Writer& writer, VirtualNetworkPackage<MAKER>* value)
