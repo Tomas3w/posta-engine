@@ -128,8 +128,14 @@ void posta::operator<<(NetworkPackage::Writer& writer, const double& value)
 	uint16_t exp = reinterpret_cast<uint16_t&>(mexp);
 	if (mexp < 0)
 	{
+		//LOG("this value ", value, " is mexp < 0, (", mexp, ")");
 		exp &= ~(1ul << 15); // exp[15] = 0
+		exp &= ~(1ul << 14); // exp[14] = 0
+		exp &= ~(1ul << 13); // exp[13] = 0
+		exp &= ~(1ul << 12); // exp[12] = 0
+		exp &= ~(1ul << 11); // exp[11] = 0
 		exp |=  (1ul << 10); // exp[10] = 1
+		//LOG("final value: ", std::bitset<16>(exp).to_string());
 	}
 
 	int64_t integer = static_cast<int64_t>(significand * (1ull << 52));
@@ -300,13 +306,18 @@ void posta::operator>>(NetworkPackage::Writer& writer, double& value)
 	uint64_t uinteger = v >> 11;
 	
 	int64_t integer = uinteger;
-	
-	int16_t exp = (v << 53) >> 53;
-	if (exp & (1ul << 10))
+
+	uint16_t mexp = (v << 53) >> 53;
+	int exp = 0;
+	if (mexp & (1ul << 10))
 	{
-		exp &= ~(1ul << 10); // exp[10] = 0
-		exp = -exp;
+		exp = static_cast<int16_t>(mexp) - 2048;
+		//exp &= ~(1ul << 10); // exp[10] = 0
+		//exp = -exp;
+		//LOG("exp ", exp);
 	}
+	else
+		exp = mexp;
 	double significand = integer / static_cast<double>(1ull << 52);
 	value = ldexp(significand, exp) * (is_positive ? 1:-1);
 }
