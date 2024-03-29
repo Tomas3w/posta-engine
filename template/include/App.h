@@ -10,6 +10,6 @@ class App : public posta::App
 		posta::Scene* start() override;
 };
 
-extern std::unique_ptr<App> app;
+extern App* app;
 
 #endif // APP_H

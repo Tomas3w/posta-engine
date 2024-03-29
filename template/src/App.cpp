@@ -2,7 +2,7 @@
 #include <posta/Util/LoggingMacro.h>
 #include "Game.h"
 
-std::unique_ptr<App> app;
+App* app = nullptr;
 
 using namespace std;
 
