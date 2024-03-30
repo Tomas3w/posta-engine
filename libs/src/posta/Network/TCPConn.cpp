@@ -72,6 +72,11 @@ TCPsocket TCPConn::get_socket()
 	return _socket;
 }
 
+IPaddress* TCPConn::get_address()
+{
+	return SDLNet_TCP_GetPeerAddress(get_socket());
+}
+
 bool TCPConn::send(posta::NetworkPackage& package)
 {
 	return send(package.get_type(), package.serialize());

@@ -23,6 +23,9 @@ namespace posta {
 		void set_socket(TCPsocket socket);
 		TCPsocket get_socket();
 
+		// Returns null if this is a server connection (TCPConnOfServer)
+		IPaddress* get_address();
+
 		bool send(posta::NetworkPackage& package);
 		bool send(uint32_t data_type, posta::span<uint8_t> data); // returns false in case of closed connection
 		/// returns true only if an entire packet is received and then the data type is stored in data_type and the data
