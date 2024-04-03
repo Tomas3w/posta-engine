@@ -48,6 +48,26 @@ int Font::get_character_height(size_t font_size)
 	return get_iterator_for_font(font_size)->second.char_height;
 }
 
+int Font::get_ascent(size_t font_size)
+{
+	return TTF_FontAscent(get_iterator_for_font(font_size)->second._font);
+}
+
+int Font::get_lineskip(size_t font_size)
+{
+	return TTF_FontLineSkip(get_iterator_for_font(font_size)->second._font);
+}
+
+int Font::get_descent(size_t font_size)
+{
+	return TTF_FontDescent(get_iterator_for_font(font_size)->second._font);
+}
+
+bool Font::get_glyph_metrics(size_t font_size, uint32_t character, int& minx, int& maxx, int& miny, int& maxy, int& advance)
+{
+	return TTF_GlyphMetrics32(get_iterator_for_font(font_size)->second._font, character, &minx, &maxx, &miny, &maxy, &advance) == 0;
+}
+
 size_t Font::size_utf8(std::string text)
 {
 	const char* s = text.c_str();

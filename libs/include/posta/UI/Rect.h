@@ -1,6 +1,7 @@
 #ifndef POSTAENGINE_RECT_UI_H
 #define POSTAENGINE_RECT_UI_H
 #include <SDL2/SDL.h>
+#include <glm/glm.hpp>
 
 namespace posta::ui {
 	class Rect : public SDL_Rect
@@ -9,6 +10,13 @@ namespace posta::ui {
 		Rect()
 		{
 			x = y = w = h = 0;
+		}
+		Rect(glm::vec4 rect)
+		{
+			x = static_cast<int>(rect.x);
+			y = static_cast<int>(rect.y);
+			w = static_cast<int>(rect.z);
+			h = static_cast<int>(rect.w);
 		}
 		Rect(int _x, int _y, int _w, int _h)
 		{
@@ -48,21 +56,25 @@ namespace posta::ui {
 		{
 			return h;
 		}
-		void set_x(int _x)
+		Rect& set_x(int _x)
 		{
 			x = _x;
+			return *this;
 		}
-		void set_y(int _y)
+		Rect& set_y(int _y)
 		{
 			y = _y;
+			return *this;
 		}
-		void set_w(int _w)
+		Rect& set_w(int _w)
 		{
 			w = _w;
+			return *this;
 		}
-		void set_h(int _h)
+		Rect& set_h(int _h)
 		{
 			h = _h;
+			return *this;
 		}
 		bool has_inside(int x, int y){
 			return (x >= this->x && x <= (this->x + this->w) && y >= this->y && y <= (this->y + this->h));

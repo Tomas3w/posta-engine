@@ -36,6 +36,18 @@ namespace posta {
 			/// Returns the height of the space character
 			int get_character_height(size_t font_size);
 
+			/// Returns offset from the baseline to the top of a font
+			int get_ascent(size_t font_size);
+
+			/// Returns offset from the baseline to the bottom of a font
+			int get_descent(size_t font_size);
+
+			/// Returns the recommended line spacing
+			int get_lineskip(size_t font_size);
+
+			/// Collects the metrics of a glyph, return false if the character was not found in the font
+			bool get_glyph_metrics(size_t font_size, uint32_t character, int& minx, int& maxx, int& miny, int& maxy, int& advance);
+
 			/// Returns the number of characters of a utf-8 encoded string
 			static size_t size_utf8(std::string);
 		private:
