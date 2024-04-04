@@ -33,7 +33,7 @@ bool Button::loop(int x_offset, int y_offset)
 	}
 	else if (!posta::App::app->is_click_pressed())
 		pressed = false;
-	return r;
+	return r || is_click_reserved();
 }
 
 bool Button::loop(int x_offset, int y_offset, Rect _rect)
@@ -57,12 +57,12 @@ void Button::set_rect(Rect _rect)
 	rect = _rect;
 }
 
-bool Button::is_pressed()
+bool Button::is_pressed() const
 {
 	return pressed;
 }
 
-bool Button::is_highlighted()
+bool Button::is_highlighted() const
 {
 	return highlighted;
 }
@@ -77,6 +77,21 @@ bool Button::release()
 	if (pressed)
 	{
 		pressed = false;
+		return true;
+	}
+	return false;
+}
+
+void Button::click()
+{
+	reserved_click = true;
+}
+
+bool Button::is_click_reserved()
+{
+	if (reserved_click)
+	{
+		reserved_click = false;
 		return true;
 	}
 	return false;

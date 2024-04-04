@@ -27,16 +27,20 @@ namespace posta::ui {
 			Rect rect;
 
 			/// Return whether the button is pressed or not
-			bool is_pressed();
+			bool is_pressed() const;
 			/// Highlight state of the button
 			/// True if mouse is in button space
-			bool is_highlighted();
+			bool is_highlighted() const;
 
 			/// Emulates pressing the button
 			void press();
 			/// Emulates releasing the button, returns true if button was already pressed
 			bool release();
+			/// Returns true on the next called to one of the overloads of loop
+			void click();
 		private:
+			bool is_click_reserved();
+			bool reserved_click = false;
 			bool pressed;
 			bool highlighted;
 	};
