@@ -60,6 +60,10 @@ namespace posta::ui {
 			/// Returns, in pixels, the distance to the cursor from the origin of the textbox
 			int get_cursor_offset();
 
+			/// Sets the cursor position to that of the mouse
+			/// \param scale_width If set to true, the width of the text will be scaled to match the width of the rect of this textbox, if not the width of the text will be measure in pixels from the origin.
+			void set_cursor_pos_to_mouse_pos(bool scale_width)
+
 			/// True if text is modified when add_text, erase_character, or erase_next_character are called
 			bool has_change;
 			int font_size;

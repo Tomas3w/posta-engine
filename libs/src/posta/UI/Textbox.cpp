@@ -29,6 +29,42 @@ std::string Textbox::get_text() const
 	return text;
 }
 
+void Textbox::set_cursor_pos_to_mouse_pos(bool scale_width)
+{
+	if (!scale_width)
+	{
+		select();
+		return;
+	}
+	int& mouse_x = posta::App::app->mouse_x;
+	int nx = button.rect.x + _x_offset;
+	int dnx = mouse_x - nx;
+	int text_width, h;
+	font->get_text_size(text, font_size, text_width, h);
+	if (dnx >= 0 && dnx < button.rect.w)
+	{
+		state = true;
+		size_t ncursor_pos = 0; // index of closest
+		int dt = dnx; // distance of closest
+		for (cursor_pos = 0; cursor_pos < text.size();)
+		{
+			int w;
+			next_cursor_pos();
+			std::string n = text.substr(0, cursor_pos);
+			if (font->get_text_size(n, font_size, w, h) == 0)
+			{
+				w = static_cast<float>(w) * button.rect.w / text_width;
+				if (abs(dnx - w) < dt)
+				{
+					ncursor_pos = cursor_pos;
+					dt = abs(dnx - w);
+				}
+			}
+		}
+		cursor_pos = ncursor_pos;
+	}
+}
+
 void Textbox::select()
 {
 	int& mouse_x = posta::App::app->mouse_x;
@@ -38,7 +74,7 @@ void Textbox::select()
 	{
 		state = true;
 		size_t ncursor_pos = 0; // index of closest
-		int dt = dnx; // distante of closest
+		int dt = dnx; // distance of closest
 		for (cursor_pos = 0; cursor_pos < text.size();)
 		{
 			int w, h;
