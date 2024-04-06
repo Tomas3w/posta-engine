@@ -1,5 +1,6 @@
 #include <posta/UI/Textbox.h>
 #include <posta/App.h>
+#include <posta/Util/LoggingMacro.h>
 
 using posta::ui::Textbox;
 
@@ -35,6 +36,7 @@ void Textbox::select()
 	int dnx = mouse_x - nx;
 	if (dnx >= 0 && dnx < button.rect.w)
 	{
+		state = true;
 		size_t ncursor_pos = 0; // index of closest
 		int dt = dnx; // distante of closest
 		for (cursor_pos = 0; cursor_pos < text.size();)
