@@ -187,6 +187,14 @@ void Textbox::erase_next_character()
 	}
 }
 
+void Textbox::erase_last_character()
+{
+	size_t last_cursor_pos = cursor_pos;
+	cursor_pos = text.size();
+	erase_character();
+	cursor_pos = std::min(last_cursor_pos, text.size());
+}
+
 int Textbox::get_cursor_offset()
 {
 	int w, h;

@@ -57,6 +57,9 @@ namespace posta::ui {
 			/// Erases the character next to the cursor position
 			void erase_next_character();
 
+			/// Erases last character
+			void erase_last_character();
+
 			/// Returns, in pixels, the distance to the cursor from the origin of the textbox
 			int get_cursor_offset();
 
