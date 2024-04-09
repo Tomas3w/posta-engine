@@ -1,13 +1,19 @@
 #include <posta/Network/TCPConnOfServer.h>
+// Include htonl and others
+#ifdef _WIN32
+#include <winsock.h>
+#else
+#include <arpa/inet.h>
+#endif
 
 using posta::TCPConnOfServer;
 
-TCPConnOfServer::TCPConnOfServer(short port)
+TCPConnOfServer::TCPConnOfServer(uint16_t port)
 {
 	//std::cout << "hello?" << std::endl;
 	IPaddress address;
 	address.host = INADDR_ANY;
-	address.port = port;
+	address.port = htons(port);
 	set_socket(SDLNet_TCP_Open(&address));
 	//std::cout << "hella?" << std::endl;
 	if (get_socket() == nullptr)

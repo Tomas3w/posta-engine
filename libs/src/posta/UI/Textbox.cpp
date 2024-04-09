@@ -195,6 +195,11 @@ void Textbox::erase_last_character()
 	cursor_pos = std::min(last_cursor_pos, text.size());
 }
 
+void Textbox::move_cursor_to_the_end()
+{
+	cursor_pos = text.size();
+}
+
 int Textbox::get_cursor_offset()
 {
 	int w, h;

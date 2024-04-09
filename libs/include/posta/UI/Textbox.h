@@ -60,6 +60,9 @@ namespace posta::ui {
 			/// Erases last character
 			void erase_last_character();
 
+			/// Moves cursor to the end of the string
+			void move_cursor_to_the_end();
+
 			/// Returns, in pixels, the distance to the cursor from the origin of the textbox
 			int get_cursor_offset();
 

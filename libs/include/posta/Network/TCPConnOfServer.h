@@ -6,7 +6,7 @@ namespace posta {
 	class TCPConnOfServer : public TCPConn
 	{
 	public:
-		TCPConnOfServer(short port);
+		TCPConnOfServer(uint16_t port);
 
 		TCPConnToClient* accept_incoming_connection();
 	};
