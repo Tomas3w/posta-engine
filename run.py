@@ -1,8 +1,8 @@
 import subprocess, os, sys, platform
 
-def run(project_name):
+def run(project_name, build_mode):
     import build
-    if build.build(project_name, open('path_to_lib_cmake.txt').read().strip()):
+    if build.build(project_name, open('path_to_lib_cmake.txt').read().strip(), build_mode):
         os.chdir(f"build/apps/{project_name}")
         
         if platform.system() == "Windows":

@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.16)
 
 project(Posta VERSION 1.0.0)
 
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Release)
+endif()
+
+#set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
 set(POSTA_LIBRARIES_PATHS ${CMAKE_PREFIX_PATH}/../../bin)
 set(POSTA_INCLUDE_PATHS ${CMAKE_PREFIX_PATH}/../../include)
 
@@ -12,7 +20,6 @@ set(POSTA_INCLUDE_PATHS ${CMAKE_PREFIX_PATH}/../../include)
 #set(PNG_PNG_INCLUDE_DIR ${POSTA_INCLUDE_PATHS})
 #set(LUA_LIBRARY ${POSTA_LIBRARIES_PATHS})
 #set(LUA_INCLUDE_DIR ${POSTA_INCLUDE_PATHS})
-
 
 add_subdirectory(libs)
 add_subdirectory(apps)

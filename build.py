@@ -25,7 +25,7 @@ def create_build_symlinks_and_build_folder(name):
         if not os.path.exists(f'build/apps/{name}/assets'):
             subprocess.run(["ln", "-s" , os.path.abspath(f'apps/{name}/assets'), os.path.abspath(f'build/apps/{name}/assets')])
 
-def build(project_name, path_to_lib_cmake):
+def build(project_name, path_to_lib_cmake, build_mode):
     # creating CMakeLists.txt file
     with open("apps/CMakeLists.txt", 'w') as file:
         if project_name:
@@ -47,7 +47,7 @@ def build(project_name, path_to_lib_cmake):
     # initial configuration of cmake
     with open('bin/internal/generator.txt') as generator_file:
         generator = generator_file.read().strip()
-    if run_command(['cmake', '-S', '.', '-B', 'build', f'-DCMAKE_PREFIX_PATH="{path_to_lib_cmake}"', '-G', f'{generator}', '-DCMAKE_EXPORT_COMPILE_COMMANDS=1']) != 0:
+    if run_command(['cmake', '-S', '.', '-B', 'build', f'-DCMAKE_PREFIX_PATH="{path_to_lib_cmake}"', '-G', f'{generator}', '-DCMAKE_EXPORT_COMPILE_COMMANDS=1', f'-DCMAKE_BUILD_TYPE={build_mode}']) != 0:
         return False
     # building
     if run_command(['cmake', '--build', 'build']) != 0:
@@ -58,5 +58,5 @@ if __name__ == "__main__":
     project_name = None
     if len(sys.argv) > 1:
         project_name = sys.argv[1]
-    build(project_name, open('path_to_lib_cmake.txt').read().strip())
+    build(project_name, open('path_to_lib_cmake.txt').read().strip(), 'Debug')
 
