@@ -229,7 +229,7 @@ void App::loop()
 		if (!editor.outline_framebuffer)
 			editor.outline_framebuffer.reset(new ColorDepthFramebuffer(get_width(), get_height()));
 		if (!editor.draw2d_framebuffer)
-			editor.draw2d_framebuffer.reset(new ColorFramebuffer(get_width(), get_height()));
+			editor.draw2d_framebuffer.reset(new ColorDepthFramebuffer(get_width(), get_height()));
 		// Making the camera have a framebuffer
 		dynamic_cast<posta::entity::CameraType*>(camera->get_internal_entity_type())->framebuffer = editor.draw2d_framebuffer.get();
 		if (is_editor_mode_enabled())
@@ -267,10 +267,10 @@ void App::loop()
 		}
 		#endif
 		// Binds shader2d and disables depth test for drawing 2D stuff
-		disable_depth_test();
+		glDepthFunc(GL_ALWAYS);
 		shader2d->bind();
 		current_scene->draw2d();
-		enable_depth_test();
+		glDepthFunc(GL_LESS);
 
 		// Unbinding the 2d framebuffer and running editor loop
 		#ifndef POSTA_EDITOR_DISABLED

@@ -245,7 +245,7 @@ namespace posta {
 					std::unordered_map<std::string, float> input;
 
 					/// Internal framebuffer to store the 2D output of the scene's draw2d method when in editor mode
-					std::unique_ptr<ColorFramebuffer> draw2d_framebuffer;
+					std::unique_ptr<ColorDepthFramebuffer> draw2d_framebuffer;
 					/// Internal fraembuffer to store the 3D output of the background of the editor scene
 					std::unique_ptr<ColorDepthFramebuffer> outline_framebuffer;
 
