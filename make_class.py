@@ -31,10 +31,10 @@ def make_class(class_name, project_name):
     source_path = f"apps/{project_name}/src/{class_name}.cpp"
     include_path = f"apps/{project_name}/include/{class_name}.h"
     if exists(source_path):
-        print('There is already a source file named {class_name}.cpp')
+        print(f'There is already a source file named {class_name}.cpp')
         return None
     if exists(include_path):
-        print('There is already an include file named {class_name}.h')
+        print(f'There is already an include file named {class_name}.h')
         return None
     with open(f'apps/{project_name}/sources.cmake') as file:
         lines = []
