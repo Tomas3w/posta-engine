@@ -41,8 +41,8 @@ namespace posta::ui {
 		private:
 			bool is_click_reserved();
 			bool reserved_click = false;
-			bool pressed;
-			bool highlighted;
+			bool pressed = false;
+			bool highlighted = false;
 	};
 }
 
