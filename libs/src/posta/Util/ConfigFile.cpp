@@ -1,4 +1,5 @@
 #include <posta/Util/ConfigFile.h>
+#include <posta/Util/LoggingMacro.h>
 
 using posta::ConfigFile;
 
@@ -143,8 +144,9 @@ glm::dvec4 ConfigFile::Data::to_dvec4()
 
 ConfigFile::Data ConfigFile::to_data(std::string str)
 {
-	if (str.at(0) == '{' && str.at(str.size() - 1) == '}')
-		return to_list(str);
+	std::string stripped = posta::strip(str);
+	if (stripped.at(0) == '{' && stripped.at(stripped.size() - 1) == '}')
+		return to_list(stripped);
 	return to_value(str);
 }
 
@@ -221,7 +223,7 @@ ConfigFile::ConfigFile(std::filesystem::path path)
 		right.insert(right.begin(), line.begin() + pos + 1, line.end());
 
 		// Adding this to the raw data
-		data[posta::strip(left)] = posta::strip(right);
+		data[posta::strip(left)] = right;
 		line_pos++;
 	}
 	file.close();
@@ -231,7 +233,12 @@ ConfigFile::Data ConfigFile::operator[](std::string key)
 {
 	if (data.count(key) == 0)
 		throw std::out_of_range(std::string("couldn't get key '") + key + "'");
-	return ConfigFile::to_data(posta::strip(data.at(key)));
+	return ConfigFile::to_data(data.at(key));
+}
+
+bool ConfigFile::contains(std::string key)
+{
+	return data.count(key);
 }
 
 std::string ConfigFile::to_string()

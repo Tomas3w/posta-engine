@@ -56,6 +56,7 @@ namespace posta {
 		ConfigFile(std::filesystem::path path);
 
 		Data operator[](std::string key);
+		bool contains(std::string key);
 		std::string to_string();
 
 		std::unordered_map<std::string, std::string> data;
