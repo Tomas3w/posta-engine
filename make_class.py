@@ -29,8 +29,9 @@ def exists(path):
     return True
 
 def make_class(class_name, project_name):
-    os.makedirs(f"apps/{project_name}/src/{class_name[:class_name.rfind('/')]}", exist_ok=True)
-    os.makedirs(f"apps/{project_name}/include/{class_name[:class_name.rfind('/')]}", exist_ok=True)
+    if '/' in class_name:
+        os.makedirs(f"apps/{project_name}/src/{class_name[:class_name.rfind('/')]}", exist_ok=True)
+        os.makedirs(f"apps/{project_name}/include/{class_name[:class_name.rfind('/')]}", exist_ok=True)
 
     source_path = f"apps/{project_name}/src/{class_name}.cpp"
     include_path = f"apps/{project_name}/include/{class_name}.h"
