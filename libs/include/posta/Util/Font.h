@@ -30,7 +30,7 @@ namespace posta {
 			/// Returns 0 on success, -1 on failure
 			int get_text_size(std::string text, size_t font_size, int& w, int& h);
 
-			/// Returns the width of the space character, usefull for monospace fonts
+			/// Returns the width of the space character, useful for monospace fonts
 			int get_character_width(size_t font_size);
 
 			/// Returns the height of the space character
