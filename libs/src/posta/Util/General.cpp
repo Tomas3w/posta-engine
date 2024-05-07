@@ -37,7 +37,10 @@ std::string posta::strip(std::string str)
 		if (first == std::string::npos)
 		{
 			if (!std::isspace(str[i]))
+			{
 				first = i;
+				last = i;
+			}
 		}
 		else if (!std::isspace(str[i]))
 		{
