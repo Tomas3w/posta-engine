@@ -119,9 +119,11 @@ namespace posta {
 		//template <const size_t VECSIZE, class T>
 		//constexpr inline uint32_t operator<<(const type&, const glm::vec<VECSIZE, T, glm::packed_highp> value) { return sizeof(glm::vec<VECSIZE, T, glm::packed_highp>); }
 		
+		constexpr inline uint32_t operator<<(const type&, const glm::vec4 value) { return sizeof(glm::vec4); }
 		constexpr inline uint32_t operator<<(const type&, const glm::vec3 value) { return sizeof(glm::vec3); }
 		constexpr inline uint32_t operator<<(const type&, const glm::vec2 value) { return sizeof(glm::vec2); }
 		constexpr inline uint32_t operator<<(const type&, const glm::vec1 value) { return sizeof(glm::vec1); }
+		constexpr inline uint32_t operator<<(const type&, const glm::dvec4 value) { return sizeof(glm::dvec4); }
 		constexpr inline uint32_t operator<<(const type&, const glm::dvec3 value) { return sizeof(glm::dvec3); }
 		constexpr inline uint32_t operator<<(const type&, const glm::dvec2 value) { return sizeof(glm::dvec2); }
 		constexpr inline uint32_t operator<<(const type&, const glm::dvec1 value) { return sizeof(glm::dvec1); }
@@ -200,8 +202,10 @@ void operator<<(posta::NetworkPackage::Writer& writer, const int32_t& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const int64_t& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const float& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const double& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const glm::vec4& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const glm::vec3& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const glm::vec2& value);
+void operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec4& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec3& value);
 void operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec2& value);
 //void operator<<(posta::NetworkPackage::Writer& writer, const glm::vec3& value);
@@ -264,8 +268,10 @@ void operator>>(posta::NetworkPackage::Writer& writer, int32_t& value);
 void operator>>(posta::NetworkPackage::Writer& writer, int64_t& value);
 void operator>>(posta::NetworkPackage::Writer& writer, float& value);
 void operator>>(posta::NetworkPackage::Writer& writer, double& value);
+void operator>>(posta::NetworkPackage::Writer& writer, glm::vec4& value);
 void operator>>(posta::NetworkPackage::Writer& writer, glm::vec3& value);
 void operator>>(posta::NetworkPackage::Writer& writer, glm::vec2& value);
+void operator>>(posta::NetworkPackage::Writer& writer, glm::dvec4& value);
 void operator>>(posta::NetworkPackage::Writer& writer, glm::dvec3& value);
 void operator>>(posta::NetworkPackage::Writer& writer, glm::dvec2& value);
 //void operator>>(posta::NetworkPackage::Writer& writer, glm::vec3& value);

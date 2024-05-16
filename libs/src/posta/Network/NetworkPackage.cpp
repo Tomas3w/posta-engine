@@ -146,6 +146,13 @@ void posta::operator<<(NetworkPackage::Writer& writer, const double& value)
 	uint64_t v = (uinteger << 11) | (is_positive ? 0:static_cast<uint64_t>(1UL) << 63) | exp;
 	writer << v;
 }
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::vec4& value)
+{
+	writer << static_cast<float>(value[0]);
+	writer << static_cast<float>(value[1]);
+	writer << static_cast<float>(value[2]);
+	writer << static_cast<float>(value[3]);
+}
 void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::vec3& value)
 {
 	writer << static_cast<float>(value[0]);
@@ -156,6 +163,13 @@ void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::vec2& v
 {
 	writer << value[0];
 	writer << value[1];
+}
+void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec4& value)
+{
+	writer << value[0];
+	writer << value[1];
+	writer << value[2];
+	writer << value[3];
 }
 void posta::operator<<(posta::NetworkPackage::Writer& writer, const glm::dvec3& value)
 {
@@ -321,6 +335,13 @@ void posta::operator>>(NetworkPackage::Writer& writer, double& value)
 	double significand = integer / static_cast<double>(1ull << 52);
 	value = ldexp(significand, exp) * (is_positive ? 1:-1);
 }
+void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::vec4& value)
+{
+	writer >> value[0];
+	writer >> value[1];
+	writer >> value[2];
+	writer >> value[3];
+}
 void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::vec3& value)
 {
 	writer >> value[0];
@@ -331,6 +352,13 @@ void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::vec2& value)
 {
 	writer >> value[0];
 	writer >> value[1];
+}
+void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::dvec4& value)
+{
+	writer >> value[0];
+	writer >> value[1];
+	writer >> value[2];
+	writer >> value[3];
 }
 void posta::operator>>(posta::NetworkPackage::Writer& writer, glm::dvec3& value)
 {
