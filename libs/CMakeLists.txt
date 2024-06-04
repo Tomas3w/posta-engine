@@ -40,6 +40,7 @@ add_library(
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Network/TCPConnToClient.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/Framebuffer.cpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/Util/EventEmitter.cpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/posta/UI/Rect.cpp"
 )
 
 target_compile_options(postaengine PUBLIC -I${CMAKE_PREFIX_PATH}/../../include/bullet)

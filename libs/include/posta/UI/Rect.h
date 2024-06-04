@@ -1,6 +1,7 @@
 #ifndef POSTAENGINE_RECT_UI_H
 #define POSTAENGINE_RECT_UI_H
 #include <SDL2/SDL.h>
+#include <iostream>
 #include <glm/glm.hpp>
 
 namespace posta::ui {
@@ -37,6 +38,13 @@ namespace posta::ui {
 		{
 			SDL_Rect result;
 			SDL_IntersectRect(this, &rect, &result);
+			return posta::ui::Rect(result);
+		}
+
+		Rect combine(Rect rect)
+		{
+			SDL_Rect result;
+			SDL_UnionRect(this, &rect, &result);
 			return posta::ui::Rect(result);
 		}
 
@@ -80,6 +88,10 @@ namespace posta::ui {
 			return (x >= this->x && x <= (this->x + this->w) && y >= this->y && y <= (this->y + this->h));
 		}
 	};
+}
+
+namespace std {
+	std::ostream& operator<<(std::ostream& out, const posta::ui::Rect& rect);
 }
 
 #endif // POSTAENGINE_RECT_UI_H
