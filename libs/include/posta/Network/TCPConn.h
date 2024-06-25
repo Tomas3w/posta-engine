@@ -13,7 +13,6 @@ namespace posta {
 	class TCPConn
 	{
 	public:
-		static constexpr size_t BUFFER_SIZE = 2048; // max bytes for a packet, including the size and the type of the packet
 		TCPConn();
 		TCPConn(TCPsocket socket);
 		TCPConn(const TCPConn&) = delete;
@@ -32,7 +31,7 @@ namespace posta {
 		/// in data
 		bool recv(uint32_t& data_type, posta::span<uint8_t> data);
 	private:
-		std::array<uint8_t, BUFFER_SIZE> buffer;
+		std::vector<uint8_t> buffer;
 		int buffer_cursor;
 
 		TCPsocket _socket;

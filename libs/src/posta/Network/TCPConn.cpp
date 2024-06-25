@@ -1,4 +1,5 @@
 #include <posta/Network/TCPConn.h>
+#include <posta/Util/LoggingMacro.h>
 // Include htonl and others
 #ifdef _WIN32
 #include <winsock.h>
@@ -38,12 +39,14 @@ TCPConn::TCPConn()
 	_socket = nullptr;
 	socket_set = nullptr;
 	buffer_cursor = 0;
+	buffer.resize(2048);
 }
 
 TCPConn::TCPConn(TCPsocket socket)
 {
 	set_socket(socket);
 	buffer_cursor = 0;
+	buffer.resize(2048);
 }
 
 TCPConn::~TCPConn()
@@ -120,7 +123,11 @@ bool TCPConn::recv(uint32_t& data_type, posta::span<uint8_t> data)
 	// checking that the package received is complete
 	uint32_t expected_data_size = ntohl(reinterpret_cast<uint32_t&>(*buffer.data()));
 	if (buffer_cursor < static_cast<int>(expected_data_size + sizeof(uint32_t)))
+	{
+		while (expected_data_size > buffer.size())
+			buffer.resize(buffer.size() * 2);
 		return false;
+	}
 	// copying data to data_type and data
 	memcpy (data.data(), buffer.data() + sizeof(uint32_t) * 2, expected_data_size);
 	memcpy (&data_type , buffer.data() + sizeof(uint32_t)    , sizeof(uint32_t));
