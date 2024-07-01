@@ -15,6 +15,11 @@ bool Button::loop()
 
 bool Button::loop(int x_offset, int y_offset)
 {
+	return loop(x_offset, y_offset, posta::App::app->is_click_pressed());
+}
+
+bool Button::loop(int x_offset, int y_offset, bool is_click_pressed)
+{
 	int& mouse_x = posta::App::app->mouse_x;
 	int mouse_y = posta::App::app->mouse_y;
 	int nx = rect.x + x_offset;
@@ -23,7 +28,7 @@ bool Button::loop(int x_offset, int y_offset)
 	bool r = false;
 	if (highlighted)
 	{
-		if (posta::App::app->is_click_pressed())
+		if (is_click_pressed)
 			press();
 		else if (pressed)
 		{
@@ -31,7 +36,7 @@ bool Button::loop(int x_offset, int y_offset)
 			pressed = false;
 		}
 	}
-	else if (!posta::App::app->is_click_pressed())
+	else if (!is_click_pressed)
 		pressed = false;
 	return r || is_click_reserved();
 }
@@ -43,6 +48,17 @@ bool Button::loop(int x_offset, int y_offset, Rect _rect)
 	SDL_IntersectRect(&a, dynamic_cast<SDL_Rect*>(&_rect), &b);
 	rect = posta::ui::Rect(b);
 	bool r = loop(x_offset, y_offset);
+	rect = posta::ui::Rect(a);
+	return r;
+}
+
+bool Button::loop(int x_offset, int y_offset, Rect _rect, bool is_click_pressed)
+{
+	SDL_Rect a = *dynamic_cast<SDL_Rect*>(&rect);
+	SDL_Rect b;
+	SDL_IntersectRect(&a, dynamic_cast<SDL_Rect*>(&_rect), &b);
+	rect = posta::ui::Rect(b);
+	bool r = loop(x_offset, y_offset, is_click_pressed);
 	rect = posta::ui::Rect(a);
 	return r;
 }

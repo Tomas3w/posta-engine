@@ -11,6 +11,7 @@ namespace posta::ui {
 			/// Constructs a button
 			Button(Rect _rect);
 			Button() = default;
+
 			/// Overload of loop with x_offset = y_offset = 0
 			bool loop();
 			/// Updates the button state
@@ -18,9 +19,14 @@ namespace posta::ui {
 			/// \param y_offset a vertical offset in pixels to apply to the button final position
 			/// \return whether the button was pressed
 			bool loop(int x_offset, int y_offset);
-			/// Overload of loop that pretends that the interactive part of the button is now the intersection between the button rectangle with the
-			/// rectangle given by _rect
+			
+			// Overload of loop whose click is given by the bool is_click_pressed
+			bool loop(int x_offset, int y_offset, bool is_click_pressed);
+
+			/// Overload of loop that pretends that the interactive part of the button is now the intersection between the button rectangle with the rectangle given by _rect
 			bool loop(int x_offset, int y_offset, Rect _rect);
+			/// Overload of loop that pretends that the interactive part of the button is now the intersection between the button rectangle with the rectangle given by _rect, it also uses the bool is_click_pressed instead of just click
+			bool loop(int x_offset, int y_offset, Rect _rect, bool is_click_pressed);
 
 			Rect& get_rect();
 			void set_rect(Rect _rect);
