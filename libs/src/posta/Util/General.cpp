@@ -66,6 +66,14 @@ std::vector<std::string> posta::split(std::string str, char separator)
 	return elements;
 }
 
+glm::vec3 posta::intersect_ray_on_plane(glm::vec3 plane_pos, glm::vec3 plane_normal, glm::vec3 ray_src, glm::vec3 ray_dir)
+{
+	auto obj_pos = plane_pos;
+	auto dotProduct = glm::dot(ray_dir, plane_normal);
+	auto t = dot(plane_normal, obj_pos - ray_src) / dotProduct;
+	return ray_src + t * ray_dir;
+}
+
 std::string posta::get_glError(GLenum error)
 {
 	switch (error)

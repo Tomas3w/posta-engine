@@ -565,14 +565,6 @@ void App::register_keypress_input(SDL_Keycode key, std::string name)
 	keypress_inputs[key] = name;
 }
 
-static glm::vec3 intersect_ray_on_plane(glm::vec3 plane_pos, glm::vec3 plane_normal, glm::vec3 ray_src, glm::vec3 ray_dir)
-{
-	auto obj_pos = plane_pos;
-	auto dotProduct = glm::dot(ray_dir, plane_normal);
-	auto t = dot(plane_normal, obj_pos - ray_src) / dotProduct;
-	return ray_src + t * ray_dir;
-}
-
 glm::vec3 App::Editor::get_selected_object_moving_position()
 {
 	posta::entity::Entity* entity = get_selected_entity();

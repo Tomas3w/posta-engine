@@ -24,6 +24,8 @@ namespace posta {
 
 	std::vector<std::string> split(std::string str, char separator);
 
+	glm::vec3 intersect_ray_on_plane(glm::vec3 plane_pos, glm::vec3 plane_normal, glm::vec3 ray_src, glm::vec3 ray_dir);
+
 	std::string get_glError(GLenum error);
 }
 
