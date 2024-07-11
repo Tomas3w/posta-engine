@@ -42,6 +42,10 @@ def print_help():
     print("\tGenerates a template project with the name <project-name>")
     print(" posta make-class <class-name> <project-name>")
     print("\tGenerates a class with the name <class-name> and puts it in the files <project-name>/include/<class-name> and <project-name>/src/<class-name>\n\tIncludes those files inside of the sources.cmake file")
+    print(" posta make-2d-shader <shader-name> <project-name>")
+    print("\tgenerates a shader class from the 2d template with the name <shader-name> and puts it in the files <project-name>/include/shader/<class-name> and <project-name>/src/shader/<class-name>\n\tincludes those files inside of the sources.cmake file\n\tit also creates the fragment and vertex shaders in the folder <project-name>/assets/shader/{fragment/vertex}.glsl")
+    print(" posta make-3d-shader <shader-name> <project-name>")
+    print("\tgenerates a shader class from the 3d template with the name <shader-name> and puts it in the files <project-name>/include/shader/<class-name> and <project-name>/src/shader/<class-name>\n\tincludes those files inside of the sources.cmake file\n\tit also creates the fragment and vertex shaders in the folder <project-name>/assets/shader/{fragment/vertex}.glsl")
     print(" posta export <project-name> <path>")
     print("\tExports the project named <project-name> into a folder pointed by <path>, the final export folder will then be in <path>/<project_name>")
 def main():
@@ -94,6 +98,28 @@ def main():
             class_name = argv[2]
             project_name = argv[3]
             make_class.make_class(class_name, project_name)
+            return None
+    elif argument(1, "make-3d-shader") == argument_error_type.NOERROR:
+        if len(argv) < 3:
+            print("Missing shader name")
+        elif len(argv) < 4:
+            print("Missing project name")
+        else:
+            import make_shader
+            shader_name = argv[2]
+            project_name = argv[3]
+            make_shader.make_shader('3d', shader_name, project_name)
+            return None
+    elif argument(1, "make-2d-shader") == argument_error_type.NOERROR:
+        if len(argv) < 3:
+            print("Missing shader name")
+        elif len(argv) < 4:
+            print("Missing project name")
+        else:
+            import make_shader
+            shader_name = argv[2]
+            project_name = argv[3]
+            make_shader.make_shader('2d', shader_name, project_name)
             return None
     elif argument(1, "export") == argument_error_type.NOERROR:
         if len(argv) < 3:
